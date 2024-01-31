@@ -3,18 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/01/31 22:01:44 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/01 00:02:34 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <MLX42/MLX42.h>
 #include <stdio.h>
 
-#define WIDTH 512
-#define HEIGHT 512
+#define WIDTH 1024
+#define HEIGHT 1024
+
+static int	err_return(char *error_msg)
+{
+	printf("%s", error_msg);
+	return (-1);
+}
 
 static void	ft_hook(void *param)
 {
@@ -32,24 +38,21 @@ int	main(void)
 	mlx_t		*mlx;
 	mlx_image_t	*image;
 
-	mlx = mlx_init(WIDTH, HEIGHT, "FDF", false);
+	mlx = mlx_init(WIDTH, HEIGHT, "FDF", true);
 	if (!mlx)
 	{
-		printf("%s", "Error\n\t\e[31mmlx_init fail");
-		return (-1);
+		return (err_return("Error\n\t\e[31mmlx_init fail"));
 	}
 	image = mlx_new_image(mlx, 512, 512);
 	if (!image)
 	{
-		printf("%s", "Error\n\t\e[31mmlx_new_image fail");
 		mlx_close_window(mlx);
-		return (-1);
+		return (err_return("Error\n\t\e[31mmlx_new_image fail"));
 	}
 	if (mlx_image_to_window(mlx, image, 0, 0) == -1)
 	{
-		printf("%s", "Error\n\t\e[31mmlx_image_to_window fail");
 		mlx_close_window(mlx);
-		return (-1);
+		return (err_return("Error\n\t\e[31mmlx_image_to_window fail"));
 	}
 	mlx_loop_hook(mlx, ft_hook, mlx);
 	mlx_loop(mlx);
