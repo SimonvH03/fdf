@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/01 00:02:34 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/01 00:12:39 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	ft_hook(void *param)
 
 	if (mlx_is_key_down((mlx_t *)mlx, MLX_KEY_ESCAPE))
 	{
-		printf("%s", "ESC pressed:\t\e[31mclosing window\n");
+		printf("%s", "ESC pressed:\n\e[31m\tclosing window\n");
 		mlx_close_window((mlx_t *)mlx);
 	}
 }
@@ -41,18 +41,18 @@ int	main(void)
 	mlx = mlx_init(WIDTH, HEIGHT, "FDF", true);
 	if (!mlx)
 	{
-		return (err_return("Error\n\t\e[31mmlx_init fail"));
+		return (err_return("Error\n\e[31m\tmlx_init fail\n"));
 	}
 	image = mlx_new_image(mlx, 512, 512);
 	if (!image)
 	{
 		mlx_close_window(mlx);
-		return (err_return("Error\n\t\e[31mmlx_new_image fail"));
+		return (err_return("Error\n\e[31m\tmlx_new_image fail\n"));
 	}
 	if (mlx_image_to_window(mlx, image, 0, 0) == -1)
 	{
 		mlx_close_window(mlx);
-		return (err_return("Error\n\t\e[31mmlx_image_to_window fail"));
+		return (err_return("Error\n\e[31m\tmlx_image_to_window fail\n"));
 	}
 	mlx_loop_hook(mlx, ft_hook, mlx);
 	mlx_loop(mlx);
