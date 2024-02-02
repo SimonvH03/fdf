@@ -1,4 +1,4 @@
-NAME	:= FDF
+NAME	:= fdf
 CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -Ofast
 LIBMLX	:= ./MLX42
 
