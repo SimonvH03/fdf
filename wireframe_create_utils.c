@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   wireframe_create_utils.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/02 20:02:54 by svan-hoo         ###   ########.fr       */
+/*   Created: 2024/02/02 17:58:18 by svan-hoo          #+#    #+#             */
+/*   Updated: 2024/02/02 20:22:24 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <MLX42/MLX42.h>
+#include "fdf.h"
 
-#define WIDTH 1024
-#define HEIGHT 1024
-
-void	wireframe_create(void *param);
-
-typedef struct s_point
+char	*read_point(t_wireframe *wireframe)
 {
-	uint32_t	x;
-	uint32_t	y;
-	uint32_t	z;
-}	t_point;
+	t_point	point;
 
-typedef struct s_wireframe
-{
-	mlx_t		*mlx;
-	mlx_image_t	*image;
-}	t_wireframe;
+	return (&point);
+}

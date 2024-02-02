@@ -6,15 +6,17 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/02 17:06:29 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/02 20:03:03 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h>
 
-static int	err_return(char *error_msg)
+static int	err_return(mlx_t *mlx, char *error_msg)
 {
+	if (mlx)
+		mlx_close_window(mlx);
 	printf("%s", error_msg);
 	return (-1);
 }
@@ -59,29 +61,31 @@ static void	ft_hook(void *param)
 	}
 }
 
-int	main(void)
+void	loop_hooks(mlx_t *mlx, mlx_image_t *image, t_wireframe *wireframe)
+{
+	mlx_loop_hook(mlx, wireframe_create, wireframe);
+	mlx_loop_hook(mlx, ft_hook, mlx);
+	mlx_loop_hook(mlx, ft_background, image);
+}
+
+int	main(int argc, char **argv)
 {
 	mlx_t		*mlx;
 	mlx_image_t	*image;
+	t_wireframe	*wireframe;
 
-	mlx = mlx_init(WIDTH, HEIGHT, "fdf", false);
+	if (argc != 2)
+		return (0);
+	mlx = mlx_init(WIDTH, HEIGHT, "fdf", true);
 	if (!mlx)
-	{
-		return (err_return("Error\n\e[31m:mlx_init fail\n"));
-	}
+		return (err_return(mlx, "Error\n\e[31m:mlx_init fail\n"));
 	image = mlx_new_image(mlx, mlx->width, mlx->height);
 	if (!image)
-	{
-		mlx_close_window(mlx);
-		return (err_return("Error\n\e[31m:mlx_new_image fail\n"));
-	}
+		return (err_return(mlx, "Error\n\e[31m:mlx_new_image fail\n"));
 	if (mlx_image_to_window(mlx, image, 0, 0) == -1)
-	{
-		mlx_close_window(mlx);
-		return (err_return("Error\n\e[31m:mlx_image_to_window fail\n"));
-	}
-	mlx_loop_hook(mlx, create_wireframe, image);
-	mlx_loop_hook(mlx, ft_hook, mlx);
+		return (err_return(mlx, "Error\n\e[31m:mlx_image_to_window fail\n"));
+	init_wireframe(argv[1]);
+	loops_hooks(mlx, image, argv[1]);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 	return (0);
