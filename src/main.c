@@ -6,11 +6,11 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/04 18:17:57 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/04 23:27:17 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 #include <stdio.h>
 
 // static int	err_return(mlx_t *mlx, char *error_msg)
@@ -71,7 +71,8 @@ int	main(void)
 {
 	t_map	map;
 
-	map.fd = open("42.fdf", O_RDONLY);
+	map_init(&map);
+	map.name = "./maps/test.fdf";
 	read_map(&map);
 	return (0);
 }

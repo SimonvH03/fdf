@@ -1,40 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/04 23:00:31 by simon            ###   ########.fr       */
+/*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
+/*   Updated: 2024/02/04 22:36:35 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <MLX42/MLX42.h>
-#include "libft.h"
-#include <unistd.h>
-#include <fcntl.h>
+#include "../include/fdf.h"
 
-#define WIDTH 1024
-#define HEIGHT 1024
-
-typedef struct s_map
+void	map_init(t_map *map)
 {
-	char		*name;
-	int			fd;
-	int			x;
-	int			y;
-	int			**content;
-}	t_map;
+	map->content = NULL;
+	map->fd = 0;
+	map->name = NULL;
+	map->x = 0;
+	map->y = 0;
+}
 
-typedef struct s_wireframe
+void	wireframe_init(t_wireframe *wireframe)
 {
-	mlx_t		*mlx;
-	mlx_image_t	*image;
-	t_map		*map;
-}	t_wireframe;
-
-void	map_init(t_map *map);
-void	wireframe_init(t_wireframe *wireframe);
-
-t_map	*read_map(t_map *map);
+	wireframe->image = NULL;
+	wireframe->map = NULL;
+	wireframe->mlx = NULL;
+}

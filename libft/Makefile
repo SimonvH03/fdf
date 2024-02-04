@@ -43,7 +43,8 @@ SRC		=	ft_atoi.c \
 			ft_toupper.c \
 			ft_writing.c \
 			ft_cpy.c \
-			# ft_writingpoint.c
+			get_next_line.c \
+			get_next_line_utils.c
 
 BSRC	=	ft_lstadd_back.c \
 			ft_lstadd_front.c \
@@ -58,7 +59,6 @@ BSRC	=	ft_lstadd_back.c \
 OBJ		=	$(SRC:.c=.o)
 
 BOBJ	=	$(BSRC:.c=.o)
-
 
 
 all: $(NAME)

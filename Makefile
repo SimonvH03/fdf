@@ -6,12 +6,13 @@ LIBMLX	= $(LMLXDIR)/build/libmlx42.a -ldl -lglfw -pthread -lm
 LFTDIR	= ./libft
 LIBFT	= $(LFTDIR)/libft.a
 
-HEADERS	= -I ./include -I $(LIBMLX)/include
+HEADERS	= -I ./include -I $(LMLXDIR)/include
 LIBS	= $(LIBMLX) $(LIBFT)
 SRCDIR	= ./src
-SRC		=	main.c \
-			read_map.c
-OBJS	= $(SRCDIR)/${SRC:.c=.o}
+SRC		=	$(SRCDIR)/read_map.c \
+			$(SRCDIR)/init.c \
+			$(SRCDIR)/main.c
+OBJS	= ${SRC:.c=.o}
 
 all: $(LIBS) $(NAME)
 
@@ -25,9 +26,10 @@ $(LIBMLX):
 	$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)"
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
+	$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME) -g
 
 clean:
+	make -C $(LFTDIR) clean
 	rm -rf $(OBJS)
 	rm -rf $(LMLXDIR)/build
 
