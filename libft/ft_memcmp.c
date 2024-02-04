@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wireframe_create.c                                 :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/02 16:58:42 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/04 12:14:01 by simon            ###   ########.fr       */
+/*   Created: 2023/10/05 21:37:21 by svan-hoo          #+#    #+#             */
+/*   Updated: 2023/11/04 01:47:31 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-void	wireframe_create(void *param)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	mlx_image_t	*image;
-	t_point		*point;
-	t_wireframe	*wireframe;
+	int	diff;
 
-	wireframe = param;
-	//check_map
-	point = read_point(wireframe);
-	//
-}
-
-t_point	*read_point(t_mapfdf *mapfdf)
-{
-	t_point	point;
-
-	mapfdf->fd = open(mapfdf->name, O_RDONLY);
-
-	return (&point);
-}
-
-int	main(void)
-{
-
+	while (n--)
+	{
+		diff = *(unsigned char *)s1++ - *(unsigned char *)s2++;
+		if (diff)
+			return (diff);
+	}
+	return (0);
 }
