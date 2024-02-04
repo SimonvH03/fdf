@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/02 20:03:03 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/04 10:59:07 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	ft_background(void *param)
 		x = 0;
 		while (x < image->width)
 		{
-			mlx_put_pixel((mlx_image_t *)image, x, y, 0xFF000099);
+			mlx_put_pixel((mlx_image_t *)image, x, y, 0xFF000088);
 			x++;
 		}
 		y++;
