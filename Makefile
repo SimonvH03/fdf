@@ -12,6 +12,7 @@ SRCDIR	= ./src
 SRC		=	$(SRCDIR)/read_map.c \
 			$(SRCDIR)/structs_init.c \
 			$(SRCDIR)/structs_free.c \
+			$(SRCDIR)/test_utils.c \
 			$(SRCDIR)/main.c
 OBJS	= ${SRC:.c=.o}
 

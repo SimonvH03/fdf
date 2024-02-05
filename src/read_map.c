@@ -6,13 +6,13 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:58:42 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/05 19:03:45 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/05 21:15:55 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void	map_fill_row(int *map_content_row, char *buffer)
+void	map_fill_row(t_point **content, int y, char *buffer)
 {
 	int		i;
 	int		k;
@@ -34,7 +34,7 @@ void	map_fill_row(int *map_content_row, char *buffer)
 			k++;
 		}
 		str_point[k] = '\0';
-		map_content_row[x] = ft_atoi(str_point);
+		content[y][x] = (t_point){x, y, ft_atoi(str_point), C_LINES};
 		x++;
 	}
 }
@@ -44,15 +44,15 @@ void	map_fill_content(t_map *map)
 	char	*buffer;
 	int		y;
 
-	map->content = (int **)malloc((map->y_max + 1) * sizeof(int *));
+	map->content = (t_point **)malloc((map->y_max + 1) * sizeof(t_point *));
 	map->content[map->y_max] = NULL;
 	map->fd = open(map->name, O_RDONLY);
 	buffer = get_next_line(map->fd);
 	y = 0;
 	while (buffer && y < map->y_max)
 	{
-		map->content[y] = (int *)malloc((map->x_max) * sizeof(int));
-		map_fill_row(map->content[y], buffer);
+		map->content[y] = (t_point *)malloc((map->x_max + 1) * sizeof(t_point ));
+		map_fill_row(map->content, y, buffer);
 		free(buffer);
 		y++;
 		buffer = get_next_line(map->fd);
@@ -94,11 +94,10 @@ void	map_size(t_map *map)
 	close(map->fd);
 }
 
-
 t_map	*read_map(t_map *map)
 {
 	map_size(map);
-	printf("row_size: %d\nrow count: %d\n", map->x_max, map->y_max);
+	printf("width:  %d\nheight: %d\n", map->x_max, map->y_max);
 	map_fill_content(map);
 	check_map_result(map);
 	return (map);

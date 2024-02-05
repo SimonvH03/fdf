@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:04:03 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/05 19:04:33 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/05 21:15:14 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	check_map_result(t_map *map)
 {
-	int	y;
-	int	x;
+	int		y;
+	int		x;
+	t_point	*tmpoint;
 
 	y = 0;
 	while (y < map->y_max)
@@ -23,7 +24,8 @@ void	check_map_result(t_map *map)
 		x = 0;
 		while (x < map->x_max)
 		{
-			printf("%2d", map->content[y][x]);
+			tmpoint = &map->content[y][x];
+			printf("%2d", tmpoint->z);
 			x++;
 		}
 		printf("\n");

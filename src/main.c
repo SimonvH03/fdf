@@ -6,12 +6,11 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/05 19:03:16 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/05 20:54:48 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
-#include <stdio.h>
 
 // static int	err_return(mlx_t *mlx, char *error_msg)
 // {
@@ -21,25 +20,25 @@
 // 	return (-1);
 // }
 
-static void	clear_image(void *param)
-{
-	mlx_image_t	*image;
-	uint32_t	x;
-	uint32_t	y;
+// static void	clear_image(void *param)
+// {
+// 	mlx_image_t	*image;
+// 	uint32_t	x;
+// 	uint32_t	y;
 
-	image = param;
-	y = 0;
-	while (y < image->height)
-	{
-		x = 0;
-		while (x < image->width)
-		{
-			mlx_put_pixel((mlx_image_t *)image, x, y, C_BACKGROUND);
-			x++;
-		}
-		y++;
-	}
-}
+// 	image = param;
+// 	y = 0;
+// 	while (y < image->height)
+// 	{
+// 		x = 0;
+// 		while (x < image->width)
+// 		{
+// 			mlx_put_pixel((mlx_image_t *)image, x, y, C_BACKGROUND);
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// }
 
 // static void	ft_hook(void *param)
 // {
@@ -61,7 +60,7 @@ static void	clear_image(void *param)
 // 	}
 // }
 
-// void	loop_hooks(mlx_t *mlx, mlx_image_t *image, t_wireframe *wireframe)
+// void	loop_hooks(mlx_t *mlx, mlx_image_t *image, t_fdf *fdf)
 // {
 // 	mlx_loop_hook(mlx, ft_hook, mlx);
 // 	mlx_loop_hook(mlx, ft_background, image);
@@ -69,15 +68,15 @@ static void	clear_image(void *param)
 
 int	main(void)
 {
-	t_wireframe	*wireframe;
-	t_map		*map;
-	mlx_t		*mlx;
+	t_fdf		fdf;
+	t_map		map;
+	// mlx_t		mlx;
 
-	map = map_init("./maps/test.fdf");
-	wireframe = wireframe_init(map);
-	read_map(map);
-	draw_image(wireframe);
-	map_free(map);
+	map = (t_map){NULL, 0, "./maps/test.fdf", 0, 0};
+	fdf = (t_fdf){(mlx_image_t *) NULL, (t_map *)&map, (mlx_t *) NULL};
+	read_map(&map);
+	// draw_image(fdf);
+	map_free(&map);
 	return (0);
 }
 
@@ -85,7 +84,7 @@ int	main(void)
 // {
 // 	mlx_t		*mlx;
 // 	mlx_image_t	*image;
-// 	t_wireframe	*wireframe;
+// 	t_fdf	*fdf;
 
 // 	if (argc != 2)
 // 		return (0);
@@ -97,8 +96,8 @@ int	main(void)
 // 		return (err_return(mlx, "Error\n\e[31m:mlx_new_image fail\n"));
 // 	if (mlx_image_to_window(mlx, image, 0, 0) == -1)
 // 		return (err_return(mlx, "Error\n\e[31m:mlx_image_to_window fail\n"));
-// 	init_wireframe(argv[1]);
-// 	loops_hooks(mlx, image, wireframe);
+// 	init_fdf(argv[1]);
+// 	loops_hooks(mlx, image, fdf);
 // 	mlx_loop(mlx);
 // 	mlx_terminate(mlx);
 // 	return (0);
