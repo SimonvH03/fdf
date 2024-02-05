@@ -10,7 +10,8 @@ HEADERS	= -I ./include -I $(LMLXDIR)/include
 LIBS	= $(LIBMLX) $(LIBFT)
 SRCDIR	= ./src
 SRC		=	$(SRCDIR)/read_map.c \
-			$(SRCDIR)/init.c \
+			$(SRCDIR)/structs_init.c \
+			$(SRCDIR)/structs_free.c \
 			$(SRCDIR)/main.c
 OBJS	= ${SRC:.c=.o}
 

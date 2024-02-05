@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/04 23:00:31 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/05 00:32:59 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,12 @@ typedef struct s_wireframe
 	t_map		*map;
 }	t_wireframe;
 
+//structs_init
 void	map_init(t_map *map);
 void	wireframe_init(t_wireframe *wireframe);
+
+//structs_free
+void	map_free(t_map *map);
+void	wireframe_free(t_wireframe *wireframe);
 
 t_map	*read_map(t_map *map);
