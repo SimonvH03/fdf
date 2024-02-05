@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:58:42 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/05 01:12:51 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/05 19:03:45 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	map_fill_row(int *map_content_row, char *buffer)
 	int		i;
 	int		k;
 	int		x;
-	char	str_element[sizeof(INT_MAX)];
+	char	str_point[sizeof(INT_MAX)];
 
 	i = 0;
 	k = 0;
@@ -29,39 +29,38 @@ void	map_fill_row(int *map_content_row, char *buffer)
 			i++;
 		while (buffer[i] && buffer[i] != ' ')
 		{
-			str_element[k] = buffer[i];
+			str_point[k] = buffer[i];
 			i++;
 			k++;
 		}
-		str_element[k] = '\0';
-		map_content_row[x] = ft_atoi(str_element);
+		str_point[k] = '\0';
+		map_content_row[x] = ft_atoi(str_point);
 		x++;
 	}
 }
 
 void	map_fill_content(t_map *map)
 {
-	int		**map_content;
 	char	*buffer;
-	int		j;
+	int		y;
 
-	map_content = (int **)malloc((map->y) * sizeof(int *));
+	map->content = (int **)malloc((map->y_max + 1) * sizeof(int *));
+	map->content[map->y_max] = NULL;
 	map->fd = open(map->name, O_RDONLY);
 	buffer = get_next_line(map->fd);
-	j = 0;
-	while (buffer && j < map->y)
+	y = 0;
+	while (buffer && y < map->y_max)
 	{
-		map_content[j] = (int *)malloc((map->x) * sizeof(int));
-		map_fill_row(map_content[j], buffer);
+		map->content[y] = (int *)malloc((map->x_max) * sizeof(int));
+		map_fill_row(map->content[y], buffer);
 		free(buffer);
-		j++;
+		y++;
 		buffer = get_next_line(map->fd);
 	}
-	map->content = map_content;
 	close(map->fd);
 }
 
-int	element_count(char *buffer)
+int	row_size(char *buffer)
 {
 	int		count;
 	int		i;
@@ -87,39 +86,20 @@ void	map_size(t_map *map)
 	buffer = get_next_line(map->fd);
 	while (buffer)
 	{
-		map->x = element_count(buffer);
+		map->x_max = row_size(buffer);
 		free(buffer);
-		map->y++;
+		map->y_max++;
 		buffer = get_next_line(map->fd);
 	}
 	close(map->fd);
 }
 
-// void	check_map_result(t_map *map)
-// {
-// 	int	y;
-// 	int	x;
-
-// 	y = 0;
-// 	while (y < map->y)
-// 	{
-// 		x = 0;
-// 		while (x < map->x)
-// 			{
-// 				printf("%d ", map->content[y][x]);
-// 				x++;
-// 			}
-// 		printf("\n");
-// 		y++;
-// 	}
-// }
 
 t_map	*read_map(t_map *map)
 {
 	map_size(map);
-	printf("element_count: %d\nrow count: %d\n", map->x, map->y);
+	printf("row_size: %d\nrow count: %d\n", map->x_max, map->y_max);
 	map_fill_content(map);
-	// check_map_result(map);
-	map_free(map);
+	check_map_result(map);
 	return (map);
 }

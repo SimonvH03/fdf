@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   structs_free.c                                     :+:      :+:    :+:   */
+/*   test_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/02/05 19:03:13 by svan-hoo         ###   ########.fr       */
+/*   Created: 2024/02/05 19:04:03 by svan-hoo          #+#    #+#             */
+/*   Updated: 2024/02/05 19:04:33 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void	map_free(t_map *map)
+void	check_map_result(t_map *map)
 {
-	int	i;
+	int	y;
+	int	x;
 
-	i = 0;
-	while (map->content[i])
-		free(map->content[i++]);
-	free(map->content);
-}
-
-void	wireframe_free(t_wireframe *wireframe)
-{
-	free(wireframe->image);
-	free(wireframe->map);
-	free(wireframe->mlx);
-}
-
-void	point_free(t_point *point)
-{
-	free(point->vector);
+	y = 0;
+	while (y < map->y_max)
+	{
+		x = 0;
+		while (x < map->x_max)
+		{
+			printf("%2d", map->content[y][x]);
+			x++;
+		}
+		printf("\n");
+		y++;
+	}
 }

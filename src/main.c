@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/04 23:27:17 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/05 19:03:16 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,25 @@
 // 	return (-1);
 // }
 
-// static void	ft_background(void *param)
-// {
-// 	mlx_image_t	*image;
-// 	uint32_t	x;
-// 	uint32_t	y;
+static void	clear_image(void *param)
+{
+	mlx_image_t	*image;
+	uint32_t	x;
+	uint32_t	y;
 
-// 	image = param;
-// 	y = 0;
-// 	while (y < image->height)
-// 	{
-// 		x = 0;
-// 		while (x < image->width)
-// 		{
-// 			mlx_put_pixel((mlx_image_t *)image, x, y, 0xFF000088);
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// }
+	image = param;
+	y = 0;
+	while (y < image->height)
+	{
+		x = 0;
+		while (x < image->width)
+		{
+			mlx_put_pixel((mlx_image_t *)image, x, y, C_BACKGROUND);
+			x++;
+		}
+		y++;
+	}
+}
 
 // static void	ft_hook(void *param)
 // {
@@ -69,11 +69,15 @@
 
 int	main(void)
 {
-	t_map	map;
+	t_wireframe	*wireframe;
+	t_map		*map;
+	mlx_t		*mlx;
 
-	map_init(&map);
-	map.name = "./maps/test.fdf";
-	read_map(&map);
+	map = map_init("./maps/test.fdf");
+	wireframe = wireframe_init(map);
+	read_map(map);
+	draw_image(wireframe);
+	map_free(map);
 	return (0);
 }
 
