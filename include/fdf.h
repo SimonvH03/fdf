@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/05 21:14:54 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/06 19:05:00 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include <unistd.h>
 # include <fcntl.h>
+# include <math.h>
 // for printf, exclude later
 # include <stdio.h>
 
@@ -35,11 +36,18 @@ typedef struct s_point
 	uint32_t	colour;
 }	t_point;
 
-typedef struct s_rotation_matrix
+typedef struct s_vector
 {
 	int			a;
 	int			b;
 	int			c;
+}	t_vector;
+
+typedef struct s_rotation_matrix
+{
+	t_vector	a;
+	t_vector	b;
+	t_vector	c;
 }	t_rotation_matrix;
 
 // single use
@@ -52,11 +60,20 @@ typedef struct s_map
 	int			y_max;
 }	t_map;
 
+typedef struct s_perspective
+{
+	int			alpha;
+	int			beta;
+	int			gamma;
+}	t_perspective;
+
+
 typedef struct s_fdf
 {
-	mlx_image_t	*image;
-	t_map		*map;
-	mlx_t		*mlx;
+	mlx_image_t		*image;
+	t_map			*map;
+	mlx_t			*mlx;
+	t_perspective	*perspective;
 }	t_fdf;
 
 
