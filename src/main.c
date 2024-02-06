@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/06 11:01:16 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/06 22:08:30 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,20 @@
 int	main(void)
 {
 	// t_fdf		fdf;
-	t_map		map;
+	t_map			map;
+	t_perspective	perspective;
 	// mlx_t		mlx;
 
 	map = (t_map){NULL, 0, "./maps/test.fdf", 0, 0};
 	// fdf = (t_fdf){(mlx_image_t *) NULL, (t_map *)&map, (mlx_t *) NULL};
-	read_map(&map);
+	map_read(&map);
+	check_map_result(&map);
 	// draw_image(fdf);
+	perspective.alpha = 0;
+	perspective.beta = 0;
+	perspective.gamma = 0;
+	map_project(&map, &perspective);
+	// check_map_result(&map);
 	map_free(&map);
 	return (0);
 }

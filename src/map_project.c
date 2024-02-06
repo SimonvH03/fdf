@@ -6,13 +6,13 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:24:41 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/06 21:26:58 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/06 22:08:59 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static void	point_matrix_mltp(t_point *point, const double **b_3x3)
+static void	point_matrix_mltp(t_point *point, double **b_3x3)
 {
 	double			result_vector[3];
 	const double	point_vector[3] = {point->x, point->y, point->z};
@@ -34,12 +34,10 @@ static void	point_matrix_mltp(t_point *point, const double **b_3x3)
 	point->x = result_vector[0];
 	point->y = result_vector[1];
 	point->z = result_vector[2];
-	// *point = (t_point){result_vector[0], result_vector[1], result_vector[2]};
 }
 
-static double	***matrix_3x3_mltp(const double **a_3x3, const double **b_3x3)
+static void	matrix_3x3_mltp(double ***res_3x3, double **a_3x3, double **b_3x3)
 {
-	double	result_matrix[3][3];
 	int		i;
 	int		j;
 	int		n;
@@ -51,20 +49,19 @@ static double	***matrix_3x3_mltp(const double **a_3x3, const double **b_3x3)
 		while (j < 3)
 		{
 			n = 0;
-			result_matrix[i][j] = 0;
+			*res_3x3[i][j] = 0;
 			while (n <= j)
 			{
-				result_matrix[i][j] += a_3x3[i][n] * b_3x3[n][j];
+				*res_3x3[i][j] += a_3x3[i][n] * b_3x3[n][j];
 				n++;
 			}
 			j++;
 		}
 		i++;
 	}
-	return (&result_matrix);
 }
 
-static double	***create_rotation_matrix(const t_perspective *p)
+static void	create_matrix(double ***rm, t_perspective *p)
 {
 	const double	matrix_alpha[3][3] = {
 	{cos(p->alpha), -sin(p->alpha), 0},
@@ -79,18 +76,18 @@ static double	***create_rotation_matrix(const t_perspective *p)
 	{0, cos(p->gamma), -sin(p->gamma)},
 	{0, sin(p->gamma), cos(p->gamma)}};
 
-	return (matrix_3x3_mltp(matrix_alpha,
-			matrix_3x3_mltp(matrix_beta, matrix_gamma)));
+	matrix_3x3_mltp(rm, (double **)matrix_alpha, (double **)matrix_beta);
+	matrix_3x3_mltp(rm, *rm, (double **)matrix_gamma);
 }
 
 void	map_project(t_map *map, t_perspective *perspective)
 {
-	double	***rotation_matrix;
+	double	**rotation_matrix;
 	int		y;
 	int		x;
 
 	//create rotation_matrix
-	rotation_matrix = create_rotation_matrix(perspective);
+	create_matrix(&rotation_matrix, perspective);
 	//parse map
 	y = 0;
 	while (y < map->y_max)

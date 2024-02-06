@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:58:42 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/06 21:24:05 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/06 22:07:07 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,5 @@ t_map	*map_read(t_map *map)
 	map_size(map);
 	printf("\nwidth:  %d\nheight: %d\n", map->x_max, map->y_max);
 	map_fill_content(map);
-	check_map_result(map);
 	return (map);
 }
