@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:58:42 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/05 21:15:55 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/06 11:01:44 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	map_size(t_map *map)
 t_map	*read_map(t_map *map)
 {
 	map_size(map);
-	printf("width:  %d\nheight: %d\n", map->x_max, map->y_max);
+	printf("\nwidth:  %d\nheight: %d\n", map->x_max, map->y_max);
 	map_fill_content(map);
 	check_map_result(map);
 	return (map);
