@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_map.c                                         :+:      :+:    :+:   */
+/*   map_read.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:58:42 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/06 11:01:44 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/06 21:24:05 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void	map_fill_row(t_point **content, int y, char *buffer)
+static void	map_fill_row(t_point **content, int y, char *buffer)
 {
 	int		i;
 	int		k;
@@ -39,7 +39,7 @@ void	map_fill_row(t_point **content, int y, char *buffer)
 	}
 }
 
-void	map_fill_content(t_map *map)
+static void	map_fill_content(t_map *map)
 {
 	char	*buffer;
 	int		y;
@@ -51,7 +51,7 @@ void	map_fill_content(t_map *map)
 	y = 0;
 	while (buffer && y < map->y_max)
 	{
-		map->content[y] = (t_point *)malloc((map->x_max + 1) * sizeof(t_point ));
+		map->content[y] = (t_point *)malloc((map->x_max + 1) * sizeof(t_point));
 		map_fill_row(map->content, y, buffer);
 		free(buffer);
 		y++;
@@ -60,7 +60,7 @@ void	map_fill_content(t_map *map)
 	close(map->fd);
 }
 
-int	row_size(char *buffer)
+static int	map_row_size(char *buffer)
 {
 	int		count;
 	int		i;
@@ -78,7 +78,7 @@ int	row_size(char *buffer)
 	return (count);
 }
 
-void	map_size(t_map *map)
+static void	map_size(t_map *map)
 {
 	char	*buffer;
 
@@ -86,7 +86,7 @@ void	map_size(t_map *map)
 	buffer = get_next_line(map->fd);
 	while (buffer)
 	{
-		map->x_max = row_size(buffer);
+		map->x_max = map_row_size(buffer);
 		free(buffer);
 		map->y_max++;
 		buffer = get_next_line(map->fd);
@@ -94,7 +94,7 @@ void	map_size(t_map *map)
 	close(map->fd);
 }
 
-t_map	*read_map(t_map *map)
+t_map	*map_read(t_map *map)
 {
 	map_size(map);
 	printf("\nwidth:  %d\nheight: %d\n", map->x_max, map->y_max);

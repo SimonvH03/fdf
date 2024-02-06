@@ -9,9 +9,10 @@ LIBFT	= $(LFTDIR)/libft.a
 HEADERS	= -I ./include -I $(LMLXDIR)/include
 LIBS	= $(LIBMLX) $(LIBFT)
 SRCDIR	= ./src
-SRC		=	$(SRCDIR)/read_map.c \
-			$(SRCDIR)/structs_init.c \
+SRC		=	$(SRCDIR)/map_project.c \
+			$(SRCDIR)/map_read.c \
 			$(SRCDIR)/structs_free.c \
+			$(SRCDIR)/structs_init.c \
 			$(SRCDIR)/test_utils.c \
 			$(SRCDIR)/main.c
 OBJS	= ${SRC:.c=.o}
