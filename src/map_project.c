@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:44:02 by simon             #+#    #+#             */
-/*   Updated: 2024/02/07 02:24:00 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/07 02:26:02 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	point_project(t_point *point, t_perspective *perspective)
 	point_rotate_gamma(point, perspective->gamma);
 }
 
-// parse map and rotate point[x,y,z] values around Origin
+// parse map and rotate point[x,y,z] values around 0rigin
 void	map_project(t_map *map, t_perspective *perspective)
 {
 	int		y;

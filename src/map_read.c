@@ -6,12 +6,13 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:58:42 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/07 02:14:16 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/07 02:35:22 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
+// count elements with subject given map constraints
 static int	map_row_size(char *buffer)
 {
 	int		count;
@@ -30,6 +31,7 @@ static int	map_row_size(char *buffer)
 	return (count);
 }
 
+// count rows with get_next_line
 static void	map_size(t_map *map)
 {
 	char	*buffer;
@@ -46,6 +48,7 @@ static void	map_size(t_map *map)
 	close(map->fd);
 }
 
+// parse buffer, extract values with atoi, place [x,y,z] values in t_points
 static void	map_fill_row(t_point **content, int y, char *buffer)
 {
 	int		i;
@@ -73,6 +76,7 @@ static void	map_fill_row(t_point **content, int y, char *buffer)
 	}
 }
 
+// size up the map, malloc 2D for t_points, fill rows with each get_next_line
 void	map_fill_content(t_map *map)
 {
 	char	*buffer;
@@ -80,7 +84,6 @@ void	map_fill_content(t_map *map)
 
 	map_size(map);
 	map->content = (t_point **)malloc((map->y_max + 1) * sizeof(t_point *));
-	map->content[map->y_max] = NULL;
 	map->fd = open(map->name, O_RDONLY);
 	buffer = get_next_line(map->fd);
 	y = 0;
