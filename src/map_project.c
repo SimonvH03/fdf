@@ -6,12 +6,13 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:44:02 by simon             #+#    #+#             */
-/*   Updated: 2024/02/07 00:53:15 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/07 02:24:00 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
+// angle alpha round x-axis
 void	point_rotate_alpha(t_point *point, double alpha)
 {
 	double	prev_y;
@@ -21,6 +22,7 @@ void	point_rotate_alpha(t_point *point, double alpha)
 	point->z = prev_y * -sin(alpha) + point->z * cos(alpha);
 }
 
+// angle beta around y-axis
 void	point_rotate_beta(t_point *point, double beta)
 {
 	double	prev_z;
@@ -30,6 +32,7 @@ void	point_rotate_beta(t_point *point, double beta)
 	point->x = prev_z * sin(beta) + point->x * cos(beta);
 }
 
+// angle gamma around z-axis
 void	point_rotate_gamma(t_point *point, double gamma)
 {
 	double	prev_x;
@@ -39,6 +42,7 @@ void	point_rotate_gamma(t_point *point, double gamma)
 	point->y = prev_x * sin(gamma) + point->y * cos(gamma);
 }
 
+// apply all relevant rotations (associative)
 void	point_project(t_point *point, t_perspective *perspective)
 {
 	point_rotate_alpha(point, perspective->alpha);
@@ -46,20 +50,19 @@ void	point_project(t_point *point, t_perspective *perspective)
 	point_rotate_gamma(point, perspective->gamma);
 }
 
+// parse map and rotate point[x,y,z] values around Origin
 void	map_project(t_map *map, t_perspective *perspective)
 {
 	int		y;
 	int		x;
 
-	//parse map
 	y = 0;
 	while (y < map->y_max)
 	{
 		x = 0;
 		while (x < map->x_max)
 		{
-			//put point and matrix into project_point function
-			point_project(&map->content[y][x], perspective);
+			point_project((t_point *)&map->content[y][x], perspective);
 			x++;
 		}
 		y++;
