@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/07 16:58:20 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/07 22:09:28 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,18 @@ typedef struct s_fdf
 	t_perspective	*perspective;
 }	t_fdf;
 
+
+// main
+void			*fdf_init(t_fdf *fdf);
+void			map_read(t_map *map);
+
+// loops
+void			map_project(void *param);
+void			fdf_draw(void *param);
+
 // utils
 void			map_free(t_map *map);
 double			rad(double angle_deg);
-
-// map_read
-void			map_fill_content(t_map *map);
-void			map_project(t_map *map, t_perspective *perspective);
 
 //test_utils
 void			check_map_result(t_map *map, const char *str, const char *v);

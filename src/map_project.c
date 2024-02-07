@@ -6,14 +6,14 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:44:02 by simon             #+#    #+#             */
-/*   Updated: 2024/02/07 17:02:36 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/07 22:19:10 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 // angle alpha round x-axis
-void	point_rotate_alpha(t_point *point, double alpha)
+static void	point_rotate_alpha(t_point *point, double alpha)
 {
 	double	prev_y;
 
@@ -23,7 +23,7 @@ void	point_rotate_alpha(t_point *point, double alpha)
 }
 
 // angle beta around y-axis
-void	point_rotate_beta(t_point *point, double beta)
+static void	point_rotate_beta(t_point *point, double beta)
 {
 	double	prev_z;
 
@@ -33,7 +33,7 @@ void	point_rotate_beta(t_point *point, double beta)
 }
 
 // angle gamma around z-axis
-void	point_rotate_gamma(t_point *point, double gamma)
+static void	point_rotate_gamma(t_point *point, double gamma)
 {
 	double	prev_x;
 
@@ -43,22 +43,23 @@ void	point_rotate_gamma(t_point *point, double gamma)
 }
 
 // parse map and rotate point[x,y,z] values around [0,0,0]
-void	map_project(t_map *map, t_perspective *perspective)
+void	map_project(void *param)
 {
-	int		y;
-	int		x;
-	t_point	*point;
+	const t_fdf	*fdf = param;
+	t_point		*point;
+	int			y;
+	int			x;
 
 	y = 0;
-	while (y < map->y_max)
+	while (y < fdf->map->y_max)
 	{
 		x = 0;
-		while (x < map->x_max)
+		while (x < fdf->map->x_max)
 		{
-			point = &map->content[y][x];
-			point_rotate_alpha(point, rad(perspective->alpha));
-			point_rotate_beta(point, rad(perspective->beta));
-			point_rotate_gamma(point, rad(perspective->gamma));
+			point = &fdf->map->content[y][x];
+			point_rotate_alpha(point, rad(fdf->perspective->alpha));
+			point_rotate_beta(point, rad(fdf->perspective->beta));
+			point_rotate_gamma(point, rad(fdf->perspective->gamma));
 			x++;
 		}
 		y++;

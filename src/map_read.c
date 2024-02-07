@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_read.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:58:42 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/07 02:35:22 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/07 20:44:33 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static void	map_fill_row(t_point **content, int y, char *buffer)
 }
 
 // size up the map, malloc 2D for t_points, fill rows with each get_next_line
-void	map_fill_content(t_map *map)
+void	map_read(t_map *map)
 {
 	char	*buffer;
 	int		y;
