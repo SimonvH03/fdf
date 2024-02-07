@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/06 22:08:30 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/07 00:59:54 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,11 @@ int	main(void)
 	map_read(&map);
 	check_map_result(&map);
 	// draw_image(fdf);
-	perspective.alpha = 0;
-	perspective.beta = 0;
-	perspective.gamma = 0;
+	perspective.alpha = 30;
+	perspective.beta = 30;
+	perspective.gamma = 30;
 	map_project(&map, &perspective);
-	// check_map_result(&map);
+	check_map_result(&map);
 	map_free(&map);
 	return (0);
 }
