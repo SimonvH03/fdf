@@ -6,46 +6,28 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/07 23:58:54 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/07 23:43:21 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static void	loop_hooks(t_fdf *fdf)
-{
-	mlx_loop_hook(fdf->mlx, &map_project, fdf);
-	mlx_loop_hook(fdf->mlx, &fdf_draw, fdf);
-}
-
 int	main(int argc, char **argv)
 {
-	t_map			map;
-	t_perspective	perspective;
 	t_fdf			fdf;
 
 	if (argc != 2)
 		return (EXIT_FAILURE);
-	// init then read map
-	map = (t_map){NULL, 0, argv[1], 0, 0};
-	map_read(&map);
-	// check_map_result(&map, "read", "z");
-	// init perspective to test map projection
-	perspective = (t_perspective){atan(rad(30)), 45, 0};
-	// add map and perspective to fdf
-	fdf.map = &map;
-	fdf.perspective = &perspective;
 	fdf.mlx = mlx_init(WIDTH, HEIGHT, WINDOW_TITLE, true);
 	if (fdf.mlx == NULL)
 		return (EXIT_FAILURE);
 	fdf.image = mlx_new_image(fdf.mlx, WIDTH, HEIGHT);
 	if (fdf.image == NULL)
 		return (EXIT_FAILURE);
-	if (mlx_image_to_window(fdf.mlx, fdf.image, 0, 0) < 0)
+	if (mlx_image_to_window(fdf.mlx, fdf.image, 0, 0) == -1)
 		return (EXIT_FAILURE);
-	loop_hooks(&fdf);
+	mlx_loop_hook(fdf.mlx, &ft_background, fdf.image);
 	mlx_loop(fdf.mlx);
 	mlx_terminate(fdf.mlx);
-	map_free(&map);
 	return (EXIT_SUCCESS);
 }

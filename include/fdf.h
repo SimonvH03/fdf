@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/07 22:09:28 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/07 23:44:33 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,13 @@
 # include <stdio.h>
 
 // mlx window
+# define WINDOW_TITLE "fdf"
 # define WIDTH 1024
 # define HEIGHT 1024
 
 // colours
 # define C_LINES 0xFFFFFFFF
-# define C_BACKGROUND 0x00000000
+# define C_BACKGROUND 0x90000090
 
 # define PI 3.14159265
 
@@ -67,7 +68,6 @@ typedef struct s_fdf
 
 
 // main
-void			*fdf_init(t_fdf *fdf);
 void			map_read(t_map *map);
 
 // loops
@@ -80,5 +80,6 @@ double			rad(double angle_deg);
 
 //test_utils
 void			check_map_result(t_map *map, const char *str, const char *v);
+void			ft_background(void *param);
 
 #endif
