@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/07 02:17:53 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/07 17:05:23 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,24 +66,22 @@
 // 	mlx_loop_hook(mlx, ft_background, image);
 // }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_map map;
-	t_perspective perspective;
-	// mlx_t			mlx;
-	// t_fdf			fdf;
+	t_map			map;
+	t_perspective	perspective;
+	// mlx_t		mlx;
+	// t_fdf		fdf;
 
 	if (argc != 2)
 		return (1);
 	map = (t_map){NULL, 0, argv[1], 0, 0};
 	map_fill_content(&map);
 	printf("\nmap.x_max: %d\nmap.y_max: %d\n", map.x_max, map.y_max);
-	check_map_result(&map, "read", 'z');
-	perspective = (t_perspective){45, 0, atan(30)};
+	check_map_result(&map, "read", "xyz");
+	perspective = (t_perspective){atan(rad(30)), 45, 0};
 	map_project(&map, &perspective);
-	check_map_result(&map, "projected", 'x');
-	check_map_result(&map, "projected", 'y');
-	check_map_result(&map, "projected", 'z');
+	check_map_result(&map, "projected", "xyz");
 	map_free(&map);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_project.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:44:02 by simon             #+#    #+#             */
-/*   Updated: 2024/02/07 02:26:02 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/07 17:02:36 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	point_rotate_beta(t_point *point, double beta)
 	double	prev_z;
 
 	prev_z = point->z;
-	point->z = point->z * cos(beta) + point->x * -sin(beta);
-	point->x = prev_z * sin(beta) + point->x * cos(beta);
+	point->z = point->z * cos(beta) + point->x * sin(beta);
+	point->x = prev_z * -sin(beta) + point->x * cos(beta);
 }
 
 // angle gamma around z-axis
@@ -38,23 +38,16 @@ void	point_rotate_gamma(t_point *point, double gamma)
 	double	prev_x;
 
 	prev_x = point->x;
-	point->x = point->x * cos(gamma) + point->y * -sin(gamma);
-	point->y = prev_x * sin(gamma) + point->y * cos(gamma);
+	point->x = point->x * cos(gamma) + point->y * sin(gamma);
+	point->y = prev_x * -sin(gamma) + point->y * cos(gamma);
 }
 
-// apply all relevant rotations (associative)
-void	point_project(t_point *point, t_perspective *perspective)
-{
-	point_rotate_alpha(point, perspective->alpha);
-	point_rotate_beta(point, perspective->beta);
-	point_rotate_gamma(point, perspective->gamma);
-}
-
-// parse map and rotate point[x,y,z] values around 0rigin
+// parse map and rotate point[x,y,z] values around [0,0,0]
 void	map_project(t_map *map, t_perspective *perspective)
 {
 	int		y;
 	int		x;
+	t_point	*point;
 
 	y = 0;
 	while (y < map->y_max)
@@ -62,7 +55,10 @@ void	map_project(t_map *map, t_perspective *perspective)
 		x = 0;
 		while (x < map->x_max)
 		{
-			point_project((t_point *)&map->content[y][x], perspective);
+			point = &map->content[y][x];
+			point_rotate_alpha(point, rad(perspective->alpha));
+			point_rotate_beta(point, rad(perspective->beta));
+			point_rotate_gamma(point, rad(perspective->gamma));
 			x++;
 		}
 		y++;

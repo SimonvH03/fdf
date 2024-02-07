@@ -1,5 +1,5 @@
 NAME	= fdf
-CFLAGS	= -Wextra -Wall -Werror #-Wunreachable-code -Ofast
+CFLAGS	= -Wextra -Wall -Werror
 
 LMLXDIR	= ./MLX42
 LIBMLX	= $(LMLXDIR)/build/libmlx42.a -ldl -lglfw -pthread -lm
@@ -25,10 +25,10 @@ $(LIBMLX):
 	cmake $(LMLXDIR) -B $(LMLXDIR)/build && make -C $(LMLXDIR)/build -j4
 
 %.o: %.c
-	$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)"
+	$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME) -g
+	$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
 
 clean:
 	make -C $(LFTDIR) clean

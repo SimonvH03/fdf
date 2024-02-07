@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/07 02:13:28 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/07 16:58:20 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 // colours
 # define C_LINES 0xFFFFFFFF
 # define C_BACKGROUND 0x00000000
+
+# define PI 3.14159265
 
 typedef struct s_point
 {
@@ -63,13 +65,15 @@ typedef struct s_fdf
 	t_perspective	*perspective;
 }	t_fdf;
 
-//structs_free
-void				map_free(t_map *map);
+// utils
+void			map_free(t_map *map);
+double			rad(double angle_deg);
 
-void				map_fill_content(t_map *map);
-void				map_project(t_map *map, t_perspective *perspective);
+// map_read
+void			map_fill_content(t_map *map);
+void			map_project(t_map *map, t_perspective *perspective);
 
 //test_utils
-void				check_map_result(t_map *map, const char *str, const char c);
+void			check_map_result(t_map *map, const char *str, const char *v);
 
 #endif
