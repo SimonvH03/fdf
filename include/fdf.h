@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/09 14:51:53 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/09 16:26:10 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@
 # define WINDOW_TITLE "fdf"
 # define WIDTH 1024
 # define HEIGHT 1024
+
+// fdf defaults
+# define SCALE 20
+# define ALPHA atan(rad(30))
+# define BETA 45
 
 // colours
 # define C_LINES 0xFFFFFFFF
@@ -66,6 +71,7 @@ typedef struct s_fdf
 	t_perspective	*perspective;
 	double			x_origin;
 	double			y_origin;
+	double			scale;
 }	t_fdf;
 
 
@@ -82,6 +88,5 @@ double			rad(double angle_deg);
 
 //test_utils
 void			check_map_result(t_map *map, const char *str, const char *v);
-void			ft_background(void *param);
 
 #endif

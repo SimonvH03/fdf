@@ -1,0 +1,13 @@
+
+(map project) set perspective to 0 after projections // 2
+(map project) offset and scale projections before drawing // 3
+
+(key input) let user input set perspective // 1
+(key input) make scale dynamic
+	(map read) determine standard scale
+
+(draw) plot lines between points
+(draw) user interface
+
+(map read) interpret colours
+	(draw) plot line with colours

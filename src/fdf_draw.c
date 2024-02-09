@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_draw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/09 15:07:52 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/09 16:23:40 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,23 @@ int	fdf_draw_pixel(t_fdf *fdf, t_point *point)
 	double	x_pixel;
 	double	y_pixel;
 
-	printf ("x_pixel = %f + %d - %f\n", point->x, (fdf->image->width / 2), fdf->x_origin);
-	x_pixel = point->x + (fdf->image->width / 2) - fdf->x_origin;
-	y_pixel = point->y + (fdf->image->height / 2) - fdf->y_origin;
-	x_pixel *= 10;
-	y_pixel *= 10;
+	x_pixel = point->x * fdf->scale;
+	y_pixel = point->y* fdf->scale;
+	x_pixel += (fdf->image->width / 2) - fdf->x_origin;
+	y_pixel += (fdf->image->height / 2) - fdf->y_origin;
 	if (x_pixel < fdf->image->width && y_pixel < fdf->image->height)
 	{
 		mlx_put_pixel(fdf->image, x_pixel, y_pixel, C_LINES);
 	}
+	else
+	{
+		printf("bounds: %d\tx: %f", fdf->image->width, x_pixel);
+		printf("bounds: %d\ty: %f", fdf->image->height, y_pixel);
+		return (-1);
+	}
 	return (0);
 }
 
-// scale (point->x,y * scale) is not bound by image or window size yet
 void	fdf_draw(void *param)
 {
 	t_fdf		*fdf;
