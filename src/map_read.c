@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_read.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:58:42 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/07 20:44:33 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/09 14:20:50 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,14 @@ static void	map_size(t_map *map)
 }
 
 // parse buffer, extract values with atoi, place [x,y,z] values in t_points
-static void	map_fill_row(t_point **content, int y, char *buffer)
+static void	map_fill_row(t_map *map, int y, char *buffer)
 {
 	int		i;
-	int		k;
 	int		x;
-	char	str_point[sizeof(INT_MAX)];
+	int		k;
+	char	str_z[sizeof(INT_MAX)];
 
 	i = 0;
-	k = 0;
 	x = 0;
 	while (buffer[i])
 	{
@@ -66,12 +65,13 @@ static void	map_fill_row(t_point **content, int y, char *buffer)
 			i++;
 		while (buffer[i] && buffer[i] != ' ')
 		{
-			str_point[k] = buffer[i];
-			i++;
+			str_z[k] = buffer[i];
 			k++;
+			i++;
 		}
-		str_point[k] = '\0';
-		content[y][x] = (t_point){x, y, ft_atoi(str_point), C_LINES};
+		str_z[k] = '\0';
+		map->content[y][x] = (t_point)
+		{x - (map->x_max / 2), y - (map->y_max / 2), ft_atoi(str_z), C_LINES};
 		x++;
 	}
 }
@@ -90,7 +90,7 @@ void	map_read(t_map *map)
 	while (buffer && y < map->y_max)
 	{
 		map->content[y] = (t_point *)malloc((map->x_max + 1) * sizeof(t_point));
-		map_fill_row(map->content, y, buffer);
+		map_fill_row(map, y, buffer);
 		free(buffer);
 		y++;
 		buffer = get_next_line(map->fd);

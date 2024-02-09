@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/07 23:58:54 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/09 14:27:36 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char **argv)
 	map_read(&map);
 	// check_map_result(&map, "read", "z");
 	// init perspective to test map projection
-	perspective = (t_perspective){atan(rad(30)), 45, 0};
+	perspective = (t_perspective){3, 2, 0};
 	// add map and perspective to fdf
 	fdf.map = &map;
 	fdf.perspective = &perspective;

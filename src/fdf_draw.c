@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/07 23:58:27 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/09 14:26:45 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,21 @@ void	ft_background(void *param)
 void	fdf_draw(void *param)
 {
 	const t_fdf	*fdf = param;
-	const t_map	*map = fdf->map;
 	t_point		*point;
 	int			y;
 	int			x;
 
 	ft_background(fdf->image);
 	y = 0;
-	while (y < map->y_max)
+	while (y < fdf->map->y_max)
 	{
 		x = 0;
-		while (x < map->x_max)
+		while (x < fdf->map->x_max)
 		{
 			point = &fdf->map->content[y][x];
-			mlx_put_pixel(fdf->image, (point->x + (WIDTH / 2)), (point->y + (WIDTH / 2)), C_LINES);
+			mlx_put_pixel(fdf->image,
+				(point->x * 10) + (WIDTH / 2), (point->y * 10) + (HEIGHT / 2),
+				C_LINES);
 			x++;
 		}
 		y++;
