@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   user_inputs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/09 20:09:38 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/09 22:01:02 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../include/fdf.h"
+#include "../include/fdf.h"
 
 void	user_inputs(void *param)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_draw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/09 16:23:40 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/09 20:57:04 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	fdf_draw_pixel(t_fdf *fdf, t_point *point)
 	double	y_pixel;
 
 	x_pixel = point->x * fdf->scale;
-	y_pixel = point->y* fdf->scale;
+	y_pixel = point->y * fdf->scale;
 	x_pixel += (fdf->image->width / 2) - fdf->x_origin;
 	y_pixel += (fdf->image->height / 2) - fdf->y_origin;
 	if (x_pixel < fdf->image->width && y_pixel < fdf->image->height)
