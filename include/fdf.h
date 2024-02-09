@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/09 16:26:10 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/09 20:12:11 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,13 @@
 # define HEIGHT 1024
 
 // fdf defaults
-# define SCALE 20
-# define ALPHA atan(rad(30))
+# define SCALE 10
+# define ALPHA 35.264
 # define BETA 45
+# define GAMMA 0
+
+// user input
+# define ROTATION_SPEED 5
 
 // colours
 # define C_LINES 0xFFFFFFFF
@@ -79,6 +83,7 @@ typedef struct s_fdf
 void			map_read(t_map *map);
 
 // loops
+void			user_inputs(void *param);
 void			map_project(void *param);
 void			fdf_draw(void *param);
 

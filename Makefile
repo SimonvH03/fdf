@@ -1,6 +1,8 @@
 NAME	= fdf
 # CFLAGS	= -Wextra -Wall -Werror
 
+FDF_H	= ./include/fdf.h
+
 LMLXDIR	= ./MLX42
 LIBMLX	= $(LMLXDIR)/build/libmlx42.a -ldl -lglfw -pthread -lm
 LFTDIR	= ./libft
@@ -12,6 +14,7 @@ SRCDIR	= ./src
 SRC		=	$(SRCDIR)/map_project.c \
 			$(SRCDIR)/map_read.c \
 			$(SRCDIR)/fdf_draw.c \
+			$(SRCDIR)/user_inputs.c \
 			$(SRCDIR)/test_utils.c \
 			$(SRCDIR)/utils.c \
 			$(SRCDIR)/main.c
@@ -28,7 +31,7 @@ $(LIBMLX):
 %.o: %.c
 	$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(FDF_H)
 	$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
 
 clean:

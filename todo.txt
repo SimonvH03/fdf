@@ -12,5 +12,5 @@
 (map read) interpret colours
 	(draw) plot line with colours
 
-(main) init perspective with defaults
+#(main) init perspective with defaults
 (main) init fdf with defaults
