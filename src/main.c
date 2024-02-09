@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/09 16:24:00 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/09 16:27:48 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int argc, char **argv)
 	fdf.perspective = &perspective;
 	fdf.x_origin = map.x_max / 2;
 	fdf.y_origin = map.y_max / 2;
-	fdf.scale = 20;
+	fdf.scale = SCALE;
 	fdf.mlx = mlx_init(WIDTH, HEIGHT, WINDOW_TITLE, true);
 	if (fdf.mlx == NULL)
 		return (EXIT_FAILURE);
