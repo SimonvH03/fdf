@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/09 14:27:36 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/09 14:53:26 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	main(int argc, char **argv)
 	// add map and perspective to fdf
 	fdf.map = &map;
 	fdf.perspective = &perspective;
+	fdf.x_origin = map.x_max / 2;
+	fdf.y_origin = map.y_max / 2;
 	fdf.mlx = mlx_init(WIDTH, HEIGHT, WINDOW_TITLE, true);
 	if (fdf.mlx == NULL)
 		return (EXIT_FAILURE);

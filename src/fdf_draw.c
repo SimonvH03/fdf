@@ -6,13 +6,13 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/09 14:26:45 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/09 15:07:52 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void	ft_background(void *param)
+static void	fdf_background(void *param)
 {
 	mlx_image_t	*image;
 	uint32_t	x;
@@ -32,14 +32,33 @@ void	ft_background(void *param)
 	}
 }
 
+int	fdf_draw_pixel(t_fdf *fdf, t_point *point)
+{
+	double	x_pixel;
+	double	y_pixel;
+
+	printf ("x_pixel = %f + %d - %f\n", point->x, (fdf->image->width / 2), fdf->x_origin);
+	x_pixel = point->x + (fdf->image->width / 2) - fdf->x_origin;
+	y_pixel = point->y + (fdf->image->height / 2) - fdf->y_origin;
+	x_pixel *= 10;
+	y_pixel *= 10;
+	if (x_pixel < fdf->image->width && y_pixel < fdf->image->height)
+	{
+		mlx_put_pixel(fdf->image, x_pixel, y_pixel, C_LINES);
+	}
+	return (0);
+}
+
+// scale (point->x,y * scale) is not bound by image or window size yet
 void	fdf_draw(void *param)
 {
-	const t_fdf	*fdf = param;
+	t_fdf		*fdf;
 	t_point		*point;
 	int			y;
 	int			x;
 
-	ft_background(fdf->image);
+	fdf = param;
+	fdf_background(fdf->image);
 	y = 0;
 	while (y < fdf->map->y_max)
 	{
@@ -47,9 +66,8 @@ void	fdf_draw(void *param)
 		while (x < fdf->map->x_max)
 		{
 			point = &fdf->map->content[y][x];
-			mlx_put_pixel(fdf->image,
-				(point->x * 10) + (WIDTH / 2), (point->y * 10) + (HEIGHT / 2),
-				C_LINES);
+			if (fdf_draw_pixel(fdf, point) < 0)
+				return ;
 			x++;
 		}
 		y++;
