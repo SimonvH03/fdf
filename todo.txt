@@ -1,8 +1,9 @@
 
-(map project) set perspective to 0 after projections // 2
-(map project) offset and scale projections before drawing // 3
+(map _project) save previous Alpha, Beta, Gamma: only project if changed
+(map_project) save original Map
 
-(key input) let user input set perspective // 1
+(map project) offset and scale projections before drawing
+
 (key input) make scale dynamic
 	(map read) determine standard scale
 
