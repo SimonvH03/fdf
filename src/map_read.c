@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_read.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:58:42 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/09 23:48:30 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/10 17:36:23 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,9 @@ static void	map_fill_row(t_map *map, int y, char *buffer)
 			i++;
 		}
 		str_z[k] = '\0';
-		map->content[y][x] = (t_point)
+		map->original[y][x] = (t_point)
 		{x - (map->x_max / 2), y - (map->y_max / 2), ft_atoi(str_z), C_LINES};
+		map->project[y][x] = map->original[y][x];
 		x++;
 	}
 }
@@ -83,13 +84,15 @@ void	map_read(t_map *map)
 	int		y;
 
 	map_size(map);
-	map->content = (t_point **)malloc((map->y_max) * sizeof(t_point *));
+	map->original = (t_point **)malloc((map->y_max) * sizeof(t_point *));
+	map->project = (t_point **)malloc((map->y_max) * sizeof(t_point *));
 	map->fd = open(map->name, O_RDONLY);
 	buffer = get_next_line(map->fd);
 	y = 0;
 	while (buffer && y < map->y_max)
 	{
-		map->content[y] = (t_point *)malloc((map->x_max + 1) * sizeof(t_point));
+		map->original[y] = (t_point *)malloc((map->x_max) * sizeof(t_point));
+		map->project[y] = (t_point *)malloc((map->x_max) * sizeof(t_point));
 		map_fill_row(map, y, buffer);
 		free(buffer);
 		y++;

@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/02/07 22:19:03 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/10 17:44:22 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,31 @@ void	map_free(t_map *map)
 	int	i;
 
 	i = 0;
-	while (i < map->y_max && map->content[i])
-		free(map->content[i++]);
-	free(map->content);
+	while (i < map->y_max && map->project[i])
+		free(map->project[i++]);
+	free(map->project);
+	i = 0;
+	while (i < map->y_max && map->original[i])
+		free(map->original[i++]);
+	free(map->original);
+}
+
+// set all point coordinates to original values (quickest way to consistently project to preset perspectives)
+void	map_project_reset(t_map *map)
+{
+	int	x;
+	int	y;
+
+	while (y < map->y_max)
+	{
+		x = 0;
+		while (x < map->x_max)
+		{
+			map->project[y][x] = map->original[y][x];
+			x++;
+		}
+		y++;
+	}
 }
 
 // turn degree angle into radial for stupid math.h functions

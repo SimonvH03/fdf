@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 10:59:22 by simon             #+#    #+#             */
-/*   Updated: 2024/02/09 23:59:25 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/10 17:16:09 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ static void	check_map_result_c(t_map *map, const char c)
 		while (x < map->x_max)
 		{
 			if (c == 'x')
-				printf("%5.1f", (map->content[y][x]).x);
+				printf("%5.1f", (map->project[y][x]).x);
 			if (c == 'y')
-				printf("%5.1f", (map->content[y][x]).y);
+				printf("%5.1f", (map->project[y][x]).y);
 			if (c == 'z')
-				printf("%5.1f", (map->content[y][x]).z);
+				printf("%5.1f", (map->project[y][x]).z);
 			x++;
 		}
 		printf("\n");

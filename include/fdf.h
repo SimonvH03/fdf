@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/10 15:16:31 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/10 17:44:38 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 // for printf, exclude later
 # include <stdio.h>
 
+# define PI 3.14159265
+
 // mlx window
 # define WINDOW_TITLE "fdf"
 # define WIDTH 1600
@@ -27,18 +29,17 @@
 
 // fdf defaults
 # define SCALE 60
-# define ALPHA -35.264
-# define BETA 0
-# define GAMMA -45
+# define ISO_GAMMA rad(-45)
+# define ISO_BETA 0
+# define ISO_ALPHA rad(-35.264)
 
 // user input
-# define ROTATION_SPEED 1
+# define ROTATION_SPEED rad(1) 
 
 // colours
 # define C_LINES 0xFFFFFFFF
 # define C_BACKGROUND 0x90000090
 
-# define PI 3.14159265
 
 typedef struct s_point
 {
@@ -52,18 +53,19 @@ typedef struct s_point
 // no free: map.name = argv[1]
 typedef struct s_map
 {
-	t_point			**content;
-	int				fd;
+	t_point			**original;
+	t_point			**project;
 	char			*name;
+	int				fd;
 	int				x_max;
 	int				y_max;
 }	t_map;
 
 typedef struct s_perspective
 {
-	double			alpha;
-	double			beta;
 	double			gamma;
+	double			beta;
+	double			alpha;
 }	t_perspective;
 
 // free: fdf.map->content

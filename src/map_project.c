@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_project.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:44:02 by simon             #+#    #+#             */
-/*   Updated: 2024/02/10 15:16:16 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/10 17:43:31 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void	point_rotate_alpha(t_point *point, double alpha)
 	double	prev_y;
 
 	prev_y = point->y;
+	point->x = point->x;
 	point->y = point->y * cos(alpha) + point->z * sin(alpha);
 	point->z = prev_y * -sin(alpha) + point->z * cos(alpha);
 }
@@ -25,11 +26,12 @@ static void	point_rotate_alpha(t_point *point, double alpha)
 // angle beta around y-axis
 static void	point_rotate_beta(t_point *point, double beta)
 {
-	double	prev_z;
+	double	prev_x;
 
-	prev_z = point->z;
-	point->z = point->z * cos(beta) + point->x * sin(beta);
-	point->x = prev_z * -sin(beta) + point->x * cos(beta);
+	prev_x = point->x;
+	point->x = point->x * cos(beta) + point->z * sin(beta);
+	point->y = point->y;
+	point->z = prev_x * -sin(beta) + point->z * cos(beta);
 }
 
 // angle gamma around z-axis
@@ -40,17 +42,7 @@ static void	point_rotate_gamma(t_point *point, double gamma)
 	prev_x = point->x;
 	point->x = point->x * cos(gamma) + point->y * sin(gamma);
 	point->y = prev_x * -sin(gamma) + point->y * cos(gamma);
-}
-
-// y axis is inversed
-void	point_project(t_point *point, t_perspective *perspective)
-{
-	if (perspective->gamma)
-		point_rotate_gamma(point, rad(perspective->gamma));
-	if (perspective->beta)
-		point_rotate_beta(point, rad(perspective->beta));
-	if (perspective->alpha)
-		point_rotate_alpha(point, rad(perspective->alpha));
+	point->z = point->z;
 }
 
 // parse map and rotate point[x,y,z] values around [0,0,0]
@@ -68,8 +60,10 @@ void	map_project(void *param)
 		x = 0;
 		while (x < fdf->map->x_max)
 		{
-			point = &fdf->map->content[y][x];
-			point_project(point, fdf->perspective);
+			point = &fdf->map->project[y][x];
+			point_rotate_gamma(point, fdf->perspective->gamma);
+			point_rotate_beta(point, fdf->perspective->beta);
+			point_rotate_alpha(point, fdf->perspective->alpha);
 			x++;
 		}
 		y++;

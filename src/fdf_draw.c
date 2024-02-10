@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_draw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/10 00:32:38 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/10 17:14:55 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	fdf_background(void *param)
 	}
 }
 
-int	fdf_draw_pixel(t_fdf *fdf, t_point *point)
+int	fdf_draw_point(t_fdf *fdf, t_point *point)
 {
 	double	x_pixel;
 	double	y_pixel;
@@ -69,8 +69,8 @@ void	fdf_draw(void *param)
 		x = 0;
 		while (x < fdf->map->x_max)
 		{
-			point = &fdf->map->content[y][x];
-			if (fdf_draw_pixel(fdf, point) < 0)
+			point = &fdf->map->project[y][x];
+			if (fdf_draw_point(fdf, point) < 0)
 				return ;
 			x++;
 		}

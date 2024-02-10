@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/10 00:01:42 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/10 17:44:53 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (EXIT_FAILURE);
 	// init then read map
-	map = (t_map){NULL, 0, argv[1], 0, 0};
+	map = (t_map){NULL, NULL, argv[1], 0, 0, 0};
 	map_read(&map);
-	perspective = (t_perspective){ALPHA, BETA, GAMMA};
+	perspective = (t_perspective){ISO_GAMMA, ISO_BETA, ISO_ALPHA};
 	fdf.map = &map;
 	fdf.perspective = &perspective;
 	fdf.x_origin = map.x_max / 2;
