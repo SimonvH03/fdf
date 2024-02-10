@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:44:02 by simon             #+#    #+#             */
-/*   Updated: 2024/02/09 22:02:33 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/10 01:24:16 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ static void	point_rotate_gamma(t_point *point, double gamma)
 void	point_project(t_point *point, t_perspective *perspective)
 {
 	if (perspective->alpha)
-		point_rotate_alpha(point, -rad(perspective->alpha));
+		point_rotate_alpha(point, rad(perspective->alpha));
 	if (perspective->beta)
-		point_rotate_beta(point, -rad(perspective->beta));
+		point_rotate_beta(point, rad(perspective->beta));
 	if (perspective->gamma)
-		point_rotate_gamma(point, rad(perspective->gamma));
+		point_rotate_gamma(point, -rad(perspective->gamma));
 }
 
 // parse map and rotate point[x,y,z] values around [0,0,0]

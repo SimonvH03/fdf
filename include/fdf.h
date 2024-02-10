@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/09 22:03:11 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/10 01:31:48 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@
 
 // mlx window
 # define WINDOW_TITLE "fdf"
-# define WIDTH 1024
-# define HEIGHT 1024
+# define WIDTH 1600
+# define HEIGHT 1600
 
 // fdf defaults
-# define SCALE 10
-# define ALPHA 35.264
-# define BETA -45
-# define GAMMA 0
+# define SCALE 60
+# define ALPHA -45
+# define BETA 0
+# define GAMMA -35.264
 
 // user input
-# define ROTATION_SPEED 5
+# define ROTATION_SPEED 1
 
 // colours
 # define C_LINES 0xFFFFFFFF

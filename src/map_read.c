@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:58:42 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/09 21:47:58 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/09 23:48:30 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	map_fill_row(t_map *map, int y, char *buffer)
 	int		i;
 	int		x;
 	int		k;
-	char	str_z[sizeof(INT_MAX)];
+	char	str_z[sizeof(int)];
 
 	i = 0;
 	x = 0;
@@ -83,7 +83,7 @@ void	map_read(t_map *map)
 	int		y;
 
 	map_size(map);
-	map->content = (t_point **)malloc((map->y_max + 1) * sizeof(t_point *));
+	map->content = (t_point **)malloc((map->y_max) * sizeof(t_point *));
 	map->fd = open(map->name, O_RDONLY);
 	buffer = get_next_line(map->fd);
 	y = 0;

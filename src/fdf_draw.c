@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/09 20:57:04 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/10 00:32:38 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int	fdf_draw_pixel(t_fdf *fdf, t_point *point)
 	}
 	else
 	{
-		printf("bounds: %d\tx: %f", fdf->image->width, x_pixel);
-		printf("bounds: %d\ty: %f", fdf->image->height, y_pixel);
+		printf("bounds: %d\tx: %f\n", fdf->image->width, x_pixel);
+		printf("bounds: %d\ty: %f\n", fdf->image->height, y_pixel);
 		return (-1);
 	}
 	return (0);
