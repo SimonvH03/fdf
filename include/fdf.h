@@ -6,13 +6,13 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/10 01:31:48 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/10 11:43:53 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# include <MLX42/MLX42.h>
+# include "MLX42/MLX42.h"
 # include "libft.h"
 # include <unistd.h>
 # include <fcntl.h>
@@ -28,8 +28,8 @@
 // fdf defaults
 # define SCALE 60
 # define ALPHA -45
-# define BETA 0
-# define GAMMA -35.264
+# define BETA 35.264
+# define GAMMA -30
 
 // user input
 # define ROTATION_SPEED 1
@@ -77,7 +77,6 @@ typedef struct s_fdf
 	double			y_origin;
 	double			scale;
 }	t_fdf;
-
 
 // main
 void			map_read(t_map *map);
