@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/10 19:18:56 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/10 20:36:52 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define ISO_ALPHA rad(-35.264)
 
 // user input
-# define ROTATION_SPEED rad(1)
+# define ROTATION_SPEED 0.01745329
 
 // colours
 # define C_LINES 0xFFFFFFFF
@@ -77,14 +77,15 @@ typedef struct s_fdf
 	double			scale;
 	double			x_origin;
 	double			y_origin;
-	bool			accelerate;
-	int				speed;
+	bool			spinlock;
+	double			speed;
 }	t_fdf;
 
 // main
 void			map_read(t_map *map);
 
 // loops
+void			keyhook(mlx_key_data_t keydata, void *param);
 void			user_inputs(void *param);
 void			map_project(void *param);
 void			fdf_draw(void *param);

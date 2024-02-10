@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/10 19:17:09 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/10 20:32:01 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static int	fdf_init(t_fdf *fdf)
 
 static void	loop_hooks(t_fdf *fdf)
 {
+	mlx_key_hook(fdf->mlx, &keyhook, fdf);
 	mlx_loop_hook(fdf->mlx, &user_inputs, fdf);
 	mlx_loop_hook(fdf->mlx, &map_project, fdf);
 	mlx_loop_hook(fdf->mlx, &fdf_draw, fdf);
