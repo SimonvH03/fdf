@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/10 11:43:53 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/10 15:16:31 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@
 
 // fdf defaults
 # define SCALE 60
-# define ALPHA -45
-# define BETA 35.264
-# define GAMMA -30
+# define ALPHA -35.264
+# define BETA 0
+# define GAMMA -45
 
 // user input
 # define ROTATION_SPEED 1

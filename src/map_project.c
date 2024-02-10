@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:44:02 by simon             #+#    #+#             */
-/*   Updated: 2024/02/10 10:52:02 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/10 15:16:16 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ static void	point_rotate_gamma(t_point *point, double gamma)
 // y axis is inversed
 void	point_project(t_point *point, t_perspective *perspective)
 {
-	if (perspective->alpha)
-		point_rotate_alpha(point, rad(perspective->alpha));
-	if (perspective->beta)
-		point_rotate_beta(point, rad(perspective->beta));
 	if (perspective->gamma)
 		point_rotate_gamma(point, rad(perspective->gamma));
+	if (perspective->beta)
+		point_rotate_beta(point, rad(perspective->beta));
+	if (perspective->alpha)
+		point_rotate_alpha(point, rad(perspective->alpha));
 }
 
 // parse map and rotate point[x,y,z] values around [0,0,0]
