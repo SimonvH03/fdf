@@ -6,11 +6,24 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/10 17:44:53 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/10 19:17:09 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
+
+static int	fdf_init(t_fdf *fdf)
+{
+	fdf->mlx = mlx_init(WIDTH, HEIGHT, WINDOW_TITLE, false);
+	if (fdf->mlx == NULL)
+		return (EXIT_FAILURE);
+	fdf->image = mlx_new_image(fdf->mlx, WIDTH, HEIGHT);
+	if (fdf->image == NULL)
+		return (EXIT_FAILURE);
+	if (mlx_image_to_window(fdf->mlx, fdf->image, 0, 0) < 0)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}
 
 static void	loop_hooks(t_fdf *fdf)
 {
@@ -27,22 +40,15 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (EXIT_FAILURE);
-	// init then read map
-	map = (t_map){NULL, NULL, argv[1], 0, 0, 0};
+	map = (t_map)
+	{NULL, NULL, argv[1], 0, 0, 0};
 	map_read(&map);
-	perspective = (t_perspective){ISO_GAMMA, ISO_BETA, ISO_ALPHA};
-	fdf.map = &map;
-	fdf.perspective = &perspective;
-	fdf.x_origin = map.x_max / 2;
-	fdf.y_origin = map.y_max / 2;
-	fdf.scale = SCALE;
-	fdf.mlx = mlx_init(WIDTH, HEIGHT, WINDOW_TITLE, false);
-	if (fdf.mlx == NULL)
-		return (EXIT_FAILURE);
-	fdf.image = mlx_new_image(fdf.mlx, WIDTH, HEIGHT);
-	if (fdf.image == NULL)
-		return (EXIT_FAILURE);
-	if (mlx_image_to_window(fdf.mlx, fdf.image, 0, 0) < 0)
+	perspective = (t_perspective)
+	{ISO_ALPHA, ISO_BETA, ISO_GAMMA};
+	fdf = (t_fdf)
+	{&map, NULL, NULL, &perspective, SCALE,
+		map.x_max / 2, map.y_max / 2, false, 1};
+	if (fdf_init(&fdf) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	loop_hooks(&fdf);
 	mlx_loop(fdf.mlx);

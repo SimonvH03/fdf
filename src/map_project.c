@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:44:02 by simon             #+#    #+#             */
-/*   Updated: 2024/02/10 17:43:31 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/10 19:02:10 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ void	map_project(void *param)
 		}
 		y++;
 	}
-	*(fdf->perspective) = (t_perspective){0, 0, 0};
+	if (fdf->accelerate == false)
+		*(fdf->perspective) = (t_perspective){0, 0, 0};
 }

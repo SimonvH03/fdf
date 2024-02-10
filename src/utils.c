@@ -6,11 +6,19 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/02/10 17:44:22 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/10 19:00:07 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
+
+// turn degree angle into radial for stupid math.h functions
+double	rad(double angle_deg)
+{
+	const double	ratio = 180 / PI;
+
+	return (angle_deg / ratio);
+}
 
 // content is malloc'd and should be free'd
 void	map_free(t_map *map)
@@ -27,12 +35,13 @@ void	map_free(t_map *map)
 	free(map->original);
 }
 
-// set all point coordinates to original values (quickest way to consistently project to preset perspectives)
+// set all point coordinates to original values
 void	map_project_reset(t_map *map)
 {
 	int	x;
 	int	y;
 
+	y = 0;
 	while (y < map->y_max)
 	{
 		x = 0;
@@ -45,15 +54,7 @@ void	map_project_reset(t_map *map)
 	}
 }
 
-// turn degree angle into radial for stupid math.h functions
-double	rad(double angle_deg)
-{
-	const double	ratio = 180 / PI;
-
-	return (angle_deg / ratio);
-}
-
-// print new window dimenions to stdoutput
+// print resized window dimensions to stdoutput
 // static void	ft_resize(void *param)
 // {
 // 	mlx_t			*mlx;

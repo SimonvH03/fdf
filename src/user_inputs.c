@@ -6,27 +6,55 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/10 17:24:33 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/10 19:18:13 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
+
+static void	input_presets(t_fdf *fdf)
+{
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_P))
+	{
+		map_project_reset(fdf->map);
+	}
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_I))
+	{
+		map_project_reset(fdf->map);
+		*fdf->perspective = (t_perspective){ISO_ALPHA, ISO_BETA, ISO_GAMMA};
+	}
+	fdf->accelerate = 0;
+}
+
+void	manual_rotation(t_fdf *fdf)
+{
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_W))
+		fdf->perspective->alpha -= fdf->speed;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_S))
+		fdf->perspective->alpha += fdf->speed;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_D))
+		fdf->perspective->beta += fdf->speed;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_A))
+		fdf->perspective->beta -= fdf->speed;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_E))
+		fdf->perspective->gamma += fdf->speed;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Q))
+		fdf->perspective->gamma -= fdf->speed;
+}
 
 void	user_inputs(void *param)
 {
 	t_fdf	*fdf;
 
 	fdf = param;
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_W))
-		fdf->perspective->alpha = -ROTATION_SPEED;
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_S))
-		fdf->perspective->alpha = ROTATION_SPEED;
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_D))
-		fdf->perspective->beta = ROTATION_SPEED;
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_A))
-		fdf->perspective->beta = -ROTATION_SPEED;
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_E))
-		fdf->perspective->gamma = -ROTATION_SPEED;
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Q))
-		fdf->perspective->gamma = ROTATION_SPEED;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_P)
+		|| mlx_is_key_down(fdf->mlx, MLX_KEY_I))
+		input_presets(fdf);
+	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_SPACE))
+		fdf->accelerate = (!fdf->accelerate);
+	if (fdf->accelerate)
+		fdf->speed = ROTATION_SPEED / 10;
+	else
+		fdf->speed = ROTATION_SPEED * 10;
+	manual_rotation(fdf);
 }

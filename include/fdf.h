@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/10 17:44:38 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/10 19:18:56 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,11 @@
 # define ISO_ALPHA rad(-35.264)
 
 // user input
-# define ROTATION_SPEED rad(1) 
+# define ROTATION_SPEED rad(1)
 
 // colours
 # define C_LINES 0xFFFFFFFF
-# define C_BACKGROUND 0x90000090
-
+# define C_BACKGROUND 0xFF000020
 
 typedef struct s_point
 {
@@ -53,8 +52,8 @@ typedef struct s_point
 // no free: map.name = argv[1]
 typedef struct s_map
 {
-	t_point			**original;
 	t_point			**project;
+	t_point			**original;
 	char			*name;
 	int				fd;
 	int				x_max;
@@ -63,9 +62,9 @@ typedef struct s_map
 
 typedef struct s_perspective
 {
-	double			gamma;
-	double			beta;
 	double			alpha;
+	double			beta;
+	double			gamma;
 }	t_perspective;
 
 // free: fdf.map->content
@@ -75,9 +74,11 @@ typedef struct s_fdf
 	mlx_image_t		*image;
 	mlx_t			*mlx;
 	t_perspective	*perspective;
+	double			scale;
 	double			x_origin;
 	double			y_origin;
-	double			scale;
+	bool			accelerate;
+	int				speed;
 }	t_fdf;
 
 // main
@@ -89,8 +90,9 @@ void			map_project(void *param);
 void			fdf_draw(void *param);
 
 // utils
-void			map_free(t_map *map);
 double			rad(double angle_deg);
+void			map_project_reset(t_map *map);
+void			map_free(t_map *map);
 
 //test_utils
 void			check_map_result(t_map *map, const char *str, const char *v);
