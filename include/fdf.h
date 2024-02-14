@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/10 20:36:52 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/14 17:27:44 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 # define HEIGHT 1600
 
 // fdf defaults
-# define SCALE 60
 # define ISO_GAMMA rad(-45)
 # define ISO_BETA 0
 # define ISO_ALPHA rad(-35.264)
@@ -75,6 +74,8 @@ typedef struct s_fdf
 	mlx_t			*mlx;
 	t_perspective	*perspective;
 	double			scale;
+	double			scalecum;
+	double			scalediff;
 	double			x_origin;
 	double			y_origin;
 	bool			spinlock;
@@ -86,13 +87,16 @@ void			map_read(t_map *map);
 
 // loops
 void			keyhook(mlx_key_data_t keydata, void *param);
+void			scrollhook(double xdelta, double ydelta, void *param);
 void			user_inputs(void *param);
+void			map_scale(void *param);
 void			map_project(void *param);
 void			fdf_draw(void *param);
 
 // utils
 double			rad(double angle_deg);
 void			map_project_reset(t_map *map);
+void			fdf_scale_init(t_fdf *fdf);
 void			map_free(t_map *map);
 
 //test_utils

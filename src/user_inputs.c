@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user_inputs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/10 20:35:19 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/14 19:05:48 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,23 @@ static void	input_presets(t_fdf *fdf)
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_P))
 	{
 		map_project_reset(fdf->map);
-		fdf->spinlock = 0;
+		fdf->spinlock = false;
+		fdf->scalediff = fdf->scale;
+		fdf->scalecum = 1;
 	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_I))
 	{
 		map_project_reset(fdf->map);
 		*fdf->perspective = (t_perspective){ISO_ALPHA, ISO_BETA, ISO_GAMMA};
-		fdf->spinlock = 0;
+		fdf->spinlock = false;
+		fdf->scalediff = fdf->scale;
+		fdf->scalecum = 1;
+	}
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_M))
+	{
+		fdf->scalediff = 1 / fdf->scalecum;
+		printf ("scalediff = %f\n", fdf->scalediff);
+		fdf->scalecum = 1;
 	}
 }
 
@@ -41,6 +51,8 @@ static void	manual_rotation(t_fdf *fdf)
 		fdf->perspective->gamma -= fdf->speed;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Q))
 		fdf->perspective->gamma += fdf->speed;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(fdf->mlx);
 }
 
 void	user_inputs(void *param)
@@ -49,7 +61,8 @@ void	user_inputs(void *param)
 
 	fdf = param;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_P)
-		|| mlx_is_key_down(fdf->mlx, MLX_KEY_I))
+		|| mlx_is_key_down(fdf->mlx, MLX_KEY_I)
+		|| mlx_is_key_down(fdf->mlx, MLX_KEY_M))
 		input_presets(fdf);
 	manual_rotation(fdf);
 }
@@ -65,4 +78,17 @@ void	keyhook(mlx_key_data_t keydata, void *param)
 		fdf->speed = ROTATION_SPEED / 100;
 	else
 		fdf->speed = ROTATION_SPEED;
+}
+
+void	scrollhook(double xdelta, double ydelta, void *param)
+{
+	t_fdf	*fdf;
+
+	fdf = param;
+	while ()
+	{
+		fdf->scalediff += ydelta / 10;
+	}
+	fdf->scalecum = fdf->scalecum + (fdf->scalediff - 1) * fdf->scalecum;
+	printf("scalecum(%f) += scalediff(%f)\n", fdf->scalecum, fdf->scalediff);
 }

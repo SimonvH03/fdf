@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_project.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:44:02 by simon             #+#    #+#             */
-/*   Updated: 2024/02/10 20:01:41 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/14 18:32:36 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,33 @@ static void	point_rotate_gamma(t_point *point, double gamma)
 	point->z = point->z;
 }
 
+void	map_scale(void *param)
+{
+	t_fdf	*fdf;
+	t_point	*point;
+	int		y;
+	int		x;
+
+	fdf = param;
+	y = 0;
+	if (fdf->scalediff == 1)
+		return ;
+	while (y < fdf->map->y_max)
+	{
+		x = 0;
+		while (x < fdf->map->x_max)
+		{
+			point = &fdf->map->project[y][x];
+			point->x *= fdf->scalediff;
+			point->y *= fdf->scalediff;
+			point->z *= fdf->scalediff;
+			x++;
+		}
+		y++;
+	}
+	fdf->scalediff = 1;
+}
+
 // parse map and rotate point[x,y,z] values around [0,0,0]
 void	map_project(void *param)
 {
@@ -61,9 +88,12 @@ void	map_project(void *param)
 		while (x < fdf->map->x_max)
 		{
 			point = &fdf->map->project[y][x];
-			point_rotate_gamma(point, fdf->perspective->gamma);
-			point_rotate_beta(point, fdf->perspective->beta);
-			point_rotate_alpha(point, fdf->perspective->alpha);
+			if (fdf->perspective->gamma)
+				point_rotate_gamma(point, fdf->perspective->gamma);
+			if (fdf->perspective->beta)
+				point_rotate_beta(point, fdf->perspective->beta);
+			if (fdf->perspective->alpha)
+				point_rotate_alpha(point, fdf->perspective->alpha);
 			x++;
 		}
 		y++;

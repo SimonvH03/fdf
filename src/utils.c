@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/02/10 19:00:07 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/14 18:16:17 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,20 @@ void	map_project_reset(t_map *map)
 		}
 		y++;
 	}
+}
+
+void	fdf_scale_init(t_fdf *fdf)
+{
+	double	scaley;
+
+	fdf->scale = fdf->image->width / fdf->map->x_max;
+	scaley = fdf->image->height / fdf->map->y_max;
+	if (scaley < fdf->scale)
+		fdf->scale = scaley;
+	fdf->scale *= 0.5;
+	fdf->scalediff = fdf->scale;
+	fdf->scalecum = 1;
+	printf ("scale: %f\nscalediff: %f\n", fdf->scale, fdf->scalediff);
 }
 
 // print resized window dimensions to stdoutput

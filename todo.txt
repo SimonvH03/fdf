@@ -5,6 +5,7 @@
 (map project) offset and scale projections before drawing
 
 (key input) make scale dynamic
+	(draw) don't go out of bounds
 	(map read) determine standard scale
 
 (draw) plot lines between points
