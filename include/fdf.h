@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/14 17:27:44 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:31:49 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ typedef struct s_fdf
 	mlx_image_t		*image;
 	mlx_t			*mlx;
 	t_perspective	*perspective;
+	double			init_scale;
 	double			scale;
-	double			scalecum;
 	double			scalediff;
 	double			x_origin;
 	double			y_origin;

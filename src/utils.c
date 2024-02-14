@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/02/14 18:16:17 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:32:04 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ void	fdf_scale_init(t_fdf *fdf)
 {
 	double	scaley;
 
-	fdf->scale = fdf->image->width / fdf->map->x_max;
+	fdf->init_scale = fdf->image->width / fdf->map->x_max;
 	scaley = fdf->image->height / fdf->map->y_max;
-	if (scaley < fdf->scale)
-		fdf->scale = scaley;
-	fdf->scale *= 0.5;
-	fdf->scalediff = fdf->scale;
-	fdf->scalecum = 1;
-	printf ("scale: %f\nscalediff: %f\n", fdf->scale, fdf->scalediff);
+	if (scaley < fdf->init_scale)
+		fdf->init_scale = scaley;
+	fdf->init_scale *= 0.5;
+	fdf->scalediff = fdf->init_scale;
+	fdf->scale = 1;
+	printf ("scale: %f\nscalediff: %f\n", fdf->init_scale, fdf->scalediff);
 }
 
 // print resized window dimensions to stdoutput

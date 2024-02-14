@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/14 19:05:48 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:33:32 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,22 @@ static void	input_presets(t_fdf *fdf)
 	{
 		map_project_reset(fdf->map);
 		fdf->spinlock = false;
-		fdf->scalediff = fdf->scale;
-		fdf->scalecum = 1;
+		fdf->scalediff = fdf->init_scale;
+		fdf->scale = 1;
 	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_I))
 	{
 		map_project_reset(fdf->map);
 		*fdf->perspective = (t_perspective){ISO_ALPHA, ISO_BETA, ISO_GAMMA};
 		fdf->spinlock = false;
-		fdf->scalediff = fdf->scale;
-		fdf->scalecum = 1;
+		fdf->scalediff = fdf->init_scale;
+		fdf->scale = 1;
 	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_M))
 	{
-		fdf->scalediff = 1 / fdf->scalecum;
+		fdf->scalediff = 1 / fdf->scale;
 		printf ("scalediff = %f\n", fdf->scalediff);
-		fdf->scalecum = 1;
+		fdf->scale = 1;
 	}
 }
 
@@ -85,10 +85,7 @@ void	scrollhook(double xdelta, double ydelta, void *param)
 	t_fdf	*fdf;
 
 	fdf = param;
-	while ()
-	{
-		fdf->scalediff += ydelta / 10;
-	}
-	fdf->scalecum = fdf->scalecum + (fdf->scalediff - 1) * fdf->scalecum;
-	printf("scalecum(%f) += scalediff(%f)\n", fdf->scalecum, fdf->scalediff);
+	fdf->scalediff += ydelta / 20;
+	fdf->scale = fdf->scale + (fdf->scalediff - 1) * fdf->scale;
+	printf("scale(%f) += scalediff(%f)\n", fdf->scale, fdf->scalediff);
 }
