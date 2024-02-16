@@ -13,6 +13,7 @@ LIBS	= $(LIBMLX) $(LIBFT)
 SRCDIR	= ./src
 SRC		=	$(SRCDIR)/map_project.c \
 			$(SRCDIR)/map_read.c \
+			$(SRCDIR)/menu_draw.c \
 			$(SRCDIR)/fdf_draw.c \
 			$(SRCDIR)/user_inputs.c \
 			$(SRCDIR)/test_utils.c \

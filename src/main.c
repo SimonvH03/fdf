@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/14 17:27:52 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:05:57 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@ static int	fdf_init(t_fdf *fdf)
 	fdf->mlx = mlx_init(WIDTH, HEIGHT, WINDOW_TITLE, false);
 	if (fdf->mlx == NULL)
 		return (EXIT_FAILURE);
-	fdf->image = mlx_new_image(fdf->mlx, WIDTH, HEIGHT);
+	fdf->image = mlx_new_image(fdf->mlx, WIDTH - MENU_WIDTH, HEIGHT);
 	if (fdf->image == NULL)
 		return (EXIT_FAILURE);
-	if (mlx_image_to_window(fdf->mlx, fdf->image, 0, 0) < 0)
+	if (mlx_image_to_window(fdf->mlx, fdf->image, MENU_WIDTH, 0) < 0)
 		return (EXIT_FAILURE);
+	fdf->menu_image = mlx_new_image(fdf->mlx, MENU_WIDTH, HEIGHT);
 	fdf_scale_init(fdf);
 	return (EXIT_SUCCESS);
 }
@@ -50,10 +51,11 @@ int	main(int argc, char **argv)
 	perspective = (t_perspective)
 	{ISO_ALPHA, ISO_BETA, ISO_GAMMA};
 	fdf = (t_fdf)
-	{&map, NULL, NULL, &perspective, 0, 0, 0,
+	{&map, NULL, NULL, NULL, &perspective, 0, 0, 0,
 		map.x_max / 2, map.y_max / 2, false, 1};
 	if (fdf_init(&fdf) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
+	menu_draw(&fdf);
 	loop_hooks(&fdf);
 	mlx_loop(fdf.mlx);
 	mlx_terminate(fdf.mlx);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/02/14 19:32:04 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:07:37 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,25 @@ void	fdf_scale_init(t_fdf *fdf)
 	fdf->init_scale *= 0.5;
 	fdf->scalediff = fdf->init_scale;
 	fdf->scale = 1;
-	printf ("scale: %f\nscalediff: %f\n", fdf->init_scale, fdf->scalediff);
+	printf ("init_scale: %f\n", fdf->scalediff);
+}
+
+void	draw_background(mlx_image_t *image, uint32_t colour)
+{
+	uint32_t	x;
+	uint32_t	y;
+
+	y = 0;
+	while (y < image->height)
+	{
+		x = 0;
+		while (x < image->width)
+		{
+			mlx_put_pixel((mlx_image_t *)image, x, y, colour);
+			x++;
+		}
+		y++;
+	}
 }
 
 // print resized window dimensions to stdoutput

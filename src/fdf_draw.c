@@ -3,34 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_draw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/14 16:43:24 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:07:47 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
-
-static void	fdf_background(void *param)
-{
-	mlx_image_t	*image;
-	uint32_t	x;
-	uint32_t	y;
-
-	image = param;
-	y = 0;
-	while (y < image->height)
-	{
-		x = 0;
-		while (x < image->width)
-		{
-			mlx_put_pixel((mlx_image_t *)image, x, y, C_BACKGROUND);
-			x++;
-		}
-		y++;
-	}
-}
 
 int	fdf_draw_point(t_fdf *fdf, t_point *point)
 {
@@ -65,7 +45,7 @@ void	fdf_draw(void *param)
 	int			x;
 
 	fdf = param;
-	fdf_background(fdf->image);
+	draw_background(fdf->image, C_BACKGROUND);
 	y = 0;
 	while (y < fdf->map->y_max)
 	{
@@ -73,10 +53,10 @@ void	fdf_draw(void *param)
 		while (x < fdf->map->x_max)
 		{
 			point1 = &fdf->map->project[y][x];
-			if ((x + 1) < fdf->map->x_max)
-				fdf_draw_line(fdf, point1, &fdf->map->project[y][x + 1]);
-			if ((y + 1) < fdf->map->y_max)
-				fdf_draw_line(fdf, point1, &fdf->map->project[y + 1][x]);
+			// if ((x + 1) < fdf->map->x_max)
+			// 	fdf_draw_line(fdf, point1, &fdf->map->project[y][x + 1]);
+			// if ((y + 1) < fdf->map->y_max)
+			// 	fdf_draw_line(fdf, point1, &fdf->map->project[y + 1][x]);
 			fdf_draw_point(fdf, point1);
 			x++;
 		}

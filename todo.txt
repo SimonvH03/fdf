@@ -1,18 +1,7 @@
-
-(map _project) save previous Alpha, Beta, Gamma: only project if changed
-(map_project) save original Map
-
-(map project) offset and scale projections before drawing
-
-(key input) make scale dynamic
-	(draw) don't go out of bounds
-	(map read) determine standard scale
+!(input) scalediff increases faster than scale
 
 (draw) plot lines between points
-(draw) user interface
+!(draw) mlx_put_string is placed where??
 
 (map read) interpret colours
 	(draw) plot line with colours
-
-#(main) init perspective with defaults
-(main) init fdf with defaults

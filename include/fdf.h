@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/14 19:31:49 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:08:10 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@
 
 // mlx window
 # define WINDOW_TITLE "fdf"
-# define WIDTH 1600
+# define WIDTH 2000
 # define HEIGHT 1600
+# define MENU_WIDTH 400
 
 // fdf defaults
 # define ISO_GAMMA rad(-45)
@@ -38,6 +39,7 @@
 // colours
 # define C_LINES 0xFFFFFFFF
 # define C_BACKGROUND 0xFF000020
+# define C_MENU 0xFF000040
 
 typedef struct s_point
 {
@@ -71,6 +73,7 @@ typedef struct s_fdf
 {
 	t_map			*map;
 	mlx_image_t		*image;
+	mlx_image_t		*menu_image;
 	mlx_t			*mlx;
 	t_perspective	*perspective;
 	double			init_scale;
@@ -84,6 +87,7 @@ typedef struct s_fdf
 
 // main
 void			map_read(t_map *map);
+void			menu_draw(t_fdf *fdf);
 
 // loops
 void			keyhook(mlx_key_data_t keydata, void *param);
@@ -98,6 +102,7 @@ double			rad(double angle_deg);
 void			map_project_reset(t_map *map);
 void			fdf_scale_init(t_fdf *fdf);
 void			map_free(t_map *map);
+void			draw_background(mlx_image_t *image, uint32_t colour);
 
 //test_utils
 void			check_map_result(t_map *map, const char *str, const char *v);
