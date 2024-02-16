@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/16 19:42:05 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/16 19:43:36 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static void	input_presets(t_fdf *fdf)
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_M))
 	{
 		fdf->scalediff = 1 / fdf->scale;
-		printf ("scalediff = %f\n", fdf->scalediff);
 		fdf->scale = 1;
 	}
 }
