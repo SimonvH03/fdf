@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/16 19:43:36 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/16 20:03:05 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,14 @@ static void	input_presets(t_fdf *fdf)
 	{
 		map_project_reset(fdf->map);
 		fdf->spinlock = false;
-		fdf->scalediff = fdf->init_scale;
-		fdf->scale = 1;
+		fdf->scalediff = fdf->init_scale * fdf->scale;
 	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_I))
 	{
 		map_project_reset(fdf->map);
 		*fdf->perspective = (t_perspective){ISO_ALPHA, ISO_BETA, ISO_GAMMA};
 		fdf->spinlock = false;
-		fdf->scalediff = fdf->init_scale;
-		fdf->scale = 1;
+		fdf->scalediff = fdf->init_scale * fdf->scale;
 	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_M))
 	{
