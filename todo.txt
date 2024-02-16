@@ -1,8 +1,10 @@
-!(input) scalediff increases faster than scale
+Lines
+	(fdf_draw) plot lines between points
 
-(draw) plot lines between points
+Menu
+	(menu_draw) fill the menu with text
+	(fdf.h / fdf_init) change menu appearance
 
-!(draw) mlx_put_string is placed where??
-
-(map read) interpret colours
-	(draw) plot line with colours
+Colours
+	(map read) interpret colours
+	(fdf_draw) plot line with colours
