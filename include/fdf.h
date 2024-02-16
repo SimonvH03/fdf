@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/16 15:08:10 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/16 17:41:05 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,9 @@ void			map_project(void *param);
 void			fdf_draw(void *param);
 
 // utils
+double			ft_abs(double val);
 double			rad(double angle_deg);
 void			map_project_reset(t_map *map);
-void			fdf_scale_init(t_fdf *fdf);
 void			map_free(t_map *map);
 void			draw_background(mlx_image_t *image, uint32_t colour);
 

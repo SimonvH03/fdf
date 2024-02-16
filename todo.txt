@@ -1,6 +1,7 @@
 !(input) scalediff increases faster than scale
 
 (draw) plot lines between points
+
 !(draw) mlx_put_string is placed where??
 
 (map read) interpret colours

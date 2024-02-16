@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/16 15:05:57 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/16 17:24:10 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
+
+static void	fdf_scale_init(t_fdf *fdf)
+{
+	double	scaley;
+
+	fdf->init_scale = fdf->image->width / fdf->map->x_max;
+	scaley = fdf->image->height / fdf->map->y_max;
+	if (scaley < fdf->init_scale)
+		fdf->init_scale = scaley;
+	fdf->init_scale *= 0.5;
+	fdf->scalediff = fdf->init_scale;
+	fdf->scale = 1;
+	printf ("init_scale: %f\n", fdf->scalediff);
+}
 
 static int	fdf_init(t_fdf *fdf)
 {

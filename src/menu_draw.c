@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu_draw.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:10:50 by simon             #+#    #+#             */
-/*   Updated: 2024/02/16 15:09:17 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/16 17:35:59 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,13 @@
 void	menu_print(t_fdf *fdf)
 {
 	const int	margin = 48;
-	const int	linespace = 32;
+	const int	line = 24;
+	const int	tab = 24;
+	int			y;
 
-	mlx_put_string(fdf->mlx, "menu", margin, margin);
+	y = margin - line;
+	mlx_put_string(fdf->mlx, "Menu", margin, (y += line));
+	mlx_put_string(fdf->mlx, "subtext", margin + tab, (y += line));
 }
 
 void	menu_draw(t_fdf *fdf)

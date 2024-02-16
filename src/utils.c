@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/02/16 15:07:37 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/16 17:41:01 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@ double	rad(double angle_deg)
 	const double	ratio = 180 / PI;
 
 	return (angle_deg / ratio);
+}
+
+double	ft_abs(double val)
+{
+	if (val < 0)
+		return (-val);
+	return (val);
 }
 
 // content is malloc'd and should be free'd
@@ -52,20 +59,6 @@ void	map_project_reset(t_map *map)
 		}
 		y++;
 	}
-}
-
-void	fdf_scale_init(t_fdf *fdf)
-{
-	double	scaley;
-
-	fdf->init_scale = fdf->image->width / fdf->map->x_max;
-	scaley = fdf->image->height / fdf->map->y_max;
-	if (scaley < fdf->init_scale)
-		fdf->init_scale = scaley;
-	fdf->init_scale *= 0.5;
-	fdf->scalediff = fdf->init_scale;
-	fdf->scale = 1;
-	printf ("init_scale: %f\n", fdf->scalediff);
 }
 
 void	draw_background(mlx_image_t *image, uint32_t colour)

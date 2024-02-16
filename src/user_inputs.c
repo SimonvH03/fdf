@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/14 19:33:32 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/16 19:42:05 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ void	scrollhook(double xdelta, double ydelta, void *param)
 	t_fdf	*fdf;
 
 	fdf = param;
-	fdf->scalediff += ydelta / 20;
-	fdf->scale = fdf->scale + (fdf->scalediff - 1) * fdf->scale;
-	printf("scale(%f) += scalediff(%f)\n", fdf->scale, fdf->scalediff);
+	fdf->scalediff *= 1 + (ydelta / 10);
+	fdf->scale *= 1 + (ydelta / 10);
 }
