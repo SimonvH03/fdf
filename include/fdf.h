@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/20 22:12:10 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/20 23:32:25 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,13 @@ typedef struct s_point
 
 typedef struct s_line
 {
-	double			dx;
-	double			dy;
-	int				xi;
-	int				yi;
-	short			sx;
-	short			sy;
-	double			a;
-	double			a2;
-	double			z0;
-	double			z1;
+	int			dx;
+	int			dy;
+	int			xi;
+	int			yi;
+	short		sx;
+	short		sy;
+	int			err;
 }	t_line;
 
 // free: map.content (free2d)

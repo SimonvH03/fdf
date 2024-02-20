@@ -6,29 +6,11 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/20 22:24:28 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/20 23:45:46 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
-
-void	fdf_line_init(t_line *line, const t_point *p0, const t_point *p1)
-{
-	line->dx = p1->x - p0->x;
-	line->dy = p1->y - p0->y;
-
-	line->xi = p0->x;
-	line->yi = p0->y;
-
-	line->sx = ft_sign(line->dx);
-	line->sy = ft_sign(line->dy);
-	line->dx *= line->sx;
-	line->dy *= line->sy;
-
-	line->a = line->dx - line->dy;
-	line->z0 = p0->z;
-	line->z1 = p1->z;
-}
 
 uint32_t	fdf_colour(t_line *line)
 {
@@ -60,34 +42,28 @@ static int	fdf_draw_point(t_fdf *fdf, t_line *line)
 static void	fdf_draw_line(t_fdf *fdf, const t_point *p0, const t_point *p1)
 {
 	t_line	line;
-	int		i;
 
-	fdf_line_init(&line, p0, p1);
-	i = 0;
-	while ((line.xi != (int)p1->x || line.yi != (int)p1->y) && i < 50)
+	line.dx = p1->x - p0->x;
+	line.dy = p1->y - p0->y;
+	if (p0->x >= p1->x || line.dy > line.dx)
+		return ;
+	line.xi = p0->x;
+	line.yi = p0->y;
+	line.sy = 1;
+	if (p0->y > p1->y)
+		line.sy = -1;
+	while (line.xi <= p1->x)
 	{
-		fdf_draw_point(fdf, &line);
-		line.a2 = 2 * line.a;
-		if (line.a2 < line.dx && line.yi != (int)p1->y)
+		line.err = line.dx - line.dy;
+		if (line.err > line.dy)
 		{
-			line.a += line.dx;
 			line.yi += line.sy;
+			line.err += line.dy;
 		}
-		if (line.a2 > -line.dy && line.xi != (int)p1->x)
-		{
-			line.a -= line.dy;
-			line.xi += line.sx;
-		}
-		i++;
+		fdf_draw_point(fdf, &line);
+		line.xi += 1;
 	}
-	if (i == 50)
-	{
-		if (line.xi != (int)p1->x)
-			printf("Condition 1: %f %f %i %i %f\n\n\n", line.a2, line.dy, line.sx, line.xi, p1->x);
-		if (line.yi != (int)p1->y)
-			printf("Condition 2: %f %f %i %i %f\n\n\n", line.a2, line.dx, line.sy, line.yi, p1->y);
-	}
-	fdf_draw_point(fdf, &line);
+	
 }
 
 void	fdf_draw(void *param)
