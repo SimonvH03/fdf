@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/20 22:09:21 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/20 22:24:28 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	fdf_line_init(t_line *line, const t_point *p0, const t_point *p1)
 	line->dx *= line->sx;
 	line->dy *= line->sy;
 
-	line->a = line->dx / line->dy;
+	line->a = line->dx - line->dy;
 	line->z0 = p0->z;
 	line->z1 = p1->z;
 }
@@ -50,8 +50,8 @@ static int	fdf_draw_point(t_fdf *fdf, t_line *line)
 	}
 	else
 	{
-		printf("bounds: %d\tx: %d\nline.a: %f\tline.a2: %f\tline.dy: %f\tline.dx: %f\n", fdf->image->width, x_pixel, line->a, line->a2, line->dy, line->dx);
-		printf("bounds: %d\ty: %d\n", fdf->image->height, y_pixel);
+		// printf("bounds: %d\tx: %d\nline.a: %f\tline.a2: %f\tline.dy: %f\tline.dx: %f\n", fdf->image->width, x_pixel, line->a, line->a2, line->dy, line->dx);
+		// printf("bounds: %d\ty: %d\n", fdf->image->height, y_pixel);
 		return (-1);
 	}
 	return (0);
@@ -64,27 +64,27 @@ static void	fdf_draw_line(t_fdf *fdf, const t_point *p0, const t_point *p1)
 
 	fdf_line_init(&line, p0, p1);
 	i = 0;
-	while (((line.xi != p1->x) || line.yi != p1->y) && i < 50)
+	while ((line.xi != (int)p1->x || line.yi != (int)p1->y) && i < 50)
 	{
 		fdf_draw_point(fdf, &line);
 		line.a2 = 2 * line.a;
-		if (line.a2 < line.dx && line.yi != p1->y)
+		if (line.a2 < line.dx && line.yi != (int)p1->y)
 		{
 			line.a += line.dx;
 			line.yi += line.sy;
 		}
-		if (line.a2 > -line.dy && line.xi != p1->x)
+		if (line.a2 > -line.dy && line.xi != (int)p1->x)
 		{
 			line.a -= line.dy;
 			line.xi += line.sx;
 		}
 		i++;
 	}
-	if (i == 100000)
+	if (i == 50)
 	{
-		if (line.xi != p1->x)
+		if (line.xi != (int)p1->x)
 			printf("Condition 1: %f %f %i %i %f\n\n\n", line.a2, line.dy, line.sx, line.xi, p1->x);
-		if (line.yi != p1->y)
+		if (line.yi != (int)p1->y)
 			printf("Condition 2: %f %f %i %i %f\n\n\n", line.a2, line.dx, line.sy, line.yi, p1->y);
 	}
 	fdf_draw_point(fdf, &line);

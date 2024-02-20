@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/20 20:53:01 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/20 22:12:10 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 
 // mlx window
 # define WINDOW_TITLE "fdf"
-# define WIDTH 2000
-# define HEIGHT 1600
+# define WIDTH 1600
+# define HEIGHT 1200
 # define MENU_WIDTH 400
 
 // fdf defaults
