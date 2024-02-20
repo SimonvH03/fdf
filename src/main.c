@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/20 18:22:09 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/20 22:09:54 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ static int	fdf_init(t_fdf *fdf, t_map *map, t_perspective *perspective)
 	fdf_scale_init(fdf);
 	fdf->x_offset = fdf->image->width / 2;
 	fdf->y_offset = fdf->image->height / 2;
-	printf ("x_offset: %f\ny_offset: %f\n", fdf->x_offset, fdf->y_offset);
 	fdf->spinlock = false;
 	fdf->speed = ROTATION_SPEED;
 	return (EXIT_SUCCESS);
