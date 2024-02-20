@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/16 19:43:43 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/20 18:22:09 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	fdf_scale_init(t_fdf *fdf)
 	printf ("init_scale: %f\n", fdf->scalediff);
 }
 
-static int	fdf_init(t_fdf *fdf)
+static int	fdf_init(t_fdf *fdf, t_map *map, t_perspective *perspective)
 {
 	fdf->mlx = mlx_init(WIDTH, HEIGHT, WINDOW_TITLE, false);
 	if (fdf->mlx == NULL)
@@ -37,7 +37,16 @@ static int	fdf_init(t_fdf *fdf)
 	if (mlx_image_to_window(fdf->mlx, fdf->image, MENU_WIDTH, 0) < 0)
 		return (EXIT_FAILURE);
 	fdf->menu_image = mlx_new_image(fdf->mlx, MENU_WIDTH, HEIGHT);
+	if (fdf->menu_image == NULL)
+		return (EXIT_FAILURE);
+	fdf->map = map;
+	fdf->perspective = perspective;
 	fdf_scale_init(fdf);
+	fdf->x_offset = fdf->image->width / 2;
+	fdf->y_offset = fdf->image->height / 2;
+	printf ("x_offset: %f\ny_offset: %f\n", fdf->x_offset, fdf->y_offset);
+	fdf->spinlock = false;
+	fdf->speed = ROTATION_SPEED;
 	return (EXIT_SUCCESS);
 }
 
@@ -64,10 +73,7 @@ int	main(int argc, char **argv)
 	map_read(&map);
 	perspective = (t_perspective)
 	{ISO_ALPHA, ISO_BETA, ISO_GAMMA};
-	fdf = (t_fdf)
-	{&map, NULL, NULL, NULL, &perspective, 0, 0, 0,
-		map.x_max / 2, map.y_max / 2, false, 1};
-	if (fdf_init(&fdf) == EXIT_FAILURE)
+	if (fdf_init(&fdf, &map, &perspective) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	menu_draw(&fdf);
 	loop_hooks(&fdf);

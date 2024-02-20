@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/16 17:41:05 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/20 20:53:01 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@
 # define MENU_WIDTH 400
 
 // fdf defaults
-# define ISO_GAMMA rad(-45)
+# define ISO_GAMMA rad(-30)
 # define ISO_BETA 0
-# define ISO_ALPHA rad(-35.264)
+# define ISO_ALPHA 0
 
 // user input
 # define ROTATION_SPEED 0.01745329
@@ -46,8 +46,21 @@ typedef struct s_point
 	double			x;
 	double			y;
 	double			z;
-	uint32_t		colour;
 }	t_point;
+
+typedef struct s_line
+{
+	double			dx;
+	double			dy;
+	int				xi;
+	int				yi;
+	short			sx;
+	short			sy;
+	double			a;
+	double			a2;
+	double			z0;
+	double			z1;
+}	t_line;
 
 // free: map.content (free2d)
 // no free: map.name = argv[1]
@@ -71,16 +84,16 @@ typedef struct s_perspective
 // free: fdf.map->content
 typedef struct s_fdf
 {
-	t_map			*map;
+	mlx_t			*mlx;
 	mlx_image_t		*image;
 	mlx_image_t		*menu_image;
-	mlx_t			*mlx;
+	t_map			*map;
 	t_perspective	*perspective;
 	double			init_scale;
 	double			scale;
 	double			scalediff;
-	double			x_origin;
-	double			y_origin;
+	double			x_offset;
+	double			y_offset;
 	bool			spinlock;
 	double			speed;
 }	t_fdf;
@@ -99,6 +112,7 @@ void			fdf_draw(void *param);
 
 // utils
 double			ft_abs(double val);
+short			ft_sign(double val);
 double			rad(double angle_deg);
 void			map_project_reset(t_map *map);
 void			map_free(t_map *map);

@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/02/16 17:41:01 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/20 18:40:58 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,15 @@ double	ft_abs(double val)
 	if (val < 0)
 		return (-val);
 	return (val);
+}
+
+short	ft_sign(double val)
+{
+	if (val < 0)
+		return (-1);
+	if (val > 0)
+		return (1);
+	return (0);
 }
 
 // content is malloc'd and should be free'd
