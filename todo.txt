@@ -5,3 +5,6 @@ Colours
 Menu
 	(menu_draw) fill the menu with text
 	(fdf.h / fdf_init) change menu appearance
+
+Make
+	(Makefile) write it myself

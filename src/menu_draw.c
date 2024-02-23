@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu_draw.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:10:50 by simon             #+#    #+#             */
-/*   Updated: 2024/02/17 19:16:37 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/23 19:44:16 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	menu_print(t_fdf *fdf)
 {
 	const int	margin = 72;
 	const int	line = 24;
-	const int	tab = 24;
 	int			x;
 	int			y;
 

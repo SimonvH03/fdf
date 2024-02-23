@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/23 19:32:08 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/23 19:47:07 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 uint32_t	fdf_colour(t_line *line)
 {
+	(void)line;
 	return (C_LINES);
 }
 
@@ -24,7 +25,7 @@ static void	fdf_draw_point(t_fdf *fdf, t_line *line, int i, int j)
 
 	x_pixel = i + line->x0 + fdf->x_offset;
 	y_pixel = j + line->y0 + fdf->y_offset;
-	if (x_pixel < fdf->image->width && y_pixel < fdf->image->height
+	if (x_pixel < (int)fdf->image->width && y_pixel < (int)fdf->image->height
 		&& x_pixel > 0 && y_pixel > 0)
 	{
 		mlx_put_pixel(fdf->image, x_pixel, y_pixel, fdf_colour(line));
