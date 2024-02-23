@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/23 19:25:11 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/23 19:38:36 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@
 # define MENU_WIDTH 400
 
 // fdf defaults
-# define ISO_GAMMA 0
+# define ISO_GAMMA rad(-45)
 # define ISO_BETA 0
-# define ISO_ALPHA 0
+# define ISO_ALPHA rad(-35.264)
 
 // user input
 # define ROTATION_SPEED 0.01745329

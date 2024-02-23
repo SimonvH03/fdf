@@ -1,10 +1,7 @@
-Lines
-	(fdf_draw) plot lines between points
+Colours
+	(map read) interpret colours
+	(fdf_draw) plot line with colours (relative to min & max Z)
 
 Menu
 	(menu_draw) fill the menu with text
 	(fdf.h / fdf_init) change menu appearance
-
-Colours
-	(map read) interpret colours
-	(fdf_draw) plot line with colours
