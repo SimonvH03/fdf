@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/02/23 19:11:33 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/23 21:03:06 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,31 @@ void	map_project_reset(t_map *map)
 		while (x < map->x_max)
 		{
 			map->project[y][x] = map->original[y][x];
+			x++;
+		}
+		y++;
+	}
+}
+
+void	map_find_z_min_max(t_map *map)
+{
+	int	x;
+	int	y;
+	int	z_val;
+
+	y = 0;
+	map->z_min = 0;
+	map->z_max = 0;
+	while (y < map->y_max)
+	{
+		x = 0;
+		while (x < map->x_max)
+		{
+			z_val = map->original[y][x].z;
+			if (z_val < map->z_min)
+				map->z_min = z_val;
+			if (z_val > map->z_max)
+				map->z_max = z_val;
 			x++;
 		}
 		y++;

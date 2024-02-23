@@ -1,6 +1,7 @@
 Colours
-	(map read) interpret colours
-	(fdf_draw) plot line with colours (relative to min & max Z)
+	(map read) interpret colours (or not, it kinda sucks)
+	(map_read) find zmin and zmax
+	(fdf_draw) plot line with colours
 
 Menu
 	(menu_draw) fill the menu with text

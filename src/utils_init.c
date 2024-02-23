@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/23 19:24:36 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/23 21:05:59 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,8 @@ void	fdf_line_init(t_line *line, const t_point *p0, const t_point *p1)
 	line->s_pas = ft_sign(p1->y - p0->y);
 	line->x0 = p0->x;
 	line->y0 = p0->y;
+	line->i = 0;
+	line->j = 0;
+	line->z0 = p0->z;
+	line->z1 = p1->z;
 }

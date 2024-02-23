@@ -6,29 +6,36 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/23 19:47:07 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/23 21:07:56 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-uint32_t	fdf_colour(t_line *line)
+uint32_t	fdf_colour(t_fdf *fdf, t_line *line)
 {
-	(void)line;
-	return (C_LINES);
+	int	diff;
+
+	if (line->d_ctl > line->d_pas)
+		diff = (int)(100 * (line->d_ctl - line->i) / line->d_ctl);
+	else
+		diff = (int)(100 * (line->d_pas - line->j) / line->d_pas);
+	(void)fdf;
+	return (C_WHITE);
 }
 
-static void	fdf_draw_point(t_fdf *fdf, t_line *line, int i, int j)
+static void	fdf_draw_point(t_fdf *fdf, t_line *line)
 {
 	int	x_pixel;
 	int	y_pixel;
 
-	x_pixel = i + line->x0 + fdf->x_offset;
-	y_pixel = j + line->y0 + fdf->y_offset;
+	x_pixel = (line->i * line->s_ctl) + line->x0 + fdf->x_offset;
+	y_pixel = (line->j * line->s_pas) + line->y0 + fdf->y_offset;
 	if (x_pixel < (int)fdf->image->width && y_pixel < (int)fdf->image->height
 		&& x_pixel > 0 && y_pixel > 0)
 	{
-		mlx_put_pixel(fdf->image, x_pixel, y_pixel, fdf_colour(line));
+		mlx_put_pixel(fdf->image, x_pixel, y_pixel,
+			fdf_colour(fdf, line));
 	}
 	// else
 	// {
@@ -39,26 +46,21 @@ static void	fdf_draw_point(t_fdf *fdf, t_line *line, int i, int j)
 
 static int	fdf_straight_line(t_fdf *fdf, t_line *line)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
 	if (line->d_ctl == 0)
 	{
-		while (j <= line->d_pas)
+		while (line->j <= line->d_pas)
 		{
-			fdf_draw_point(fdf, line, i, j * line->s_pas);
-			j++;
+			fdf_draw_point(fdf, line);
+			line->j++;
 		}
 		return (0);
 	}
 	if (line->d_pas == 0)
 	{
-		while (i <= line->d_ctl)
+		while (line->i <= line->d_ctl)
 		{
-			fdf_draw_point(fdf, line, i * line->s_ctl, j);
-			i++;
+			fdf_draw_point(fdf, line);
+			line->i++;
 		}
 		return (0);
 	}
@@ -68,29 +70,25 @@ static int	fdf_straight_line(t_fdf *fdf, t_line *line)
 static void	fdf_draw_line(t_fdf *fdf, const t_point *p0, const t_point *p1)
 {
 	t_line	line;
-	int	i;
-	int	j;
 
 	fdf_line_init(&line, p0, p1);
-	i = 0;
-	j = 0;
 	line.err = line.d_pas - line.d_ctl - line.s_ctl;
 	if (fdf_straight_line(fdf, &line))
 	{
-		while (i != line.d_ctl)
+		while (line.i != line.d_ctl)
 		{
-			fdf_draw_point(fdf, &line, i * line.s_ctl, j * line.s_pas);
+			fdf_draw_point(fdf, &line);
 			while (line.err >= 0)
 			{
-				j += 1;
+				line.j += 1;
 				line.err -= line.d_ctl;
-				fdf_draw_point(fdf, &line, i * line.s_ctl, j * line.s_pas);
+				fdf_draw_point(fdf, &line);
 			}
-			i += 1;
+			line.i += 1;
 			line.err += line.d_pas;
 		}
 	}
-	fdf_draw_point(fdf, &line, i * line.s_ctl, j * line.s_pas);
+	fdf_draw_point(fdf, &line);
 }
 
 void	fdf_draw(void *param)

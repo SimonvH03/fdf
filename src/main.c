@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fildefer.c                                         :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/23 19:19:05 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/23 21:08:11 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (EXIT_FAILURE);
 	map = (t_map)
-	{NULL, NULL, argv[1], 0, 0, 0};
+	{NULL, NULL, argv[1], 0, 0, 0, 0, 0};
 	map_read(&map);
 	perspective = (t_perspective)
 	{ISO_ALPHA, ISO_BETA, ISO_GAMMA};

@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/23 19:38:36 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/23 21:09:48 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,11 @@
 # define ROTATION_SPEED 0.01745329
 
 // colours
-# define C_LINES 0xFFFFFFFF
+# define C_WHITE 0xFFFFFFFF
 # define C_BACKGROUND 0xFF000020
 # define C_MENU 0xFF000040
+# define Z_LOW 0x88FFFFFF
+# define Z_HIGH 0xFFF88FFF
 
 typedef struct s_point
 {
@@ -55,8 +57,12 @@ typedef struct s_line
 	int			s_ctl;
 	int			s_pas;
 	int			err;
+	int			i;
+	int			j;
 	double		x0;
 	double		y0;
+	int			z0;
+	int			z1;
 }	t_line;
 
 // free: map.content (free2d)
@@ -69,6 +75,8 @@ typedef struct s_map
 	int				fd;
 	int				x_max;
 	int				y_max;
+	int				z_min;
+	int				z_max;
 }	t_map;
 
 typedef struct s_perspective
@@ -120,6 +128,7 @@ void			fdf_line_init(t_line *line, const t_point *p0, const t_point *p1);
 // utils_misc.c
 void			map_free(t_map *map);
 void			map_project_reset(t_map *map);
+void			map_find_z_min_max(t_map *map);
 void			draw_background(mlx_image_t *image, uint32_t colour);
 
 // utils_test.c

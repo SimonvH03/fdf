@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:58:42 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/23 18:25:29 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/23 21:08:26 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	map_fill_row(t_map *map, int y, char *buffer)
 		}
 		str_z[k] = '\0';
 		map->original[y][x] = (t_point)
-		{x - ((map->x_max - 1) / 2), y - ((map->y_max - 1) / 2), ft_atoi(str_z)};
+		{x - (map->x_max / 2), y - (map->y_max / 2), ft_atoi(str_z)};
 		map->project[y][x] = map->original[y][x];
 		x++;
 	}
@@ -98,5 +98,6 @@ void	map_read(t_map *map)
 		y++;
 		buffer = get_next_line(map->fd);
 	}
+	map_find_z_min_max(map);
 	close(map->fd);
 }
