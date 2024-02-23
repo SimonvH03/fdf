@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/20 23:32:25 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/23 19:25:11 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define MENU_WIDTH 400
 
 // fdf defaults
-# define ISO_GAMMA rad(-30)
+# define ISO_GAMMA 0
 # define ISO_BETA 0
 # define ISO_ALPHA 0
 
@@ -50,13 +50,13 @@ typedef struct s_point
 
 typedef struct s_line
 {
-	int			dx;
-	int			dy;
-	int			xi;
-	int			yi;
-	short		sx;
-	short		sy;
+	int			d_ctl;
+	int			d_pas;
+	int			s_ctl;
+	int			s_pas;
 	int			err;
+	double		x0;
+	double		y0;
 }	t_line;
 
 // free: map.content (free2d)
@@ -93,6 +93,7 @@ typedef struct s_fdf
 	double			y_offset;
 	bool			spinlock;
 	double			speed;
+	bool			redraw;
 }	t_fdf;
 
 // main
@@ -107,15 +108,21 @@ void			map_scale(void *param);
 void			map_project(void *param);
 void			fdf_draw(void *param);
 
-// utils
+// utils_calc.c
+double			rad(double angle_deg);
 double			ft_abs(double val);
 short			ft_sign(double val);
-double			rad(double angle_deg);
-void			map_project_reset(t_map *map);
+
+// utils_init.c
+int				fdf_init(t_fdf *fdf, t_map *map, t_perspective *perspective);
+void			fdf_line_init(t_line *line, const t_point *p0, const t_point *p1);
+
+// utils_misc.c
 void			map_free(t_map *map);
+void			map_project_reset(t_map *map);
 void			draw_background(mlx_image_t *image, uint32_t colour);
 
-//test_utils
+// utils_test.c
 void			check_map_result(t_map *map, const char *str, const char *v);
 
 #endif

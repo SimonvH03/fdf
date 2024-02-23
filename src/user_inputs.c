@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/16 20:03:05 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/23 19:16:07 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	input_presets(t_fdf *fdf)
 		fdf->scalediff = 1 / fdf->scale;
 		fdf->scale = 1;
 	}
+	fdf->redraw = true;
 }
 
 static void	manual_rotation(t_fdf *fdf)
@@ -50,6 +51,8 @@ static void	manual_rotation(t_fdf *fdf)
 		fdf->perspective->gamma += fdf->speed;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(fdf->mlx);
+	if (fdf->perspective->gamma || fdf->perspective->beta || fdf->perspective->alpha)
+		fdf->redraw = true;
 }
 
 void	user_inputs(void *param)
@@ -82,6 +85,10 @@ void	scrollhook(double xdelta, double ydelta, void *param)
 	t_fdf	*fdf;
 
 	fdf = param;
-	fdf->scalediff *= 1 + (ydelta / 10);
-	fdf->scale *= 1 + (ydelta / 10);
+	if (ydelta)
+	{
+		fdf->scalediff *= 1 + (ydelta / 10);
+		fdf->scale *= 1 + (ydelta / 10);
+		fdf->redraw = true;
+	}
 }

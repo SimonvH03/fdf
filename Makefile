@@ -11,14 +11,16 @@ LIBFT	= $(LFTDIR)/libft.a
 HEADERS	= -I ./include -I $(LMLXDIR)/include
 LIBS	= $(LIBMLX) $(LIBFT)
 SRCDIR	= ./src
-SRC		=	$(SRCDIR)/map_project.c \
+SRC		=	$(SRCDIR)/fdf_draw.c \
+			$(SRCDIR)/main.c \
+			$(SRCDIR)/map_project.c \
 			$(SRCDIR)/map_read.c \
 			$(SRCDIR)/menu_draw.c \
-			$(SRCDIR)/fdf_draw.c \
 			$(SRCDIR)/user_inputs.c \
-			$(SRCDIR)/test_utils.c \
-			$(SRCDIR)/utils.c \
-			$(SRCDIR)/main.c
+			$(SRCDIR)/utils_calc.c \
+			$(SRCDIR)/utils_init.c \
+			$(SRCDIR)/utils_misc.c \
+			$(SRCDIR)/utils_test.c
 OBJS	= ${SRC:.c=.o}
 
 all: $(LIBS) $(NAME)

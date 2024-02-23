@@ -1,53 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   fildefer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/20 22:09:54 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/23 19:19:05 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
-
-static void	fdf_scale_init(t_fdf *fdf)
-{
-	double	scaley;
-
-	fdf->init_scale = fdf->image->width / fdf->map->x_max;
-	scaley = fdf->image->height / fdf->map->y_max;
-	if (scaley < fdf->init_scale)
-		fdf->init_scale = scaley;
-	fdf->init_scale *= 0.5;
-	fdf->scalediff = fdf->init_scale;
-	fdf->scale = 1;
-	printf ("init_scale: %f\n", fdf->scalediff);
-}
-
-static int	fdf_init(t_fdf *fdf, t_map *map, t_perspective *perspective)
-{
-	fdf->mlx = mlx_init(WIDTH, HEIGHT, WINDOW_TITLE, false);
-	if (fdf->mlx == NULL)
-		return (EXIT_FAILURE);
-	fdf->image = mlx_new_image(fdf->mlx, WIDTH - MENU_WIDTH, HEIGHT);
-	if (fdf->image == NULL)
-		return (EXIT_FAILURE);
-	if (mlx_image_to_window(fdf->mlx, fdf->image, MENU_WIDTH, 0) < 0)
-		return (EXIT_FAILURE);
-	fdf->menu_image = mlx_new_image(fdf->mlx, MENU_WIDTH, HEIGHT);
-	if (fdf->menu_image == NULL)
-		return (EXIT_FAILURE);
-	fdf->map = map;
-	fdf->perspective = perspective;
-	fdf_scale_init(fdf);
-	fdf->x_offset = fdf->image->width / 2;
-	fdf->y_offset = fdf->image->height / 2;
-	fdf->spinlock = false;
-	fdf->speed = ROTATION_SPEED;
-	return (EXIT_SUCCESS);
-}
 
 static void	loop_hooks(t_fdf *fdf)
 {

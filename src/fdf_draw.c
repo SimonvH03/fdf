@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_draw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/20 23:45:46 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/23 19:32:08 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,53 +17,79 @@ uint32_t	fdf_colour(t_line *line)
 	return (C_LINES);
 }
 
-static int	fdf_draw_point(t_fdf *fdf, t_line *line)
+static void	fdf_draw_point(t_fdf *fdf, t_line *line, int i, int j)
 {
 	int	x_pixel;
 	int	y_pixel;
 
-	x_pixel = line->xi + fdf->x_offset;
-	y_pixel = line->yi + fdf->y_offset;
+	x_pixel = i + line->x0 + fdf->x_offset;
+	y_pixel = j + line->y0 + fdf->y_offset;
 	if (x_pixel < fdf->image->width && y_pixel < fdf->image->height
 		&& x_pixel > 0 && y_pixel > 0)
 	{
 		mlx_put_pixel(fdf->image, x_pixel, y_pixel, fdf_colour(line));
-		// printf("bounds: %d\ty: %u\nline.a: %f\tline.a2: %f\tline.dy: %f\tline.dx: %f\n", fdf->image->width, y_pixel, line->a, line->a2, line->dy, line->dx);
 	}
-	else
+	// else
+	// {
+	// 	printf("bounds: (%d, %d)\t(%d, %d)\n",
+	// 	fdf->image->width, fdf->image->height, i, j);
+	// }
+}
+
+static int	fdf_straight_line(t_fdf *fdf, t_line *line)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	if (line->d_ctl == 0)
 	{
-		// printf("bounds: %d\tx: %d\nline.a: %f\tline.a2: %f\tline.dy: %f\tline.dx: %f\n", fdf->image->width, x_pixel, line->a, line->a2, line->dy, line->dx);
-		// printf("bounds: %d\ty: %d\n", fdf->image->height, y_pixel);
-		return (-1);
+		while (j <= line->d_pas)
+		{
+			fdf_draw_point(fdf, line, i, j * line->s_pas);
+			j++;
+		}
+		return (0);
 	}
-	return (0);
+	if (line->d_pas == 0)
+	{
+		while (i <= line->d_ctl)
+		{
+			fdf_draw_point(fdf, line, i * line->s_ctl, j);
+			i++;
+		}
+		return (0);
+	}
+	return (1);
 }
 
 static void	fdf_draw_line(t_fdf *fdf, const t_point *p0, const t_point *p1)
 {
 	t_line	line;
+	int	i;
+	int	j;
 
-	line.dx = p1->x - p0->x;
-	line.dy = p1->y - p0->y;
-	if (p0->x >= p1->x || line.dy > line.dx)
-		return ;
-	line.xi = p0->x;
-	line.yi = p0->y;
-	line.sy = 1;
-	if (p0->y > p1->y)
-		line.sy = -1;
-	while (line.xi <= p1->x)
+	fdf_line_init(&line, p0, p1);
+	i = 0;
+	j = 0;
+	line.err = line.d_pas - line.d_ctl - line.s_ctl;
+	if (fdf_straight_line(fdf, &line))
 	{
-		line.err = line.dx - line.dy;
-		if (line.err > line.dy)
+		while (i != line.d_ctl)
 		{
-			line.yi += line.sy;
-			line.err += line.dy;
+			fdf_draw_point(fdf, &line, i * line.s_ctl, j * line.s_pas);
+			while (line.err >= 0)
+			{
+				j += 1;
+				line.err -= line.d_ctl;
+				fdf_draw_point(fdf, &line, i * line.s_ctl, j * line.s_pas);
+			}
+			i += 1;
+			line.err += line.d_pas;
 		}
-		fdf_draw_point(fdf, &line);
-		line.xi += 1;
 	}
-	
+	fdf_draw_point(fdf, &line, i * line.s_ctl, j * line.s_pas);
 }
 
 void	fdf_draw(void *param)
@@ -73,6 +99,8 @@ void	fdf_draw(void *param)
 	int		x;
 
 	fdf = param;
+	if (fdf->redraw == false)
+		return ;
 	draw_background(fdf->image, C_BACKGROUND);
 	y = 0;
 	while (y < fdf->map->y_max)
@@ -90,4 +118,14 @@ void	fdf_draw(void *param)
 		}
 		y++;
 	}
+	fdf->redraw = false;
 }
+
+// static void	fdf_draw_line(t_fdf *fdf, const t_point *p0, const t_point *p1)
+// {
+// 	// printf("%d\n", line.d_control - line.d_passive);
+// 	// fdf_draw_point(fdf, &line, 0, 0);
+// 	// fdf_draw_point(fdf, &line, 0, line.d_passive * line.s_passive);
+// 	// fdf_draw_point(fdf, &line, line.d_control * line.s_control, 0);
+// 	// fdf_draw_point(fdf, &line, line.d_control * line.s_control, line.d_passive * line.s_passive);
+// }
