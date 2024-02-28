@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_draw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/23 21:07:56 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/28 16:10:52 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ static void	fdf_draw_point(t_fdf *fdf, t_line *line)
 		mlx_put_pixel(fdf->image, x_pixel, y_pixel,
 			fdf_colour(fdf, line));
 	}
-	// else
-	// {
-	// 	printf("bounds: (%d, %d)\t(%d, %d)\n",
-	// 	fdf->image->width, fdf->image->height, i, j);
-	// }
+	else
+	{
+		printf("CHECK FAILED\nbounds:\t(%d, %d)\t(%d, %d)\n",
+		fdf->image->width, fdf->image->height, x_pixel, y_pixel);
+	}
 }
 
 static int	fdf_straight_line(t_fdf *fdf, t_line *line)
@@ -71,6 +71,9 @@ static void	fdf_draw_line(t_fdf *fdf, const t_point *p0, const t_point *p1)
 {
 	t_line	line;
 
+	if (fdf_line_checkpoint(fdf, p0) &&
+		fdf_line_checkpoint(fdf, p1))
+		return ;
 	fdf_line_init(&line, p0, p1);
 	line.err = line.d_pas - line.d_ctl - line.s_ctl;
 	if (fdf_straight_line(fdf, &line))
@@ -87,8 +90,21 @@ static void	fdf_draw_line(t_fdf *fdf, const t_point *p0, const t_point *p1)
 			line.i += 1;
 			line.err += line.d_pas;
 		}
+		fdf_draw_point(fdf, &line);
 	}
-	fdf_draw_point(fdf, &line);
+}
+
+int	fdf_line_checkpoint(t_fdf *fdf, t_point *checkpoint)
+{
+	int		x_pixel;
+	int		y_pixel;
+
+	x_pixel = checkpoint->x + fdf->x_offset;
+	y_pixel = checkpoint->y + fdf->y_offset;
+	if (x_pixel < 0 || x_pixel >= fdf->image->width
+		|| y_pixel < 0 || y_pixel >= fdf->image->height)
+		return (1);
+	return (0);
 }
 
 void	fdf_draw(void *param)
