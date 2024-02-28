@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_draw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/28 20:09:27 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/28 23:30:08 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,13 @@ void	fdf_check_line(t_fdf *fdf, int x, int y)
 
 	p0 = &fdf->map->project[y][x];
 	bound0 = fdf_checkpoint(fdf, p0->x, p0->y);
+	if (fdf->ballin && (x + 1) == fdf->map->x_max)
+	{
+		p1 = &fdf->map->project[y][0];
+		bound1 = fdf_checkpoint(fdf, p1->x, p1->y);
+		if (!bound0 || !bound1)
+			fdf_draw_line(fdf, p0, p1);
+	}
 	if ((x + 1) < fdf->map->x_max)
 	{
 		p1 = &fdf->map->project[y][x + 1];

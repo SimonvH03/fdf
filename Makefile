@@ -1,5 +1,5 @@
 NAME	= fdf
-CFLAGS	= -Wall -Werror -Wextra
+# CFLAGS	= -Wall -Werror -Wextra
 
 FDF_H	= ./include/fdf.h
 

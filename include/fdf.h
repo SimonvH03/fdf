@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/28 21:29:14 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/28 23:27:02 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,16 @@
 
 // mlx window
 # define WINDOW_TITLE "fdf"
-# define WIDTH 1600
-# define HEIGHT 1200
+# define WIDTH 1200
+# define HEIGHT 800
 # define MENU_WIDTH 400
 
 // fdf defaults
-# define ISO_GAMMA deg_to_rad(-45)
+# define ISO_GAMMA 0
+// # define ISO_GAMMA deg_to_rad(-45)
 # define ISO_BETA 0
-# define ISO_ALPHA deg_to_rad(-35.264)
+// # define ISO_ALPHA deg_to_rad(-35.264)
+# define ISO_ALPHA 0
 
 // user input
 # define ROTATION_SPEED 0.01745329
@@ -102,6 +104,7 @@ typedef struct s_fdf
 	bool			spinlock;
 	double			speed;
 	bool			redraw;
+	bool			ballin;
 }	t_fdf;
 
 // main
