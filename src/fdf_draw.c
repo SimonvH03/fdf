@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/28 18:31:00 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/28 19:44:09 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 uint32_t	fdf_colour(t_fdf *fdf, t_line *line)
 {
-	int	diff;
+	// int	diff;
 
-	if (line->d_ctl > line->d_pas)
-		diff = (int)(100 * (line->d_ctl - line->i) / line->d_ctl);
-	else
-		diff = (int)(100 * (line->d_pas - line->j) / line->d_pas);
+	// if (line->d_ctl > line->d_pas)
+	// 	diff = (int)(100 * (line->d_ctl - line->i) / line->d_ctl);
+	// else
+	// 	diff = (int)(100 * (line->d_pas - line->j) / line->d_pas);
 	(void)fdf;
+	(void)line;
 	return (C_WHITE);
 }
 
@@ -34,8 +35,7 @@ void	fdf_draw_point(t_fdf *fdf, t_line *line)
 	if (x_pixel < (int)fdf->image->width && y_pixel < (int)fdf->image->height
 		&& x_pixel > 0 && y_pixel > 0)
 	{
-		mlx_put_pixel(fdf->image, x_pixel, y_pixel,
-			fdf_colour(fdf, line));
+		mlx_put_pixel(fdf->image, x_pixel, y_pixel, fdf_colour(fdf, line));
 	}
 	// else
 	// {
@@ -67,22 +67,11 @@ int	fdf_straight_line(t_fdf *fdf, t_line *line)
 	return (1);
 }
 
-int	fdf_checkpoint(t_fdf *fdf, int x_pixel, int y_pixel)
-{
-	x_pixel += fdf->x_offset;
-	y_pixel += fdf->y_offset;
-	if (x_pixel < 0 || x_pixel >= (int)fdf->image->width
-		|| y_pixel < 0 || y_pixel >= (int)fdf->image->height)
-		return (1);
-	return (0);
-}
-
 int	fdf_draw_line(t_fdf *fdf, t_point *p0, t_point *p1)
 {
 	t_line	line;
 
 	fdf_line_init(&line, p0, p1);
-
 	if (fdf_straight_line(fdf, &line))
 	{
 		while (line.i != line.d_ctl)
@@ -102,22 +91,42 @@ int	fdf_draw_line(t_fdf *fdf, t_point *p0, t_point *p1)
 	return (0);
 }
 
+int	fdf_checkpoint(t_fdf *fdf, int x_pixel, int y_pixel)
+{
+	x_pixel += fdf->x_offset;
+	y_pixel += fdf->y_offset;
+	if (x_pixel < 0)
+		return (1);
+	if (y_pixel < 0)
+		return (2);
+	if (x_pixel >= (int)fdf->image->width)
+		return (3);
+	if (y_pixel >= (int)fdf->image->height)
+		return (4);
+	return (0);
+}
+
 void	fdf_check_line(t_fdf *fdf, int x, int y)
 {
 	t_point *p0;
 	t_point *p1;
+	int		bound0;
+	int		bound1;
 
 	p0 = &fdf->map->project[y][x];
+	bound0 = fdf_checkpoint(fdf, p0->x, p0->y);
 	if ((x + 1) < fdf->map->x_max)
 	{
 		p1 = &fdf->map->project[y][x + 1];
-		if (!fdf_checkpoint(fdf, p0->x, p0->y) || !fdf_checkpoint(fdf, p1->x, p1->y))
+		bound1 = fdf_checkpoint(fdf, p1->x, p1->y);
+		if (!bound0 || !bound1)
 			fdf_draw_line(fdf, p0, p1);
 	}
 	if ((y + 1) < fdf->map->y_max)
 	{
 		p1 = &fdf->map->project[y + 1][x];
-		if (!fdf_checkpoint(fdf, p0->x, p0->y) || !fdf_checkpoint(fdf, p1->x, p1->y))
+		bound1 = fdf_checkpoint(fdf, p1->x, p1->y);
+		if (!bound0 || !bound1)
 			fdf_draw_line(fdf, p0, p1);
 	}
 }
