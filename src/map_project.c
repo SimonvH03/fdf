@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:44:02 by simon             #+#    #+#             */
-/*   Updated: 2024/02/28 23:31:09 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/28 23:47:43 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ void	map_ball(t_fdf *fdf)
 	int			x;
 	const int	x_max = fdf->map->x_max;
 	const int	y_max = fdf->map->y_max;
-	double		x_rad;
-	double		y_rad;
+	double		x_ang;
+	double		y_ang;
 
 	y = 0;
 	while (y < y_max)
@@ -89,16 +89,16 @@ void	map_ball(t_fdf *fdf)
 		while (x < x_max)
 		{
 			point = &fdf->map->project[y][x];
-			point->z += 10000;
-			x_rad = deg_to_rad(180 / y_max * (y - (y_max / 2)));
-			y_rad = deg_to_rad(360 / x_max * (x - (x_max / 2)));
-			point_rotate_alpha(point, x_rad);
-			point_rotate_beta(point, y_rad);
+			point->z += 100;
+			x_ang = 360 / x_max * (x - (x_max / 2));
+			y_ang = 180 / y_max * (y - (y_max / 2));
+			point_rotate_beta(point, deg_to_rad(y_ang));
+			point_rotate_alpha(point, deg_to_rad(x_ang));
 			x++;
 		}
 		y++;
 	}
-	// fdf->ballin = true;
+	fdf->ballin = true;
 }
 
 // parse map and rotate point[x,y,z] values around [0,0,0]

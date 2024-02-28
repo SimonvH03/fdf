@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/28 23:27:27 by simon            ###   ########.fr       */
+/*   Updated: 2024/02/28 23:54:33 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	fdf_scale_init(t_fdf *fdf)
 	scaley = fdf->image->height / fdf->map->y_max;
 	if (scaley < fdf->init_scale)
 		fdf->init_scale = scaley;
-	fdf->init_scale *= 0.002;
+	fdf->init_scale *= 0.2;
 	fdf->scalediff = fdf->init_scale;
 	fdf->scale = 1;
 	printf ("init_scale: %f\n", fdf->scalediff);
