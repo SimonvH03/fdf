@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/23 21:09:48 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/28 21:29:14 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@
 # define MENU_WIDTH 400
 
 // fdf defaults
-# define ISO_GAMMA rad(-45)
+# define ISO_GAMMA deg_to_rad(-45)
 # define ISO_BETA 0
-# define ISO_ALPHA rad(-35.264)
+# define ISO_ALPHA deg_to_rad(-35.264)
 
 // user input
 # define ROTATION_SPEED 0.01745329
@@ -112,12 +112,14 @@ void			menu_draw(t_fdf *fdf);
 void			keyhook(mlx_key_data_t keydata, void *param);
 void			scrollhook(double xdelta, double ydelta, void *param);
 void			user_inputs(void *param);
+void			map_ball(t_fdf *fdf);
 void			map_scale(void *param);
 void			map_project(void *param);
 void			fdf_draw(void *param);
 
 // utils_calc.c
-double			rad(double angle_deg);
+double			deg_to_rad(double angle_deg);
+double			rad_to_deg(double angle_rad);
 double			ft_abs(double val);
 short			ft_sign(double val);
 

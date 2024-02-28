@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:44:02 by simon             #+#    #+#             */
-/*   Updated: 2024/02/23 19:14:32 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/28 21:59:16 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,29 @@ void	map_scale(void *param)
 	fdf->scalediff = 1;
 }
 
+void	map_ball(t_fdf *fdf)
+{
+	t_point		*point;
+	int			y;
+	int			x;
+	const int	x_max = fdf->map->x_max;
+	const int	y_max = fdf->map->y_max;
+
+	y = 0;
+	while (y < y_max)
+	{
+		x = 0;
+		while (x < x_max)
+		{
+			point = &fdf->map->project[y][x];
+			point->z += 10000;
+			point_rotate_alpha(point, deg_to_rad(180 / y_max * (y - (y_max / 2))));
+			point_rotate_beta(point, deg_to_rad(360 / x_max * (x - (x_max / 2))));
+			x++;
+		}
+		y++;
+	}
+}
 // parse map and rotate point[x,y,z] values around [0,0,0]
 void	map_project(void *param)
 {

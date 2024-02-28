@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/23 21:08:11 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/28 20:03:55 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	main(int argc, char **argv)
 	if (fdf_init(&fdf, &map, &perspective) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	menu_draw(&fdf);
+	map_ball(&fdf);
 	loop_hooks(&fdf);
 	mlx_loop(fdf.mlx);
 	mlx_terminate(fdf.mlx);
