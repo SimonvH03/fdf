@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 17:05:51 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/01 18:31:15 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/01 21:15:07 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 // x coordinate in point 0,0 will be 0
 // y coordinate at angle will be --- of longitude + --- of latitude
 // x coordinate at angle will be --- of longitude + --- of latitude
-static void	grid_to_sphere(t_point *point, int x, int y)
+static void	grid_to_sphere(t_point *point, double x, double y)
 {
-	printf("(%d,%d)\n", x, y);
+	printf("(%f,%f)\n", x, y);
 	
 }
 
@@ -30,8 +30,6 @@ void	map_sphere(t_fdf *fdf)
 	const int	x_max = fdf->map->x_max;
 	const int	y_max = fdf->map->y_max;
 	const int	radius = fdf->map->radius;
-	double		longitude;
-	double		latitude;
 
 	y = 0;
 	while (y < y_max)
@@ -40,7 +38,7 @@ void	map_sphere(t_fdf *fdf)
 		while (x < x_max)
 		{
 			point = &fdf->map->project[y][x];
-			grid_to_sphere(point, x, y);
+			grid_to_sphere(point, point->x, point->y);
 			x++;
 		}
 		y++;
