@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_project.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:44:02 by simon             #+#    #+#             */
-/*   Updated: 2024/03/01 15:04:16 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/01 17:05:33 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,34 +70,6 @@ void	map_scale(void *param)
 		y++;
 	}
 	fdf->scalediff = 1;
-}
-
-void	map_sphere(t_fdf *fdf)
-{
-	t_point		*point;
-	int			y;
-	int			x;
-	const int	x_max = fdf->map->x_max;
-	const int	y_max = fdf->map->y_max;
-	double		longitude;
-	double		y_ang;
-
-	y = 0;
-	while (y < y_max)
-	{
-		x = 0;
-		while (x < x_max)
-		{
-			point = &fdf->map->project[y][x];
-			longitude = 2 * PI * x / x_max;
-			// point->z += x_max;
-			printf("longitude (%f)\n", longitude);
-			
-			x++;
-		}
-		y++;
-	}
-	fdf->ballin = false;
 }
 
 // parse map and rotate point[x,y,z] values around [0,0,0]

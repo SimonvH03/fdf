@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_draw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/01 14:53:38 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/01 17:15:06 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,19 +154,13 @@ void	fdf_draw(void *param)
 		x = 0;
 		while (x < fdf->map->x_max)
 		{
-			// if ((x + 1) < fdf->map->x_max)
-			// 	fdf_draw_line(fdf, &fdf->map->project[y][x],
-			// 		&fdf->map->project[y][x + 1]);
-			// if ((y + 1) < fdf->map->y_max)
-			// 	fdf_draw_line(fdf, &fdf->map->project[y][x],
-			// 		&fdf->map->project[y + 1][x]);;
 			fdf_check_line(fdf, x, y);
 			x++;
 		}
 		y++;
 	}
 	fdf->redraw = false;
-	fdf_draw_point(fdf, &(t_line){0, 0, 0, 0, 0, 0, 0, 0, 0});
+	// fdf_draw_point(fdf, &(t_line){0, 0, 0, 0, 0, 0, 0, 0, 0});
 }
 
 // void	fdf_draw_line(t_fdf *fdf, t_point *p0, t_point *p1)

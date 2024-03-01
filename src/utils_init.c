@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/01 14:48:41 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/01 17:29:39 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	fdf_scale_init(t_fdf *fdf)
 	scaley = fdf->image->height / fdf->map->y_max;
 	if (scaley < fdf->init_scale)
 		fdf->init_scale = scaley;
-	fdf->init_scale *= 0.2;
+	fdf->init_scale *= 0.5;
 	fdf->scalediff = fdf->init_scale;
 	fdf->scale = 1;
 	printf ("init_scale: %f\n", fdf->scalediff);

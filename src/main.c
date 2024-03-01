@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/01 14:06:51 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/01 17:16:38 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,19 @@ int	main(int argc, char **argv)
 	t_perspective	perspective;
 	t_fdf			fdf;
 
-	if (argc != 2)
+	if (argc < 2 || argc > 3)
 		return (EXIT_FAILURE);
 	map = (t_map)
-	{NULL, NULL, argv[1], 0, 0, 0, 0, 0};
+	{NULL, NULL, argv[1], 0, 0, 0, 0, 0, 10};
 	map_read(&map);
 	perspective = (t_perspective)
 	{ISO_ALPHA, ISO_BETA, ISO_GAMMA};
 	if (fdf_init(&fdf, &map, &perspective) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	menu_draw(&fdf);
-	map_sphere(&fdf);
+	if (argc == 3)
+		if (!ft_strncmp(argv[2], "sphere", 6))
+			map_sphere(&fdf);
 	loop_hooks(&fdf);
 	mlx_loop(fdf.mlx);
 	mlx_terminate(fdf.mlx);

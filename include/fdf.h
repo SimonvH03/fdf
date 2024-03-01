@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/01 14:59:30 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/01 18:19:34 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,19 @@
 
 // mlx window
 # define WINDOW_TITLE "fdf"
-# define WIDTH 1200
-# define HEIGHT 800
+// # define WIDTH 1200
+// # define HEIGHT 800
+// # define MENU_WIDTH 400
+# define WIDTH 2000
+# define HEIGHT 1600
 # define MENU_WIDTH 400
 
 // fdf defaults
-# define ISO_GAMMA 0
-// # define ISO_GAMMA deg_to_rad(-45)
+// # define ISO_GAMMA 0
+# define ISO_GAMMA deg_to_rad(-45)
 # define ISO_BETA 0
-// # define ISO_ALPHA deg_to_rad(-35.264)
-# define ISO_ALPHA 0
+// # define ISO_ALPHA 0
+# define ISO_ALPHA deg_to_rad(-35.264)
 
 // user input
 # define ROTATION_SPEED 0.01745329
@@ -77,6 +80,7 @@ typedef struct s_map
 	int				y_max;
 	int				z_min;
 	int				z_max;
+	int				radius;
 }	t_map;
 
 typedef struct s_perspective
@@ -108,12 +112,12 @@ typedef struct s_fdf
 // main
 void			map_read(t_map *map);
 void			menu_draw(t_fdf *fdf);
+void			map_sphere(t_fdf *fdf);
 
 // loops
 void			keyhook(mlx_key_data_t keydata, void *param);
 void			scrollhook(double xdelta, double ydelta, void *param);
 void			user_inputs(void *param);
-void			map_sphere(t_fdf *fdf);
 void			map_scale(void *param);
 void			map_project(void *param);
 void			fdf_draw(void *param);

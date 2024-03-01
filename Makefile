@@ -16,6 +16,7 @@ SRC		=	$(SRCDIR)/fdf_draw.c \
 			$(SRCDIR)/map_project.c \
 			$(SRCDIR)/map_read.c \
 			$(SRCDIR)/menu_draw.c \
+			$(SRCDIR)/project_to_sphere.c \
 			$(SRCDIR)/user_inputs.c \
 			$(SRCDIR)/utils_calc.c \
 			$(SRCDIR)/utils_init.c \
