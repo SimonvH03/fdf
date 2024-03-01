@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/28 23:54:03 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/01 14:53:38 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,7 @@ void	fdf_draw(void *param)
 		y++;
 	}
 	fdf->redraw = false;
+	fdf_draw_point(fdf, &(t_line){0, 0, 0, 0, 0, 0, 0, 0, 0});
 }
 
 // void	fdf_draw_line(t_fdf *fdf, t_point *p0, t_point *p1)

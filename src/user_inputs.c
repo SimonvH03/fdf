@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user_inputs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/28 20:05:00 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/01 14:06:51 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ static void	input_presets(t_fdf *fdf)
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_P))
 	{
 		map_project_reset(fdf->map);
-		map_ball(fdf);
+		map_sphere(fdf);
 		fdf->spinlock = false;
 		fdf->scalediff = fdf->init_scale * fdf->scale;
 	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_I))
 	{
 		map_project_reset(fdf->map);
-		map_ball(fdf);
+		map_sphere(fdf);
 		*fdf->perspective = (t_perspective){ISO_ALPHA, ISO_BETA, ISO_GAMMA};
 		fdf->spinlock = false;
 		fdf->scalediff = fdf->init_scale * fdf->scale;

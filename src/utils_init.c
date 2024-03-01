@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/28 23:54:33 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/01 14:48:41 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,5 @@ void	fdf_line_init(t_line *line, const t_point *p0, const t_point *p1)
 	line->y0 = p0->y;
 	line->i = 0;
 	line->j = 0;
-	line->z0 = p0->z;
-	line->z1 = p1->z;
 	line->err = line->d_pas - line->d_ctl - line->s_ctl;
 }

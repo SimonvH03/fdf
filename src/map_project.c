@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:44:02 by simon             #+#    #+#             */
-/*   Updated: 2024/02/28 23:47:43 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/01 15:04:16 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,14 @@ void	map_scale(void *param)
 	fdf->scalediff = 1;
 }
 
-void	map_ball(t_fdf *fdf)
+void	map_sphere(t_fdf *fdf)
 {
 	t_point		*point;
 	int			y;
 	int			x;
 	const int	x_max = fdf->map->x_max;
 	const int	y_max = fdf->map->y_max;
-	double		x_ang;
+	double		longitude;
 	double		y_ang;
 
 	y = 0;
@@ -89,16 +89,15 @@ void	map_ball(t_fdf *fdf)
 		while (x < x_max)
 		{
 			point = &fdf->map->project[y][x];
-			point->z += 100;
-			x_ang = 360 / x_max * (x - (x_max / 2));
-			y_ang = 180 / y_max * (y - (y_max / 2));
-			point_rotate_beta(point, deg_to_rad(y_ang));
-			point_rotate_alpha(point, deg_to_rad(x_ang));
+			longitude = 2 * PI * x / x_max;
+			// point->z += x_max;
+			printf("longitude (%f)\n", longitude);
+			
 			x++;
 		}
 		y++;
 	}
-	fdf->ballin = true;
+	fdf->ballin = false;
 }
 
 // parse map and rotate point[x,y,z] values around [0,0,0]

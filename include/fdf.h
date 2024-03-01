@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/28 23:27:02 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/01 14:59:30 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ typedef struct s_line
 	int			j;
 	double		x0;
 	double		y0;
-	int			z0;
-	int			z1;
 }	t_line;
 
 // free: map.content (free2d)
@@ -115,7 +113,7 @@ void			menu_draw(t_fdf *fdf);
 void			keyhook(mlx_key_data_t keydata, void *param);
 void			scrollhook(double xdelta, double ydelta, void *param);
 void			user_inputs(void *param);
-void			map_ball(t_fdf *fdf);
+void			map_sphere(t_fdf *fdf);
 void			map_scale(void *param);
 void			map_project(void *param);
 void			fdf_draw(void *param);
