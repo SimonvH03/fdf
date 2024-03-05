@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user_inputs_presets.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:31:44 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/05 20:19:06 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/05 23:50:17 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	input_presets_1(t_fdf *fdf)
 		fdf_recenter(fdf);
 		fdf->scalediff = fdf->init_scale;
 	}
+	fdf->ballin = false;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_O))
 	{
 		map_set_polar(fdf->map);

@@ -3,26 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_draw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/05 18:09:42 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/06 00:13:58 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static uint32_t	fdf_colour(t_fdf *fdf, t_line *line)
+static uint32_t	fdf_line_colour(t_fdf *fdf, t_line *line)
 {
-	// int	diff;
-
-	// if (line->d_ctl > line->d_pas)
-	// 	diff = (int)(100 * (line->d_ctl - line->i) / line->d_ctl);
-	// else
-	// 	diff = (int)(100 * (line->d_pas - line->j) / line->d_pas);
-	(void)fdf;
-	(void)line;
-	return (C_WHITE);
+	return (line->p0->colour);
 }
 
 void	fdf_draw_point(t_fdf *fdf, t_line *line)
@@ -30,12 +22,13 @@ void	fdf_draw_point(t_fdf *fdf, t_line *line)
 	int	x_pixel;
 	int	y_pixel;
 
-	x_pixel = (line->i * line->s_ctl) + line->x0 + fdf->x_offset;
-	y_pixel = (line->j * line->s_pas) + line->y0 + fdf->y_offset;
+	x_pixel = (line->i * line->s_ctl) + line->p0->x + fdf->x_offset;
+	y_pixel = (line->j * line->s_pas) + line->p0->y + fdf->y_offset;
 	if (x_pixel < (int)fdf->image->width && y_pixel < (int)fdf->image->height
 		&& x_pixel > 0 && y_pixel > 0)
 	{
-		mlx_put_pixel(fdf->image, x_pixel, y_pixel, fdf_colour(fdf, line));
+		mlx_put_pixel(fdf->image, x_pixel, y_pixel,
+			fdf_line_colour(fdf, line));
 	}
 }
 

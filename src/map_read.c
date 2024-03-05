@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_read.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:58:42 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/05 19:18:05 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/06 00:12:42 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	map_fill_row(t_map *map, int y, char *buffer)
 		}
 		str_z[k] = '\0';
 		map->original[y][x] = (t_point)
-		{x - (map->x_max / 2), y - (map->y_max / 2), ft_atoi(str_z)};
+		{x - (map->x_max / 2), y - (map->y_max / 2), ft_atoi(str_z), 0};
 		map->project[y][x] = map->original[y][x];
 		x++;
 	}
@@ -90,6 +90,8 @@ int	map_read(t_map *map)
 	if (map->fd == -1 || map_malloc_y(map) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	buffer = get_next_line(map->fd);
+	if (buffer == NULL)
+		return (EXIT_FAILURE);
 	y = 0;
 	while (buffer && y < map->y_max)
 	{
@@ -100,7 +102,7 @@ int	map_read(t_map *map)
 		y++;
 		buffer = get_next_line(map->fd);
 	}
-	map_find_z_min_max(map);
+	map_colour(map);
 	map_fill_polar(map);
 	close(map->fd);
 	return (EXIT_SUCCESS);

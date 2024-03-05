@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_mods.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 17:05:51 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/05 20:14:01 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/05 23:56:48 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	map_fill_polar(t_map *map)
 	int				y;
 	int				x;
 	t_point			*point;
-	const double	longitude_incr = 2 * PI / (map->x_max);
+	const double	longitude_incr = -2 * PI / (map->x_max);
 	const double	latitude_in = PI / (map->y_max - 1);
 
 	y = 0;
@@ -46,7 +46,6 @@ void	map_set_polar(t_map *map)
 	int			y;
 	int			x;
 	t_point		*polar;
-	const int	r = map->radius;
 
 	y = 0;
 	while (y < map->y_max)
@@ -56,9 +55,9 @@ void	map_set_polar(t_map *map)
 		{
 			polar = &map->polar[y][x];
 			map->project[y][x] = (t_point)
-			{(r * cos(polar->x) * sin(polar->y)),
-				(r * sin(polar->x) * sin(polar->y)),
-				(r * cos(polar->y))};
+			{((polar->z) * cos(polar->x) * sin(polar->y)),
+				((polar->z) * sin(polar->x) * sin(polar->y)),
+				((polar->z) * cos(polar->y))};
 			x++;
 		}
 		y++;

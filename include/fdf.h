@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/05 19:42:16 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/06 00:10:55 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@
 
 // mlx window
 # define WINDOW_TITLE "fdf"
-// # define WIDTH 1200
-// # define HEIGHT 800
-// # define MENU_WIDTH 400
-# define WIDTH 2000
-# define HEIGHT 1600
+# define WIDTH 1200
+# define HEIGHT 800
 # define MENU_WIDTH 400
+// # define WIDTH 2000
+// # define HEIGHT 1600
+// # define MENU_WIDTH 400
 
 // fdf defaults
 // # define ISO_GAMMA 0
@@ -53,19 +53,20 @@ typedef struct s_point
 	double			x;
 	double			y;
 	double			z;
+	uint32_t		colour;
 }	t_point;
 
 typedef struct s_line
 {
-	int			d_ctl;
-	int			d_pas;
-	int			s_ctl;
-	int			s_pas;
-	int			err;
-	int			i;
-	int			j;
-	double		x0;
-	double		y0;
+	int				d_ctl;
+	int				d_pas;
+	int				s_ctl;
+	int				s_pas;
+	int				err;
+	int				i;
+	int				j;
+	const t_point	*p0;
+	const t_point	*p1;
 }	t_line;
 
 // free: map->content, map->project, map->polar
@@ -143,7 +144,7 @@ void			fdf_line_init(t_line *line, const t_point *p0, const t_point *p1);
 // utils_map.c
 int				map_malloc_y(t_map *map);
 int				map_malloc_x(t_map *map, int y);
-void			map_find_z_min_max(t_map *map);
+void			map_colour(t_map *map);
 
 // utils_misc.c
 void			fdf_recenter(t_fdf *fdf);
