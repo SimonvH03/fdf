@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/05 18:53:05 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/05 19:42:16 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ typedef struct s_fdf
 }	t_fdf;
 
 // main
-void			map_read(t_map *map);
+int				map_read(t_map *map);
 void			menu_draw(t_fdf *fdf);
 
 // map_mods.c
@@ -126,6 +126,10 @@ void			map_scale(void *param);
 void			map_project(void *param);
 void			fdf_draw(void *param);
 
+// user_inputs_presets.c
+void			input_presets_1(t_fdf *fdf);
+void			input_presets_2(t_fdf *fdf);
+
 // utils_calc.c
 double			deg_to_rad(double angle_deg);
 double			rad_to_deg(double angle_rad);
@@ -136,7 +140,13 @@ short			ft_sign(double val);
 int				fdf_init(t_fdf *fdf, t_map *map, t_perspective *perspective);
 void			fdf_line_init(t_line *line, const t_point *p0, const t_point *p1);
 
+// utils_map.c
+int				map_malloc_y(t_map *map);
+int				map_malloc_x(t_map *map, int y);
+void			map_find_z_min_max(t_map *map);
+
 // utils_misc.c
+void			fdf_recenter(t_fdf *fdf);
 void			map_free(t_map *map);
 void			draw_background(mlx_image_t *image, uint32_t colour);
 

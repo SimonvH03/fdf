@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/05 18:18:01 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/05 19:21:22 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	map = (t_map)
 	{NULL, NULL, NULL, argv[1], 0, 0, 0, 0, 0, 1};
-	map_read(&map);
+	if (map_read(&map) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
 	perspective = (t_perspective)
 	{ISO_ALPHA, ISO_BETA, ISO_GAMMA};
 	if (fdf_init(&fdf, &map, &perspective) == EXIT_FAILURE)

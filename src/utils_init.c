@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/01 17:29:39 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/05 19:40:08 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ int	fdf_init(t_fdf *fdf, t_map *map, t_perspective *perspective)
 	fdf->map = map;
 	fdf->perspective = perspective;
 	fdf_scale_init(fdf);
-	fdf->x_offset = fdf->image->width / 2;
-	fdf->y_offset = fdf->image->height / 2;
+	fdf_recenter(fdf);
 	fdf->spinlock = false;
 	fdf->speed = ROTATION_SPEED;
 	fdf->redraw = true;

@@ -9,3 +9,6 @@ Menu
 
 Make
 	(Makefile) write it myself
+
+Read
+	(map_read) malloc protection

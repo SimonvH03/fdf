@@ -6,39 +6,11 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/05 18:42:24 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/05 19:46:48 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
-
-static void	input_presets_1(t_fdf *fdf)
-{
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_P))
-	{
-		map_set_original(fdf->map);
-		fdf->scalediff = fdf->init_scale;
-	}
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_I))
-	{
-		map_set_original(fdf->map);
-		*fdf->perspective = (t_perspective){ISO_ALPHA, ISO_BETA, ISO_GAMMA};
-		fdf->scalediff = fdf->init_scale;
-	}
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_O))
-	{
-		map_set_polar(fdf->map);
-		*fdf->perspective = (t_perspective){deg_to_rad(270), 0, deg_to_rad(90)};
-		fdf->scalediff = fdf->init_scale * 10 / fdf->map->radius;
-	}
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_M))
-	{
-		fdf->scalediff = 1 / fdf->scale;
-		fdf->scale = 1;
-	}
-	fdf->spinlock = false;
-	fdf->redraw = true;
-}
 
 static void	manual_rotation(t_fdf *fdf)
 {
@@ -60,6 +32,30 @@ static void	manual_rotation(t_fdf *fdf)
 		fdf->redraw = true;
 }
 
+static void	manual_translation(t_fdf *fdf)
+{
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_UP))
+	{
+		fdf->y_offset -= 10;
+		fdf->redraw = true;
+	}
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_DOWN))
+	{
+		fdf->y_offset += 10;
+		fdf->redraw = true;
+	}
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT))
+	{
+		fdf->x_offset += 10;
+		fdf->redraw = true;
+	}
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT))
+	{
+		fdf->x_offset -= 10;
+		fdf->redraw = true;
+	}
+}
+
 void	user_inputs(void *param)
 {
 	t_fdf	*fdf;
@@ -67,10 +63,12 @@ void	user_inputs(void *param)
 	fdf = param;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_P)
 		|| mlx_is_key_down(fdf->mlx, MLX_KEY_I)
-		|| mlx_is_key_down(fdf->mlx, MLX_KEY_O)
 		|| mlx_is_key_down(fdf->mlx, MLX_KEY_M))
 		input_presets_1(fdf);
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_O))
+		input_presets_2(fdf);
 	manual_rotation(fdf);
+	manual_translation(fdf);
 }
 
 void	keyhook(mlx_key_data_t keydata, void *param)

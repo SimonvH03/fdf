@@ -18,9 +18,11 @@ SRC		=	$(SRCDIR)/fdf_draw_2.c \
 			$(SRCDIR)/map_project.c \
 			$(SRCDIR)/map_read.c \
 			$(SRCDIR)/menu_draw.c \
+			$(SRCDIR)/user_inputs_presets.c \
 			$(SRCDIR)/user_inputs.c \
 			$(SRCDIR)/utils_calc.c \
 			$(SRCDIR)/utils_init.c \
+			$(SRCDIR)/utils_map.c \
 			$(SRCDIR)/utils_misc.c \
 			$(SRCDIR)/utils_test.c
 OBJS	= ${SRC:.c=.o}

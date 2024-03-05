@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 17:05:51 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/05 18:52:49 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/05 19:04:02 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	map_fill_polar(t_map *map)
 	int				y;
 	int				x;
 	t_point			*point;
-	const double	longitude_incr = PI / (map->x_max);
-	const double	latitude_in = 2 * PI / (map->y_max - 1);
+	const double	longitude_incr = 2 * PI / (map->x_max);
+	const double	latitude_in = PI / (map->y_max - 1);
 
 	y = 0;
 	while (y < map->y_max)
