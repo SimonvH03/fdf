@@ -6,11 +6,36 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:58:42 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/23 21:08:26 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/05 18:53:18 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
+
+static void	map_find_z_min_max(t_map *map)
+{
+	int	x;
+	int	y;
+	int	z_val;
+
+	y = 0;
+	map->z_min = 0;
+	map->z_max = 0;
+	while (y < map->y_max)
+	{
+		x = 0;
+		while (x < map->x_max)
+		{
+			z_val = map->original[y][x].z;
+			if (z_val < map->z_min)
+				map->z_min = z_val;
+			if (z_val > map->z_max)
+				map->z_max = z_val;
+			x++;
+		}
+		y++;
+	}
+}
 
 // count elements with subject given map constraints
 static int	map_row_size(char *buffer)
@@ -49,6 +74,7 @@ static void	map_size(t_map *map)
 }
 
 // parse buffer, extract values with atoi, place [x,y,z] values in t_points
+// make a copy at map->project
 static void	map_fill_row(t_map *map, int y, char *buffer)
 {
 	int		i;
@@ -78,6 +104,7 @@ static void	map_fill_row(t_map *map, int y, char *buffer)
 }
 
 // size up the map, malloc 2D for t_points, fill rows with each get_next_line
+// make a copy at map->project
 void	map_read(t_map *map)
 {
 	char	*buffer;
@@ -86,6 +113,7 @@ void	map_read(t_map *map)
 	map_size(map);
 	map->original = (t_point **)malloc((map->y_max) * sizeof(t_point *));
 	map->project = (t_point **)malloc((map->y_max) * sizeof(t_point *));
+	map->polar = (t_point **)malloc((map->y_max) * sizeof(t_point *));
 	map->fd = open(map->name, O_RDONLY);
 	buffer = get_next_line(map->fd);
 	y = 0;
@@ -93,11 +121,13 @@ void	map_read(t_map *map)
 	{
 		map->original[y] = (t_point *)malloc((map->x_max) * sizeof(t_point));
 		map->project[y] = (t_point *)malloc((map->x_max) * sizeof(t_point));
+		map->polar[y] = (t_point *)malloc((map->x_max) * sizeof(t_point));
 		map_fill_row(map, y, buffer);
 		free(buffer);
 		y++;
 		buffer = get_next_line(map->fd);
 	}
 	map_find_z_min_max(map);
+	map_fill_polar(map);
 	close(map->fd);
 }

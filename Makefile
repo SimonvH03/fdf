@@ -11,12 +11,13 @@ LIBFT	= $(LFTDIR)/libft.a
 HEADERS	= -I ./include -I $(LMLXDIR)/include
 LIBS	= $(LIBMLX) $(LIBFT)
 SRCDIR	= ./src
-SRC		=	$(SRCDIR)/fdf_draw.c \
+SRC		=	$(SRCDIR)/fdf_draw_2.c \
+			$(SRCDIR)/fdf_draw.c \
 			$(SRCDIR)/main.c \
+			$(SRCDIR)/map_mods.c \
 			$(SRCDIR)/map_project.c \
 			$(SRCDIR)/map_read.c \
 			$(SRCDIR)/menu_draw.c \
-			$(SRCDIR)/project_to_sphere.c \
 			$(SRCDIR)/user_inputs.c \
 			$(SRCDIR)/utils_calc.c \
 			$(SRCDIR)/utils_init.c \
@@ -41,10 +42,10 @@ $(NAME): $(OBJS) $(FDF_H)
 clean:
 	make -C $(LFTDIR) clean
 	rm -rf $(OBJS)
-	rm -rf $(LMLXDIR)/build
 
 fclean: clean
 	rm -rf $(NAME)
+	rm -rf $(LMLXDIR)/build
 
 re: clean all
 

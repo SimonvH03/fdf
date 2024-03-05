@@ -3,37 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   user_inputs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/01 14:06:51 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/05 18:42:24 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static void	input_presets(t_fdf *fdf)
+static void	input_presets_1(t_fdf *fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_P))
 	{
-		map_project_reset(fdf->map);
-		map_sphere(fdf);
-		fdf->spinlock = false;
-		fdf->scalediff = fdf->init_scale * fdf->scale;
+		map_set_original(fdf->map);
+		fdf->scalediff = fdf->init_scale;
 	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_I))
 	{
-		map_project_reset(fdf->map);
-		map_sphere(fdf);
+		map_set_original(fdf->map);
 		*fdf->perspective = (t_perspective){ISO_ALPHA, ISO_BETA, ISO_GAMMA};
-		fdf->spinlock = false;
-		fdf->scalediff = fdf->init_scale * fdf->scale;
+		fdf->scalediff = fdf->init_scale;
+	}
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_O))
+	{
+		map_set_polar(fdf->map);
+		*fdf->perspective = (t_perspective){deg_to_rad(270), 0, deg_to_rad(90)};
+		fdf->scalediff = fdf->init_scale * 10 / fdf->map->radius;
 	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_M))
 	{
 		fdf->scalediff = 1 / fdf->scale;
 		fdf->scale = 1;
 	}
+	fdf->spinlock = false;
 	fdf->redraw = true;
 }
 
@@ -64,8 +67,9 @@ void	user_inputs(void *param)
 	fdf = param;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_P)
 		|| mlx_is_key_down(fdf->mlx, MLX_KEY_I)
+		|| mlx_is_key_down(fdf->mlx, MLX_KEY_O)
 		|| mlx_is_key_down(fdf->mlx, MLX_KEY_M))
-		input_presets(fdf);
+		input_presets_1(fdf);
 	manual_rotation(fdf);
 }
 

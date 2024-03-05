@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/01 21:13:58 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/05 18:53:05 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,13 @@ typedef struct s_line
 	double		y0;
 }	t_line;
 
-// free: map.content (free2d)
-// no free: map.name = argv[1]
+// free: map->content, map->project, map->polar
+// no free: map->name = argv[1]
 typedef struct s_map
 {
-	t_point			**project;
 	t_point			**original;
+	t_point			**project;
+	t_point			**polar;
 	char			*name;
 	int				fd;
 	int				x_max;
@@ -90,7 +91,6 @@ typedef struct s_perspective
 	double			gamma;
 }	t_perspective;
 
-// free: fdf.map->content
 typedef struct s_fdf
 {
 	mlx_t			*mlx;
@@ -112,7 +112,11 @@ typedef struct s_fdf
 // main
 void			map_read(t_map *map);
 void			menu_draw(t_fdf *fdf);
-void			map_sphere(t_fdf *fdf);
+
+// map_mods.c
+void			map_fill_polar(t_map *map);
+void			map_set_polar(t_map *map);
+void			map_set_original(t_map *map);
 
 // loops
 void			keyhook(mlx_key_data_t keydata, void *param);
@@ -134,9 +138,16 @@ void			fdf_line_init(t_line *line, const t_point *p0, const t_point *p1);
 
 // utils_misc.c
 void			map_free(t_map *map);
-void			map_project_reset(t_map *map);
-void			map_find_z_min_max(t_map *map);
 void			draw_background(mlx_image_t *image, uint32_t colour);
+
+// fdf_draw.c
+void			fdf_draw_point(t_fdf *fdf, t_line *line);
+void			fdf_draw(void *param);
+
+// fdf_draw_2.c
+
+void			fdf_draw_full(t_fdf *fdf, int x, int y);
+void			fdf_draw_line(t_fdf *fdf, t_point *p0, t_point *p1);
 
 // utils_test.c
 void			check_map_result(t_map *map, const char *str, const char *v);
