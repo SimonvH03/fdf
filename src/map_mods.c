@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 17:05:51 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/05 19:04:02 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/05 19:53:01 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	map_fill_polar(t_map *map)
 		{
 			point = &map->original[y][x];
 			map->polar[y][x] = (t_point)
-			{(longitude_incr * point->x),
-				(latitude_in * point->y),
+			{(longitude_incr * x),
+				(latitude_in * y),
 				(map->radius + point->z)};
 			x++;
 		}
