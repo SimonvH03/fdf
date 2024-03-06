@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:10:50 by simon             #+#    #+#             */
-/*   Updated: 2024/03/06 18:30:29 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/06 19:55:53 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void
 	menu_print(
-		t_fdf *fdf)
+		t_fdf	*fdf)
 {
 	const int	margin = 72;
 	const int	line = 24;

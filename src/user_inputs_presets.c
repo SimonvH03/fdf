@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:31:44 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/06 18:34:07 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/06 19:56:00 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void
 	input_presets_1(
-		t_fdf *fdf)
+		t_fdf	*fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_P))
 	{
@@ -44,7 +44,7 @@ void
 
 void
 	input_presets_2(
-		t_fdf *fdf)
+		t_fdf	*fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_M))
 	{

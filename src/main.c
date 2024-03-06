@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/06 18:31:34 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/06 19:54:41 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void
 	loop_hooks(
-		t_fdf *fdf)
+		t_fdf	*fdf)
 {
 	mlx_key_hook(fdf->mlx, &keyhook, fdf);
 	mlx_scroll_hook(fdf->mlx, &scrollhook, fdf);
@@ -27,7 +27,7 @@ static void
 int
 	main(
 		int argc,
-		char **argv)
+		char	**argv)
 {
 	t_map			map;
 	t_perspective	perspective;

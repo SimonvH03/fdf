@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 17:05:51 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/06 18:32:21 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/06 19:54:53 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // parse original map and fill map->polar
 void
 	map_fill_polar(
-		t_map *map)
+		t_map	*map)
 {
 	int				y;
 	int				x;
@@ -45,7 +45,7 @@ void
 // swap polar->y and polar->x for x= and y= for cool projection
 void
 	map_set_polar(
-		t_map *map)
+		t_map	*map)
 {
 	int			y;
 	int			x;
@@ -71,7 +71,7 @@ void
 // from user_inputs.c function input_presets
 void
 	map_set_original(
-		t_map *map)
+		t_map	*map)
 {
 	int	x;
 	int	y;

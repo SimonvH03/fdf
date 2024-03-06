@@ -21,6 +21,8 @@ SRC		=	$(SRCDIR)/fdf_draw_2.c \
 			$(SRCDIR)/user_inputs_presets.c \
 			$(SRCDIR)/user_inputs.c \
 			$(SRCDIR)/utils_calc.c \
+			$(SRCDIR)/utils_draw.c \
+			$(SRCDIR)/utils_fdf.c \
 			$(SRCDIR)/utils_init.c \
 			$(SRCDIR)/utils_map.c \
 			$(SRCDIR)/utils_misc.c \

@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/06 18:01:55 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/06 19:48:52 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@
 # define Z_MID 0x00FF0088
 # define Z_HIGH 0x0000FF88
 
-typedef	struct s_colour
+typedef struct s_colour
 {
 	unsigned char	r;
 	unsigned char	g;
@@ -152,7 +152,8 @@ short		ft_sign(double val);
 
 // utils_init.c
 int			fdf_init(t_fdf *fdf, t_map *map, t_perspective *perspective);
-void		fdf_line_init(t_line *line, t_map *map, const t_point *p0, const t_point *p1);
+void		fdf_line_init(t_line *line, t_map *map,
+				const t_point *p0, const t_point *p1);
 
 // utils_map.c
 int			map_malloc_y(t_map *map);
@@ -167,14 +168,17 @@ void		draw_background(mlx_image_t *image, uint32_t colour);
 
 // fdf_draw.c
 void		fdf_draw_point(t_fdf *fdf, t_line *line);
+int			fdf_check_point(t_fdf *fdf, int x_pixel, int y_pixel);
 void		fdf_draw(void *param);
 
 // fdf_draw_2.c
-
 void		fdf_draw_full(t_fdf *fdf, int x, int y);
 void		fdf_draw_line(t_fdf *fdf, t_point *p0, t_point *p1);
 
+// utils_draw.c
+int			over_the_horizon(t_fdf *fdf, t_point *p0, t_point *p1);
+
 // utils_test.c
-void		check_map_result(t_map *map, const char *str, const char *v);
+// void		check_map_result(t_map *map, const char *str, const char *v);
 
 #endif

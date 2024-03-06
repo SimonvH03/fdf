@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/06 18:30:13 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/06 19:56:24 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void
 	manual_rotation(
-		t_fdf *fdf)
+		t_fdf	*fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_W))
 		fdf->perspective->alpha -= fdf->speed;
@@ -38,7 +38,7 @@ static void
 
 static void
 	manual_translation(
-		t_fdf *fdf)
+		t_fdf	*fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_UP))
 	{
@@ -64,7 +64,7 @@ static void
 
 void
 	user_inputs(
-		void *param)
+		void	*param)
 {
 	t_fdf	*fdf;
 
@@ -82,8 +82,8 @@ void
 
 void
 	keyhook(
-		mlx_key_data_t keydata,
-		void *param)
+		mlx_key_data_t	keydata,
+		void			*param)
 {
 	t_fdf	*fdf;
 
@@ -100,7 +100,7 @@ void
 	scrollhook(
 		double xdelta,
 		double ydelta,
-		void *param)
+		void	*param)
 {
 	t_fdf	*fdf;
 

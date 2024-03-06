@@ -1,51 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_misc.c                                       :+:      :+:    :+:   */
+/*   utils_draw.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/06 18:35:49 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/06 19:49:52 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 void
-	fdf_recenter(
-		t_fdf *fdf)
+	over_the_horizon(
+		t_fdf	*fdf,
+		t_point	*p0,
+		t_point	*p1)
 {
-	fdf->x_offset = fdf->image->width / 2;
-	fdf->y_offset = fdf->image->height / 2;
-}
-
-// from main.c
-void
-	map_free(
-		t_map *map)
-{
-	int	i;
-
-	i = 0;
-	while (i < map->y_max && map->project[i])
-		free(map->project[i++]);
-	free(map->project);
-	i = 0;
-	while (i < map->y_max && map->polar[i])
-		free(map->polar[i++]);
-	free(map->polar);
-	i = 0;
-	while (i < map->y_max && map->original[i])
-		free(map->original[i++]);
-	free(map->original);
+	if (fdf->ballin == false)
+		return (0);
+	else if (0)
+		return (1);
+	else if (p0->z < 0 || p1->z < 0)
+		return (1);
+	return (0);
 }
 
 // from fdf_draw.c, menu_draw.c
 void
 	draw_background(
-		mlx_image_t *image,
-		uint32_t colour)
+		mlx_image_t	*image,
+		uint32_t	colour)
 {
 	uint32_t	x;
 	uint32_t	y;

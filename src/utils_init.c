@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/06 18:34:49 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/06 19:59:36 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // from function fdf_init()
 static void
 	fdf_scale_init(
-		t_fdf *fdf)
+		t_fdf	*fdf)
 {
 	double	scaley;
 
@@ -26,15 +26,14 @@ static void
 	fdf->init_scale *= DEFAULT_SCALE;
 	fdf->scalediff = fdf->init_scale;
 	fdf->scale = 1;
-	printf ("init_scale: %f\n", fdf->scalediff);
 }
 
 // from file main.c
 int
 	fdf_init(
-		t_fdf *fdf,
-		t_map *map,
-		t_perspective *perspective)
+		t_fdf	*fdf,
+		t_map	*map,
+		t_perspective	*perspective)
 {
 	fdf->mlx = mlx_init(WIDTH, HEIGHT, WINDOW_TITLE, false);
 	if (fdf->mlx == NULL)
@@ -61,10 +60,10 @@ int
 // from file fdf_draw.c
 void
 	fdf_line_init(
-		t_line *line,
-		t_map *map,
-		const t_point *p0,
-		const t_point *p1)
+		t_line	*line,
+		t_map	*map,
+		const t_point	*p0,
+		const t_point	*p1)
 {
 	line->map = map;
 	line->d_ctl = ft_abs(p1->x - p0->x);

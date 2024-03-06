@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:44:02 by simon             #+#    #+#             */
-/*   Updated: 2024/03/06 18:38:31 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/06 19:55:26 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // angle alpha round x-axis
 static void
 	point_rotate_alpha(
-		t_point *point,
+		t_point	*point,
 		double alpha)
 {
 	double	prev_y;
@@ -29,7 +29,7 @@ static void
 // angle beta around y-axis
 static void
 	point_rotate_beta(
-		t_point *point,
+		t_point	*point,
 		double beta)
 {
 	double	prev_x;
@@ -43,7 +43,7 @@ static void
 // angle gamma around z-axis
 static void
 	point_rotate_gamma(
-		t_point *point,
+		t_point	*point,
 		double gamma)
 {
 	double	prev_x;
@@ -56,7 +56,7 @@ static void
 
 void
 	map_scale(
-		void *param)
+		void	*param)
 {
 	t_fdf	*fdf;
 	t_point	*point;
@@ -86,7 +86,7 @@ void
 // parse map and rotate point[x,y,z] values around [0,0,0]
 void
 	map_project(
-		void *param)
+		void	*param)
 {
 	t_fdf	*fdf;
 	t_point	*point;
