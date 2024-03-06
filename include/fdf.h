@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/06 21:04:45 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/06 22:00:46 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,12 @@ typedef struct s_colour
 	unsigned char	a;
 }	t_colour;
 
+typedef struct s_cosin
+{
+	double	a_cos;
+	double	a_sin;
+}	t_cosin;
+
 typedef struct s_point
 {
 	double			x;
@@ -100,9 +106,9 @@ typedef struct s_line
 
 typedef struct s_perspective
 {
-	double			alpha;
-	double			beta;
-	double			gamma;
+	short			alpha;
+	short			beta;
+	short			gamma;
 }	t_perspective;
 
 typedef struct s_fdf
@@ -112,6 +118,7 @@ typedef struct s_fdf
 	mlx_image_t		*menu_image;
 	t_map			*map;
 	t_perspective	*perspective;
+	t_cosin			precalc;
 	double			init_scale;
 	double			scale;
 	double			scalediff;

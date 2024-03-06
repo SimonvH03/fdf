@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user_inputs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/06 19:56:24 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/06 21:51:06 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ static void
 		t_fdf	*fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_W))
-		fdf->perspective->alpha -= fdf->speed;
+		fdf->perspective->alpha -= 1;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_S))
-		fdf->perspective->alpha += fdf->speed;
+		fdf->perspective->alpha += 1;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_D))
-		fdf->perspective->beta += fdf->speed;
+		fdf->perspective->beta += 1;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_A))
-		fdf->perspective->beta -= fdf->speed;
+		fdf->perspective->beta -= 1;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_E))
-		fdf->perspective->gamma -= fdf->speed;
+		fdf->perspective->gamma -= 1;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Q))
-		fdf->perspective->gamma += fdf->speed;
+		fdf->perspective->gamma += 1;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(fdf->mlx);
 	if (fdf->perspective->gamma

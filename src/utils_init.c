@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/06 19:59:36 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/06 22:00:46 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int
 	fdf_recenter(fdf);
 	fdf->spinlock = false;
 	fdf->speed = ROTATION_SPEED;
+	fdf->precalc = (t_cosin){cos(fdf->speed), sin(fdf->speed)};
 	fdf->redraw = true;
 	fdf->ballin = false;
 	return (EXIT_SUCCESS);

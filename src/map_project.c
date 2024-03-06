@@ -3,54 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   map_project.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:44:02 by simon             #+#    #+#             */
-/*   Updated: 2024/03/06 19:55:26 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/06 22:03:01 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 // angle alpha round x-axis
-static void
-	point_rotate_alpha(
-		t_point	*point,
-		double alpha)
+static void	point_rotate_alpha(t_fdf *fdf, t_point *point)
 {
-	double	prev_y;
+	const double	prev_y = point->y;
+	const double	alpha_cos = fdf->precalc.a_cos * fdf->perspective->alpha;
+	const double	alpha_sin = fdf->precalc.a_sin * fdf->perspective->alpha;
 
-	prev_y = point->y;
 	point->x = point->x;
-	point->y = point->y * cos(alpha) + point->z * sin(alpha);
-	point->z = prev_y * -sin(alpha) + point->z * cos(alpha);
+	point->y = point->y * alpha_cos + point->z * alpha_sin;
+	point->z = prev_y * -alpha_sin + point->z * alpha_cos;
 }
 
 // angle beta around y-axis
-static void
-	point_rotate_beta(
-		t_point	*point,
-		double beta)
+static void	point_rotate_beta(t_fdf *fdf, t_point *point)
 {
-	double	prev_x;
+	const double	prev_x = point->x;
+	const double	beta_cos = fdf->precalc.a_cos * fdf->perspective->beta;
+	const double	beta_sin = fdf->precalc.a_sin * fdf->perspective->beta;
 
-	prev_x = point->x;
-	point->x = point->x * cos(beta) + point->z * sin(beta);
+	point->x = point->x * beta_cos + point->z * beta_sin;
 	point->y = point->y;
-	point->z = prev_x * -sin(beta) + point->z * cos(beta);
+	point->z = prev_x * -beta_sin + point->z * beta_cos;
 }
 
 // angle gamma around z-axis
-static void
-	point_rotate_gamma(
-		t_point	*point,
-		double gamma)
+static void	point_rotate_gamma(t_fdf *fdf, t_point *point)
 {
-	double	prev_x;
+	const double	prev_x = point->x;
+	const double	gamma_cos = fdf->precalc.a_cos * fdf->perspective->gamma;
+	const double	gamma_sin = fdf->precalc.a_sin * fdf->perspective->gamma;
 
-	prev_x = point->x;
-	point->x = point->x * cos(gamma) + point->y * sin(gamma);
-	point->y = prev_x * -sin(gamma) + point->y * cos(gamma);
+	point->x = point->x * gamma_cos + point->y * gamma_sin;
+	point->y = prev_x * -gamma_sin + point->y * gamma_cos;
 	point->z = point->z;
 }
 
@@ -102,11 +96,11 @@ void
 		{
 			point = &fdf->map->project[y][x];
 			if (fdf->perspective->gamma)
-				point_rotate_gamma(point, fdf->perspective->gamma);
+				point_rotate_gamma(fdf, point);
 			if (fdf->perspective->beta)
-				point_rotate_beta(point, fdf->perspective->beta);
+				point_rotate_beta(fdf, point);
 			if (fdf->perspective->alpha)
-				point_rotate_alpha(point, fdf->perspective->alpha);
+				point_rotate_alpha(fdf, point);
 			x++;
 		}
 		y++;
