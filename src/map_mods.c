@@ -6,20 +6,22 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 17:05:51 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/06 14:01:21 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/06 18:32:21 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 // parse original map and fill map->polar
-void	map_fill_polar(t_map *map)
+void
+	map_fill_polar(
+		t_map *map)
 {
 	int				y;
 	int				x;
 	t_point			*point;
 	const double	longitude_incr = -2 * PI / (map->x_max);
-	const double	latitude_in = .5 * PI / (map->y_max - 1);
+	const double	latitude_in = PI / (map->y_max - 1);
 
 	y = 0;
 	while (y < map->y_max)
@@ -31,8 +33,7 @@ void	map_fill_polar(t_map *map)
 			map->polar[y][x] = (t_point)
 			{(longitude_incr * x),
 				(latitude_in * y),
-				(map->radius + point->z),
-				point->colour};
+				(map->radius + point->z)};
 			x++;
 		}
 		y++;
@@ -42,7 +43,9 @@ void	map_fill_polar(t_map *map)
 // convert polar coordinates back to cartesian
 // polar is t_point with {(x) beta angle, (y) gamma angle, (z) length}
 // swap polar->y and polar->x for x= and y= for cool projection
-void	map_set_polar(t_map *map)
+void
+	map_set_polar(
+		t_map *map)
 {
 	int			y;
 	int			x;
@@ -58,8 +61,7 @@ void	map_set_polar(t_map *map)
 			map->project[y][x] = (t_point)
 			{((polar->z) * cos(polar->x) * sin(polar->y)),
 				((polar->z) * sin(polar->x) * sin(polar->y)),
-				((polar->z) * cos(polar->y)),
-				polar->colour};
+				((polar->z) * cos(polar->y))};
 			x++;
 		}
 		y++;
@@ -67,7 +69,9 @@ void	map_set_polar(t_map *map)
 }
 
 // from user_inputs.c function input_presets
-void	map_set_original(t_map *map)
+void
+	map_set_original(
+		t_map *map)
 {
 	int	x;
 	int	y;

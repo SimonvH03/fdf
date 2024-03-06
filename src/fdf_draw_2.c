@@ -3,16 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_draw_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/05 23:48:26 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/06 18:30:55 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static int	fdf_straight_line(t_fdf *fdf, t_line *line)
+static int
+	fdf_straight_line(
+		t_fdf *fdf,
+		t_line *line)
 {
 	if (line->d_ctl == 0)
 	{
@@ -35,11 +38,15 @@ static int	fdf_straight_line(t_fdf *fdf, t_line *line)
 	return (0);
 }
 
-void	fdf_draw_line(t_fdf *fdf, t_point *p0, t_point *p1)
+void
+	fdf_draw_line(
+		t_fdf *fdf,
+		t_point *p0,
+		t_point *p1)
 {
 	t_line	line;
 
-	fdf_line_init(&line, p0, p1);
+	fdf_line_init(&line, fdf->map, p0, p1);
 	if (fdf_straight_line(fdf, &line))
 		return ;
 	while (line.i != line.d_ctl)
@@ -57,7 +64,11 @@ void	fdf_draw_line(t_fdf *fdf, t_point *p0, t_point *p1)
 	fdf_draw_point(fdf, &line);
 }
 
-static int	fdf_check_point(t_fdf *fdf, int x_pixel, int y_pixel)
+static int
+	fdf_check_point(
+		t_fdf *fdf,
+		int x_pixel,
+		int y_pixel)
 {
 	x_pixel += fdf->x_offset;
 	y_pixel += fdf->y_offset;
@@ -72,7 +83,11 @@ static int	fdf_check_point(t_fdf *fdf, int x_pixel, int y_pixel)
 	return (0);
 }
 
-void	fdf_draw_full(t_fdf *fdf, int x, int y)
+void
+	fdf_draw_full(
+		t_fdf *fdf,
+		int x,
+		int y)
 {
 	t_point	*p0;
 	t_point	*p1;

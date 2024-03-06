@@ -6,13 +6,15 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/05 20:17:06 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/06 18:30:13 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static void	manual_rotation(t_fdf *fdf)
+static void
+	manual_rotation(
+		t_fdf *fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_W))
 		fdf->perspective->alpha -= fdf->speed;
@@ -28,11 +30,15 @@ static void	manual_rotation(t_fdf *fdf)
 		fdf->perspective->gamma += fdf->speed;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(fdf->mlx);
-	if (fdf->perspective->gamma || fdf->perspective->beta || fdf->perspective->alpha)
+	if (fdf->perspective->gamma
+		|| fdf->perspective->beta
+		|| fdf->perspective->alpha)
 		fdf->redraw = true;
 }
 
-static void	manual_translation(t_fdf *fdf)
+static void
+	manual_translation(
+		t_fdf *fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_UP))
 	{
@@ -56,7 +62,9 @@ static void	manual_translation(t_fdf *fdf)
 	}
 }
 
-void	user_inputs(void *param)
+void
+	user_inputs(
+		void *param)
 {
 	t_fdf	*fdf;
 
@@ -72,7 +80,10 @@ void	user_inputs(void *param)
 	manual_translation(fdf);
 }
 
-void	keyhook(mlx_key_data_t keydata, void *param)
+void
+	keyhook(
+		mlx_key_data_t keydata,
+		void *param)
 {
 	t_fdf	*fdf;
 
@@ -85,7 +96,11 @@ void	keyhook(mlx_key_data_t keydata, void *param)
 		fdf->speed = ROTATION_SPEED;
 }
 
-void	scrollhook(double xdelta, double ydelta, void *param)
+void
+	scrollhook(
+		double xdelta,
+		double ydelta,
+		void *param)
 {
 	t_fdf	*fdf;
 

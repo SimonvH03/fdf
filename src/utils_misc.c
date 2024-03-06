@@ -6,20 +6,24 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/05 19:40:28 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/06 18:35:49 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void	fdf_recenter(t_fdf *fdf)
+void
+	fdf_recenter(
+		t_fdf *fdf)
 {
 	fdf->x_offset = fdf->image->width / 2;
 	fdf->y_offset = fdf->image->height / 2;
 }
 
 // from main.c
-void	map_free(t_map *map)
+void
+	map_free(
+		t_map *map)
 {
 	int	i;
 
@@ -38,7 +42,10 @@ void	map_free(t_map *map)
 }
 
 // from fdf_draw.c, menu_draw.c
-void	draw_background(mlx_image_t *image, uint32_t colour)
+void
+	draw_background(
+		mlx_image_t *image,
+		uint32_t colour)
 {
 	uint32_t	x;
 	uint32_t	y;

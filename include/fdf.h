@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/06 14:22:37 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/06 18:01:55 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,15 @@
 # define ISO_ALPHA deg_to_rad(-35.264)
 
 // user input
-# define ROTATION_SPEED 0.01745329
+# define ROTATION_SPEED 0.03
 
 // colours
 # define C_WHITE 0xFFFFFFFF
-# define C_BACKGROUND 0xFF000020
+# define C_BACKGROUND 0x000000FF
 # define C_MENU 0xFF000040
-# define Z_LOW 0xFF0000FF
-# define Z_HIGH 0x00FF00FF
+# define Z_LOW 0x00000000
+# define Z_MID 0x00FF0088
+# define Z_HIGH 0x0000FF88
 
 typedef	struct s_colour
 {
@@ -64,7 +65,7 @@ typedef struct s_point
 	double			x;
 	double			y;
 	double			z;
-	uint32_t		colour;
+	// uint32_t		colour;
 }	t_point;
 
 typedef struct s_line
@@ -78,6 +79,7 @@ typedef struct s_line
 	int				j;
 	const t_point	*p0;
 	const t_point	*p1;
+	t_map			*map;
 }	t_line;
 
 // free: map->content, map->project, map->polar
@@ -122,56 +124,57 @@ typedef struct s_fdf
 }	t_fdf;
 
 // main
-int				map_read(t_map *map);
-void			menu_draw(t_fdf *fdf);
+int			map_read(t_map *map);
+void		menu_draw(t_fdf *fdf);
 
 // map_mods.c
-void			map_fill_polar(t_map *map);
-void			map_set_polar(t_map *map);
-void			map_set_original(t_map *map);
+void		map_fill_polar(t_map *map);
+void		map_set_polar(t_map *map);
+void		map_set_original(t_map *map);
 
 // loops
-void			keyhook(mlx_key_data_t keydata, void *param);
-void			scrollhook(double xdelta, double ydelta, void *param);
-void			user_inputs(void *param);
-void			map_scale(void *param);
-void			map_project(void *param);
-void			fdf_draw(void *param);
+void		keyhook(mlx_key_data_t keydata, void *param);
+void		scrollhook(double xdelta, double ydelta, void *param);
+void		user_inputs(void *param);
+void		map_scale(void *param);
+void		map_project(void *param);
+void		fdf_draw(void *param);
 
 // user_inputs_presets.c
-void			input_presets_1(t_fdf *fdf);
-void			input_presets_2(t_fdf *fdf);
+void		input_presets_1(t_fdf *fdf);
+void		input_presets_2(t_fdf *fdf);
 
 // utils_calc.c
-double			deg_to_rad(double angle_deg);
-double			rad_to_deg(double angle_rad);
-double			ft_abs(double val);
-short			ft_sign(double val);
+double		deg_to_rad(double angle_deg);
+double		rad_to_deg(double angle_rad);
+double		ft_abs(double val);
+short		ft_sign(double val);
 
 // utils_init.c
-int				fdf_init(t_fdf *fdf, t_map *map, t_perspective *perspective);
-void			fdf_line_init(t_line *line, const t_point *p0, const t_point *p1);
+int			fdf_init(t_fdf *fdf, t_map *map, t_perspective *perspective);
+void		fdf_line_init(t_line *line, t_map *map, const t_point *p0, const t_point *p1);
 
 // utils_map.c
-int				map_malloc_y(t_map *map);
-int				map_malloc_x(t_map *map, int y);
-void			map_colour(t_map *map);
+int			map_malloc_y(t_map *map);
+int			map_malloc_x(t_map *map, int y);
+void		map_find_z_min_max(t_map *map);
+// void			map_colour(t_map *map);
 
 // utils_misc.c
-void			fdf_recenter(t_fdf *fdf);
-void			map_free(t_map *map);
-void			draw_background(mlx_image_t *image, uint32_t colour);
+void		fdf_recenter(t_fdf *fdf);
+void		map_free(t_map *map);
+void		draw_background(mlx_image_t *image, uint32_t colour);
 
 // fdf_draw.c
-void			fdf_draw_point(t_fdf *fdf, t_line *line);
-void			fdf_draw(void *param);
+void		fdf_draw_point(t_fdf *fdf, t_line *line);
+void		fdf_draw(void *param);
 
 // fdf_draw_2.c
 
-void			fdf_draw_full(t_fdf *fdf, int x, int y);
-void			fdf_draw_line(t_fdf *fdf, t_point *p0, t_point *p1);
+void		fdf_draw_full(t_fdf *fdf, int x, int y);
+void		fdf_draw_line(t_fdf *fdf, t_point *p0, t_point *p1);
 
 // utils_test.c
-void			check_map_result(t_map *map, const char *str, const char *v);
+void		check_map_result(t_map *map, const char *str, const char *v);
 
 #endif

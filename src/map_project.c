@@ -6,14 +6,17 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:44:02 by simon             #+#    #+#             */
-/*   Updated: 2024/03/01 17:05:33 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/06 18:38:31 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 // angle alpha round x-axis
-static void	point_rotate_alpha(t_point *point, double alpha)
+static void
+	point_rotate_alpha(
+		t_point *point,
+		double alpha)
 {
 	double	prev_y;
 
@@ -24,7 +27,10 @@ static void	point_rotate_alpha(t_point *point, double alpha)
 }
 
 // angle beta around y-axis
-static void	point_rotate_beta(t_point *point, double beta)
+static void
+	point_rotate_beta(
+		t_point *point,
+		double beta)
 {
 	double	prev_x;
 
@@ -35,7 +41,10 @@ static void	point_rotate_beta(t_point *point, double beta)
 }
 
 // angle gamma around z-axis
-static void	point_rotate_gamma(t_point *point, double gamma)
+static void
+	point_rotate_gamma(
+		t_point *point,
+		double gamma)
 {
 	double	prev_x;
 
@@ -45,7 +54,9 @@ static void	point_rotate_gamma(t_point *point, double gamma)
 	point->z = point->z;
 }
 
-void	map_scale(void *param)
+void
+	map_scale(
+		void *param)
 {
 	t_fdf	*fdf;
 	t_point	*point;
@@ -73,7 +84,9 @@ void	map_scale(void *param)
 }
 
 // parse map and rotate point[x,y,z] values around [0,0,0]
-void	map_project(void *param)
+void
+	map_project(
+		void *param)
 {
 	t_fdf	*fdf;
 	t_point	*point;

@@ -6,13 +6,15 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:10:50 by simon             #+#    #+#             */
-/*   Updated: 2024/03/05 20:28:56 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/06 18:30:29 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void	menu_print(t_fdf *fdf)
+void
+	menu_print(
+		t_fdf *fdf)
 {
 	const int	margin = 72;
 	const int	line = 24;
@@ -39,7 +41,9 @@ void	menu_print(t_fdf *fdf)
 	mlx_put_string(fdf->mlx, "Toggle spin:	SPACEBAR", x, y += line);
 }
 
-void	menu_draw(t_fdf *fdf)
+void
+	menu_draw(
+		t_fdf *fdf)
 {
 	draw_background(fdf->menu_image, C_MENU);
 	mlx_image_to_window(fdf->mlx, fdf->menu_image, 0, 0);

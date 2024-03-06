@@ -6,14 +6,17 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 10:59:22 by simon             #+#    #+#             */
-/*   Updated: 2024/02/23 19:13:09 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/06 18:36:02 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 // print x, y or z value (based on c) from every t_point in the map
-static void	check_map_result_c(t_map *map, const char c)
+static void
+	check_map_result_c(
+		t_map *map,
+		const char c)
 {
 	int		y;
 	int		x;
@@ -39,7 +42,10 @@ static void	check_map_result_c(t_map *map, const char c)
 
 // action: the event we are checking the result of
 // showing: x, y, or z values
-void	check_map_result(t_map *map, const char *str, const char *values)
+void
+	check_map_result(
+		t_map *map,
+		const char *str, const char *values)
 {
 	int	i;
 

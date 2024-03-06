@@ -6,13 +6,15 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:31:44 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/06 14:22:22 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/06 18:34:07 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void	input_presets_1(t_fdf *fdf)
+void
+	input_presets_1(
+		t_fdf *fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_P))
 	{
@@ -32,7 +34,7 @@ void	input_presets_1(t_fdf *fdf)
 	{
 		map_set_polar(fdf->map);
 		*fdf->perspective = (t_perspective){deg_to_rad(270), 0, deg_to_rad(90)};
-		fdf->scalediff = 1 / (PI * fdf->map->x_max) * 100 * DEFAULT_SCALE;
+		fdf->scalediff = fdf->image->width / (2.2 * fdf->map->radius);
 		fdf->scale = 1;
 		fdf->ballin = true;
 	}
@@ -40,7 +42,9 @@ void	input_presets_1(t_fdf *fdf)
 	fdf->redraw = true;
 }
 
-void	input_presets_2(t_fdf *fdf)
+void
+	input_presets_2(
+		t_fdf *fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_M))
 	{

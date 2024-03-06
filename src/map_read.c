@@ -3,17 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   map_read.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:58:42 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/06 00:12:42 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/06 18:33:48 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 // count elements with subject given map constraints
-static int	map_row_size(char *buffer)
+static int
+	map_row_size(
+		char *buffer)
 {
 	int		count;
 	int		i;
@@ -32,7 +34,9 @@ static int	map_row_size(char *buffer)
 }
 
 // count rows with get_next_line
-static void	map_size(t_map *map)
+static void
+	map_size(
+		t_map *map)
 {
 	char	*buffer;
 
@@ -50,7 +54,11 @@ static void	map_size(t_map *map)
 
 // parse buffer, extract values with atoi, place [x,y,z] values in t_points
 // make a copy at map->project
-static void	map_fill_row(t_map *map, int y, char *buffer)
+static void
+	map_fill_row(
+		t_map *map,
+		int y,
+		char *buffer)
 {
 	int		i;
 	int		x;
@@ -72,7 +80,7 @@ static void	map_fill_row(t_map *map, int y, char *buffer)
 		}
 		str_z[k] = '\0';
 		map->original[y][x] = (t_point)
-		{x - (map->x_max / 2), y - (map->y_max / 2), ft_atoi(str_z), 0};
+		{x - (map->x_max / 2), y - (map->y_max / 2), ft_atoi(str_z)};
 		map->project[y][x] = map->original[y][x];
 		x++;
 	}
@@ -80,7 +88,9 @@ static void	map_fill_row(t_map *map, int y, char *buffer)
 
 // size up the map, malloc 2D for t_points, fill rows with each get_next_line
 // make a copy at map->project
-int	map_read(t_map *map)
+int
+	map_read(
+		t_map *map)
 {
 	char	*buffer;
 	int		y;
@@ -102,7 +112,7 @@ int	map_read(t_map *map)
 		y++;
 		buffer = get_next_line(map->fd);
 	}
-	map_colour(map);
+	map_find_z_min_max(map);
 	map_fill_polar(map);
 	close(map->fd);
 	return (EXIT_SUCCESS);
