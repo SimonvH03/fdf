@@ -14,6 +14,7 @@ SRCDIR	= ./src
 SRC		=	$(SRCDIR)/fdf_draw_line.c \
 			$(SRCDIR)/fdf_draw.c \
 			$(SRCDIR)/main.c \
+			$(SRCDIR)/map_colour.c \
 			$(SRCDIR)/map_mods.c \
 			$(SRCDIR)/map_project.c \
 			$(SRCDIR)/map_read.c \
