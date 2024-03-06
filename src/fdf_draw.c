@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_draw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/06 20:16:06 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/06 21:04:18 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static uint32_t
 		t_fdf	*fdf,
 		t_line	*line)
 {
-	return (Z_LOW);
+	return (line->p0->colour);
 }
 
 void
@@ -71,7 +71,7 @@ void
 		x = 0;
 		while (x < fdf->map->x_max)
 		{
-			fdf_draw_full(fdf, x, y);
+			fdf_draw_down_and_to_the_right(fdf, x, y);
 			x++;
 		}
 		y++;

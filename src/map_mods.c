@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_mods.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 17:05:51 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/06 19:54:53 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/06 21:04:03 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ void
 			map->polar[y][x] = (t_point)
 			{(longitude_incr * x),
 				(latitude_in * y),
-				(map->radius + point->z)};
+				(map->radius + point->z),
+				point->colour};
 			x++;
 		}
 		y++;
@@ -61,7 +62,8 @@ void
 			map->project[y][x] = (t_point)
 			{((polar->z) * cos(polar->x) * sin(polar->y)),
 				((polar->z) * sin(polar->x) * sin(polar->y)),
-				((polar->z) * cos(polar->y))};
+				((polar->z) * cos(polar->y)),
+				polar->colour};
 			x++;
 		}
 		y++;

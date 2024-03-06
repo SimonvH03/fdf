@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/06 19:57:35 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/06 21:03:02 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,42 +96,42 @@ void
 	free(map->original);
 }
 
-// uint32_t	map_point_colour(int min, int max, int current)
-// {
-// 	const int	relative_height = current - min;
-// 	const int	total_height = max - min;
-// 	double		ratio;
-// 	// uint32_t	le_colour;
+uint32_t	map_point_colour(int min, int max, int current)
+{
+	const int	relative_height = current - min;
+	const int	total_height = max - min;
+	double		ratio;
+	// uint32_t	le_colour;
 
-// 	if (relative_height == 0 || total_height == 0)
-// 		return (Z_LOW);
-// 	if (current >= max * .8)
-// 		return (Z_HIGH);
-// 	else
-// 		return (Z_MID);
-// 	// ratio = (double)(relative_height / total_height);
-// 	// le_colour = (Z_LOW + Z_HIGH) / 2 * ratio;
-// 	// return (le_colour);
-// }
+	if (relative_height == 0 || total_height == 0)
+		return (Z_LOW);
+	if (current >= max * .8)
+		return (Z_HIGH);
+	else
+		return (Z_MID);
+	// ratio = (double)(relative_height / total_height);
+	// le_colour = (Z_LOW + Z_HIGH) / 2 * ratio;
+	// return (le_colour);
+}
 
-// void	map_colour(t_map *map)
-// {
-// 	int		x;
-// 	int		y;
-// 	t_point	*point;
+void	map_colour(t_map *map)
+{
+	int		x;
+	int		y;
+	t_point	*point;
 
-// 	y = 0;
-// 	map_find_z_min_max(map);
-// 	while (y < map->y_max)
-// 	{
-// 		x = 0;
-// 		while (x < map->x_max)
-// 		{
-// 			point = &map->original[y][x];
-// 			point->colour = map_point_colour(map->z_min, map->z_max, point->z);
-// 			map->project[y][x].colour = point->colour;
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// }
+	y = 0;
+	map_find_z_min_max(map);
+	while (y < map->y_max)
+	{
+		x = 0;
+		while (x < map->x_max)
+		{
+			point = &map->original[y][x];
+			point->colour = map_point_colour(map->z_min, map->z_max, point->z);
+			map->project[y][x].colour = point->colour;
+			x++;
+		}
+		y++;
+	}
+}

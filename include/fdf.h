@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/06 20:04:38 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/06 21:04:45 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@
 
 // mlx window
 # define WINDOW_TITLE "fdf"
-// # define WIDTH 1200
-// # define HEIGHT 800
-// # define MENU_WIDTH 400
-# define WIDTH 2000
-# define HEIGHT 1600
+# define WIDTH 1200
+# define HEIGHT 800
 # define MENU_WIDTH 400
+// # define WIDTH 2000
+// # define HEIGHT 1600
+// # define MENU_WIDTH 400
 
 // fdf defaults
 # define DEFAULT_SCALE 0.7
@@ -42,7 +42,7 @@
 # define ISO_ALPHA deg_to_rad(-35.264)
 
 // user input
-# define ROTATION_SPEED 0.03
+# define ROTATION_SPEED 0.01
 
 // colours
 # define C_WHITE 0xFFFFFFFF
@@ -65,7 +65,7 @@ typedef struct s_point
 	double			x;
 	double			y;
 	double			z;
-	// uint32_t		colour;
+	uint32_t		colour;
 }	t_point;
 
 // free: map->content, map->project, map->polar
@@ -159,7 +159,7 @@ void		fdf_line_init(t_line *line, t_map *map,
 int			map_malloc_y(t_map *map);
 int			map_malloc_x(t_map *map, int y);
 void		map_find_z_min_max(t_map *map);
-// void			map_colour(t_map *map);
+void		map_colour(t_map *map);
 
 // utils_misc.c
 void		fdf_recenter(t_fdf *fdf);
@@ -172,7 +172,7 @@ int			fdf_check_point(t_fdf *fdf, int x_pixel, int y_pixel);
 void		fdf_draw(void *param);
 
 // fdf_draw_2.c
-void		fdf_draw_full(t_fdf *fdf, int x, int y);
+void		fdf_draw_down_and_to_the_right(t_fdf *fdf, int x, int y);
 void		fdf_draw_line(t_fdf *fdf, t_point *p0, t_point *p1);
 
 // utils_draw.c
