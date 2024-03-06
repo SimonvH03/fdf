@@ -11,7 +11,7 @@ LIBFT	= $(LFTDIR)/libft.a
 HEADERS	= -I ./include -I $(LMLXDIR)/include
 LIBS	= $(LIBMLX) $(LIBFT)
 SRCDIR	= ./src
-SRC		=	$(SRCDIR)/fdf_draw_2.c \
+SRC		=	$(SRCDIR)/fdf_draw_line.c \
 			$(SRCDIR)/fdf_draw.c \
 			$(SRCDIR)/main.c \
 			$(SRCDIR)/map_mods.c \
@@ -25,7 +25,6 @@ SRC		=	$(SRCDIR)/fdf_draw_2.c \
 			$(SRCDIR)/utils_fdf.c \
 			$(SRCDIR)/utils_init.c \
 			$(SRCDIR)/utils_map.c \
-			$(SRCDIR)/utils_misc.c \
 			$(SRCDIR)/utils_test.c
 OBJS	= ${SRC:.c=.o}
 

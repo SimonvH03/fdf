@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/06 19:53:36 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/06 20:16:06 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ void
 	x_pixel = line->p0->x + (line->i * line->s_ctl);
 	y_pixel = line->p0->y + (line->j * line->s_pas);
 	if (!fdf_check_point(fdf, x_pixel, y_pixel))
-		mlx_put_pixel(fdf->image, x_pixel, y_pixel,
+		mlx_put_pixel(fdf->image,
+			x_pixel + fdf->x_offset,
+			y_pixel + fdf->y_offset,
 			fdf_line_colour(fdf, line));
 }
 

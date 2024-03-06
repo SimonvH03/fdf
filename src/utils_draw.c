@@ -6,13 +6,13 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/06 19:49:52 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/06 20:16:59 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void
+int
 	over_the_horizon(
 		t_fdf	*fdf,
 		t_point	*p0,
@@ -20,10 +20,13 @@ void
 {
 	if (fdf->ballin == false)
 		return (0);
-	else if (0)
-		return (1);
-	else if (p0->z < 0 || p1->z < 0)
-		return (1);
+	if (p0->z < 0 || p1->z < 0)
+	{
+		if (1)
+			return (0);
+		else
+			return (1);
+	}
 	return (0);
 }
 

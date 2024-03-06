@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/06 19:48:52 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/06 20:04:38 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 # define C_WHITE 0xFFFFFFFF
 # define C_BACKGROUND 0x000000FF
 # define C_MENU 0xFF000040
-# define Z_LOW 0x00000000
+# define Z_LOW 0xFF000088
 # define Z_MID 0x00FF0088
 # define Z_HIGH 0x0000FF88
 
@@ -68,20 +68,6 @@ typedef struct s_point
 	// uint32_t		colour;
 }	t_point;
 
-typedef struct s_line
-{
-	int				d_ctl;
-	int				d_pas;
-	int				s_ctl;
-	int				s_pas;
-	int				err;
-	int				i;
-	int				j;
-	const t_point	*p0;
-	const t_point	*p1;
-	t_map			*map;
-}	t_line;
-
 // free: map->content, map->project, map->polar
 // no free: map->name = argv[1]
 typedef struct s_map
@@ -97,6 +83,20 @@ typedef struct s_map
 	int				z_max;
 	int				radius;
 }	t_map;
+
+typedef struct s_line
+{
+	int				d_ctl;
+	int				d_pas;
+	int				s_ctl;
+	int				s_pas;
+	int				err;
+	int				i;
+	int				j;
+	const t_point	*p0;
+	const t_point	*p1;
+	t_map			*map;
+}	t_line;
 
 typedef struct s_perspective
 {
