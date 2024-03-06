@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/06 12:42:43 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/06 13:53:27 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	map_find_z_min_max(t_map *map)
 		}
 		y++;
 	}
+	map->radius = (map->z_max - map->z_min) * 10;
 }
 
 uint32_t	map_point_colour(int min, int max, double current)

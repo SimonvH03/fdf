@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user_inputs_presets.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:31:44 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/05 23:50:17 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/06 14:22:22 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	input_presets_1(t_fdf *fdf)
 	{
 		map_set_polar(fdf->map);
 		*fdf->perspective = (t_perspective){deg_to_rad(270), 0, deg_to_rad(90)};
-		fdf->scalediff = 4 * fdf->image->width / fdf->map->radius / fdf->init_scale;
+		fdf->scalediff = 1 / (PI * fdf->map->x_max) * 100 * DEFAULT_SCALE;
 		fdf->scale = 1;
 		fdf->ballin = true;
 	}

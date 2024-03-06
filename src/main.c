@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/05 23:37:59 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/06 13:52:38 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (EXIT_FAILURE);
 	map = (t_map)
-	{NULL, NULL, NULL, argv[1], 0, 0, 0, 0, 0, 30};
+	{NULL, NULL, NULL, argv[1], 0, 0, 0, 0, 0, 0};
 	if (map_read(&map) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	perspective = (t_perspective)

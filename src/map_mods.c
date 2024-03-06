@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_mods.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 17:05:51 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/06 12:09:36 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/06 14:01:21 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	map_fill_polar(t_map *map)
 	int				x;
 	t_point			*point;
 	const double	longitude_incr = -2 * PI / (map->x_max);
-	const double	latitude_in = PI / (map->y_max - 1);
+	const double	latitude_in = .5 * PI / (map->y_max - 1);
 
 	y = 0;
 	while (y < map->y_max)
