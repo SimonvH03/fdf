@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/06 22:00:46 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/06 23:53:54 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,34 @@ typedef struct s_line
 	t_map			*map;
 }	t_line;
 
-typedef struct s_perspective
+typedef struct s_precalc
 {
 	short			alpha;
 	short			beta;
 	short			gamma;
+	bool			reproject;
+}	t_precalc;
+
+typedef struct s_perspective
+{
+	double			alpha;
+	double			beta;
+	double			gamma;
+	bool			reproject;
 }	t_perspective;
+
+typedef struct s_scale
+{
+	double			diff;
+	double			total;
+	double			initial;
+}	t_scale;
+
+typedef struct s_offset
+{
+	int				x;
+	int				y;
+}	t_offset;
 
 typedef struct s_fdf
 {
@@ -117,15 +139,13 @@ typedef struct s_fdf
 	mlx_image_t		*image;
 	mlx_image_t		*menu_image;
 	t_map			*map;
-	t_perspective	*perspective;
-	t_cosin			precalc;
-	double			init_scale;
-	double			scale;
-	double			scalediff;
-	double			x_offset;
-	double			y_offset;
-	bool			spinlock;
+	t_perspective	perspective;
+	t_precalc		precalc;
+	t_cosin			cosin;
+	t_scale			scale;
+	t_offset		offset;
 	double			speed;
+	bool			spinlock;
 	bool			redraw;
 	bool			ballin;
 }	t_fdf;
@@ -143,9 +163,13 @@ void		map_set_original(t_map *map);
 void		keyhook(mlx_key_data_t keydata, void *param);
 void		scrollhook(double xdelta, double ydelta, void *param);
 void		user_inputs(void *param);
-void		map_scale(void *param);
-void		map_project(void *param);
+void		fdf_scale_and_project(void *param);
 void		fdf_draw(void *param);
+
+// utils_fdf.c
+void		fdf_project(t_fdf *fdf);
+void		fdf_project_optimized(t_fdf *fdf);
+void		fdf_scale(t_fdf *fdf);
 
 // user_inputs_presets.c
 void		input_presets_1(t_fdf *fdf);
@@ -158,7 +182,7 @@ double		ft_abs(double val);
 short		ft_sign(double val);
 
 // utils_init.c
-int			fdf_init(t_fdf *fdf, t_map *map, t_perspective *perspective);
+int			fdf_init(t_fdf *fdf, t_map *map);
 void		fdf_line_init(t_line *line, t_map *map,
 				const t_point *p0, const t_point *p1);
 

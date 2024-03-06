@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/06 21:51:06 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/06 23:50:20 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,23 @@ static void
 		t_fdf	*fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_W))
-		fdf->perspective->alpha -= 1;
+		fdf->precalc.alpha -= 1;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_S))
-		fdf->perspective->alpha += 1;
+		fdf->precalc.alpha += 1;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_D))
-		fdf->perspective->beta += 1;
+		fdf->precalc.beta += 1;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_A))
-		fdf->perspective->beta -= 1;
+		fdf->precalc.beta -= 1;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_E))
-		fdf->perspective->gamma -= 1;
+		fdf->precalc.gamma -= 1;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Q))
-		fdf->perspective->gamma += 1;
+		fdf->precalc.gamma += 1;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(fdf->mlx);
-	if (fdf->perspective->gamma
-		|| fdf->perspective->beta
-		|| fdf->perspective->alpha)
-		fdf->redraw = true;
+	if (fdf->precalc.gamma
+		|| fdf->precalc.beta
+		|| fdf->precalc.alpha)
+		fdf->precalc.reproject = true;
 }
 
 static void
@@ -41,25 +41,13 @@ static void
 		t_fdf	*fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_UP))
-	{
 		fdf->y_offset -= 10;
-		fdf->redraw = true;
-	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_DOWN))
-	{
 		fdf->y_offset += 10;
-		fdf->redraw = true;
-	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT))
-	{
 		fdf->x_offset += 10;
-		fdf->redraw = true;
-	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT))
-	{
 		fdf->x_offset -= 10;
-		fdf->redraw = true;
-	}
 }
 
 void

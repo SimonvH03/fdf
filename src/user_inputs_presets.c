@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:31:44 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/06 22:05:39 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/06 23:47:46 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,21 @@ void
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_I))
 	{
 		map_set_original(fdf->map);
-		*fdf->perspective = (t_perspective){ISO_ALPHA, ISO_BETA, ISO_GAMMA};
+		fdf->perspective = (t_perspective)
+		{ISO_ALPHA, ISO_BETA, ISO_GAMMA, true};
 		fdf_recenter(fdf);
 		fdf->scalediff = fdf->init_scale;
 	}
-	fdf->ballin = false;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_O))
 	{
 		map_set_polar(fdf->map);
-		*fdf->perspective = (t_perspective){deg_to_rad(270), 0, deg_to_rad(90)};
+		fdf->perspective = (t_perspective)
+		{deg_to_rad(-90), 0, deg_to_rad(90), true};
 		fdf->scalediff = fdf->image->width / (2.2 * fdf->map->radius);
 		fdf->scale = 1;
 		fdf->ballin = true;
 	}
 	fdf->spinlock = false;
-	fdf->redraw = true;
 }
 
 void
@@ -56,5 +56,4 @@ void
 		fdf_recenter(fdf);
 	}
 	fdf->spinlock = false;
-	fdf->redraw = true;
 }

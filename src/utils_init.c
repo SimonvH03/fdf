@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/06 22:00:46 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/06 23:45:22 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ static void
 int
 	fdf_init(
 		t_fdf	*fdf,
-		t_map	*map,
-		t_perspective	*perspective)
+		t_map	*map)
 {
 	fdf->mlx = mlx_init(WIDTH, HEIGHT, WINDOW_TITLE, false);
 	if (fdf->mlx == NULL)
@@ -47,12 +46,13 @@ int
 	if (fdf->menu_image == NULL)
 		return (EXIT_FAILURE);
 	fdf->map = map;
-	fdf->perspective = perspective;
+	fdf->perspective = (t_perspective){ISO_ALPHA, ISO_BETA, ISO_GAMMA, true};
+	fdf->precalc = (t_precalc){0, 0, 0, true};
+	fdf->speed = ROTATION_SPEED;
+	fdf->cosin = (t_cosin){cos(fdf->speed), sin(fdf->speed)};
 	fdf_scale_init(fdf);
 	fdf_recenter(fdf);
 	fdf->spinlock = false;
-	fdf->speed = ROTATION_SPEED;
-	fdf->precalc = (t_cosin){cos(fdf->speed), sin(fdf->speed)};
 	fdf->redraw = true;
 	fdf->ballin = false;
 	return (EXIT_SUCCESS);

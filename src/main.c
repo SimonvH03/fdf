@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/06 19:54:41 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/06 23:33:21 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ static void
 	mlx_key_hook(fdf->mlx, &keyhook, fdf);
 	mlx_scroll_hook(fdf->mlx, &scrollhook, fdf);
 	mlx_loop_hook(fdf->mlx, &user_inputs, fdf);
-	mlx_loop_hook(fdf->mlx, &map_scale, fdf);
-	mlx_loop_hook(fdf->mlx, &map_project, fdf);
+	mlx_loop_hook(fdf->mlx, &fdf_scale_and_project, fdf);
 	mlx_loop_hook(fdf->mlx, &fdf_draw, fdf);
 }
 
@@ -30,7 +29,6 @@ int
 		char	**argv)
 {
 	t_map			map;
-	t_perspective	perspective;
 	t_fdf			fdf;
 
 	if (argc != 2)
@@ -39,9 +37,7 @@ int
 	{NULL, NULL, NULL, argv[1], 0, 0, 0, 0, 0, 0};
 	if (map_read(&map) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	perspective = (t_perspective)
-	{ISO_ALPHA, ISO_BETA, ISO_GAMMA};
-	if (fdf_init(&fdf, &map, &perspective) == EXIT_FAILURE)
+	if (fdf_init(&fdf, &map) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	menu_draw(&fdf);
 	loop_hooks(&fdf);

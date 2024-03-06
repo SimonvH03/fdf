@@ -13,10 +13,11 @@ LIBS	= $(LIBMLX) $(LIBFT)
 SRCDIR	= ./src
 SRC		=	$(SRCDIR)/fdf_draw_line.c \
 			$(SRCDIR)/fdf_draw.c \
+			$(SRCDIR)/fdf_project_optimized.c \
+			$(SRCDIR)/fdf_project.c \
 			$(SRCDIR)/main.c \
 			$(SRCDIR)/map_colour.c \
 			$(SRCDIR)/map_mods.c \
-			$(SRCDIR)/map_project.c \
 			$(SRCDIR)/map_read.c \
 			$(SRCDIR)/menu_draw.c \
 			$(SRCDIR)/user_inputs_presets.c \
