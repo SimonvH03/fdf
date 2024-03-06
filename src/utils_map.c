@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/06 00:26:38 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/06 12:42:43 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,24 +67,25 @@ void	map_find_z_min_max(t_map *map)
 	}
 }
 
-uint32_t	map_point_colour(t_map *map, t_point *point)
+uint32_t	map_point_colour(int min, int max, double current)
 {
-	const int	relative_height = point->z - map->z_min;
-	const int	total_height = map->z_max - map->z_min;
+	const int	relative_height = current - min;
+	const int	total_height = max - min;
 	double		ratio;
+	uint32_t	le_colour;
 
 	if (relative_height == 0 || total_height == 0)
 		return (Z_LOW);
 	ratio = (double)(relative_height / total_height);
-	printf("%f\n", ratio);
-	return(Z_LOW / Z_HIGH * ratio);
+	le_colour = (Z_LOW + Z_HIGH) / 2 * ratio;
+	return (le_colour);
 }
 
 void	map_colour(t_map *map)
 {
 	int		x;
 	int		y;
-	t_point *point;
+	t_point	*point;
 
 	y = 0;
 	map_find_z_min_max(map);
@@ -94,9 +95,10 @@ void	map_colour(t_map *map)
 		while (x < map->x_max)
 		{
 			point = &map->original[y][x];
-			point->colour = map_point_colour(map, point);
+			point->colour = map_point_colour(map->z_min, map->z_max, point->z);
+			map->project[y][x].colour = point->colour;
 			x++;
 		}
 		y++;
-	}	
+	}
 }

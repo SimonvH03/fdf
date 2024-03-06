@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/06 00:10:55 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/06 12:43:34 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,16 @@
 # define C_WHITE 0xFFFFFFFF
 # define C_BACKGROUND 0xFF000020
 # define C_MENU 0xFF000040
-# define Z_LOW 0x88FFFFFF
-# define Z_HIGH 0xFFF88FFF
+# define Z_LOW 0xFF0000FF
+# define Z_HIGH 0x00FF00FF
+
+typedef	struct s_colour
+{
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
+	unsigned char	a;
+}	t_colour;
 
 typedef struct s_point
 {

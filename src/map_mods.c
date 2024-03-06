@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 17:05:51 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/05 23:56:48 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/06 12:09:36 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	map_fill_polar(t_map *map)
 			map->polar[y][x] = (t_point)
 			{(longitude_incr * x),
 				(latitude_in * y),
-				(map->radius + point->z)};
+				(map->radius + point->z),
+				point->colour};
 			x++;
 		}
 		y++;
@@ -57,7 +58,8 @@ void	map_set_polar(t_map *map)
 			map->project[y][x] = (t_point)
 			{((polar->z) * cos(polar->x) * sin(polar->y)),
 				((polar->z) * sin(polar->x) * sin(polar->y)),
-				((polar->z) * cos(polar->y))};
+				((polar->z) * cos(polar->y)),
+				polar->colour};
 			x++;
 		}
 		y++;

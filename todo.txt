@@ -1,10 +1,9 @@
 Colours
 	(map read) interpret colours (or not, it kinda sucks)
-	(map_read) find zmin and zmax
-	(fdf_draw) plot line with colours
+!	(colours) blend min, max for current
 
 Menu
-	(menu_draw) fill the menu with text
+	(menu_draw) change menu text structure
 	(fdf.h / fdf_init) change menu appearance
 
 Make
