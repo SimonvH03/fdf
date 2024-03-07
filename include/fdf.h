@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/07 20:02:45 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/08 00:01:44 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@
 
 // mlx window
 # define WINDOW_TITLE "fdf"
-// # define WIDTH 1200
-// # define HEIGHT 800
-// # define MENU_WIDTH 400
-# define WIDTH 2000
-# define HEIGHT 1600
+# define WIDTH 1200
+# define HEIGHT 800
 # define MENU_WIDTH 400
+// # define WIDTH 2000
+// # define HEIGHT 1600
+// # define MENU_WIDTH 400
 
 // fdf defaults
 # define DEFAULT_SCALE 0.7
@@ -46,21 +46,30 @@
 
 // colours
 # define C_WHITE		0xFFFFFFFF
-# define C_BACKGROUND	0x101010FF
+# define C_BLACK		0x000000FF
+# define C_BACKGROUND	0x20002088
 # define C_MENU			0xFF000040
-# define Z_LOW			0x303090FF
-# define Z_LOW_2		0x306060FF
-# define Z_MID_1		0x206020FF
-# define Z_MID_2		0x484038FF
-# define Z_HIGH			0xBBBBBBFF
 
-typedef struct s_colour
+# define C_EARTH_SEA		0x303090FF
+# define C_EARTH_SHORE		0x306060FF
+# define C_EARTH_LAND		0x206020FF
+# define C_EARTH_MOUNTAIN	0x484038FF
+# define C_EARTH_SNOW		0xBBBBBBFF
+
+typedef struct s_palette
+{
+	uint32_t	low;
+	uint32_t	mid;
+	uint32_t	high;
+}	t_palette;
+
+typedef struct s_colour_construct
 {
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
 	unsigned char	a;
-}	t_colour;
+}	t_colour_construct;
 
 typedef struct s_cosin
 {
@@ -147,6 +156,7 @@ typedef struct s_fdf
 	t_cosin			cosin;
 	t_scale			scale;
 	t_offset		offset;
+	t_palette		palette;
 	double			speed;
 	bool			spinlock;
 	bool			redraw;
@@ -192,12 +202,12 @@ short		ft_sign(double val);
 int			fdf_init(t_fdf *fdf, t_map *map);
 void		fdf_line_init(t_line *line, t_map *map,
 				const t_point *p0, const t_point *p1);
+void		fdf_colour(t_fdf *fdf);
 
 // utils_map.c
 int			map_malloc_y(t_map *map);
 int			map_malloc_x(t_map *map, int y);
 void		map_find_z_min_max(t_map *map);
-void		map_colour(t_map *map);
 
 // utils_misc.c
 void		map_free(t_map *map);

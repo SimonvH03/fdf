@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_read.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:58:42 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/07 18:45:07 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/07 23:50:35 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ int
 		buffer = get_next_line(map->fd);
 	}
 	map_find_z_min_max(map);
-	map_colour(map);
 	map_fill_polar(map);
 	close(map->fd);
 	return (EXIT_SUCCESS);

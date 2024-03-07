@@ -1,7 +1,7 @@
 Colours
 	(map read) interpret colours (or not, it kinda sucks)
 !	(colours) blend min, max depending on current
-		for map first, then lines, must do both (unless very dense)
+		for map first, then lines, must do both
 
 Menu
 	(menu_draw) change menu text structure
@@ -14,3 +14,10 @@ Horizon
 	(utils_fdf.c) pythagoras + move line point (or not, lotta work)
 
 Map Iter
+	make a single function to iterate the map, we need 1 double while loop at the very most
+		map read
+		fdf scale
+		fdf project both
+		map mods
+		map colour
+		...

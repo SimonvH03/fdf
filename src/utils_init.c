@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/07 19:00:41 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/08 00:01:48 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int
 	fdf->precalc = (t_precalc){0, 0, 0, true};
 	fdf->speed = ROTATION_SPEED;
 	fdf->cosin = (t_cosin){cos(fdf->speed), sin(fdf->speed)};
+	fdf->palette = (t_palette){C_EARTH_SEA, C_EARTH_LAND, C_EARTH_MOUNTAIN};
+	fdf_colour(fdf);
 	fdf_scale_init(fdf);
 	fdf_center_offset(fdf);
 	fdf->spinlock = false;
