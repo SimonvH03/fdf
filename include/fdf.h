@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/06 23:53:54 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/07 15:13:33 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,10 +166,14 @@ void		user_inputs(void *param);
 void		fdf_scale_and_project(void *param);
 void		fdf_draw(void *param);
 
-// utils_fdf.c
+// fdf_projects
 void		fdf_project(t_fdf *fdf);
 void		fdf_project_optimized(t_fdf *fdf);
+
+// utils_fdf.c
+void		fdf_redraw(t_fdf *fdf);
 void		fdf_scale(t_fdf *fdf);
+void		fdf_center_offset(t_fdf *fdf);
 
 // user_inputs_presets.c
 void		input_presets_1(t_fdf *fdf);
@@ -193,7 +197,6 @@ void		map_find_z_min_max(t_map *map);
 void		map_colour(t_map *map);
 
 // utils_misc.c
-void		fdf_recenter(t_fdf *fdf);
 void		map_free(t_map *map);
 void		draw_background(mlx_image_t *image, uint32_t colour);
 
@@ -207,7 +210,7 @@ void		fdf_draw_down_and_to_the_right(t_fdf *fdf, int x, int y);
 void		fdf_draw_line(t_fdf *fdf, t_point *p0, t_point *p1);
 
 // utils_draw.c
-int			over_the_horizon(t_fdf *fdf, t_point *p0, t_point *p1);
+int			over_the_horizon(t_fdf *fdf, t_line *line);
 
 // utils_test.c
 // void		check_map_result(t_map *map, const char *str, const char *v);

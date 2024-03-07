@@ -6,26 +6,24 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/06 20:52:02 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/07 15:17:33 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
+	// printf("p0: %p | (%f, %f, %f)\n", line->p0, line->p0->x, line->p0->y, line->p0->z);
+	// printf("p1: %p | (%f, %f, %f)\n", line->p1, line->p1->x, line->p1->y, line->p1->z);
 int
 	over_the_horizon(
 		t_fdf	*fdf,
-		t_point	*p0,
-		t_point	*p1)
+		t_line	*line)
 {
 	if (fdf->ballin == false)
 		return (0);
-	if (p0->z < 0 || p1->z < 0)
+	if (0)
 	{
-		if (0)
-			return (0);
-		else
-			return (1);
+		return (1);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:31:44 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/06 23:47:46 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/07 14:40:59 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,26 @@ void
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_P))
 	{
 		map_set_original(fdf->map);
-		fdf_recenter(fdf);
-		fdf->scalediff = fdf->init_scale;
+		fdf->scale.diff = fdf->scale.initial;
+		fdf->ballin = false;
 	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_I))
 	{
 		map_set_original(fdf->map);
 		fdf->perspective = (t_perspective)
 		{ISO_ALPHA, ISO_BETA, ISO_GAMMA, true};
-		fdf_recenter(fdf);
-		fdf->scalediff = fdf->init_scale;
+		fdf->scale.diff = fdf->scale.initial;
+		fdf->ballin = false;
 	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_O))
 	{
 		map_set_polar(fdf->map);
 		fdf->perspective = (t_perspective)
 		{deg_to_rad(-90), 0, deg_to_rad(90), true};
-		fdf->scalediff = fdf->image->width / (2.2 * fdf->map->radius);
-		fdf->scale = 1;
+		fdf->scale.diff = fdf->image->width / (2.2 * fdf->map->radius);
+		fdf->scale.total= 1;
 		fdf->ballin = true;
 	}
-	fdf->spinlock = false;
 }
 
 void
@@ -48,12 +47,12 @@ void
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_M))
 	{
-		fdf->scalediff = 1 / fdf->scale;
-		fdf->scale = 1;
+		fdf->scale.diff = 1 / fdf->scale.total;
+		fdf->scale.total= 1;
 	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_N))
 	{
-		fdf_recenter(fdf);
+		fdf_center_offset(fdf);
 	}
 	fdf->spinlock = false;
 }

@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/06 23:50:20 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/07 15:15:26 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ static void
 		t_fdf	*fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_W))
-		fdf->precalc.alpha -= 1;
+		fdf->precalc.alpha = -1;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_S))
-		fdf->precalc.alpha += 1;
+		fdf->precalc.alpha = +1;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_D))
-		fdf->precalc.beta += 1;
+		fdf->precalc.beta = +1;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_A))
-		fdf->precalc.beta -= 1;
+		fdf->precalc.beta = -1;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_E))
-		fdf->precalc.gamma -= 1;
+		fdf->precalc.gamma = -1;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Q))
-		fdf->precalc.gamma += 1;
+		fdf->precalc.gamma = +1;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(fdf->mlx);
 	if (fdf->precalc.gamma
@@ -41,13 +41,13 @@ static void
 		t_fdf	*fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_UP))
-		fdf->y_offset -= 10;
+		fdf->offset.y -= 10;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_DOWN))
-		fdf->y_offset += 10;
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT))
-		fdf->x_offset += 10;
+		fdf->offset.y += 10;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT))
-		fdf->x_offset -= 10;
+		fdf->offset.x -= 10;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT))
+		fdf->offset.x += 10;
 }
 
 void
@@ -66,6 +66,7 @@ void
 		input_presets_2(fdf);
 	manual_rotation(fdf);
 	manual_translation(fdf);
+	fdf_redraw(fdf);
 }
 
 void
@@ -78,7 +79,7 @@ void
 	fdf = param;
 	if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_PRESS)
 		fdf->spinlock = (!fdf->spinlock);
-	if (fdf->spinlock)
+	if (fdf->spinlock == true)
 		fdf->speed = ROTATION_SPEED / 100;
 	else
 		fdf->speed = ROTATION_SPEED;
@@ -96,8 +97,7 @@ void
 	(void)xdelta;
 	if (ydelta)
 	{
-		fdf->scalediff *= 1 + (ydelta / 10);
-		fdf->scale *= 1 + (ydelta / 10);
-		fdf->redraw = true;
+		fdf->scale.diff *= 1 + (ydelta / 10);
+		fdf->scale.total*= 1 + (ydelta / 10);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/06 23:45:22 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/07 14:46:31 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ static void
 	fdf_scale_init(
 		t_fdf	*fdf)
 {
-	double	scaley;
+	double	scalefinder;
 
-	fdf->init_scale = fdf->image->width / fdf->map->x_max;
-	scaley = fdf->image->height / fdf->map->y_max;
-	if (scaley < fdf->init_scale)
-		fdf->init_scale = scaley;
-	fdf->init_scale *= DEFAULT_SCALE;
-	fdf->scalediff = fdf->init_scale;
-	fdf->scale = 1;
+	fdf->scale.initial = fdf->image->width / fdf->map->x_max;
+	scalefinder = fdf->image->height / fdf->map->y_max;
+	if (scalefinder < fdf->scale.initial)
+		fdf->scale.initial = scalefinder;
+	fdf->scale.initial *= DEFAULT_SCALE;
+	fdf->scale.diff = fdf->scale.initial;
+	fdf->scale.total= 1;
 }
 
 // from file main.c
@@ -51,7 +51,7 @@ int
 	fdf->speed = ROTATION_SPEED;
 	fdf->cosin = (t_cosin){cos(fdf->speed), sin(fdf->speed)};
 	fdf_scale_init(fdf);
-	fdf_recenter(fdf);
+	fdf_center_offset(fdf);
 	fdf->spinlock = false;
 	fdf->redraw = true;
 	fdf->ballin = false;
