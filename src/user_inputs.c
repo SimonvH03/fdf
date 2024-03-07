@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user_inputs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/07 15:15:26 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/07 19:11:49 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,22 @@ static void
 		fdf->offset.x += 10;
 }
 
+static void
+	input_variable_speed(
+		t_fdf	*fdf)
+{
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_MINUS))
+	{
+		fdf->speed -= 0.005;
+		fdf->cosin = (t_cosin){cos(fdf->speed), sin(fdf->speed)};
+	}
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_EQUAL))
+	{
+		fdf->speed += 0.005;
+		fdf->cosin = (t_cosin){cos(fdf->speed), sin(fdf->speed)};
+	}
+}
+
 void
 	user_inputs(
 		void	*param)
@@ -64,6 +80,9 @@ void
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_M)
 		|| mlx_is_key_down(fdf->mlx, MLX_KEY_N))
 		input_presets_2(fdf);
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_MINUS)
+		|| mlx_is_key_down(fdf->mlx, MLX_KEY_EQUAL))
+		input_variable_speed(fdf);
 	manual_rotation(fdf);
 	manual_translation(fdf);
 	fdf_redraw(fdf);
@@ -78,11 +97,13 @@ void
 
 	fdf = param;
 	if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_PRESS)
+	{
 		fdf->spinlock = (!fdf->spinlock);
-	if (fdf->spinlock == true)
-		fdf->speed = ROTATION_SPEED / 100;
-	else
-		fdf->speed = ROTATION_SPEED;
+		if (fdf->spinlock == true)
+			fdf->speed = ROTATION_SPEED / 100;
+		else
+			fdf->speed = ROTATION_SPEED;
+	}
 }
 
 void

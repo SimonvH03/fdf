@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_draw_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/07 14:46:39 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/07 16:51:56 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ void
 {
 	t_line	line;
 
+	fdf_line_init(&line, fdf->map, p0, p1);
 	if (over_the_horizon(fdf, &line))
 		return ;
-	fdf_line_init(&line, fdf->map, p0, p1);
 	if (fdf_straight_line(fdf, &line))
 		return ;
 	while (line.i != line.d_ctl)
@@ -90,7 +90,7 @@ void
 		if (!check0 || !fdf_check_point(fdf, p1->x, p1->y))
 			fdf_draw_line(fdf, p0, p1);
 	}
-	if (fdf->ballin && x == fdf->map->x_max - 1)
+	if (fdf->ballin == true && x == fdf->map->x_max - 1)
 	{
 		p1 = &fdf->map->project[y][0];
 		if (!check0 || !fdf_check_point(fdf, p1->x, p1->y))

@@ -1,13 +1,16 @@
 Colours
 	(map read) interpret colours (or not, it kinda sucks)
 !	(colours) blend min, max depending on current
+		for map first, then lines, must do both (unless very dense)
 
 Menu
 	(menu_draw) change menu text structure
 	(fdf.h / fdf_init) change menu appearance
 
-Optimization
-	(fdf_project)
-
 Make
 	(Makefile) write it myself
+
+Horizon
+	(utils_fdf.c) pythagoras + move line point (or not, lotta work)
+
+Map Iter

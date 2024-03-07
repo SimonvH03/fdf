@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_draw.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/07 15:17:33 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/07 17:22:34 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,12 @@ int
 {
 	if (fdf->ballin == false)
 		return (0);
-	if (0)
+	if (line->p0->z < 0 && line->p1->z < 0)
 	{
+
+		// pythagoras(fdf->map, line->p0);
+		// pythagoras(fdf->map, line->p1);
+		
 		return (1);
 	}
 	return (0);

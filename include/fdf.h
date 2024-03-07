@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/07 15:13:33 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/07 20:02:45 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@
 
 // mlx window
 # define WINDOW_TITLE "fdf"
-# define WIDTH 1200
-# define HEIGHT 800
-# define MENU_WIDTH 400
-// # define WIDTH 2000
-// # define HEIGHT 1600
+// # define WIDTH 1200
+// # define HEIGHT 800
 // # define MENU_WIDTH 400
+# define WIDTH 2000
+# define HEIGHT 1600
+# define MENU_WIDTH 400
 
 // fdf defaults
 # define DEFAULT_SCALE 0.7
@@ -45,12 +45,14 @@
 # define ROTATION_SPEED 0.01
 
 // colours
-# define C_WHITE 0xFFFFFFFF
-# define C_BACKGROUND 0x000000FF
-# define C_MENU 0xFF000040
-# define Z_LOW 0xFF000088
-# define Z_MID 0x00FF0088
-# define Z_HIGH 0x0000FF88
+# define C_WHITE		0xFFFFFFFF
+# define C_BACKGROUND	0x101010FF
+# define C_MENU			0xFF000040
+# define Z_LOW			0x303090FF
+# define Z_LOW_2		0x306060FF
+# define Z_MID_1		0x206020FF
+# define Z_MID_2		0x484038FF
+# define Z_HIGH			0xBBBBBBFF
 
 typedef struct s_colour
 {
@@ -125,6 +127,7 @@ typedef struct s_scale
 	double			diff;
 	double			total;
 	double			initial;
+	double			sphere;
 }	t_scale;
 
 typedef struct s_offset

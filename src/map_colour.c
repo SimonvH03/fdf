@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_colour.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/06 21:16:07 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/07 19:51:54 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,31 @@
 
 uint32_t
 	map_point_colour(
-		int min,
-		int max,
-		int current)
+		t_map	*map,
+		t_point	*point)
 {
-	const int	relative_height = current - min;
-	const int	total_height = max - min;
-	double		ratio;
+	int	current;
+	const int	total_height = map->z_max - map->z_min;
+	// const int	relative_height = current - min;
 
-	if (relative_height == 0 || total_height == 0)
-		return (Z_LOW);
-	if (current >= max * .8)
+	// if (relative_height == 0 || total_height == 0)
+	// 	return (Z_LOW);
+	current = point->z;
+	if (current < 0)
+	{
+		if (current > map->z_min * 0.1)
+			return (Z_LOW_2);
+		else
+			return (Z_LOW);
+	}
+	if (point->y * 2 > map->y_max * (1 - (0.10796460177) * 2))
 		return (Z_HIGH);
+	if (current < map->z_max * .15)
+		return (Z_MID_1);
+	if (current < map->z_max * .65)
+		return (Z_MID_2);
 	else
-		return (Z_MID);
+		return (Z_HIGH);
 }
 
 void
@@ -46,7 +57,7 @@ void
 		while (x < map->x_max)
 		{
 			point = &map->original[y][x];
-			point->colour = map_point_colour(map->z_min, map->z_max, point->z);
+			point->colour = map_point_colour(map, point);
 			map->project[y][x].colour = point->colour;
 			x++;
 		}
