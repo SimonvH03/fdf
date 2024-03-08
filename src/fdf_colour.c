@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/08 14:42:03 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/08 16:45:14 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ uint32_t
 		uint32_t start,
 		uint32_t end)
 {
-	return (C_WHITE);
+	return (end);
 }
 
 uint32_t
@@ -58,6 +58,19 @@ uint32_t
 		return (gradient(ratio, fdf->palette.low, fdf->palette.mid));
 	else
 		return (gradient(ratio, fdf->palette.mid, fdf->palette.high));
+}
+
+uint32_t
+	fdf_line_colour(
+		t_fdf	*fdf,
+		t_line	*line)
+{
+	const int	relative_height = line->i;
+	const int	total_height = line->d_ctl;
+	double		ratio;
+
+	ratio = relative_height / total_height;
+	return (gradient(ratio, line->p0->colour, line->p1->colour));
 }
 
 void
