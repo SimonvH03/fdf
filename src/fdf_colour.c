@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/08 00:03:42 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/08 14:42:03 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 uint32_t
 	fdf_earth_colour(
-		t_map	*map,
+		t_fdf	*fdf,
 		t_point	*point)
 {
 	const double	current = point->z;
-	const double	z_max = map->z_max;
-	const double	total_height = z_max - map->z_min;
+	const double	z_max = fdf->map->z_max;
+	const double	total_height = z_max - fdf->map->z_min;
 
 	if (current < 0)
 		return (C_EARTH_SEA);
-	if (point->y * 2 > map->y_max * (1 - (0.10796460177) * 2))
+	if (point->y * 2 > fdf->map->y_max * (1 - (0.10796460177) * 2))
 		return (C_EARTH_SNOW);
 	if (current < z_max * 0.01)
 		return (C_EARTH_SHORE);

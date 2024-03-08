@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/07 23:16:35 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/08 15:12:22 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ static void
 		t_fdf	*fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_UP))
-		fdf->offset.y -= 10;
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_DOWN))
 		fdf->offset.y += 10;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_DOWN))
+		fdf->offset.y -= 10;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT))
-		fdf->offset.x -= 10;
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT))
 		fdf->offset.x += 10;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT))
+		fdf->offset.x -= 10;
 }
 
 static void
@@ -97,13 +97,7 @@ void
 
 	fdf = param;
 	if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_PRESS)
-	{
 		fdf->spinlock = (!fdf->spinlock);
-		if (fdf->spinlock == true)
-			fdf->speed = ROTATION_SPEED / 100;
-		else
-			fdf->speed = ROTATION_SPEED;
-	}
 }
 
 void

@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:58:42 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/07 23:50:35 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/08 14:38:00 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,6 @@ int
 		y++;
 		buffer = get_next_line(map->fd);
 	}
-	map_find_z_min_max(map);
-	map_fill_polar(map);
 	close(map->fd);
 	return (EXIT_SUCCESS);
 }

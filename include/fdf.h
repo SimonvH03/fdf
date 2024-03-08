@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/08 00:01:44 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/08 15:01:19 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,7 @@ typedef struct s_fdf
 	t_precalc		precalc;
 	t_cosin			cosin;
 	t_scale			scale;
+	t_offset		center;
 	t_offset		offset;
 	t_palette		palette;
 	double			speed;

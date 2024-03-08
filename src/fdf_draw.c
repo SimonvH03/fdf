@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_draw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/07 17:37:22 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/08 15:05:21 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void
 	y_pixel = line->p0->y + (line->j * line->s_pas);
 	if (!fdf_check_point(fdf, x_pixel, y_pixel))
 		mlx_put_pixel(fdf->image,
-			x_pixel + fdf->offset.x,
-			y_pixel + fdf->offset.y,
+			x_pixel + fdf->center.x + fdf->offset.x,
+			y_pixel + fdf->center.y + fdf->offset.y,
 			fdf_line_colour(fdf, line));
 }
 
@@ -43,8 +43,8 @@ int
 		int x_pixel,
 		int y_pixel)
 {
-	x_pixel += fdf->offset.x;
-	y_pixel += fdf->offset.y;
+	x_pixel += fdf->center.x + fdf->offset.x;
+	y_pixel += fdf->center.y + fdf->offset.y;
 	if (x_pixel < 0 || y_pixel < 0
 		|| x_pixel >= (int)fdf->image->width
 		|| y_pixel >= (int)fdf->image->height)

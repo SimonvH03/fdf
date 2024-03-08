@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/07 18:25:23 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/08 14:38:35 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ int
 	{NULL, NULL, NULL, argv[1], 0, 0, 0, 0, 0, 0};
 	if (map_read(&map) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
+	map_find_z_min_max(&map);
 	if (fdf_init(&fdf, &map) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
+	map_fill_polar(&map);
 	menu_draw(&fdf);
 	loop_hooks(&fdf);
 	mlx_loop(fdf.mlx);

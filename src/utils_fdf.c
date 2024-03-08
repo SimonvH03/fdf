@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_fdf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 10:59:22 by simon             #+#    #+#             */
-/*   Updated: 2024/03/07 16:13:58 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/08 15:11:17 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void
 	int		x;
 
 	y = 0;
+	fdf->offset.x *= fdf->scale.diff;
+	fdf->offset.y *= fdf->scale.diff;
 	while (y < fdf->map->y_max)
 	{
 		x = 0;
@@ -73,6 +75,8 @@ void
 	fdf_center_offset(
 		t_fdf	*fdf)
 {
-	fdf->offset.x = fdf->image->width / 2;
-	fdf->offset.y = fdf->image->height / 2;
+	fdf->center.x = fdf->image->width / 2;
+	fdf->center.y = fdf->image->height / 2;
+	fdf->offset.x = 0;
+	fdf->offset.y = 0;
 }
