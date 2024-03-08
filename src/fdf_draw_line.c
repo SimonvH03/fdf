@@ -3,14 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_draw_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/07 16:51:56 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/08 19:18:54 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
+
+void
+	fdf_draw_point(
+		t_fdf	*fdf,
+		t_line	*line)
+{
+	int	x_pixel;
+	int	y_pixel;
+
+	x_pixel = line->p0->x + (line->i * line->s_ctl);
+	y_pixel = line->p0->y + (line->j * line->s_pas);
+	if (!fdf_check_point(fdf, x_pixel, y_pixel))
+		mlx_put_pixel(fdf->image,
+			x_pixel + fdf->center.x + fdf->offset.x,
+			y_pixel + fdf->center.y + fdf->offset.y,
+			fdf_line_colour(fdf, line));
+}
 
 static int
 	fdf_straight_line(
@@ -64,6 +81,22 @@ void
 		line.err += line.d_pas;
 	}
 	fdf_draw_point(fdf, &line);
+}
+
+int
+	fdf_check_point(
+		t_fdf	*fdf,
+		int x_pixel,
+		int y_pixel)
+{
+	x_pixel += fdf->center.x + fdf->offset.x;
+	y_pixel += fdf->center.y + fdf->offset.y;
+	if (x_pixel < 0 || y_pixel < 0
+		|| x_pixel >= (int)fdf->image->width
+		|| y_pixel >= (int)fdf->image->height)
+		return (EXIT_FAILURE);
+	else
+		return (EXIT_SUCCESS);
 }
 
 void

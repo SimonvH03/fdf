@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/08 15:01:19 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/08 19:42:25 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,6 +204,7 @@ int			fdf_init(t_fdf *fdf, t_map *map);
 void		fdf_line_init(t_line *line, t_map *map,
 				const t_point *p0, const t_point *p1);
 void		fdf_colour(t_fdf *fdf);
+uint32_t	fdf_line_colour(t_fdf *fdf, t_line *line);
 
 // utils_map.c
 int			map_malloc_y(t_map *map);
