@@ -10,3 +10,11 @@ Map Iteration
 
 Make
 	(Makefile) write it myself
+
+Problem:
+map_iteraion takes a function to the logic that should be applied to every location [y][x] of the maps.
+	as shown with fdf_draw, sometimes this means keeping the logic outside of the loop, and calling
+		map_iteraion for the logic inside.
+	in contrast fdf_colour is itself changed into a function to put into map_iteration
+	this is a problem because all functions that have logic in- and outside the loop need to be split
+		into two seperate fuctions, one remains in the adaptation and one gets called by map_iteraion
