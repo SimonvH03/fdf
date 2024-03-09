@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/08 19:18:54 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/09 17:06:54 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,21 @@ static int
 		t_fdf	*fdf,
 		t_line	*line)
 {
-	if (line->d_ctl == 0)
-	{
-		while (line->j <= line->d_pas)
-		{
-			fdf_draw_point(fdf, line);
-			line->j++;
-		}
-		return (1);
-	}
 	if (line->d_pas == 0)
 	{
 		while (line->i <= line->d_ctl)
 		{
 			fdf_draw_point(fdf, line);
 			line->i++;
+		}
+		return (1);
+	}
+	if (line->d_ctl == 0)
+	{
+		while (line->j <= line->d_pas)
+		{
+			fdf_draw_point(fdf, line);
+			line->j++;
 		}
 		return (1);
 	}
