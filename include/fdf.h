@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/09 18:14:52 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/09 19:37:49 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,10 @@ typedef struct s_fdf
 // main
 int			map_read(t_map *map);
 void		menu_draw(t_fdf *fdf);
+
+// map_iteration
+void	map_iteration(t_map *map, void (*function)(void *param),
+				void *parameter);
 
 // map_mods.c
 void		map_fill_polar(t_map *map);

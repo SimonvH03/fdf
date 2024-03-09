@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:47:59 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/09 19:06:14 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/09 19:55:16 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,29 @@
 
 // this function applies the function *f(whatever) to the whole map(s)
 void
-	map_iteration(t_map *map, void (*f)(void *param))
+	map_iteration(
+		t_map *map,
+		void (*function)
+		(void *param,
+			int y,
+			int x),
+		void *parameter)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (y < map->y_max)
 	{
-
+		x = 0;
+		while (x < map->x_max)
+		{
+			f(parameter, y, x);
+			x++;
+		}
+		y++;
 	}
-
+}
 
 void	fdf_draw(void *param);
 void	fdf_colour(t_fdf *fdf);
