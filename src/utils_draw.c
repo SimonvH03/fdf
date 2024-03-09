@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/09 19:03:17 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/09 19:28:06 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,14 @@ void
 	}
 }
 
+// first we need a margin, don't calculate if x or y is within 'dark square';
+//;dark square has half side lengths equal to radius / sqrt(2)
+// then we use pythagoras' theorum to see if x,y falls within the horizon
+// cases:
+// if both points are over the horizon; return (1)
+// if both points are outside the horizon; return (0)
+// if only one point is over the horizon;
+//;malloc a new point (with colour) exactly on the horizon and return (0)
 int
 	over_the_horizon(
 		t_fdf	*fdf,

@@ -2,21 +2,11 @@ Colours
 	(map read) interpret colours (or not, it kinda sucks)
 	(colours) refine function for colouring earth
 
-Menu
-	(menu_draw) change menu text structure
-	(fdf.h / fdf_init) change menu appearance
+Over The Horizon
+	(utils_fdf.c) info in comments
+
+Map Iteration
+	(map_iteraion.c) make a double while loop to iterate over all t_points in the maps and apply parameter function
 
 Make
 	(Makefile) write it myself
-
-Horizon
-	(utils_fdf.c) pythagoras + move line point (or not, lotta work)
-
-Map Iter
-	make a single function to iterate the map, we need 1 double while loop at the very most
-		map read
-		fdf scale
-		fdf project both
-		map mods
-		map colour
-		...
