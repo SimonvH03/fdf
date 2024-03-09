@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 10:59:22 by simon             #+#    #+#             */
-/*   Updated: 2024/03/09 20:08:42 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/09 21:10:54 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,38 +37,68 @@ void
 		|| fdf->scale.diff != 1)
 		fdf->redraw = true;
 	if (fdf->perspective.reproject)
-		fdf_project(fdf);
+	{
+		map_iteration(fdf->map, &fdf_project, fdf);
+		fdf->perspective = (t_perspective){0, 0, 0};
+	}
 	if (fdf->precalc.reproject)
-		fdf_project_optimized(fdf);
+	{
+		map_iteration(fdf->map, &fdf_project_optimized, fdf);
+		if (fdf->spinlock == false)
+			fdf->precalc = (t_precalc){0, 0, 0};
+	}
 	if (fdf->scale.diff != 1)
-		fdf_scale(fdf);
+	{
+		fdf->offset.x *= fdf->scale.diff;
+		fdf->offset.y *= fdf->scale.diff;
+		map_iteration(fdf->map, &fdf_scale, fdf);
+		fdf->scale.diff = 1;
+	}
 }
+
+// victim #5: replaced by map_iteration version
+
+// void
+// 	fdf_scale(
+// 		t_fdf	*fdf)
+// {
+// 	t_point	*point;
+// 	int		y;
+// 	int		x;
+
+// 	y = 0;
+// 	fdf->offset.x *= fdf->scale.diff;
+// 	fdf->offset.y *= fdf->scale.diff;
+// 	while (y < fdf->map->y_max)
+// 	{
+// 		x = 0;
+// 		while (x < fdf->map->x_max)
+// 		{
+// 			point = &fdf->map->project[y][x];
+// 			point->x *= fdf->scale.diff;
+// 			point->y *= fdf->scale.diff;
+// 			point->z *= fdf->scale.diff;
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// 	fdf->scale.diff = 1;
+// }
 
 void
 	fdf_scale(
-		t_fdf	*fdf)
+		void	*param,
+		int y,
+		int x)
 {
+	t_fdf	*fdf;
 	t_point	*point;
-	int		y;
-	int		x;
 
-	y = 0;
-	fdf->offset.x *= fdf->scale.diff;
-	fdf->offset.y *= fdf->scale.diff;
-	while (y < fdf->map->y_max)
-	{
-		x = 0;
-		while (x < fdf->map->x_max)
-		{
-			point = &fdf->map->project[y][x];
-			point->x *= fdf->scale.diff;
-			point->y *= fdf->scale.diff;
-			point->z *= fdf->scale.diff;
-			x++;
-		}
-		y++;
-	}
-	fdf->scale.diff = 1;
+	fdf = param;
+	point = &fdf->map->project[y][x];
+	point->x *= fdf->scale.diff;
+	point->y *= fdf->scale.diff;
+	point->z *= fdf->scale.diff;
 }
 
 void

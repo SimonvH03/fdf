@@ -6,13 +6,13 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:30:28 by simon             #+#    #+#             */
-/*   Updated: 2024/03/09 18:20:49 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/09 21:06:32 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static void	point_rotate_precalculated(t_fdf *fdf, t_point *point)
+void	point_rotate_precalculated(t_fdf *fdf, t_point *point)
 {
 	double			prev_x;
 	double			prev_y;
@@ -40,30 +40,47 @@ static void	point_rotate_precalculated(t_fdf *fdf, t_point *point)
 	}
 }
 
+// victim #3: replaced by map_iteration version
+
 // parse map and rotate point[x,y,z] values around [0,0,0] (same as fdf_project)
 // this one is for optimization, given the angle of rotation is constant
 // cosin holds the calculated values for cos(fdf.speed) and sin(fdf.speed)
+// void
+// 	fdf_project_optimized(
+// 		t_fdf	*fdf)
+// {
+// 	t_point	*point;
+// 	int		y;
+// 	int		x;
+
+// 	y = 0;
+// 	while (y < fdf->map->y_max)
+// 	{
+// 		x = 0;
+// 		while (x < fdf->map->x_max)
+// 		{
+// 			point = &fdf->map->project[y][x];
+// 			if (fdf->precalc.gamma || fdf->precalc.beta || fdf->precalc.alpha)
+// 				point_rotate_precalculated(fdf, point);
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// 	if (fdf->spinlock == false)
+// 		fdf->precalc = (t_precalc){0, 0, 0};
+// }
+
 void
 	fdf_project_optimized(
-		t_fdf	*fdf)
+		void	*param,
+		int y,
+		int x)
 {
+	t_fdf	*fdf;
 	t_point	*point;
-	int		y;
-	int		x;
 
-	y = 0;
-	while (y < fdf->map->y_max)
-	{
-		x = 0;
-		while (x < fdf->map->x_max)
-		{
-			point = &fdf->map->project[y][x];
-			if (fdf->precalc.gamma || fdf->precalc.beta || fdf->precalc.alpha)
-				point_rotate_precalculated(fdf, point);
-			x++;
-		}
-		y++;
-	}
-	if (fdf->spinlock == false)
-		fdf->precalc = (t_precalc){0, 0, 0};
+	fdf = param;
+	point = &fdf->map->project[y][x];
+	if (fdf->precalc.gamma || fdf->precalc.beta || fdf->precalc.alpha)
+		point_rotate_precalculated(fdf, point);
 }

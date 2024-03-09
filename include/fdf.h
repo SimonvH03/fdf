@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/09 20:40:30 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/09 21:10:24 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,12 +187,12 @@ void		fdf_scale_and_project(void *param);
 void		fdf_draw(void *param);
 
 // fdf_projects
-void		fdf_project(t_fdf *fdf);
-void		fdf_project_optimized(t_fdf *fdf);
+void		fdf_project(void *param, int y, int x);
+void		fdf_project_optimized(void *param, int y, int x);
 
 // utils_fdf.c
 void		fdf_redraw(t_fdf *fdf);
-void		fdf_scale(t_fdf *fdf);
+void		fdf_scale(void *param, int y, int x);
 void		fdf_center_offset(t_fdf *fdf);
 void		fdf_reset_scale_and_offset(t_fdf *fdf);
 

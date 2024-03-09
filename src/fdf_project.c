@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:44:02 by simon             #+#    #+#             */
-/*   Updated: 2024/03/07 16:47:07 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/09 21:06:21 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,32 +54,53 @@ static void
 	point->z = point->z;
 }
 
+// victim #4: replaced by map_iteration version
+
 // parse map and rotate point[x,y,z] values around [0,0,0]
 // this function is only for variable angles
+// void
+// 	fdf_project(
+// 		t_fdf	*fdf)
+// {
+// 	t_point	*point;
+// 	int		y;
+// 	int		x;
+
+// 	y = 0;
+// 	while (y < fdf->map->y_max)
+// 	{
+// 		x = 0;
+// 		while (x < fdf->map->x_max)
+// 		{
+// 			point = &fdf->map->project[y][x];
+// 			if (fdf->perspective.gamma)
+// 				point_rotate_gamma(point, fdf->perspective.gamma);
+// 			if (fdf->perspective.beta)
+// 				point_rotate_beta(point, fdf->perspective.beta);
+// 			if (fdf->perspective.alpha)
+// 				point_rotate_alpha(point, fdf->perspective.alpha);
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// 	fdf->perspective = (t_perspective){0, 0, 0};
+// }
+
 void
 	fdf_project(
-		t_fdf	*fdf)
+		void	*param,
+		int y,
+		int x)
 {
+	t_fdf	*fdf;
 	t_point	*point;
-	int		y;
-	int		x;
 
-	y = 0;
-	while (y < fdf->map->y_max)
-	{
-		x = 0;
-		while (x < fdf->map->x_max)
-		{
-			point = &fdf->map->project[y][x];
-			if (fdf->perspective.gamma)
-				point_rotate_gamma(point, fdf->perspective.gamma);
-			if (fdf->perspective.beta)
-				point_rotate_beta(point, fdf->perspective.beta);
-			if (fdf->perspective.alpha)
-				point_rotate_alpha(point, fdf->perspective.alpha);
-			x++;
-		}
-		y++;
-	}
-	fdf->perspective = (t_perspective){0, 0, 0};
+	fdf = param;
+	point = &fdf->map->project[y][x];
+	if (fdf->perspective.gamma)
+		point_rotate_gamma(point, fdf->perspective.gamma);
+	if (fdf->perspective.beta)
+		point_rotate_beta(point, fdf->perspective.beta);
+	if (fdf->perspective.alpha)
+		point_rotate_alpha(point, fdf->perspective.alpha);
 }
