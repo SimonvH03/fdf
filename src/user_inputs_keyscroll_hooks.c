@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/09 18:18:39 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/09 18:35:44 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,11 @@ void
 
 	fdf = param;
 	if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_PRESS)
+	{
 		fdf->spinlock = (!fdf->spinlock);
+		fdf->speed = ROTATION_SPEED;
+		fdf->cosin = (t_cosin){cos(fdf->speed), sin(fdf->speed)};
+	}
 }
 
 void

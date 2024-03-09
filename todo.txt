@@ -1,7 +1,6 @@
 Colours
 	(map read) interpret colours (or not, it kinda sucks)
-!	(colours) blend min, max depending on current
-		for map first, then lines, must do both
+	(colours) refine function for colouring earth
 
 Menu
 	(menu_draw) change menu text structure

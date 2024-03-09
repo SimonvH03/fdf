@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/09 18:18:25 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/09 18:42:26 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,16 @@ static void
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_MINUS))
 	{
-		fdf->speed -= 0.005;
+		if (fdf->speed > 0.00001)
+			fdf->speed *= 0.95;
 		fdf->cosin = (t_cosin){cos(fdf->speed), sin(fdf->speed)};
 	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_EQUAL))
 	{
-		fdf->speed += 0.005;
+		if (fdf->speed < PI)
+			fdf->speed *= 1.05;
+		else
+			fdf->speed = ROTATION_SPEED;
 		fdf->cosin = (t_cosin){cos(fdf->speed), sin(fdf->speed)};
 	}
 }
