@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/09 20:32:21 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/09 21:42:35 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,3 +39,17 @@
 // 	}
 // 	fdf->redraw = false;
 // }
+
+void
+	fdf_draw(
+		void *param)
+{
+	t_fdf	*fdf;
+
+	fdf = param;
+	if (fdf->redraw == false)
+		return ;
+	draw_background(fdf->image, C_BACKGROUND);
+	map_iteration(fdf->map, &fdf_draw_down_and_to_the_right, fdf);
+	fdf->redraw = false;
+}

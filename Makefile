@@ -12,12 +12,12 @@ LIBFT	= $(LFTDIR)/libft.a
 HEADERS	= -I ./include -I $(LMLXDIR)/include
 LIBS	= $(LIBMLX) $(LIBFT)
 SRCDIR	= ./src
-SRC		=	$(SRCDIR)/fdf_colour.c \
-			$(SRCDIR)/fdf_draw_line.c \
+SRC		=	$(SRCDIR)/fdf_draw_line.c \
 			$(SRCDIR)/fdf_draw.c \
 			$(SRCDIR)/fdf_project_optimized.c \
 			$(SRCDIR)/fdf_project.c \
 			$(SRCDIR)/main.c \
+			$(SRCDIR)/map_colour.c \
 			$(SRCDIR)/map_iteration.c \
 			$(SRCDIR)/map_mods.c \
 			$(SRCDIR)/map_read.c \

@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/09 21:10:24 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/09 21:51:59 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,12 @@ typedef struct s_point
 	uint32_t		colour;
 }	t_point;
 
+typedef struct s_coordinates
+{
+	double		longitude;
+	double		latitude;
+}	t_coordinates;
+
 // free: map->content, map->project, map->polar
 // no free: map->name = argv[1]
 typedef struct s_map
@@ -93,6 +99,8 @@ typedef struct s_map
 	t_point			**original;
 	t_point			**project;
 	t_point			**polar;
+	t_coordinates	coords;
+	t_palette		palette;
 	char			*name;
 	int				fd;
 	int				x_max;
@@ -158,7 +166,6 @@ typedef struct s_fdf
 	t_scale			scale;
 	t_offset		center;
 	t_offset		offset;
-	t_palette		palette;
 	double			speed;
 	bool			spinlock;
 	bool			redraw;
@@ -175,9 +182,9 @@ void	map_iteration(t_map *map,
 				void *parameter);
 
 // map_mods.c
-void		map_fill_polar(t_map *map);
-void		map_set_polar(t_map *map);
-void		map_set_original(t_map *map);
+void		map_fill_polar(void *param, int y, int x);
+void		map_set_polar(void *param, int y, int x);
+void		map_set_original(void *param, int y, int x);
 
 // loops
 void		keyhook(mlx_key_data_t keydata, void *param);
@@ -187,7 +194,7 @@ void		fdf_scale_and_project(void *param);
 void		fdf_draw(void *param);
 
 // fdf_projects
-void		fdf_project(void *param, int y, int x);
+void		fdf_project(void *param, int y, int x); // copy
 void		fdf_project_optimized(void *param, int y, int x);
 
 // utils_fdf.c
@@ -207,17 +214,18 @@ double		ft_abs(double val);
 short		ft_sign(double val);
 
 // utils_init.c
+void		map_init(t_map *map);
 int			fdf_init(t_fdf *fdf, t_map *map);
 void		fdf_line_init(t_line *line, t_map *map,
 				const t_point *p0, const t_point *p1);
-void		fdf_colour(void *param, int y, int x);
-uint32_t	fdf_earth_colour(t_fdf *fdf,t_point *point);
-uint32_t	fdf_line_colour(t_fdf *fdf, t_line *line);
+void		map_colour(void *param, int y, int x);
+uint32_t	map_earth_colour(t_map *map,t_point *point);
+uint32_t	line_colour(t_line *line);
 
 // utils_map.c
 int			map_malloc_y(t_map *map);
 int			map_malloc_x(t_map *map, int y);
-void		map_find_z_min_max(t_map *map);
+void		map_find_z_min_max(void *param, int y, int x);
 
 // utils_misc.c
 void		map_free(t_map *map);

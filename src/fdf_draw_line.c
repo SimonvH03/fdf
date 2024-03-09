@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/09 20:27:33 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/09 21:41:36 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void
 		mlx_put_pixel(fdf->image,
 			x_pixel + fdf->center.x + fdf->offset.x,
 			y_pixel + fdf->center.y + fdf->offset.y,
-			fdf_line_colour(fdf, line));
+			line_colour(line));
 }
 
 static int

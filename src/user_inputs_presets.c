@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:31:44 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/09 20:10:16 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/09 21:45:01 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ void
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_P))
 	{
-		map_set_original(fdf->map);
+		map_iteration(fdf->map, &map_set_original, fdf->map);
 		fdf_reset_scale_and_offset(fdf);
 		fdf->ballin = false;
 	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_I))
 	{
-		map_set_original(fdf->map);
+		map_iteration(fdf->map, &map_set_original, fdf->map);
 		fdf_reset_scale_and_offset(fdf);
 		fdf->perspective = (t_perspective)
 		{ISO_ALPHA, ISO_BETA, ISO_GAMMA, true};
@@ -32,7 +32,7 @@ void
 	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_O))
 	{
-		map_set_polar(fdf->map);
+		map_iteration(fdf->map, &map_set_polar, fdf->map);
 		fdf_center_offset(fdf);
 		fdf->perspective = (t_perspective)
 		{deg_to_rad(-90), 0, deg_to_rad(90), true};

@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_colour.c                                       :+:      :+:    :+:   */
+/*   map_colour.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/09 20:43:47 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/09 21:38:50 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 uint32_t
-	fdf_earth_colour(
-		t_fdf	*fdf,
+	map_earth_colour(
+		t_map *map,
 		t_point	*point)
 {
 	const double	current = point->z;
-	const double	z_max = fdf->map->z_max;
-	const double	total_height = z_max - fdf->map->z_min;
+	const double	z_max = map->z_max;
+	const double	total_height = z_max - map->z_min;
 
 	if (current < 0)
 		return (C_EARTH_SEA);
-	if (point->y > fdf->map->y_max * 0.39203539823)
+	if (point->y > map->y_max * 0.39203539823)
 		return (C_EARTH_SNOW);
 	if (current < z_max * 0.01)
 		return (C_EARTH_SHORE);
@@ -61,24 +61,23 @@ uint32_t
 }
 
 uint32_t
-	fdf_point_colour(
-		t_fdf	*fdf,
+	map_point_colour(
+		t_map *map,
 		t_point	*point)
 {
-	const double	relative_height = point->z - fdf->map->z_min;
-	const double	total_height = fdf->map->z_max - fdf->map->z_min;
+	const double	relative_height = point->z - map->z_min;
+	const double	total_height = map->z_max - map->z_min;
 	double			ratio;
 
 	ratio = relative_height / total_height;
 	if (ratio <= 0.5)
-		return (gradient(ratio * 2, fdf->palette.low, fdf->palette.mid));
+		return (gradient(ratio * 2, map->palette.low, map->palette.mid));
 	else
-		return (gradient(ratio * 2, fdf->palette.mid, fdf->palette.high));
+		return (gradient(ratio * 2, map->palette.mid, map->palette.high));
 }
 
 uint32_t
-	fdf_line_colour(
-		t_fdf	*fdf,
+	line_colour(
 		t_line	*line)
 {
 	double	relative_height;
@@ -118,10 +117,25 @@ uint32_t
 // 		while (x < fdf->map->x_max)
 // 		{
 // 			point = &fdf->map->original[y][x];
-// 			point->colour = fdf_earth_colour(fdf, point);
+// 			point->colour = map_earth_colour(fdf->map, point);
 // 			fdf->map->project[y][x].colour = point->colour;
 // 			x++;
 // 		}
 // 		y++;
 // 	}
 // }
+
+void
+	map_colour(
+		void	*param,
+		int y,
+		int x)
+{
+	t_map	*map;
+	t_point	*point;
+
+	map = param;
+	point = &map->original[y][x];
+	point->colour = map_earth_colour(map, point);
+	map->project[y][x].colour = point->colour;
+}

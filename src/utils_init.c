@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/09 20:38:54 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/09 21:52:28 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,19 @@ static void
 		fdf->scale.initial = 0.1;
 	fdf->scale.diff = fdf->scale.initial;
 	fdf->scale.total = 1;
+}
+
+void
+	map_init(
+		t_map *map)
+{
+	map_iteration(map, &map_find_z_min_max, map);
+	map->radius = (map->z_max - map->z_min) * 10;
+	map->coords.longitude = -2 * PI / (map->x_max);
+	map->coords.latitude = PI / (map->y_max - 1);
+	map->palette = (t_palette){C_EARTH_SEA, C_EARTH_LAND, C_EARTH_MOUNTAIN};
+	map_iteration(map , &map_colour, map);
+	map_iteration(map, &map_fill_polar, map);
 }
 
 // from file main.c
@@ -52,8 +65,6 @@ int
 	fdf->precalc = (t_precalc){0, 0, 0, true};
 	fdf->speed = ROTATION_SPEED;
 	fdf->cosin = (t_cosin){cos(fdf->speed), sin(fdf->speed)};
-	fdf->palette = (t_palette){C_EARTH_SEA, C_EARTH_LAND, C_EARTH_MOUNTAIN};
-	map_iteration(map , &fdf_colour, fdf);
 	fdf_scale_init(fdf);
 	fdf_center_offset(fdf);
 	fdf->spinlock = false;
