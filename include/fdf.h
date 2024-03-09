@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/08 19:42:25 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/09 18:14:52 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@
 
 // mlx window
 # define WINDOW_TITLE "fdf"
-# define WIDTH 1200
-# define HEIGHT 800
-# define MENU_WIDTH 400
-// # define WIDTH 2000
-// # define HEIGHT 1600
+// # define WIDTH 1200
+// # define HEIGHT 800
 // # define MENU_WIDTH 400
+# define WIDTH 2000
+# define HEIGHT 1600
+# define MENU_WIDTH 400
 
 // fdf defaults
 # define DEFAULT_SCALE 0.7
@@ -47,7 +47,8 @@
 // colours
 # define C_WHITE		0xFFFFFFFF
 # define C_BLACK		0x000000FF
-# define C_BACKGROUND	0x20002088
+// # define C_BACKGROUND	0x20002088
+# define C_BACKGROUND	C_BLACK
 # define C_MENU			0xFF000040
 
 # define C_EARTH_SEA		0x303090FF

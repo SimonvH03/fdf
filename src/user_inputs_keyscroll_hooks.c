@@ -1,49 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_draw.c                                       :+:      :+:    :+:   */
+/*   user_inputs_keyscroll_hooks.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/09 18:19:20 by svan-hoo         ###   ########.fr       */
+/*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
+/*   Updated: 2024/03/09 18:18:39 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-// from fdf_draw.c, menu_draw.c
 void
-	draw_background(
-		mlx_image_t	*image,
-		uint32_t	colour)
+	keyhook(
+		mlx_key_data_t	keydata,
+		void			*param)
 {
-	uint32_t	x;
-	uint32_t	y;
+	t_fdf	*fdf;
 
-	y = 0;
-	while (y < image->height)
-	{
-		x = 0;
-		while (x < image->width)
-		{
-			mlx_put_pixel((mlx_image_t *)image, x, y, colour);
-			x++;
-		}
-		y++;
-	}
+	fdf = param;
+	if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_PRESS)
+		fdf->spinlock = (!fdf->spinlock);
 }
 
-int
-	over_the_horizon(
-		t_fdf	*fdf,
-		t_line	*line)
+void
+	scrollhook(
+		double xdelta,
+		double ydelta,
+		void	*param)
 {
-	if (fdf->ballin == false)
-		return (0);
-	if (line->p0->z < 0 && line->p1->z < 0)
+	t_fdf	*fdf;
+
+	fdf = param;
+	(void)xdelta;
+	if (ydelta)
 	{
-		return (1);
+		fdf->scale.diff *= 1 + (ydelta / 10);
+		fdf->scale.total *= 1 + (ydelta / 10);
 	}
-	return (0);
 }

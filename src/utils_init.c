@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/09 17:09:10 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/09 18:19:32 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@ static void
 {
 	double	scalefinder;
 
-	fdf->scale.initial = fdf->image->width / fdf->map->x_max;
-	scalefinder = fdf->image->height / fdf->map->y_max;
+	fdf->scale.initial = (double)fdf->image->width / (double)fdf->map->x_max;
+	scalefinder = (double)fdf->image->height / (double)fdf->map->y_max;
 	if (scalefinder < fdf->scale.initial)
 		fdf->scale.initial = scalefinder;
 	fdf->scale.initial *= DEFAULT_SCALE;
+	if (fdf->scale.initial == 0)
+		fdf->scale.initial = 0.1;
 	fdf->scale.diff = fdf->scale.initial;
-	fdf->scale.total= 1;
+	fdf->scale.total = 1;
 }
 
 // from file main.c

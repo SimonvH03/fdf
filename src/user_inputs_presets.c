@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user_inputs_presets.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:31:44 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/08 14:36:49 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/09 18:19:04 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void
 		fdf->perspective = (t_perspective)
 		{deg_to_rad(-90), 0, deg_to_rad(90), true};
 		fdf->scale.diff = fdf->image->width / (2.2 * fdf->map->radius);
-		fdf->scale.total= 1;
+		fdf->scale.total = 1;
 		fdf->ballin = true;
 	}
 }
@@ -48,7 +48,7 @@ void
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_M))
 	{
 		fdf->scale.diff = 1 / fdf->scale.total;
-		fdf->scale.total= 1;
+		fdf->scale.total = 1;
 	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_N))
 	{

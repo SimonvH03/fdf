@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:30:28 by simon             #+#    #+#             */
-/*   Updated: 2024/03/07 17:13:02 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/09 18:20:49 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static void	point_rotate_precalculated(t_fdf *fdf, t_point *point)
 {
 	double			prev_x;
 	double			prev_y;
-	const double	angle_cos = fdf->cosin.a_cos;
 	const double	gamma_sin = fdf->cosin.a_sin * fdf->precalc.gamma;
 	const double	beta_sin = fdf->cosin.a_sin * fdf->precalc.beta;
 	const double	alpha_sin = fdf->cosin.a_sin * fdf->precalc.alpha;
@@ -24,20 +23,20 @@ static void	point_rotate_precalculated(t_fdf *fdf, t_point *point)
 	if (fdf->precalc.gamma)
 	{
 		prev_x = point->x;
-		point->x = point->x * angle_cos + point->y * gamma_sin;
-		point->y = prev_x * -gamma_sin + point->y * angle_cos;
+		point->x = point->x * fdf->cosin.a_cos + point->y * gamma_sin;
+		point->y = prev_x * -gamma_sin + point->y * fdf->cosin.a_cos;
 	}
 	if (fdf->precalc.beta)
 	{
 		prev_x = point->x;
-		point->x = point->x *angle_cos + point->z * beta_sin;
-		point->z = prev_x * -beta_sin + point->z *angle_cos;
+		point->x = point->x * fdf->cosin.a_cos + point->z * beta_sin;
+		point->z = prev_x * -beta_sin + point->z * fdf->cosin.a_cos;
 	}
 	if (fdf->precalc.alpha)
 	{
 		prev_y = point->y;
-		point->y = point->y * angle_cos + point->z * alpha_sin;
-		point->z = prev_y * -alpha_sin + point->z * angle_cos;
+		point->y = point->y * fdf->cosin.a_cos + point->z * alpha_sin;
+		point->z = prev_y * -alpha_sin + point->z * fdf->cosin.a_cos;
 	}
 }
 
