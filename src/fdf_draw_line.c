@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_draw_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/09 21:41:36 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/09 23:46:14 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void
 	fdf_draw_point(
-		t_fdf	*fdf,
-		t_line	*line)
+		const t_fdf	*fdf,
+		const t_line	*line)
 {
 	int	x_pixel;
 	int	y_pixel;
@@ -31,7 +31,7 @@ void
 
 static int
 	fdf_straight_line(
-		t_fdf	*fdf,
+		const t_fdf	*fdf,
 		t_line	*line)
 {
 	if (line->d_pas == 0)
@@ -57,9 +57,9 @@ static int
 
 void
 	fdf_draw_line(
-		t_fdf	*fdf,
-		t_point	*p0,
-		t_point	*p1)
+		const t_fdf		*fdf,
+		const t_point	*p0,
+		const t_point	*p1)
 {
 	t_line	line;
 
@@ -85,7 +85,7 @@ void
 
 int
 	fdf_check_point(
-		t_fdf	*fdf,
+		const t_fdf	*fdf,
 		int x_pixel,
 		int y_pixel)
 {
@@ -101,18 +101,15 @@ int
 
 void
 	fdf_draw_down_and_to_the_right(
-		void	*param,
-		int y,
-		int x)
+		const void	*param,
+		const int y,
+		const int x)
 {
-	t_fdf	*fdf;
-	t_point	*p0;
-	t_point	*p1;
-	int		check0;
+	const t_fdf		*fdf = param;
+	const t_point	*p0 = &fdf->map->project[y][x];
+	const int		check0 = fdf_check_point(fdf, p0->x, p0->y);
+	t_point			*p1;
 
-	fdf = param;
-	p0 = &fdf->map->project[y][x];
-	check0 = fdf_check_point(fdf, p0->x, p0->y);
 	if ((x + 1) < fdf->map->x_max)
 	{
 		p1 = &fdf->map->project[y][x + 1];

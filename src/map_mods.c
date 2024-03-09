@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_mods.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 17:05:51 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/09 21:47:07 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/09 23:49:50 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,13 @@ void
 		int y,
 		int x)
 {
-	t_map	*map;
-	t_point	*point;
+	t_map			*map;
+	const t_point	*point = &map->original[y][x];
 
 	map = param;
-	point = &map->original[y][x];
 	map->polar[y][x] = (t_point)
-	{(map->coords.longitude * x),
-		(map->coords.latitude * y),
+	{(map->sphere->longitude * x),
+		(map->sphere->latitude * y),
 		(map->radius + point->z),
 		point->colour};
 }
@@ -98,11 +97,10 @@ void
 		int y,
 		int x)
 {
-	t_map	*map;
-	t_point	*polar;
+	t_map			*map;
+	const t_point	*polar = &map->original[y][x];
 
 	map = param;
-	polar = &map->polar[y][x];
 	map->project[y][x] = (t_point)
 	{((polar->z) * cos(polar->x) * sin(polar->y)),
 		((polar->z) * sin(polar->x) * sin(polar->y)),
@@ -140,8 +138,7 @@ void
 		int x)
 {
 	t_map	*map;
-	t_point	*point;
 
 	map = param;
-	map->project[y][x] = map->original[y][x];
+	(t_point)map->project[y][x] = (t_point)map->original[y][x];
 }

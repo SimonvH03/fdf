@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/09 21:52:28 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/09 23:52:44 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,12 @@ void
 	map_init(
 		t_map *map)
 {
+	map_create_palettes(map);
 	map_iteration(map, &map_find_z_min_max, map);
 	map->radius = (map->z_max - map->z_min) * 10;
-	map->coords.longitude = -2 * PI / (map->x_max);
-	map->coords.latitude = PI / (map->y_max - 1);
-	map->palette = (t_palette){C_EARTH_SEA, C_EARTH_LAND, C_EARTH_MOUNTAIN};
+	map->sphere->longitude = -2 * PI / (map->x_max);
+	map->sphere->latitude = PI / (map->y_max - 1);
+	map->palette = &(t_palette){C_EARTH_SEA, C_EARTH_LAND, C_EARTH_MOUNTAIN};
 	map_iteration(map , &map_colour, map);
 	map_iteration(map, &map_fill_polar, map);
 }
@@ -46,8 +47,8 @@ void
 // from file main.c
 int
 	fdf_init(
-		t_fdf	*fdf,
-		t_map	*map)
+		t_fdf		*fdf,
+		const t_map	*map)
 {
 	fdf->mlx = mlx_init(WIDTH, HEIGHT, WINDOW_TITLE, false);
 	if (fdf->mlx == NULL)
@@ -77,7 +78,7 @@ int
 void
 	fdf_line_init(
 		t_line	*line,
-		t_map	*map,
+		const t_map	*map,
 		const t_point	*p0,
 		const t_point	*p1)
 {

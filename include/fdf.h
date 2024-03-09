@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/09 21:51:59 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/09 23:59:29 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@
 
 // mlx window
 # define WINDOW_TITLE "fdf"
-// # define WIDTH 1200
-// # define HEIGHT 800
-// # define MENU_WIDTH 400
-# define WIDTH 2000
-# define HEIGHT 1600
+# define WIDTH 1200
+# define HEIGHT 800
 # define MENU_WIDTH 400
+// # define WIDTH 2000
+// # define HEIGHT 1600
+// # define MENU_WIDTH 400
 
 // fdf defaults
 # define DEFAULT_SCALE 0.7
@@ -99,8 +99,8 @@ typedef struct s_map
 	t_point			**original;
 	t_point			**project;
 	t_point			**polar;
-	t_coordinates	coords;
-	t_palette		palette;
+	t_coordinates	*sphere;
+	t_palette		*palette;
 	char			*name;
 	int				fd;
 	int				x_max;
@@ -199,7 +199,7 @@ void		fdf_project_optimized(void *param, int y, int x);
 
 // utils_fdf.c
 void		fdf_redraw(t_fdf *fdf);
-void		fdf_scale(void *param, int y, int x);
+void		fdf_scale(void *param, const int y, const int x);
 void		fdf_center_offset(t_fdf *fdf);
 void		fdf_reset_scale_and_offset(t_fdf *fdf);
 
@@ -215,33 +215,34 @@ short		ft_sign(double val);
 
 // utils_init.c
 void		map_init(t_map *map);
-int			fdf_init(t_fdf *fdf, t_map *map);
-void		fdf_line_init(t_line *line, t_map *map,
+int			fdf_init(t_fdf *fdf, const t_map *map);
+void		fdf_line_init(t_line *line, const t_map *map,
 				const t_point *p0, const t_point *p1);
-void		map_colour(void *param, int y, int x);
-uint32_t	map_earth_colour(t_map *map,t_point *point);
-uint32_t	line_colour(t_line *line);
+void		map_colour(void *param, const int y, const int x);
+uint32_t	map_earth_colour(const t_map *map, t_point *point);
+uint32_t	line_colour(const t_line *line);
 
 // utils_map.c
 int			map_malloc_y(t_map *map);
-int			map_malloc_x(t_map *map, int y);
-void		map_find_z_min_max(void *param, int y, int x);
+int			map_malloc_x(t_map *map, const int y);
+void		map_find_z_min_max(void *param, const int y, const int x);
+void		cycle_palettes(t_map *map);
 
 // utils_misc.c
 void		map_free(t_map *map);
-void		draw_background(mlx_image_t *image, uint32_t colour);
+void		draw_background(const mlx_image_t *image, const uint32_t colour);
 
 // fdf_draw.c
-void		fdf_draw_point(t_fdf *fdf, t_line *line);
-int			fdf_check_point(t_fdf *fdf, int x_pixel, int y_pixel);
+void		fdf_draw_point(const t_fdf *fdf, const t_line *line);
+int			fdf_check_point(const t_fdf *fdf, int x_pixel, int y_pixel);
 void		fdf_draw(void *param);
 
 // fdf_draw_2.c
-void		fdf_draw_down_and_to_the_right(void *param, int y, int x);
-void		fdf_draw_line(t_fdf *fdf, t_point *p0, t_point *p1);
+void		fdf_draw_down_and_to_the_right(const void *param, const int y, const int x);
+void		fdf_draw_line(const t_fdf *fdf, const t_point *p0, const t_point *p1);
 
 // utils_draw.c
-int			over_the_horizon(t_fdf *fdf, t_line *line);
+int			over_the_horizon(const t_fdf *fdf, t_line *line);
 
 // utils_test.c
 // void		check_map_result(t_map *map, const char *str, const char *v);

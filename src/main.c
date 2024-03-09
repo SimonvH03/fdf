@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/09 21:35:47 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/09 23:19:22 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int
 	if (argc != 2)
 		return (EXIT_FAILURE);
 	map = (t_map)
-	{NULL, NULL, NULL, (t_coordinates){0, 0}, (t_palette){0,0,0}, argv[1], 0, 0, 0, 0, 0, 0};
+	{NULL, NULL, NULL, NULL, NULL, argv[1], 0, 0, 0, 0, 0, 0};
 	if (map_read(&map) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (fdf_init(&fdf, &map) == EXIT_FAILURE)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_colour.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/09 21:38:50 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/09 23:32:41 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ uint32_t
 
 	ratio = relative_height / total_height;
 	if (ratio <= 0.5)
-		return (gradient(ratio * 2, map->palette.low, map->palette.mid));
+		return (gradient(ratio * 2, map->palette->low, map->palette->mid));
 	else
-		return (gradient(ratio * 2, map->palette.mid, map->palette.high));
+		return (gradient(ratio * 2, map->palette->mid, map->palette->high));
 }
 
 uint32_t

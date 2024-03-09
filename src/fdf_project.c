@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_project.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:44:02 by simon             #+#    #+#             */
-/*   Updated: 2024/03/09 21:06:21 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/09 23:45:28 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,10 @@
 static void
 	point_rotate_alpha(
 		t_point	*point,
-		double alpha)
+		const double alpha)
 {
-	double	prev_y;
+	const double	prev_y = point->y;
 
-	prev_y = point->y;
-	point->x = point->x;
 	point->y = point->y * cos(alpha) + point->z * sin(alpha);
 	point->z = prev_y * -sin(alpha) + point->z * cos(alpha);
 }
@@ -30,13 +28,11 @@ static void
 static void
 	point_rotate_beta(
 		t_point	*point,
-		double beta)
+		const double beta)
 {
-	double	prev_x;
+	const double	prev_x = point->x;
 
-	prev_x = point->x;
 	point->x = point->x * cos(beta) + point->z * sin(beta);
-	point->y = point->y;
 	point->z = prev_x * -sin(beta) + point->z * cos(beta);
 }
 
@@ -44,14 +40,12 @@ static void
 static void
 	point_rotate_gamma(
 		t_point	*point,
-		double gamma)
+		const double gamma)
 {
-	double	prev_x;
+	const double	prev_x = point->x;
 
-	prev_x = point->x;
 	point->x = point->x * cos(gamma) + point->y * sin(gamma);
 	point->y = prev_x * -sin(gamma) + point->y * cos(gamma);
-	point->z = point->z;
 }
 
 // victim #4: replaced by map_iteration version
@@ -88,14 +82,13 @@ static void
 
 void
 	fdf_project(
-		void	*param,
+		const void	*param,
 		int y,
 		int x)
 {
-	t_fdf	*fdf;
-	t_point	*point;
+	const t_fdf	*fdf = param;
+	t_point		*point;
 
-	fdf = param;
 	point = &fdf->map->project[y][x];
 	if (fdf->perspective.gamma)
 		point_rotate_gamma(point, fdf->perspective.gamma);

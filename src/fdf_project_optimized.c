@@ -3,16 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_project_optimized.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:30:28 by simon             #+#    #+#             */
-/*   Updated: 2024/03/09 21:06:32 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/09 23:45:37 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void	point_rotate_precalculated(t_fdf *fdf, t_point *point)
+void
+	point_rotate_precalculated(
+		const t_fdf	*fdf,
+		t_point		*point)
 {
 	double			prev_x;
 	double			prev_y;
@@ -72,14 +75,13 @@ void	point_rotate_precalculated(t_fdf *fdf, t_point *point)
 
 void
 	fdf_project_optimized(
-		void	*param,
-		int y,
-		int x)
+		const void	*param,
+		const int y,
+		const int x)
 {
-	t_fdf	*fdf;
-	t_point	*point;
+	const t_fdf	*fdf = param;
+	t_point		*point;
 
-	fdf = param;
 	point = &fdf->map->project[y][x];
 	if (fdf->precalc.gamma || fdf->precalc.beta || fdf->precalc.alpha)
 		point_rotate_precalculated(fdf, point);

@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils_fdf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 10:59:22 by simon             #+#    #+#             */
-/*   Updated: 2024/03/09 21:10:54 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/09 23:59:16 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
+// this function sets redraw for values of which the change cannot be checked
 void
 	fdf_redraw(
 		t_fdf *fdf)
@@ -36,16 +37,16 @@ void
 		|| fdf->precalc.reproject
 		|| fdf->scale.diff != 1)
 		fdf->redraw = true;
-	if (fdf->perspective.reproject)
+	if (fdf->perspective.reproject == true)
 	{
 		map_iteration(fdf->map, &fdf_project, fdf);
-		fdf->perspective = (t_perspective){0, 0, 0};
+		fdf->perspective = (t_perspective){0, 0, 0, false};
 	}
-	if (fdf->precalc.reproject)
+	if (fdf->precalc.reproject == true)
 	{
 		map_iteration(fdf->map, &fdf_project_optimized, fdf);
 		if (fdf->spinlock == false)
-			fdf->precalc = (t_precalc){0, 0, 0};
+			fdf->precalc = (t_precalc){0, 0, 0, false};
 	}
 	if (fdf->scale.diff != 1)
 	{
@@ -87,14 +88,13 @@ void
 
 void
 	fdf_scale(
-		void	*param,
+		const void	*param,
 		int y,
 		int x)
 {
-	t_fdf	*fdf;
+	const t_fdf	*fdf = param;
 	t_point	*point;
 
-	fdf = param;
 	point = &fdf->map->project[y][x];
 	point->x *= fdf->scale.diff;
 	point->y *= fdf->scale.diff;
@@ -109,8 +109,8 @@ void
 	fdf->center.y = fdf->image->height / 2;
 	fdf->offset.x = 0;
 	fdf->offset.y = 0;
-}
-
+}	
+	
 void
 	fdf_reset_scale_and_offset(
 		t_fdf	*fdf)

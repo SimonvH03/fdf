@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_draw.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/09 19:28:06 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/09 23:56:15 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 // from fdf_draw.c, menu_draw.c
 void
 	draw_background(
-		mlx_image_t	*image,
-		uint32_t	colour)
+		const mlx_image_t	*image,
+		const uint32_t		colour)
 {
 	uint32_t	i;
 	uint32_t	j;

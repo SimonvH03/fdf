@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/09 21:51:43 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/09 23:57:19 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int
 int
 	map_malloc_x(
 		t_map	*map,
-		int y)
+		const int y)
 {
 	map->original[y] = (t_point *)malloc((map->x_max) * sizeof(t_point));
 	if (map->original[y] == NULL)
@@ -80,9 +80,9 @@ int
 void
 	map_find_z_min_max(
 		void	*param,
-		int y,
-		int x)
-{
+		const int y,
+		const int x)
+{			
 	t_map	*map;
 	int		z_val;
 
@@ -113,4 +113,9 @@ void
 	while (i < map->y_max && map->original[i])
 		free(map->original[i++]);
 	free(map->original);
+}
+
+void	cycle_palettes(t_map *map)
+{
+	return ;
 }

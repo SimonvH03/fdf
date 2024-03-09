@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_iteration.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:47:59 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/09 21:51:29 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/09 22:57:52 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,3 +48,4 @@ void
 // void	map_fill_polar(t_map *map);
 // void	map_set_polar(t_map *map);
 // void	map_find_z_min_max(t_map *map);
+// get destroyed lol
