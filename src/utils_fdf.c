@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_fdf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 10:59:22 by simon             #+#    #+#             */
-/*   Updated: 2024/03/08 15:11:17 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/09 20:08:42 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,13 @@ void
 	fdf->center.y = fdf->image->height / 2;
 	fdf->offset.x = 0;
 	fdf->offset.y = 0;
+}
+
+void
+	fdf_reset_scale_and_offset(
+		t_fdf	*fdf)
+{
+	fdf_center_offset(fdf);
+	fdf->scale.diff = fdf->scale.initial;
+	fdf->scale.total = 1;
 }

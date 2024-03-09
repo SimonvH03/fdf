@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_draw_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/09 17:06:54 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/09 20:27:33 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,14 +101,16 @@ int
 
 void
 	fdf_draw_down_and_to_the_right(
-		t_fdf	*fdf,
-		int x,
-		int y)
+		void	*param,
+		int y,
+		int x)
 {
+	t_fdf	*fdf;
 	t_point	*p0;
 	t_point	*p1;
 	int		check0;
 
+	fdf = param;
 	p0 = &fdf->map->project[y][x];
 	check0 = fdf_check_point(fdf, p0->x, p0->y);
 	if ((x + 1) < fdf->map->x_max)

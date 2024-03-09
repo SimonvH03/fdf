@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/09 19:37:49 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/09 20:27:01 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,8 @@ int			map_read(t_map *map);
 void		menu_draw(t_fdf *fdf);
 
 // map_iteration
-void	map_iteration(t_map *map, void (*function)(void *param),
+void	map_iteration(t_map *map,
+				void (*function)(void *param, int y, int x),
 				void *parameter);
 
 // map_mods.c
@@ -193,6 +194,7 @@ void		fdf_project_optimized(t_fdf *fdf);
 void		fdf_redraw(t_fdf *fdf);
 void		fdf_scale(t_fdf *fdf);
 void		fdf_center_offset(t_fdf *fdf);
+void		fdf_reset_scale_and_offset(t_fdf *fdf);
 
 // user_inputs_presets.c
 void		input_presets_1(t_fdf *fdf);
@@ -226,7 +228,7 @@ int			fdf_check_point(t_fdf *fdf, int x_pixel, int y_pixel);
 void		fdf_draw(void *param);
 
 // fdf_draw_2.c
-void		fdf_draw_down_and_to_the_right(t_fdf *fdf, int x, int y);
+void		fdf_draw_down_and_to_the_right(void *param, int y, int x);
 void		fdf_draw_line(t_fdf *fdf, t_point *p0, t_point *p1);
 
 // utils_draw.c

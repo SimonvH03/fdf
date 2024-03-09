@@ -18,6 +18,7 @@ SRC		=	$(SRCDIR)/fdf_colour.c \
 			$(SRCDIR)/fdf_project_optimized.c \
 			$(SRCDIR)/fdf_project.c \
 			$(SRCDIR)/main.c \
+			$(SRCDIR)/map_iteration.c \
 			$(SRCDIR)/map_mods.c \
 			$(SRCDIR)/map_read.c \
 			$(SRCDIR)/menu_draw.c \

@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:47:59 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/09 19:55:16 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/09 20:31:28 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,15 @@ void
 		x = 0;
 		while (x < map->x_max)
 		{
-			f(parameter, y, x);
+			function(parameter, y, x);
 			x++;
 		}
 		y++;
 	}
 }
 
-void	fdf_draw(void *param);
+// CHECKLIST
+// void	fdf_draw(void *param);
 void	fdf_colour(t_fdf *fdf);
 void	fdf_project_optimized(t_fdf *fdf);
 void	fdf_project(t_fdf *fdf);
@@ -47,3 +48,18 @@ void	map_set_original(t_map *map);
 void	map_fill_polar(t_map *map);
 void	map_set_polar(t_map *map);
 void	map_find_z_min_max(t_map *map);
+
+
+void
+	fdf_draw(
+		void *param)
+{
+	t_fdf	*fdf;
+
+	fdf = param;
+	if (fdf->redraw == false)
+		return ;
+	draw_background(fdf->image, C_BACKGROUND);
+	map_iteration(fdf->map, &fdf_draw_down_and_to_the_right, fdf);
+	fdf->redraw = false;
+}
