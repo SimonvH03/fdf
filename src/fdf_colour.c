@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/09 18:16:42 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/09 20:43:47 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,25 +101,27 @@ uint32_t
 	return (gradient(ratio, line->p0->colour, line->p1->colour));
 }
 
-void
-	fdf_colour(
-		t_fdf	*fdf)
-{
-	int		x;
-	int		y;
-	t_point	*point;
+// victim #2: replaced by map_iteration version
 
-	y = 0;
-	while (y < fdf->map->y_max)
-	{
-		x = 0;
-		while (x < fdf->map->x_max)
-		{
-			point = &fdf->map->original[y][x];
-			point->colour = fdf_earth_colour(fdf, point);
-			fdf->map->project[y][x].colour = point->colour;
-			x++;
-		}
-		y++;
-	}
-}
+// void
+// 	fdf_colour(
+// 		t_fdf	*fdf)
+// {
+// 	int		x;
+// 	int		y;
+// 	t_point	*point;
+
+// 	y = 0;
+// 	while (y < fdf->map->y_max)
+// 	{
+// 		x = 0;
+// 		while (x < fdf->map->x_max)
+// 		{
+// 			point = &fdf->map->original[y][x];
+// 			point->colour = fdf_earth_colour(fdf, point);
+// 			fdf->map->project[y][x].colour = point->colour;
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// }
