@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/10 01:31:13 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/10 02:14:28 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,10 @@ void
 	map_init(
 		t_map	*map)
 {
-	// map_create_palettes(map);
+	map_create_palettes(map);	(t_palette){C_EARTH_SEA, C_EARTH_LAND, C_EARTH_MOUNTAIN};
+	map_create_sphere_shapes(map);	(t_coordinates){-2 * PI / (map->x_max), PI / (map->y_max - 1)};
 	map_iteration(map, &map_find_z_min_max, map);
 	map->radius = (map->z_max - map->z_min) * 10;
-	map->sphere->longitude = -2 * PI / (map->x_max);
-	map->sphere->latitude = PI / (map->y_max - 1);
-	map->palette = &(t_palette){C_EARTH_SEA, C_EARTH_LAND, C_EARTH_MOUNTAIN};
 	map_iteration(map , &map_colour, map);
 	map_iteration(map, &map_fill_polar, map);
 }

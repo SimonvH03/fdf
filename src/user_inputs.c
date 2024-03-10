@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/09 23:23:26 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/10 02:07:52 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ void
 		|| mlx_is_key_down(fdf->mlx, MLX_KEY_EQUAL))
 		input_variable_speed(fdf);
 	// if (mlx_is_key_down(fdf->mlx, MLX_KEY_C))
-	// 	cycle_palettes(fdf->map);
 	manual_rotation(fdf);
 	manual_translation(fdf);
 	fdf_redraw(fdf);

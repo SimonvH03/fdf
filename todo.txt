@@ -5,11 +5,10 @@ Colours
 Over The Horizon
 	(utils_fdf.c) info in comments
 
-Map Iteration
-	(map_iteraion.c) make a double while loop to iterate over all t_points in the maps and apply parameter function
-
 Make
 	(Makefile) write it myself
 
 Cleanup
 	fdf_draw: make constant by extracting the redraw check and redraw = false set
+
+Make map palettes and shapes with new functions (see map_init), have to malloc.
