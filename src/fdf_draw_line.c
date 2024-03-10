@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/09 23:46:14 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/10 01:21:10 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int
 
 void
 	fdf_draw_down_and_to_the_right(
-		const void	*param,
+		void	*param,
 		const int y,
 		const int x)
 {

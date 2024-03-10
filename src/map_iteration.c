@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:47:59 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/09 22:57:52 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/10 01:21:26 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void
 		t_map *map,
 		void (*function)
 		(void *param,
-			int y,
-			int x),
+			const int y,
+			const int x),
 		void *parameter)
 {
 	int	y;

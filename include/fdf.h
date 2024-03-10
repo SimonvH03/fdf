@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/09 23:59:29 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/10 01:31:06 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,13 +178,13 @@ void		menu_draw(t_fdf *fdf);
 
 // map_iteration
 void	map_iteration(t_map *map,
-				void (*function)(void *param, int y, int x),
+				void (*function)(void *param, const int y, const int x),
 				void *parameter);
 
 // map_mods.c
-void		map_fill_polar(void *param, int y, int x);
-void		map_set_polar(void *param, int y, int x);
-void		map_set_original(void *param, int y, int x);
+void		map_fill_polar(void *param, const int y, const int x);
+void		map_set_polar(void *param, const int y, const int x);
+void		map_set_original(void *param, const int y, const int x);
 
 // loops
 void		keyhook(mlx_key_data_t keydata, void *param);
@@ -194,8 +194,8 @@ void		fdf_scale_and_project(void *param);
 void		fdf_draw(void *param);
 
 // fdf_projects
-void		fdf_project(void *param, int y, int x); // copy
-void		fdf_project_optimized(void *param, int y, int x);
+void		fdf_project(void *param, const int y, const int x);
+void		fdf_project_optimized(void *param, const int y, const int x);
 
 // utils_fdf.c
 void		fdf_redraw(t_fdf *fdf);
@@ -214,12 +214,13 @@ double		ft_abs(double val);
 short		ft_sign(double val);
 
 // utils_init.c
+//void		create_palettes(t_map *map);
 void		map_init(t_map *map);
-int			fdf_init(t_fdf *fdf, const t_map *map);
-void		fdf_line_init(t_line *line, const t_map *map,
+int			fdf_init(t_fdf *fdf, t_map *map);
+void		fdf_line_init(t_line *line, t_map *map,
 				const t_point *p0, const t_point *p1);
 void		map_colour(void *param, const int y, const int x);
-uint32_t	map_earth_colour(const t_map *map, t_point *point);
+uint32_t	map_earth_colour(const t_map *map, const t_point *point);
 uint32_t	line_colour(const t_line *line);
 
 // utils_map.c
@@ -238,7 +239,7 @@ int			fdf_check_point(const t_fdf *fdf, int x_pixel, int y_pixel);
 void		fdf_draw(void *param);
 
 // fdf_draw_2.c
-void		fdf_draw_down_and_to_the_right(const void *param, const int y, const int x);
+void		fdf_draw_down_and_to_the_right(void *param, const int y, const int x);
 void		fdf_draw_line(const t_fdf *fdf, const t_point *p0, const t_point *p1);
 
 // utils_draw.c

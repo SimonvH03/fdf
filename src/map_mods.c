@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 17:05:51 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/09 23:49:50 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/10 01:16:51 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,5 +140,5 @@ void
 	t_map	*map;
 
 	map = param;
-	(t_point)map->project[y][x] = (t_point)map->original[y][x];
+	map->project[y][x] = map->original[y][x];
 }

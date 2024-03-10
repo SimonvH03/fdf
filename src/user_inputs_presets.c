@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:31:44 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/09 23:03:10 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/10 01:27:30 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void
 		fdf_center_offset(fdf);
 		fdf->perspective = (t_perspective)
 		{deg_to_rad(-90), 0, deg_to_rad(90), true};
-		fdf->scale.diff = fdf->image->width / (2.2 * fdf->map->radius);
+		fdf->scale.diff = fdf->scale.sphere;
 		fdf->scale.total = 1;
 		fdf->ballin = true;
 	}

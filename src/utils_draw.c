@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/09 23:56:15 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/10 01:22:06 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void
 //;malloc a new point (with colour) exactly on the horizon and return (0)
 int
 	over_the_horizon(
-		t_fdf	*fdf,
-		t_line	*line)
+		const t_fdf	*fdf,
+		t_line		*line)
 {
 	if (fdf->ballin == false)
 		return (0);

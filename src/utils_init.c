@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/09 23:52:44 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/10 01:31:13 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,14 @@ static void
 		fdf->scale.initial = 0.1;
 	fdf->scale.diff = fdf->scale.initial;
 	fdf->scale.total = 1;
+	fdf->scale.sphere = fdf->image->width / (2.2 * fdf->map->radius);
 }
 
 void
 	map_init(
-		t_map *map)
+		t_map	*map)
 {
-	map_create_palettes(map);
+	// map_create_palettes(map);
 	map_iteration(map, &map_find_z_min_max, map);
 	map->radius = (map->z_max - map->z_min) * 10;
 	map->sphere->longitude = -2 * PI / (map->x_max);
@@ -47,8 +48,8 @@ void
 // from file main.c
 int
 	fdf_init(
-		t_fdf		*fdf,
-		const t_map	*map)
+		t_fdf	*fdf,
+		t_map	*map)
 {
 	fdf->mlx = mlx_init(WIDTH, HEIGHT, WINDOW_TITLE, false);
 	if (fdf->mlx == NULL)
@@ -77,8 +78,8 @@ int
 // from file fdf_draw.c
 void
 	fdf_line_init(
-		t_line	*line,
-		const t_map	*map,
+		t_line			*line,
+		t_map			*map,
 		const t_point	*p0,
 		const t_point	*p1)
 {

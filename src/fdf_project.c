@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:44:02 by simon             #+#    #+#             */
-/*   Updated: 2024/03/09 23:45:28 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/10 01:21:10 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static void
 
 void
 	fdf_project(
-		const void	*param,
+		void	*param,
 		int y,
 		int x)
 {
