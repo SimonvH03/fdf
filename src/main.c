@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/10 02:09:22 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/10 23:54:40 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,12 @@ int
 
 	if (argc != 2)
 		return (EXIT_FAILURE);
-	map = (t_map)
-	{NULL, NULL, NULL, NULL, NULL, argv[1], 0, 0, 0, 0, 0, 0};
+	map_init_preread(&map, argv[1]);
 	if (map_read(&map) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
+	map_init_postread(&map);
 	if (fdf_init(&fdf, &map) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	map_init(&map);
 	menu_draw(&fdf);
 	loop_hooks(&fdf);
 	mlx_loop(fdf.mlx);

@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:53:50 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/04 19:06:25 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/11 00:30:33 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,6 @@ int			ft_writing(const char *str, int n);
 // char		*ft_writingpoint(const char *str, int n);
 
 int			ft_cpy(char *dest, const char *src, int n);
+int			ft_str_toupper(char *src);
 
 #endif

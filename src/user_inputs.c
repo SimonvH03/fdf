@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/10 02:07:52 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/11 00:46:51 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,16 +78,17 @@ void
 
 	fdf = param;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_P)
-		|| mlx_is_key_down(fdf->mlx, MLX_KEY_I)
-		|| mlx_is_key_down(fdf->mlx, MLX_KEY_O))
+		|| mlx_is_key_down(fdf->mlx, MLX_KEY_I))
 		input_presets_1(fdf);
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_O)
+		|| mlx_is_key_down(fdf->mlx, MLX_KEY_U))
+		input_presets_2(fdf);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_M)
 		|| mlx_is_key_down(fdf->mlx, MLX_KEY_N))
-		input_presets_2(fdf);
+		input_hotkeys(fdf);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_MINUS)
 		|| mlx_is_key_down(fdf->mlx, MLX_KEY_EQUAL))
 		input_variable_speed(fdf);
-	// if (mlx_is_key_down(fdf->mlx, MLX_KEY_C))
 	manual_rotation(fdf);
 	manual_translation(fdf);
 	fdf_redraw(fdf);

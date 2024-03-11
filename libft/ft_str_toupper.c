@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_draw.c                                         :+:      :+:    :+:   */
+/*   ft_str_toupper.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/11 00:35:03 by simon            ###   ########.fr       */
+/*   Created: 2023/12/16 23:45:15 by simon             #+#    #+#             */
+/*   Updated: 2024/03/11 00:29:12 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "libft.h"
 
-void
-	fdf_draw(
-		void *param)
+int	ft_str_toupper(char *src)
 {
-	t_fdf	*fdf;
+	const int	slen = ft_strlen(src);
+	int			i;
 
-	fdf = param;
-	if (fdf->redraw == false)
-		return ;
-	draw_background(fdf->image, fdf->map->palette.background);
-	map_iteration(fdf->map, &fdf_draw_down_and_to_the_right, fdf);
-	fdf->redraw = false;
+	i = 0;
+	while (i < slen)
+	{
+		src[i] = ft_toupper(src[i]);
+		i++;
+	}
+	return (i);
 }

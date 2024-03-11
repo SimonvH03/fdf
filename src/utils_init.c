@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/10 02:14:28 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/11 00:33:27 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,42 @@ static void
 		fdf->scale.initial = 0.1;
 	fdf->scale.diff = fdf->scale.initial;
 	fdf->scale.total = 1;
-	fdf->scale.sphere = fdf->image->width / (2.2 * fdf->map->radius);
+	fdf->scale.sphere = fdf->image->width / (2.2 * fdf->map->radius) * DEFAULT_SCALE;
 }
 
 void
-	map_init(
+	map_init_preread(
+		t_map	*map,
+		char	*map_name)
+{
+	map->original = NULL;
+	map->project = NULL;
+	map->polar = NULL;
+	map->palette = (t_palette)
+			{P_RGB_NR, C_RGB_BACK,
+			C_RGB_LOW, C_RGB_MID, C_RGB_HIGH};
+	if (map_is_globe(map_name) == EXIT_SUCCESS)
+		map->palette = (t_palette){P_EARTH_NR, C_EARTH_BACK, 0, 0, 0};
+	map->name = map_name;
+	map->fd = 0;
+	map->x_max = 0;
+	map->y_max = 0;
+	map->shape = (t_shape){0, 0, 0};
+	map->z_min = 0;
+	map->z_max = 0;
+	map->total_height = 0;
+	map->radius = 0;
+}
+
+void
+	map_init_postread(
 		t_map	*map)
 {
-	map_create_palettes(map);	(t_palette){C_EARTH_SEA, C_EARTH_LAND, C_EARTH_MOUNTAIN};
-	map_create_sphere_shapes(map);	(t_coordinates){-2 * PI / (map->x_max), PI / (map->y_max - 1)};
 	map_iteration(map, &map_find_z_min_max, map);
-	map->radius = (map->z_max - map->z_min) * 10;
+	map->total_height = map->z_max - map->z_min;
+	map->radius = (map->total_height) * 10;
+	map->shape = (t_shape)
+			{S_FULL_SPHERE, -2 * PI / (map->x_max), PI / (map->y_max - 1)};
 	map_iteration(map , &map_colour, map);
 	map_iteration(map, &map_fill_polar, map);
 }
@@ -81,7 +106,6 @@ void
 		const t_point	*p0,
 		const t_point	*p1)
 {
-	line->map = map;
 	line->d_ctl = ft_abs(p1->x - p0->x);
 	line->d_pas = ft_abs(p1->y - p0->y);
 	line->s_ctl = ft_sign(p1->x - p0->x);

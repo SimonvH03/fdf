@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:31:44 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/10 01:27:30 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/11 00:56:48 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,39 @@ void
 		{ISO_ALPHA, ISO_BETA, ISO_GAMMA, true};
 		fdf->ballin = false;
 	}
+}
+
+void
+	input_presets_2(
+		t_fdf	*fdf)
+{
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_O))
 	{
-		map_iteration(fdf->map, &map_set_polar, fdf->map);
-		fdf_center_offset(fdf);
+		fdf->map->shape = (t_shape){S_FULL_SPHERE,
+			(-2 * PI / (fdf->map->x_max)),
+			(PI / (fdf->map->y_max - 1))};
 		fdf->perspective = (t_perspective)
 		{deg_to_rad(-90), 0, deg_to_rad(90), true};
 		fdf->scale.diff = fdf->scale.sphere;
 		fdf->scale.total = 1;
 		fdf->ballin = true;
 	}
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_U))
+	{
+		fdf->map->shape = (t_shape){S_HALF_SPHERE,
+			(-2 * PI / (fdf->map->x_max)),
+			(0.5 * PI / (fdf->map->y_max - 1))};
+		fdf->ballin = false;
+	}
+	map_iteration(fdf->map, &map_fill_polar, fdf->map);
+	map_iteration(fdf->map, &map_set_polar, fdf->map);
+	fdf_center_offset(fdf);
+	fdf->scale.diff = fdf->scale.sphere;
+	fdf->scale.total = 1;
 }
 
 void
-	input_presets_2(
+	input_hotkeys(
 		t_fdf	*fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_M))

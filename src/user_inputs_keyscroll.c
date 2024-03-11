@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   user_inputs_keyscroll_hooks.c                      :+:      :+:    :+:   */
+/*   user_inputs_keyscroll.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/09 23:07:06 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/11 00:48:23 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ void
 		fdf->spinlock = (!fdf->spinlock);
 		fdf->speed = ROTATION_SPEED;
 		fdf->cosin = (t_cosin){cos(fdf->speed), sin(fdf->speed)};
+	}
+	if (keydata.key == MLX_KEY_C && keydata.action == MLX_PRESS)
+	{
+		fdf->map->palette = cycle_palettes(fdf->map);
+		map_iteration(fdf->map, &map_colour, fdf->map);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/10 01:21:10 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/10 23:49:05 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void
 		if (!check0 || !fdf_check_point(fdf, p1->x, p1->y))
 			fdf_draw_line(fdf, p0, p1);
 	}
-	if (fdf->ballin == true && x == fdf->map->x_max - 1)
+	if (fdf->ballin == true && (x + 1) == fdf->map->x_max)
 	{
 		p1 = &fdf->map->project[y][0];
 		if (!check0 || !fdf_check_point(fdf, p1->x, p1->y))

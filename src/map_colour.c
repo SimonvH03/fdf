@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/10 01:30:49 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/11 01:03:58 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,19 @@ uint32_t
 		const t_map 	*map,
 		const t_point	*point)
 {
-	const double	current = point->z;
-	const double	z_max = map->z_max;
-	const double	total_height = z_max - map->z_min;
+	const double	current_z = point->z;
 
-	if (current < 0)
-		return (C_EARTH_SEA);
+	if (current_z < 0)
+		return (gradient(current_z / map->z_min,
+				C_EARTH_SEA, C_EARTH_DEEP_SEA));
 	if (point->y > map->y_max * 0.39203539823)
 		return (C_EARTH_SNOW);
-	if (current < z_max * 0.01)
-		return (C_EARTH_SHORE);
-	if (current < z_max * .15)
-		return (C_EARTH_LAND);
-	if (current < z_max * .65)
-		return (C_EARTH_MOUNTAIN);
+	if (current_z < (map->z_max * 0.65))
+		return (gradient(current_z / (map->z_max * 0.65),
+				C_EARTH_LAND, C_EARTH_MOUNTAIN));
 	else
-		return (C_EARTH_SNOW);
+		return (gradient(current_z / map->z_max,
+				C_EARTH_MOUNTAIN, C_EARTH_SNOW));
 }
 
 uint32_t
@@ -66,14 +63,13 @@ uint32_t
 		const t_point	*point)
 {
 	const double	relative_height = point->z - map->z_min;
-	const double	total_height = map->z_max - map->z_min;
 	double			ratio;
 
-	ratio = relative_height / total_height;
+	ratio = relative_height / map->total_height;
 	if (ratio <= 0.5)
-		return (gradient(ratio * 2, map->palette->low, map->palette->mid));
+		return (gradient(ratio * 2, map->palette.low, map->palette.mid));
 	else
-		return (gradient(ratio * 2, map->palette->mid, map->palette->high));
+		return (gradient(ratio * 2, map->palette.mid, map->palette.high));
 }
 
 uint32_t
@@ -92,38 +88,13 @@ uint32_t
 	else
 	{
 		total_height = line->d_pas;
-		relative_height = line->i;
+		relative_height = line->j;
 	}
 	if (total_height == 0)
 		return (line->p0->colour);
 	ratio = relative_height / total_height;
 	return (gradient(ratio, line->p0->colour, line->p1->colour));
 }
-
-// victim #2: replaced by map_iteration version
-
-// void
-// 	fdf_colour(
-// 		t_fdf	*fdf)
-// {
-// 	int		x;
-// 	int		y;
-// 	t_point	*point;
-
-// 	y = 0;
-// 	while (y < fdf->map->y_max)
-// 	{
-// 		x = 0;
-// 		while (x < fdf->map->x_max)
-// 		{
-// 			point = &fdf->map->original[y][x];
-// 			point->colour = map_earth_colour(fdf->map, point);
-// 			fdf->map->project[y][x].colour = point->colour;
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// }
 
 void
 	map_colour(
@@ -136,6 +107,10 @@ void
 
 	map = param;
 	point = &map->original[y][x];
-	point->colour = map_earth_colour(map, point);
+	if (map->palette.nr == P_EARTH_NR)
+		point->colour = map_earth_colour(map, point);
+	else
+		point->colour = map_point_colour(map, point);
 	map->project[y][x].colour = point->colour;
+	map->polar[y][x].colour = point->colour;
 }

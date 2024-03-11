@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 10:59:22 by simon             #+#    #+#             */
-/*   Updated: 2024/03/10 01:21:10 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/11 00:47:36 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@ void
 	fdf_redraw(
 		t_fdf *fdf)
 {
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_UP)
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_R)
+		|| mlx_is_key_down(fdf->mlx, MLX_KEY_UP)
 		|| mlx_is_key_down(fdf->mlx, MLX_KEY_DOWN)
 		|| mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT)
 		|| mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT)
 		|| mlx_is_key_down(fdf->mlx, MLX_KEY_M)
-		|| mlx_is_key_down(fdf->mlx, MLX_KEY_N))
+		|| mlx_is_key_down(fdf->mlx, MLX_KEY_N)
+		|| mlx_is_key_down(fdf->mlx, MLX_KEY_C))
 		fdf->redraw = true;
 }
 
@@ -57,35 +59,6 @@ void
 	}
 }
 
-// victim #5: replaced by map_iteration version
-
-// void
-// 	fdf_scale(
-// 		t_fdf	*fdf)
-// {
-// 	t_point	*point;
-// 	int		y;
-// 	int		x;
-
-// 	y = 0;
-// 	fdf->offset.x *= fdf->scale.diff;
-// 	fdf->offset.y *= fdf->scale.diff;
-// 	while (y < fdf->map->y_max)
-// 	{
-// 		x = 0;
-// 		while (x < fdf->map->x_max)
-// 		{
-// 			point = &fdf->map->project[y][x];
-// 			point->x *= fdf->scale.diff;
-// 			point->y *= fdf->scale.diff;
-// 			point->z *= fdf->scale.diff;
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// 	fdf->scale.diff = 1;
-// }
-
 void
 	fdf_scale(
 		void	*param,
@@ -109,8 +82,8 @@ void
 	fdf->center.y = fdf->image->height / 2;
 	fdf->offset.x = 0;
 	fdf->offset.y = 0;
-}	
-	
+}
+
 void
 	fdf_reset_scale_and_offset(
 		t_fdf	*fdf)

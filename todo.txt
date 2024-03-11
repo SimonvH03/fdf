@@ -1,7 +1,3 @@
-Colours
-	(map read) interpret colours (or not, it kinda sucks)
-	(colours) refine function for colouring earth
-
 Over The Horizon
 	(utils_fdf.c) info in comments
 
@@ -9,6 +5,10 @@ Make
 	(Makefile) write it myself
 
 Cleanup
-	fdf_draw: make constant by extracting the redraw check and redraw = false set
+	(fdf_draw) make constant by extracting the redraw check and redraw = false set
 
-Make map palettes and shapes with new functions (see map_init), have to malloc.
+Presets
+	Take each preset into their own function (to apply when initialized)
+
+Input
+	add hotkey for squishing z values (map_iteration)

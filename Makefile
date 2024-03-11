@@ -18,6 +18,7 @@ SRC		=	$(SRCDIR)/fdf_draw_line.c \
 			$(SRCDIR)/fdf_project.c \
 			$(SRCDIR)/main.c \
 			$(SRCDIR)/map_colour.c \
+			$(SRCDIR)/map_cycle_stuff.c \
 			$(SRCDIR)/map_iteration.c \
 			$(SRCDIR)/map_mods.c \
 			$(SRCDIR)/map_read.c \
@@ -29,8 +30,7 @@ SRC		=	$(SRCDIR)/fdf_draw_line.c \
 			$(SRCDIR)/utils_draw.c \
 			$(SRCDIR)/utils_fdf.c \
 			$(SRCDIR)/utils_init.c \
-			$(SRCDIR)/utils_map.c \
-			$(SRCDIR)/utils_test.c
+			$(SRCDIR)/utils_map.c
 OBJS	= ${SRC:.c=.o}
 
 all: $(LIBS) $(NAME)
