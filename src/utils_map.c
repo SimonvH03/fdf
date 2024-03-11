@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/11 00:25:21 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/11 15:49:07 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,17 @@ int
 		return (EXIT_FAILURE);
 	name_length = ft_strlen(map_name);
 	search_name = ft_strdup(map_name);
-	
+	if (search_name == NULL)
+		return (EXIT_FAILURE);
+	name_length = ft_str_toupper(search_name);
 	if (ft_strnstr(search_name, "WORLD", name_length)
 		|| ft_strnstr(search_name, "GLOBE", name_length)
 		|| ft_strnstr(search_name, "EARTH", name_length)
 		|| ft_strnstr(search_name, "WERELD", name_length))
+	{
+		free(search_name);
 		return (EXIT_SUCCESS);
+	}
+	free(search_name);
 	return (EXIT_FAILURE);
 }

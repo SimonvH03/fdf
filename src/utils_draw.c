@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/10 01:22:06 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/11 16:04:23 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int
 		const t_fdf	*fdf,
 		t_line		*line)
 {
-	if (fdf->ballin == false)
+	if (fdf->ballin == false || fdf->map->shape.nr != S_FULL_SPHERE)
 		return (0);
 	if (line->p0->z < 0 && line->p1->z < 0)
 	{

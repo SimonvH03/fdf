@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:31:44 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/11 00:56:48 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/11 15:55:13 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,6 @@ void
 			(PI / (fdf->map->y_max - 1))};
 		fdf->perspective = (t_perspective)
 		{deg_to_rad(-90), 0, deg_to_rad(90), true};
-		fdf->scale.diff = fdf->scale.sphere;
-		fdf->scale.total = 1;
-		fdf->ballin = true;
 	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_U))
 	{
@@ -59,6 +56,7 @@ void
 	fdf_center_offset(fdf);
 	fdf->scale.diff = fdf->scale.sphere;
 	fdf->scale.total = 1;
+	fdf->ballin = true;
 }
 
 void
