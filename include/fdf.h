@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/11 15:52:59 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/13 15:28:23 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@
 
 // mlx window
 # define WINDOW_TITLE "fdf"
-// # define WIDTH 1200
-// # define HEIGHT 800
-// # define MENU_WIDTH 400
-# define WIDTH 2000
-# define HEIGHT 1600
+# define WIDTH 1200
+# define HEIGHT 800
 # define MENU_WIDTH 400
+// # define WIDTH 2000
+// # define HEIGHT 1600
+// # define MENU_WIDTH 400
 
 // fdf defaults
 # define DEFAULT_SCALE 0.7
@@ -200,6 +200,8 @@ typedef struct s_fdf
 	bool			spinlock;
 	bool			redraw;
 	bool			ballin;
+	double			darksquare;
+	double			radius;
 }	t_fdf;
 
 // main
@@ -248,8 +250,7 @@ double		ft_abs(double val);
 short		ft_sign(double val);
 
 // utils_init.c
-void		map_init_preread(t_map *map, char *argv_1);
-void		map_init_postread(t_map *map);
+int			map_init(t_map *map, char *map_name);
 int			fdf_init(t_fdf *fdf, t_map *map);
 void		fdf_line_init(t_line *line, t_map *map,
 				const t_point *p0, const t_point *p1);

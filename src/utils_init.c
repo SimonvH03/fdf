@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/11 00:33:27 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/13 15:35:31 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ static void
 	fdf->scale.sphere = fdf->image->width / (2.2 * fdf->map->radius) * DEFAULT_SCALE;
 }
 
-void
-	map_init_preread(
+int
+	map_init(
 		t_map	*map,
 		char	*map_name)
 {
@@ -53,12 +53,8 @@ void
 	map->z_max = 0;
 	map->total_height = 0;
 	map->radius = 0;
-}
-
-void
-	map_init_postread(
-		t_map	*map)
-{
+	if (map_read(map) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
 	map_iteration(map, &map_find_z_min_max, map);
 	map->total_height = map->z_max - map->z_min;
 	map->radius = (map->total_height) * 10;
@@ -91,6 +87,9 @@ int
 	fdf->speed = ROTATION_SPEED;
 	fdf->cosin = (t_cosin){cos(fdf->speed), sin(fdf->speed)};
 	fdf_scale_init(fdf);
+	fdf->radius = fdf->map->radius;
+	fdf->darksquare = fdf->radius / sqrt(2);
+	fdf->darksquare *= fdf->scale.sphere;
 	fdf_center_offset(fdf);
 	fdf->spinlock = false;
 	fdf->redraw = true;

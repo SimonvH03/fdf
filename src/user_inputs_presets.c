@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:31:44 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/11 16:55:03 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/11 19:31:57 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void
 		fdf->map->shape = (t_shape){S_HALF_SPHERE,
 			(-2 * PI / (fdf->map->x_max)),
 			(0.5 * PI / (fdf->map->y_max - 1))};
-		fdf->ballin = false;
+		fdf->perspective = (t_perspective)
+		{0, 0, deg_to_rad(90), true};
 	}
 	map_iteration(fdf->map, &map_fill_polar, fdf->map);
 	map_iteration(fdf->map, &map_set_polar, fdf->map);

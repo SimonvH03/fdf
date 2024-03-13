@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/11 16:02:01 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/13 15:03:29 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,25 +107,25 @@ void
 {
 	const t_fdf		*fdf = param;
 	const t_point	*p0 = &fdf->map->project[y][x];
-	const int		check0 = fdf_check_point(fdf, p0->x, p0->y);
+	const int		p0_check = fdf_check_point(fdf, p0->x, p0->y);
 	t_point			*p1;
 
 	if ((x + 1) < fdf->map->x_max)
 	{
 		p1 = &fdf->map->project[y][x + 1];
-		if (!check0 || !fdf_check_point(fdf, p1->x, p1->y))
+		if (!p0_check || !fdf_check_point(fdf, p1->x, p1->y))
 			fdf_draw_line(fdf, p0, p1);
 	}
 	if ((y + 1) < fdf->map->y_max)
 	{
 		p1 = &fdf->map->project[y + 1][x];
-		if (!check0 || !fdf_check_point(fdf, p1->x, p1->y))
+		if (!p0_check || !fdf_check_point(fdf, p1->x, p1->y))
 			fdf_draw_line(fdf, p0, p1);
 	}
 	if ((x + 1) == fdf->map->x_max && fdf->ballin == true)
 	{
 		p1 = &fdf->map->project[y][0];
-		if (!check0 || !fdf_check_point(fdf, p1->x, p1->y))
+		if (!p0_check || !fdf_check_point(fdf, p1->x, p1->y))
 			fdf_draw_line(fdf, p0, p1);
 	}
 }

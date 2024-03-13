@@ -6,13 +6,12 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 10:59:22 by simon             #+#    #+#             */
-/*   Updated: 2024/03/11 16:33:33 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/11 19:32:33 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-// this function sets redraw for values of which the change cannot be checked
 void
 	fdf_redraw(
 		t_fdf *fdf)
@@ -26,6 +25,10 @@ void
 		|| mlx_is_key_down(fdf->mlx, MLX_KEY_N)
 		|| mlx_is_key_down(fdf->mlx, MLX_KEY_C))
 		fdf->redraw = true;
+	if (fdf->perspective.reproject
+		|| fdf->precalc.reproject
+		|| fdf->scale.diff != 1)
+		fdf->redraw = true;
 }
 
 void
@@ -35,10 +38,6 @@ void
 	t_fdf	*fdf;
 
 	fdf = param;
-	if (fdf->perspective.reproject
-		|| fdf->precalc.reproject
-		|| fdf->scale.diff != 1)
-		fdf->redraw = true;
 	if (fdf->perspective.reproject == true)
 	{
 		map_iteration(fdf->map, &fdf_project, fdf);
