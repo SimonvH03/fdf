@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_cycle_stuff.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 19:05:29 by simon             #+#    #+#             */
-/*   Updated: 2024/03/11 00:49:51 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/13 16:40:42 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 t_palette	cycle_palettes(t_map *map)
 {
 	if (map->palette.nr == P_RGB_NR)
+		return ((t_palette)
+			{P_HACKERMAN_NR, C_HACKERMAN_BACK,
+			C_HACKERMAN_LOW, C_HACKERMAN_MID, C_HACKERMAN_HIGH});
+	else if (map->palette.nr == P_HACKERMAN_NR)
 		return ((t_palette)
 			{P_METAL_NR, C_METAL_BACK,
 			C_METAL_LOW, C_METAL_MID, C_METAL_HIGH});

@@ -23,6 +23,7 @@ SRC		=	$(SRCDIR)/fdf_draw_line.c \
 			$(SRCDIR)/map_mods.c \
 			$(SRCDIR)/map_read.c \
 			$(SRCDIR)/menu_draw.c \
+			$(SRCDIR)/over_the_horizon.c \
 			$(SRCDIR)/user_inputs_keyscroll.c \
 			$(SRCDIR)/user_inputs_presets.c \
 			$(SRCDIR)/user_inputs.c \

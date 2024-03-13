@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_colour.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/11 01:03:58 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/13 19:43:55 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,30 @@ uint32_t
 }
 
 uint32_t
+	line_colour(
+		const t_line	*line)
+{
+	double	relative_height;
+	double	total_height;
+	double	ratio;
+
+	if (line->d_ctl > line->d_pas)
+	{
+		total_height = line->d_ctl;
+		relative_height = line->i;
+	}
+	else
+	{
+		total_height = line->d_pas;
+		relative_height = line->j;
+	}
+	if (relative_height == 0 || total_height == 0)
+		return (line->p0->colour);
+	ratio = relative_height / total_height;
+	return (gradient(ratio, line->p0->colour, line->p1->colour));
+}
+
+uint32_t
 	map_earth_colour(
 		const t_map 	*map,
 		const t_point	*point)
@@ -65,35 +89,13 @@ uint32_t
 	const double	relative_height = point->z - map->z_min;
 	double			ratio;
 
+	if (map->total_height == 0)
+		return (map->palette.low);
 	ratio = relative_height / map->total_height;
 	if (ratio <= 0.5)
 		return (gradient(ratio * 2, map->palette.low, map->palette.mid));
 	else
 		return (gradient(ratio * 2, map->palette.mid, map->palette.high));
-}
-
-uint32_t
-	line_colour(
-		const t_line	*line)
-{
-	double	relative_height;
-	double	total_height;
-	double	ratio;
-
-	if (line->d_ctl > line->d_pas)
-	{
-		total_height = line->d_ctl;
-		relative_height = line->i;
-	}
-	else
-	{
-		total_height = line->d_pas;
-		relative_height = line->j;
-	}
-	if (total_height == 0)
-		return (line->p0->colour);
-	ratio = relative_height / total_height;
-	return (gradient(ratio, line->p0->colour, line->p1->colour));
 }
 
 void

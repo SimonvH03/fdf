@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/13 15:28:23 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/13 22:42:34 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@
 
 // mlx window
 # define WINDOW_TITLE "fdf"
-# define WIDTH 1200
-# define HEIGHT 800
-# define MENU_WIDTH 400
-// # define WIDTH 2000
-// # define HEIGHT 1600
+// # define WIDTH 1200
+// # define HEIGHT 800
 // # define MENU_WIDTH 400
+# define WIDTH 2000
+# define HEIGHT 1600
+# define MENU_WIDTH 400
 
 // fdf defaults
 # define DEFAULT_SCALE 0.7
@@ -58,22 +58,29 @@
 # define C_RGB_MID			0x00FF00FF
 # define C_RGB_HIGH			0x0000FFFF
 
+// palette HACKERMAN
+# define P_HACKERMAN_NR		1
+# define C_HACKERMAN_BACK	C_BLACK
+# define C_HACKERMAN_LOW	0x002200FF
+# define C_HACKERMAN_MID	0x006600FF
+# define C_HACKERMAN_HIGH	0x00FF00FF
+
 // palette Metal
-# define P_METAL_NR			1
+# define P_METAL_NR			2
 # define C_METAL_BACK		C_GRAY
 # define C_METAL_LOW		C_BLACK
 # define C_METAL_MID		0x808080FF
 # define C_METAL_HIGH		C_WHITE
 
 // palette Pastel
-# define P_PASTEL_NR		2
+# define P_PASTEL_NR		3
 # define C_PASTEL_BACK		0xFBEEE0FF
 # define C_PASTEL_LOW		0x85D65CFF
 # define C_PASTEL_MID		0xFFE840FF
 # define C_PASTEL_HIGH		0xFBBBC8FF
 
 // palette Earth
-# define P_EARTH_NR			3
+# define P_EARTH_NR			4
 # define C_EARTH_BACK		C_BLACK
 # define C_EARTH_DEEP_SEA	0x202060FF
 # define C_EARTH_SEA		0x303090FF
@@ -101,8 +108,8 @@ typedef struct s_line
 	int				err;
 	int				i;
 	int				j;
-	const t_point	*p0;
-	const t_point	*p1;
+	t_point			*p0;
+	t_point			*p1;
 }	t_line;
 
 typedef struct s_colour_construct
@@ -253,7 +260,7 @@ short		ft_sign(double val);
 int			map_init(t_map *map, char *map_name);
 int			fdf_init(t_fdf *fdf, t_map *map);
 void		fdf_line_init(t_line *line, t_map *map,
-				const t_point *p0, const t_point *p1);
+				t_point *p0, t_point *p1);
 void		map_colour(void *param, const int y, const int x);
 uint32_t	map_earth_colour(const t_map *map, const t_point *point);
 uint32_t	line_colour(const t_line *line);

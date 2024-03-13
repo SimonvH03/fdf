@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:53:50 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/11 00:30:37 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/13 19:49:50 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ int			ft_writing(const char *str, int n);
 
 int			ft_cpy(char *dest, const char *src, int n);
 int			ft_str_toupper(char *src);
+void		ft_swap_ints(int *a, int *b);
 
 #endif

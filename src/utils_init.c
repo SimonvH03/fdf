@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/13 15:35:31 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/13 22:41:49 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ static void
 		fdf->scale.initial = 0.1;
 	fdf->scale.diff = fdf->scale.initial;
 	fdf->scale.total = 1;
-	fdf->scale.sphere = fdf->image->width / (2.2 * fdf->map->radius) * DEFAULT_SCALE;
+	if (fdf->map->radius == 0)
+		fdf->scale.sphere = 1;
+	else
+		fdf->scale.sphere = fdf->image->width / (2.2 * fdf->map->radius) * DEFAULT_SCALE;
 }
 
 int
@@ -46,13 +49,6 @@ int
 		map->palette = (t_palette){P_EARTH_NR, C_EARTH_BACK, 0, 0, 0};
 	map->name = map_name;
 	map->fd = 0;
-	map->x_max = 0;
-	map->y_max = 0;
-	map->shape = (t_shape){0, 0, 0};
-	map->z_min = 0;
-	map->z_max = 0;
-	map->total_height = 0;
-	map->radius = 0;
 	if (map_read(map) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	map_iteration(map, &map_find_z_min_max, map);
@@ -62,6 +58,7 @@ int
 			{S_FULL_SPHERE, -2 * PI / (map->x_max), PI / (map->y_max - 1)};
 	map_iteration(map , &map_colour, map);
 	map_iteration(map, &map_fill_polar, map);
+	return (EXIT_SUCCESS);
 }
 
 // from file main.c
@@ -89,7 +86,6 @@ int
 	fdf_scale_init(fdf);
 	fdf->radius = fdf->map->radius;
 	fdf->darksquare = fdf->radius / sqrt(2);
-	fdf->darksquare *= fdf->scale.sphere;
 	fdf_center_offset(fdf);
 	fdf->spinlock = false;
 	fdf->redraw = true;
@@ -102,8 +98,8 @@ void
 	fdf_line_init(
 		t_line			*line,
 		t_map			*map,
-		const t_point	*p0,
-		const t_point	*p1)
+		t_point	*p0,
+		t_point	*p1)
 {
 	line->d_ctl = ft_abs(p1->x - p0->x);
 	line->d_pas = ft_abs(p1->y - p0->y);

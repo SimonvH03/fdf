@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_fdf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 10:59:22 by simon             #+#    #+#             */
-/*   Updated: 2024/03/11 19:32:33 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/13 17:39:20 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void
 	{
 		fdf->offset.x *= fdf->scale.diff;
 		fdf->offset.y *= fdf->scale.diff;
+		fdf->radius *= fdf->scale.diff;
+		fdf->darksquare *= fdf->scale.diff;
 		map_iteration(fdf->map, &fdf_scale, fdf);
 		fdf->scale.diff = 1;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user_inputs_keyscroll.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/11 00:48:23 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/13 16:43:00 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void
 	if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_PRESS)
 	{
 		fdf->spinlock = (!fdf->spinlock);
-		fdf->speed = ROTATION_SPEED;
 		fdf->cosin = (t_cosin){cos(fdf->speed), sin(fdf->speed)};
 	}
 	if (keydata.key == MLX_KEY_C && keydata.action == MLX_PRESS)

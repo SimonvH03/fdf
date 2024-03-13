@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_draw.c                                       :+:      :+:    :+:   */
+/*   ft_swap_ints.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/13 17:49:38 by svan-hoo         ###   ########.fr       */
+/*   Created: 2024/03/13 19:47:44 by svan-hoo          #+#    #+#             */
+/*   Updated: 2024/03/13 19:49:35 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "libft.h"
 
-// from fdf_draw.c, menu_draw.c
-void
-	draw_background(
-		const mlx_image_t *image,
-		const uint32_t colour)
+void	ft_swap_ints(int *a, int *b)
 {
-	uint32_t	i;
-	uint32_t	j;
+	int	temp;
 
-	j = 0;
-	while (j < image->height)
-	{
-		i = 0;
-		while (i < image->width)
-		{
-			mlx_put_pixel((mlx_image_t *)image, i, j, colour);
-			i++;
-		}
-		j++;
-	}
+	temp = *a;
+	*a = *b;
+	*b = temp;
 }

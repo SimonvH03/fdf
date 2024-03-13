@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_draw_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/13 15:03:29 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/13 22:39:48 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,12 @@ void
 		const t_point	*p1)
 {
 	t_line	line;
+	t_point cp0;
+	t_point cp1;
 
-	fdf_line_init(&line, fdf->map, p0, p1);
+	cp0 = *p0;
+	cp1 = *p1;
+	fdf_line_init(&line, fdf->map, &cp0, &cp1);
 	if (over_the_horizon(fdf, &line))
 		return ;
 	if (fdf_straight_line(fdf, &line))
@@ -73,9 +77,9 @@ void
 		fdf_draw_point(fdf, &line);
 		while (line.err >= 0)
 		{
+			fdf_draw_point(fdf, &line);
 			line.j += 1;
 			line.err -= line.d_ctl;
-			fdf_draw_point(fdf, &line);
 		}
 		line.i += 1;
 		line.err += line.d_pas;
