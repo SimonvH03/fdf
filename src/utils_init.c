@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/13 22:41:49 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/14 00:13:43 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int
 	map->fd = 0;
 	if (map_read(map) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
+	map->z_min = 0;
+	map->z_max = 0;
 	map_iteration(map, &map_find_z_min_max, map);
 	map->total_height = map->z_max - map->z_min;
 	map->radius = (map->total_height) * 10;
@@ -97,9 +99,8 @@ int
 void
 	fdf_line_init(
 		t_line			*line,
-		t_map			*map,
-		t_point	*p0,
-		t_point	*p1)
+		const t_point	*p0,
+		const t_point	*p1)
 {
 	line->d_ctl = ft_abs(p1->x - p0->x);
 	line->d_pas = ft_abs(p1->y - p0->y);

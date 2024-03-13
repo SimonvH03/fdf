@@ -1,6 +1,6 @@
 NAME	= fdf
-# CFLAGS	= -Wall -Werror -Wextra
-CFLAGS	= -O3
+CFLAGS	= -Wall -Werror -Wextra
+# CFLAGS	= -O3
 
 FDF_H	= ./include/fdf.h
 

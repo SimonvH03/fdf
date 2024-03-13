@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   over_the_horizon.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/13 22:45:53 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/14 00:24:47 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int
 
 // if the line crosses the horizon (p0 ^ p1) we substitute it's
 // inlying point with the crossing point.
-// this is calculated by taking the distance of the point in respect to radius
+// this is calculated by taking the distance from the point to radius
 // then this ratio is used to traverse the line and find the subtitute point
 int
 	accurate_horizon(
@@ -44,22 +44,31 @@ int
 {
 	int		p0_check;
 	int		p1_check;
-	double	sub_distance;
-	double	line_distance;
-	double	ratio;
 
 	p0_check = horizon_pythagoras(fdf, line->p0);
 	p1_check = horizon_pythagoras(fdf, line->p1);
 	if (p0_check && p1_check)
 		return (EXIT_FAILURE);
-	if (!(p0_check || p1_check))
+	if (!p0_check && !p1_check)
 		return (EXIT_SUCCESS);
-	line_distance =  distance_pythagoras(line->d_ctl, line->d_pas);
 	if (p0_check)
 	{
-		sub_distance = distance_pythagoras(line->p0->x, line->p0->y);
-		ratio = (fdf->radius - sub_distance) / line_distance;
-		fdf_line_init(line, fdf->map, line->p0, line->p1);
+		while (distance_pythagoras(line->p0->x + line->i,
+			line->p0->y + line->j) < fdf->radius
+			&& line->i != line->d_ctl)
+			{
+				while (line->err >= 0)
+				{
+					line->j += 1;
+					line->err -= line->d_ctl;
+				}
+				line->i += 1;
+				line->err += line->d_pas;
+			}
+		// printf("p0(%f,%f)\tSUB(%f,%f)\tp1(%f,%f)\n",
+		// 	line->p0->x, line->p0->y,
+		// 	line->p0->x + line->i, line->p0->y + line->j,
+		// 	line->p1->x, line->p1->y);
 	}
 	return (EXIT_SUCCESS);
 }

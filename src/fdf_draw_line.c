@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_draw_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/13 22:39:48 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/14 00:01:54 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,8 @@ void
 		const t_point	*p1)
 {
 	t_line	line;
-	t_point cp0;
-	t_point cp1;
 
-	cp0 = *p0;
-	cp1 = *p1;
-	fdf_line_init(&line, fdf->map, &cp0, &cp1);
+	fdf_line_init(&line, p0, p1);
 	if (over_the_horizon(fdf, &line))
 		return ;
 	if (fdf_straight_line(fdf, &line))

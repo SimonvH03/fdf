@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_read.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:58:42 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/13 17:31:38 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/14 00:00:20 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void
 		}
 		str_z[k] = '\0';
 		map->original[y][x] = (t_point)
-		{x - (map->x_max / 2), y - (map->y_max / 2), ft_atoi(str_z)};
+		{x - (map->x_max / 2), y - (map->y_max / 2), ft_atoi(str_z), 0};
 		map->project[y][x] = map->original[y][x];
 		x++;
 	}
