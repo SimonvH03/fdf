@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:11:14 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/02/04 11:44:42 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/15 19:53:59 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,24 +115,3 @@ char	*get_next_line(int fd)
 		return (ft_free_gnl(&nextline));
 	return (nextline);
 }
-
-// int	main(void)
-// {
-// 	int			fd;
-// 	int			line;
-// 	char		*nextline;
-
-// 	line = 0;
-// 	fd = open("text.txt", O_RDONLY);
-// 	while (line < 15)
-// 	{
-// 		nextline = get_next_line(fd);
-// 		printf("\nline %d:\t%s", line, nextline);
-// 		line++;
-// 		if (nextline == NULL)
-// 			break ;
-// 		free(nextline);
-// 	}
-// 	close(fd);
-// 	return (0);
-// }

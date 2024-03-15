@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/15 19:19:16 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/15 19:54:06 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <fcntl.h>
 # include <math.h>
 // for printf, exclude later
-# include <stdio.h>
+// # include <stdio.h>
 
 # define PI 3.14159265
 

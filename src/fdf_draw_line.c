@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/15 19:41:04 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/15 19:53:15 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ static int
 {
 	if (line->d_pas == 0)
 	{
-		if (line->i)
-			printf("%d: %d - %d\n", line->swapped, line->i, line->d_ctl);
 		while (line->i <= line->d_ctl)
 		{
 			fdf_draw_point(fdf, line);
