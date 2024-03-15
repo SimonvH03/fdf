@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_draw_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/14 00:01:54 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/15 19:41:04 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,16 @@ void
 	int	x_pixel;
 	int	y_pixel;
 
-	x_pixel = line->p0->x + (line->i * line->s_ctl);
-	y_pixel = line->p0->y + (line->j * line->s_pas);
+	if (line->swapped == false)
+	{
+		x_pixel = line->p0->x + (line->i * line->s_ctl);
+		y_pixel = line->p0->y + (line->j * line->s_pas);
+	}
+	else
+	{
+		x_pixel = line->p0->x + (line->j * line->s_pas);
+		y_pixel = line->p0->y + (line->i * line->s_ctl);
+	}
 	if (!fdf_check_point(fdf, x_pixel, y_pixel))
 		mlx_put_pixel(fdf->image,
 			x_pixel + fdf->center.x + fdf->offset.x,
@@ -36,23 +44,16 @@ static int
 {
 	if (line->d_pas == 0)
 	{
+		if (line->i)
+			printf("%d: %d - %d\n", line->swapped, line->i, line->d_ctl);
 		while (line->i <= line->d_ctl)
 		{
 			fdf_draw_point(fdf, line);
 			line->i++;
 		}
-		return (1);
+		return (EXIT_SUCCESS);
 	}
-	if (line->d_ctl == 0)
-	{
-		while (line->j <= line->d_pas)
-		{
-			fdf_draw_point(fdf, line);
-			line->j++;
-		}
-		return (1);
-	}
-	return (0);
+	return (EXIT_FAILURE);
 }
 
 void
@@ -64,14 +65,14 @@ void
 	t_line	line;
 
 	fdf_line_init(&line, p0, p1);
-	if (over_the_horizon(fdf, &line))
+	if (over_the_horizon(fdf, &line) == EXIT_FAILURE)
 		return ;
-	if (fdf_straight_line(fdf, &line))
+	if (fdf_straight_line(fdf, &line) == EXIT_SUCCESS)
 		return ;
 	while (line.i != line.d_ctl)
 	{
 		fdf_draw_point(fdf, &line);
-		while (line.err >= 0)
+		if (line.err >= 0)
 		{
 			fdf_draw_point(fdf, &line);
 			line.j += 1;

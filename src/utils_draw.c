@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/13 17:49:38 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:33:04 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,17 @@ void
 		}
 		j++;
 	}
+}
+
+void
+	line_swap_points(
+		t_line *line)
+{
+	t_point	*temp;
+
+	temp = (t_point *)line->p0;
+	line->p0 = line->p1;
+	line->p1 = temp;
+	line->s_ctl *= -1;
+	line->s_pas *= -1;
 }

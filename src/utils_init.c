@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/14 00:13:43 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/15 19:22:13 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,23 @@ int
 	return (EXIT_SUCCESS);
 }
 
+bool
+	line_swap_control_passive(
+		t_line *line)
+{
+	int	temp;
+
+	if (line->d_ctl >= line->d_pas)
+		return (false);
+	temp = line->d_ctl;
+	line->d_ctl = line->d_pas;
+	line->d_pas = temp;
+	temp = line->s_ctl;
+	line->s_ctl = line->s_pas;
+	line->s_pas = temp;
+	return (true);
+}
+
 // from file fdf_draw.c
 void
 	fdf_line_init(
@@ -106,6 +123,7 @@ void
 	line->d_pas = ft_abs(p1->y - p0->y);
 	line->s_ctl = ft_sign(p1->x - p0->x);
 	line->s_pas = ft_sign(p1->y - p0->y);
+	line->swapped = line_swap_control_passive(line);
 	line->p0 = p0;
 	line->p1 = p1;
 	line->i = 0;

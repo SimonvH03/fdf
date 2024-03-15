@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/14 00:01:19 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/15 19:19:16 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ typedef struct s_line
 	int				d_pas;
 	int				s_ctl;
 	int				s_pas;
+	bool			swapped;
 	int				err;
 	int				i;
 	int				j;
@@ -272,8 +273,6 @@ void		map_find_z_min_max(void *param, const int y, const int x);
 void		map_free(t_map *map);
 int			map_is_globe(const char *map_name);
 
-// utils_misc.c
-
 // fdf_draw_line.c
 void		fdf_draw_down_and_to_the_right(void *param, const int y, const int x);
 void		fdf_draw_line(const t_fdf *fdf, const t_point *p0, const t_point *p1);
@@ -283,5 +282,6 @@ int			fdf_check_point(const t_fdf *fdf, int x_pixel, int y_pixel);
 // utils_draw.c
 int			over_the_horizon(const t_fdf *fdf, t_line *line);
 void		draw_background(const mlx_image_t *image, const uint32_t colour);
+void		line_swap_points(t_line *line);
 
 #endif
