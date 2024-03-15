@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/15 19:46:55 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/15 19:52:03 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,8 @@ int
 {
 	if (line->d_pas == 0)
 	{
-		if (line->swapped == true)
-			while (line->i != line->d_ctl
-				&& ft_abs(line->p0->x) + line->i < fdf->radius)
-				line->i++;
-		else
-			while (line->i != line->d_ctl
-				&& ft_abs(line->p0->y) + line->i < fdf->radius)
+		while (line->i != line->d_ctl
+			&& horizon_pythagoras(fdf, line, line->p0))
 				line->i++;
 		return (EXIT_SUCCESS);
 	}
@@ -82,9 +77,9 @@ int
 	p1_check = horizon_pythagoras(fdf, line, line->p1);
 	if (p0_check == p1_check)
 		return (p0_check);
-	straight_horizon(fdf, line);
 	if (p1_check)
 		line_swap_points(line);
+	straight_horizon(fdf, line);
 	while (line->i != line->d_ctl && line->j != line->d_pas
 		&& horizon_pythagoras(fdf, line, line->p0))
 	{
