@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   over_the_horizon.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/14 00:24:47 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/15 18:04:51 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,19 @@ int
 	return (EXIT_SUCCESS);
 }
 
+void
+	line_swap_points(
+		t_line *line)
+{
+	t_point	*temp;
+
+	temp = (t_point *)line->p0;
+	line->p0 = line->p1;
+	line->p1 = temp;
+	line->s_ctl *= -1;
+	line->s_pas *= -1;
+}
+
 // if the line crosses the horizon (p0 ^ p1) we substitute it's
 // inlying point with the crossing point.
 // this is calculated by taking the distance from the point to radius
@@ -51,38 +64,21 @@ int
 		return (EXIT_FAILURE);
 	if (!p0_check && !p1_check)
 		return (EXIT_SUCCESS);
-	if (p0_check)
-	{
-		while (distance_pythagoras(line->p0->x + line->i,
-			line->p0->y + line->j) < fdf->radius
-			&& line->i != line->d_ctl)
+	if (p1_check)
+		line_swap_points(line);
+	while (distance_pythagoras(line->p0->x + (line->i * line->s_ctl),
+		line->p0->y + (line->j * line->s_pas)) < fdf->radius
+		&& line->i < line->d_ctl && line->j < line->d_pas)
+		{
+			while (line->err >= 0)
 			{
-				while (line->err >= 0)
-				{
-					line->j += 1;
-					line->err -= line->d_ctl;
-				}
-				line->i += 1;
-				line->err += line->d_pas;
+				line->j += 1;
+				line->err -= line->d_ctl;
 			}
-		// printf("p0(%f,%f)\tSUB(%f,%f)\tp1(%f,%f)\n",
-		// 	line->p0->x, line->p0->y,
-		// 	line->p0->x + line->i, line->p0->y + line->j,
-		// 	line->p1->x, line->p1->y);
-	}
+			line->i += 1;
+			line->err += line->d_pas;
+		}
 	return (EXIT_SUCCESS);
-}
-
-int
-	darksquare(
-		const t_fdf *fdf,
-		const t_point *point)
-{
-	if (ft_abs(point->x) < fdf->darksquare * fdf->scale.total
-		&& ft_abs(point->y) < fdf->darksquare * fdf->scale.total)
-		return (EXIT_FAILURE);
-	else
-		return (EXIT_SUCCESS);
 }
 
 // then we use pythagoras' theorum to see if x,y falls within the horizon
@@ -100,7 +96,10 @@ int
 		return (EXIT_SUCCESS);
 	if ((line->p0->z < -0.00001 && line->p1->z < -0.00001))
 	{
-		if (darksquare(fdf, line->p0) && darksquare(fdf, line->p1))
+		if (ft_abs(line->p0->x) < fdf->darksquare
+			&& ft_abs(line->p0->y) < fdf->darksquare
+			&& ft_abs(line->p1->x) < fdf->darksquare
+			&& ft_abs(line->p1->y) < fdf->darksquare)
 			return (EXIT_FAILURE);
 		if (accurate_horizon(fdf, line) == EXIT_SUCCESS)
 			return (EXIT_SUCCESS);
