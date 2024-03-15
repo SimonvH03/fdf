@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/13 19:43:55 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/15 20:07:35 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ uint32_t
 	if (ratio <= 0.5)
 		return (gradient(ratio * 2, map->palette.low, map->palette.mid));
 	else
-		return (gradient(ratio * 2, map->palette.mid, map->palette.high));
+		return (gradient((ratio - 0.5) * 2, map->palette.mid, map->palette.high));
 }
 
 void

@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/15 19:54:06 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/15 20:11:39 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 
 // colours
 # define C_WHITE			0xFFFFFFFF
-# define C_GRAY				0x404040FF
+# define C_GRAY				0x808080FF
 # define C_BLACK			0x000000FF
 # define C_BACKGROUND		0x20002088
 # define C_MENU				0xFF000040
@@ -67,9 +67,9 @@
 
 // palette Metal
 # define P_METAL_NR			2
-# define C_METAL_BACK		C_GRAY
+# define C_METAL_BACK		0x808090FF
 # define C_METAL_LOW		C_BLACK
-# define C_METAL_MID		0x808080FF
+# define C_METAL_MID		C_GRAY
 # define C_METAL_HIGH		C_WHITE
 
 // palette Pastel

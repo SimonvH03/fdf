@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/13 16:43:00 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/15 20:14:38 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void
 	if (keydata.key == MLX_KEY_C && keydata.action == MLX_PRESS)
 	{
 		fdf->map->palette = cycle_palettes(fdf->map);
+		if (fdf->ballin == false && fdf->map->palette.nr == P_EARTH_NR)
+			fdf->map->palette = cycle_palettes(fdf->map);
 		map_iteration(fdf->map, &map_colour, fdf->map);
 	}
 }

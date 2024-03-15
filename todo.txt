@@ -8,7 +8,7 @@ Cleanup
 	(fdf_draw) make constant by extracting the redraw check and redraw = false set
 
 Presets
-	Take each preset into their own function (to apply when initialized)
+	Take each preset into their own function (to apply when initialized) (maybe)
 
 Input
 	add hotkey for squishing z values (map_iteration)
