@@ -14,5 +14,10 @@ User_inputs
 Presets
 	if total map height is 0, and a globe is desired, make easter egg
 
+Map problems
+	total height 0^
+	spaces at the end of a line
+	inconsistent line lengths
+
 Utils
 	give all utils a comment, where are they used?
