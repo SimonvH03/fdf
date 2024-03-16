@@ -4,6 +4,9 @@ Make
 Map Init
 	squish z values when total_height > x_max || y_max
 
-Cleanup
-	fdf.h recategorize
-	Makefile rename files
+Map set_polar
+	remove map_fill_polar from the presets, then move the function to map_init.c
+		(and move map_set_... to ui_presets.c) (maybe not)
+
+user_inputs
+	only if (scale.total > '2') invert arrowkey translation, more intuitive?

@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/16 01:23:11 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/16 17:49:29 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ void
 // also used by map_colour.c
 uint32_t
 	gradient(
-		const double ratio,
-		const uint32_t start,
-		const uint32_t end)
+		double ratio,
+		uint32_t start,
+		uint32_t end)
 {
 	const t_colour_construct	c0 = (t_colour_construct)
 	{(start >> 24) & 0xFF,

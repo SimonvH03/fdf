@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/16 01:21:37 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/16 17:50:09 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int
 	fdf->menu_image = mlx_new_image(fdf->mlx, MENU_WIDTH, HEIGHT);
 	if (fdf->menu_image == NULL)
 		return (EXIT_FAILURE);
-	return (EXIT_SUCCES);
+	return (EXIT_SUCCESS);
 }
 
 // from file main.c

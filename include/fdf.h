@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/15 20:11:39 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/16 17:50:51 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,75 +213,66 @@ typedef struct s_fdf
 	double			radius;
 }	t_fdf;
 
-// main
+/// PHASE 1: initialising windows, maps and settings based on map
+// map
+int			map_init(t_map *map, char *map_name);
 int			map_read(t_map *map);
+void		map_colour(void *param, const int y, const int x);
+// fdf
+int			fdf_init(t_fdf *fdf, t_map *map);
+// menu
 void		menu_draw(t_fdf *fdf);
 
-// map_iteration
+// starting from 2, every phase starts with a simple(void *param) function;
+//	because they are called by mlx_loop_hook
+
+/// PHASE 2: interpreting user input to set up point modification
+void		user_inputs(void *param);
+void		keyhook(mlx_key_data_t keydata, void *param);
+void		scrollhook(double xdelta, double ydelta, void *param);
+
+void		input_presets_flat(t_fdf *fdf);
+void		input_presets_balls(t_fdf *fdf);
+
+t_palette	map_cycle_palettes(t_map *map);
+
+/// PHASE 3: modifying the projection data based on interpreted user input
+void		project(void *param);
+// Mother of Death, responsible for 9 victims, along with her freak children
 void		map_iteration(t_map *map,
 				void (*function)(void *param, const int y, const int x),
 				void *parameter);
+// Map Iteration functions (applied to a point from any map on position [y][x])
+void		fdf_rotate(void *param, const int y, const int x);
+void		fdf_rotate_optimized(void *param, const int y, const int x);
+void		fdf_scale(void *param, const int y, const int x);
 
-// map_mods.c
 void		map_fill_polar(void *param, const int y, const int x);
 void		map_set_polar(void *param, const int y, const int x);
 void		map_set_original(void *param, const int y, const int x);
 
-// cycle_stuff.c
-t_palette	cycle_palettes(t_map *map);
+/// PHASE 4: drawing the fdf based on the projection data
+void		draw(void *param);
+void		draw_line(const t_fdf *fdf, const t_point *p0, const t_point *p1);
+void		draw_line_init(t_line *line, const t_point *p0, const t_point *p1);
+int			over_the_horizon(const t_fdf *fdf, t_line *line);
 
-// loops
-void		keyhook(mlx_key_data_t keydata, void *param);
-void		scrollhook(double xdelta, double ydelta, void *param);
-void		user_inputs(void *param);
-void		fdf_scale_and_project(void *param);
-void		fdf_draw(void *param);
-
-// fdf_projects
-void		fdf_project(void *param, const int y, const int x);
-void		fdf_project_optimized(void *param, const int y, const int x);
-
-// utils_fdf.c
-void		fdf_redraw(t_fdf *fdf);
-void		fdf_scale(void *param, const int y, const int x);
-void		fdf_center_offset(t_fdf *fdf);
-void		fdf_reset_scale_and_offset(t_fdf *fdf);
-
-// user_inputs_presets.c
-void		input_presets_1(t_fdf *fdf);
-void		input_presets_2(t_fdf *fdf);
-void		input_hotkeys(t_fdf *fdf);
-
-// utils_calc.c
-double		deg_to_rad(double angle_deg);
-double		rad_to_deg(double angle_rad);
-double		ft_abs(double val);
-short		ft_sign(double val);
-
-// utils_init.c
-int			map_init(t_map *map, char *map_name);
-int			fdf_init(t_fdf *fdf, t_map *map);
-void		fdf_line_init(t_line *line,	const t_point *p0, const t_point *p1);
-void		map_colour(void *param, const int y, const int x);
-uint32_t	map_earth_colour(const t_map *map, const t_point *point);
-uint32_t	line_colour(const t_line *line);
-
-// utils_map.c
+/// UTILS
+// map
+void		map_free(t_map *map);
+// map_read
 int			map_malloc_y(t_map *map);
 int			map_malloc_x(t_map *map, const int y);
 void		map_find_z_min_max(void *param, const int y, const int x);
-void		map_free(t_map *map);
-int			map_is_globe(const char *map_name);
-
-// fdf_draw_line.c
-void		fdf_draw_down_and_to_the_right(void *param, const int y, const int x);
-void		fdf_draw_line(const t_fdf *fdf, const t_point *p0, const t_point *p1);
-void		fdf_draw_point(const t_fdf *fdf, const t_line *line);
-int			fdf_check_point(const t_fdf *fdf, int x_pixel, int y_pixel);
-
-// utils_draw.c
-int			over_the_horizon(const t_fdf *fdf, t_line *line);
+// fdf
+void		fdf_center_offset(t_fdf *fdf);
+// draw
 void		draw_background(const mlx_image_t *image, const uint32_t colour);
-void		line_swap_points(t_line *line);
+int			draw_check_point(const t_fdf *fdf, int x_pixel, int y_pixel);
+uint32_t	gradient(double ratio, uint32_t end, uint32_t start);
+// calc
+double		deg_to_rad(double angle_deg);
+double		ft_abs(double val);
+short		ft_sign(double val);
 
 #endif

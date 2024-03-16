@@ -6,12 +6,13 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 10:59:22 by simon             #+#    #+#             */
-/*   Updated: 2024/03/16 01:19:19 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/16 17:44:00 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
+// if the user inputs changed stuff, we recalculate the position of our points
 void
 	project(
 		void *param)
@@ -21,12 +22,12 @@ void
 	fdf = param;
 	if (fdf->perspective.reproject == true)
 	{
-		map_iteration(fdf->map, &fdf_project, fdf);
+		map_iteration(fdf->map, &fdf_rotate, fdf);
 		fdf->perspective = (t_perspective){0, 0, 0, false};
 	}
 	if (fdf->precalc.reproject == true)
 	{
-		map_iteration(fdf->map, &fdf_project_optimized, fdf);
+		map_iteration(fdf->map, &fdf_rotate_optimized, fdf);
 		if (fdf->spinlock == false)
 			fdf->precalc = (t_precalc){0, 0, 0, false};
 	}

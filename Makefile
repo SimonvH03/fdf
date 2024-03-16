@@ -12,26 +12,31 @@ LIBFT	= $(LFTDIR)/libft.a
 HEADERS	= -I ./include -I $(LMLXDIR)/include
 LIBS	= $(LIBMLX) $(LIBFT)
 SRCDIR	= ./src
-SRC		=	$(SRCDIR)/fdf_draw_line.c \
-			$(SRCDIR)/fdf_draw.c \
-			$(SRCDIR)/fdf_project_optimized.c \
-			$(SRCDIR)/fdf_project.c \
+SRC		=	$(SRCDIR)/draw_line_init.c \
+			$(SRCDIR)/draw_line.c \
+			$(SRCDIR)/draw_utils.c \
+			$(SRCDIR)/draw.c \
+			$(SRCDIR)/fdf_init.c \
+			$(SRCDIR)/fdf_rotate_optimized.c \
+			$(SRCDIR)/fdf_rotate.c \
+			$(SRCDIR)/fdf_scale.c \
+			$(SRCDIR)/fdf_utils.c \
 			$(SRCDIR)/main.c \
 			$(SRCDIR)/map_colour.c \
-			$(SRCDIR)/map_cycle_stuff.c \
+			$(SRCDIR)/map_cycle_palettes.c \
+			$(SRCDIR)/map_init.c \
 			$(SRCDIR)/map_iteration.c \
-			$(SRCDIR)/map_mods.c \
 			$(SRCDIR)/map_read.c \
+			$(SRCDIR)/map_read_utils.c \
+			$(SRCDIR)/map_utils.c \
 			$(SRCDIR)/menu_draw.c \
 			$(SRCDIR)/over_the_horizon.c \
+			$(SRCDIR)/project.c \
 			$(SRCDIR)/user_inputs_keyscroll.c \
 			$(SRCDIR)/user_inputs_presets.c \
 			$(SRCDIR)/user_inputs.c \
-			$(SRCDIR)/utils_calc.c \
-			$(SRCDIR)/utils_draw.c \
-			$(SRCDIR)/utils_fdf.c \
-			$(SRCDIR)/utils_init.c \
-			$(SRCDIR)/utils_map.c
+			$(SRCDIR)/utils_calc.c
+
 OBJS	= ${SRC:.c=.o}
 
 all: $(LIBS) $(NAME)

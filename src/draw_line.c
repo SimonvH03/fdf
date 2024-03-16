@@ -54,11 +54,11 @@ static void
 		x_pixel = line->p0->x + (line->j * line->s_pas);
 		y_pixel = line->p0->y + (line->i * line->s_ctl);
 	}
-	if (!check_point(fdf, x_pixel, y_pixel))
+	if (!draw_check_point(fdf, x_pixel, y_pixel))
 		mlx_put_pixel(fdf->image,
 			x_pixel + fdf->center.x + fdf->offset.x,
 			y_pixel + fdf->center.y + fdf->offset.y,
-			line_colour(line));
+			draw_line_colour(line));
 }
 
 static int

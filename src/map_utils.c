@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/16 01:24:51 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/16 17:25:43 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void
 	map->project[y][x] = map->original[y][x];
 }
 
-// from main.c
 void
 	map_free(
 		t_map *map)

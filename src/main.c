@@ -6,12 +6,17 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/16 01:14:26 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/16 17:43:15 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
+// Phase 2: keyhook
+// 			scrollhook
+// 			user_inputs
+// Phase 3: project
+// Phase 4: draw
 static void
 	loop_hooks(
 		t_fdf *fdf)
@@ -20,9 +25,12 @@ static void
 	mlx_scroll_hook(fdf->mlx, &scrollhook, fdf);
 	mlx_loop_hook(fdf->mlx, &user_inputs, fdf);
 	mlx_loop_hook(fdf->mlx, &project, fdf);
-	mlx_loop_hook(fdf->mlx, &fdf_draw, fdf);
+	mlx_loop_hook(fdf->mlx, &draw, fdf);
 }
 
+// Phase 1: map_init
+// 			fdf_init
+// 			menu_draw
 int
 	main(
 		int argc,
