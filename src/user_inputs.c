@@ -6,12 +6,31 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/11 16:45:27 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/16 01:26:30 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
+static void
+	fdf_redraw(
+		t_fdf *fdf)
+{
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_R)
+		|| mlx_is_key_down(fdf->mlx, MLX_KEY_UP)
+		|| mlx_is_key_down(fdf->mlx, MLX_KEY_DOWN)
+		|| mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT)
+		|| mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT)
+		|| mlx_is_key_down(fdf->mlx, MLX_KEY_C))
+		fdf->redraw = true;
+	if (fdf->perspective.reproject
+		|| fdf->precalc.reproject
+		|| fdf->scale.diff != 1)
+		fdf->redraw = true;
+}
+
+// using only negative and positive because manual
+//;rotations are done with precalculated values
 static void
 	manual_rotation(
 		t_fdf	*fdf)
@@ -50,6 +69,7 @@ static void
 		fdf->offset.x -= 10;
 }
 
+// because bigger maps are slow, press + to get somewhere quick
 static void
 	input_variable_speed(
 		t_fdf	*fdf)
@@ -70,6 +90,7 @@ static void
 	}
 }
 
+// do 'em all at once, doesn't matter
 void
 	user_inputs(
 		void	*param)
@@ -79,13 +100,16 @@ void
 	fdf = param;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_P)
 		|| mlx_is_key_down(fdf->mlx, MLX_KEY_I))
-		input_presets_1(fdf);
+		input_presets_flat(fdf);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_O)
 		|| mlx_is_key_down(fdf->mlx, MLX_KEY_U))
-		input_presets_2(fdf);
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_M)
-		|| mlx_is_key_down(fdf->mlx, MLX_KEY_N))
-		input_hotkeys(fdf);
+		input_presets_balls(fdf);
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_R))
+	{
+		fdf_center_offset(fdf);
+		fdf->scale.diff = 1 / fdf->scale.total;
+		fdf->scale.total = 1;
+	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_MINUS)
 		|| mlx_is_key_down(fdf->mlx, MLX_KEY_EQUAL))
 		input_variable_speed(fdf);

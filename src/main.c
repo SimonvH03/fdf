@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/13 15:26:55 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/16 01:14:26 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 static void
 	loop_hooks(
-		t_fdf	*fdf)
+		t_fdf *fdf)
 {
 	mlx_key_hook(fdf->mlx, &keyhook, fdf);
 	mlx_scroll_hook(fdf->mlx, &scrollhook, fdf);
 	mlx_loop_hook(fdf->mlx, &user_inputs, fdf);
-	mlx_loop_hook(fdf->mlx, &fdf_scale_and_project, fdf);
+	mlx_loop_hook(fdf->mlx, &project, fdf);
 	mlx_loop_hook(fdf->mlx, &fdf_draw, fdf);
 }
 
 int
 	main(
 		int argc,
-		char	**argv)
+		char **argv)
 {
 	t_map			map;
 	t_fdf			fdf;

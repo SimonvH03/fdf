@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_mods.c                                         :+:      :+:    :+:   */
+/*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/01 17:05:51 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/10 23:42:11 by simon            ###   ########.fr       */
+/*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
+/*   Updated: 2024/03/16 01:24:51 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void
 	map_fill_polar(
-		void	*param,
+		void *param,
 		int y,
 		int x)
 {
@@ -38,7 +38,7 @@ void
 
 void
 	map_set_polar(
-		void	*param,
+		void *param,
 		const int y,
 		const int x)
 {
@@ -50,7 +50,7 @@ void
 
 void
 	map_set_original(
-		void	*param,
+		void *param,
 		const int y,
 		const int x)
 {
@@ -58,4 +58,25 @@ void
 
 	map = param;
 	map->project[y][x] = map->original[y][x];
+}
+
+// from main.c
+void
+	map_free(
+		t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (i < map->y_max && map->project[i])
+		free(map->project[i++]);
+	free(map->project);
+	i = 0;
+	while (i < map->y_max && map->polar[i])
+		free(map->polar[i++]);
+	free(map->polar);
+	i = 0;
+	while (i < map->y_max && map->original[i])
+		free(map->original[i++]);
+	free(map->original);
 }

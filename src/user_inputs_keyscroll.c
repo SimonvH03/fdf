@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user_inputs_keyscroll.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/15 20:14:38 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/16 01:09:27 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void
 	keyhook(
-		mlx_key_data_t	keydata,
-		void			*param)
+		mlx_key_data_t keydata,
+		void *param)
 {
 	t_fdf	*fdf;
 
@@ -38,7 +38,7 @@ void
 	scrollhook(
 		double xdelta,
 		double ydelta,
-		void	*param)
+		void *param)
 {
 	t_fdf	*fdf;
 

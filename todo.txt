@@ -1,14 +1,9 @@
-Over The Horizon
-	(utils_fdf.c) info in comments
-
 Make
 	(Makefile) write it myself
 
+Map Init
+	squish z values when total_height > x_max || y_max
+
 Cleanup
-	(fdf_draw) make constant by extracting the redraw check and redraw = false set
-
-Presets
-	Take each preset into their own function (to apply when initialized) (maybe)
-
-Input
-	add hotkey for squishing z values (map_iteration)
+	fdf.h recategorize
+	Makefile rename files

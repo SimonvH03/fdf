@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_project_optimized.c                            :+:      :+:    :+:   */
+/*   fdf_rotate_optimized.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:30:28 by simon             #+#    #+#             */
-/*   Updated: 2024/03/10 21:46:45 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/16 00:25:12 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void
+static void
 	point_rotate_precalculated(
 		const t_fdf	*fdf,
 		t_point		*point)
@@ -44,7 +44,7 @@ void
 }
 
 void
-	fdf_project_optimized(
+	fdf_rotate_optimized(
 		void	*param,
 		const int y,
 		const int x)

@@ -3,37 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   user_inputs_presets.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:31:44 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/13 17:38:53 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/16 01:13:17 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
+// P for Parallel
+// I for Isometric
 void
-	input_presets_1(
+	input_presets_flat(
 		t_fdf	*fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_P))
 	{
 		map_iteration(fdf->map, &map_set_original, fdf->map);
-		fdf_reset_scale_and_offset(fdf);
 		fdf->ballin = false;
 	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_I))
 	{
 		map_iteration(fdf->map, &map_set_original, fdf->map);
-		fdf_reset_scale_and_offset(fdf);
 		fdf->perspective = (t_perspective)
 		{ISO_ALPHA, ISO_BETA, ISO_GAMMA, true};
 		fdf->ballin = false;
 	}
+	fdf_center_offset(fdf);
+	fdf->scale.diff = fdf->scale.initial;
+	fdf->scale.total = 1;
 }
 
+// O for sphere
+// U for half sphere
 void
-	input_presets_2(
+	input_presets_balls(
 		t_fdf	*fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_O))
@@ -60,19 +65,4 @@ void
 	fdf->ballin = true;
 	fdf->radius = fdf->map->radius;
 	fdf->darksquare = fdf->radius / sqrt(2);
-}
-
-void
-	input_hotkeys(
-		t_fdf	*fdf)
-{
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_M))
-	{
-		fdf->scale.diff = 1 / fdf->scale.total;
-		fdf->scale.total = 1;
-	}
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_N))
-	{
-		fdf_center_offset(fdf);
-	}
 }

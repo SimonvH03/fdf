@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_cycle_stuff.c                                  :+:      :+:    :+:   */
+/*   map_cycle_palettes.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 19:05:29 by simon             #+#    #+#             */
-/*   Updated: 2024/03/15 20:15:31 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/16 00:30:51 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-t_palette	cycle_palettes(t_map *map)
+t_palette	map_cycle_palettes(t_map *map)
 {
 	if (map->palette.nr == P_RGB_NR)
 		return ((t_palette)

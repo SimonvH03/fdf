@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_project.c                                      :+:      :+:    :+:   */
+/*   fdf_rotate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:44:02 by simon             #+#    #+#             */
-/*   Updated: 2024/03/10 23:37:10 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/16 00:25:42 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-// angle gamma around z-axis
+// angle gamma around z-axis (roll)
 static void
 	point_rotate_gamma(
 		t_point	*point,
@@ -24,7 +24,7 @@ static void
 	point->y = prev_x * -sin(gamma) + point->y * cos(gamma);
 }
 
-// angle beta around y-axis
+// angle beta around y-axis (yaw)
 static void
 	point_rotate_beta(
 		t_point	*point,
@@ -36,7 +36,7 @@ static void
 	point->z = prev_x * -sin(beta) + point->z * cos(beta);
 }
 
-// angle alpha round x-axis
+// angle alpha round x-axis (pitch)
 static void
 	point_rotate_alpha(
 		t_point	*point,
@@ -49,7 +49,7 @@ static void
 }
 
 void
-	fdf_project(
+	fdf_rotate(
 		void	*param,
 		const int y,
 		const int x)

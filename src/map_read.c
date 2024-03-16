@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:58:42 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/14 00:00:20 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/16 00:32:38 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // count elements with subject given map constraints
 static int
 	map_row_size(
-		char	*buffer)
+		char *buffer)
 {
 	int		count;
 	int		i;
@@ -36,7 +36,7 @@ static int
 // count rows with get_next_line
 static void
 	map_size(
-		t_map	*map)
+		t_map *map)
 {
 	char	*buffer;
 
@@ -57,9 +57,9 @@ static void
 // make a copy at map->project
 static void
 	map_fill_row(
-		t_map	*map,
+		t_map *map,
 		int y,
-		char	*buffer)
+		char *buffer)
 {
 	int		i;
 	int		x;
@@ -91,7 +91,7 @@ static void
 // make a copy at map->project
 int
 	map_read(
-		t_map	*map)
+		t_map *map)
 {
 	char	*buffer;
 	int		y;

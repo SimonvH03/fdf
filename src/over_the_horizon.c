@@ -3,26 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   over_the_horizon.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/15 19:52:03 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/16 01:26:12 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-// double
-// 	distance_pythagoras(
-// 		const double delta_a,
-// 		const double delta_b)
-// {
-// 	return (sqrt((delta_a * delta_a) + (delta_b * delta_b)));
-// }
-
-// cheapest version of horizon check
-// returns if point is outside of radius
-int
+// not using square roots because expensive
+static int
 	horizon_pythagoras(
 		const t_fdf *fdf,
 		const t_line *line,
@@ -50,7 +41,22 @@ int
 	return (EXIT_SUCCESS);
 }
 
-int
+// swap points because I already implemented line drawing in any direction
+//;so why bother making two implementations for when p0 or p1 is OTH
+static void
+	line_swap_points(
+		t_line *line)
+{
+	t_point	*temp;
+
+	temp = (t_point *)line->p0;
+	line->p0 = line->p1;
+	line->p1 = temp;
+	line->s_ctl *= -1;
+	line->s_pas *= -1;
+}
+
+static int
 	straight_horizon(
 		const t_fdf *fdf,
 		t_line *line)
@@ -65,7 +71,7 @@ int
 	return (EXIT_FAILURE);
 }
 
-int
+static int
 	accurate_horizon(
 		const t_fdf *fdf,
 		t_line *line)
@@ -94,12 +100,15 @@ int
 	return (EXIT_SUCCESS);
 }
 
-// then we use pythagoras' theorum to see if x,y falls within the horizon
-// cases:
-// if both points are over the horizon; return (1)
-// if both points are outside the horizon; return (0)
+// we use pythagoras' theorum to see if x,y falls within the horizon
+// Cases:
+// if both points are over the horizon; skip
+// if both points are outside the horizon; draw
 // if only one point is over the horizon;
-//;malloc a new point (with colour) exactly on the horizon and return (0)
+//;modify line to only draw from or until horizon
+// 'darksquare' is used to increase performance by not calculating
+//;anything for lines with both points within predetermined region
+// < 0.00001 instead of 0 because doubles also never round up
 int
 	over_the_horizon(
 		const t_fdf *fdf,

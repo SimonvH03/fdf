@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   menu_draw.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:10:50 by simon             #+#    #+#             */
-/*   Updated: 2024/03/07 18:13:20 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/16 01:25:46 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void
+static void
 	menu_print(
-		t_fdf	*fdf)
+		t_fdf *fdf)
 {
 	const int	margin = 72;
 	const int	line = 24;
