@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/16 17:50:51 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/16 18:07:38 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,18 @@
 
 // mlx window
 # define WINDOW_TITLE "fdf"
-// # define WIDTH 1200
-// # define HEIGHT 800
-// # define MENU_WIDTH 400
 # define WIDTH 2000
 # define HEIGHT 1600
 # define MENU_WIDTH 400
 
 // fdf defaults
 # define DEFAULT_SCALE 0.7
+# define ROTATION_SPEED 0.01
 
-// rotation defaults
-// # define ISO_GAMMA 0
+// perspective defaults
 # define ISO_GAMMA deg_to_rad(-45)
 # define ISO_BETA 0
-// # define ISO_ALPHA 0
 # define ISO_ALPHA deg_to_rad(-35.264)
-
-// user input
-# define ROTATION_SPEED 0.01
 
 // colours
 # define C_WHITE			0xFFFFFFFF
@@ -74,7 +67,7 @@
 
 // palette Pastel
 # define P_PASTEL_NR		3
-# define C_PASTEL_BACK		0xFBEEE0FF
+# define C_PASTEL_BACK		0x868078FF
 # define C_PASTEL_LOW		0x85D65CFF
 # define C_PASTEL_MID		0xFFE840FF
 # define C_PASTEL_HIGH		0xFBBBC8FF
@@ -139,7 +132,6 @@ typedef struct s_palette
 }	t_palette;
 
 // free: map->content, map->project, map->polar
-// no free: map->name = argv[1]
 typedef struct s_map
 {
 	t_point			**original;
@@ -218,9 +210,8 @@ typedef struct s_fdf
 int			map_init(t_map *map, char *map_name);
 int			map_read(t_map *map);
 void		map_colour(void *param, const int y, const int x);
-// fdf
+// fdf / mlx
 int			fdf_init(t_fdf *fdf, t_map *map);
-// menu
 void		menu_draw(t_fdf *fdf);
 
 // starting from 2, every phase starts with a simple(void *param) function;

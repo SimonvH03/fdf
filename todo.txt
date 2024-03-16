@@ -8,5 +8,11 @@ Map set_polar
 	remove map_fill_polar from the presets, then move the function to map_init.c
 		(and move map_set_... to ui_presets.c) (maybe not)
 
-user_inputs
+User_inputs
 	only if (scale.total > '2') invert arrowkey translation, more intuitive?
+
+Presets
+	if total map height is 0, and a globe is desired, make easter egg
+
+Utils
+	give all utils a comment, where are they used?

@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/16 01:26:12 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/16 18:09:20 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ static int
 	return (EXIT_SUCCESS);
 }
 
-// swap points because I already implemented line drawing in any direction
-//;so why bother making two implementations for when p0 or p1 is OTH
+// swap points because I already implemented line drawing in any direction...
+//		so why bother making two implementations for when p0 or p1 is OTH
 static void
 	line_swap_points(
 		t_line *line)
@@ -102,12 +102,12 @@ static int
 
 // we use pythagoras' theorum to see if x,y falls within the horizon
 // Cases:
-// if both points are over the horizon; skip
-// if both points are outside the horizon; draw
-// if only one point is over the horizon;
-//;modify line to only draw from or until horizon
-// 'darksquare' is used to increase performance by not calculating
-//;anything for lines with both points within predetermined region
+// if both points are over the horizon: skip
+// if both points are outside the horizon: draw
+// if only one point is over the horizon:
+//		modify line to only draw from or until horizon
+// 'darksquare' is used to increase performance by not calculating...
+//		anything for lines with both points within predetermined region
 // < 0.00001 instead of 0 because doubles also never round up
 int
 	over_the_horizon(
