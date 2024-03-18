@@ -4,13 +4,6 @@ Make
 Map Init
 	squish z values when total_height > x_max || y_max
 
-Map set_polar
-	remove map_fill_polar from the presets, then move the function to map_init.c
-		(and move map_set_... to ui_presets.c) (maybe not)
-
-User_inputs
-	only if (scale.total > '2') invert arrowkey translation, more intuitive?
-
 Presets
 	if total map height is 0, and a globe is desired, make easter egg
 
