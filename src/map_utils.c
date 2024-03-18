@@ -6,12 +6,14 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/16 17:25:43 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/18 02:15:29 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
+// used by map_init() and user_inputs_balls()
+// calculates the cartesian coordinates for the points mapped onto a sphere
 void
 	map_fill_polar(
 		void *param,
@@ -36,6 +38,7 @@ void
 		temp.colour};
 }
 
+// from user_inputs_presets.c / inputs_presets_balls()
 void
 	map_set_polar(
 		void *param,
@@ -48,6 +51,7 @@ void
 	map->project[y][x] = map->polar[y][x];
 }
 
+// from user_inputs_presets.c / inputs_presets_flat()
 void
 	map_set_original(
 		void *param,
@@ -60,6 +64,7 @@ void
 	map->project[y][x] = map->original[y][x];
 }
 
+// from main.c / main()
 void
 	map_free(
 		t_map *map)

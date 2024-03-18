@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/16 01:21:06 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/18 02:00:13 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static uint32_t
 		return (gradient((ratio - 0.5) * 2, map->palette.mid, map->palette.high));
 }
 
+// from map_init.c / map_init()
 void
 	map_colour(
 		void *param,

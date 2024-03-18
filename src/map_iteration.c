@@ -6,13 +6,14 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:47:59 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/10 23:36:56 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/18 02:05:00 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-// this function applies the function *f(whatever) to the whole map(s)
+// used by map_init(), project(), keyhook(), draw() and user_inputs_presets.c
+// applies the function *f(whatever) to the whole map(s)
 void
 	map_iteration(
 		t_map *map,

@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/16 18:07:38 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/18 02:14:30 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <fcntl.h>
 # include <math.h>
 // for printf, exclude later
-// # include <stdio.h>
+# include <stdio.h>
 
 # define PI 3.14159265
 
@@ -41,39 +41,46 @@
 # define C_WHITE			0xFFFFFFFF
 # define C_GRAY				0x808080FF
 # define C_BLACK			0x000000FF
-# define C_BACKGROUND		0x20002088
+# define C_BACKGROUND		0x868078FF
 # define C_MENU				0xFF000040
 
 // palette RGB
 # define P_RGB_NR			0
 # define C_RGB_BACK			C_BLACK
-# define C_RGB_LOW			0xFF0000FF
+# define C_RGB_LOW			0x0000FFFF
 # define C_RGB_MID			0x00FF00FF
-# define C_RGB_HIGH			0x0000FFFF
+# define C_RGB_HIGH			0xFF0000FF
 
 // palette HACKERMAN
 # define P_HACKERMAN_NR		1
-# define C_HACKERMAN_BACK	C_BLACK
+# define C_HACKERMAN_BACK	0x101020FF
 # define C_HACKERMAN_LOW	0x002200FF
 # define C_HACKERMAN_MID	0x006600FF
 # define C_HACKERMAN_HIGH	0x00FF00FF
 
 // palette Metal
 # define P_METAL_NR			2
-# define C_METAL_BACK		0x808090FF
+# define C_METAL_BACK		0x202030FF
 # define C_METAL_LOW		C_BLACK
 # define C_METAL_MID		C_GRAY
 # define C_METAL_HIGH		C_WHITE
 
 // palette Pastel
-# define P_PASTEL_NR		3
-# define C_PASTEL_BACK		0x868078FF
-# define C_PASTEL_LOW		0x85D65CFF
-# define C_PASTEL_MID		0xFFE840FF
-# define C_PASTEL_HIGH		0xFBBBC8FF
+// # define P_PASTEL_NR		3
+// # define C_PASTEL_BACK		0x20002088
+// # define C_PASTEL_LOW		0x85D65CFF
+// # define C_PASTEL_MID		0xFBBBC8FF
+// # define C_PASTEL_HIGH		0xFFE840FF
+
+// palette Rust
+# define P_RUST_NR			4
+# define C_RUST_BACK		0x101020FF
+# define C_RUST_LOW			0x300000FF
+# define C_RUST_MID			0x903020FF
+# define C_RUST_HIGH		0x505050FF
 
 // palette Earth
-# define P_EARTH_NR			4
+# define P_EARTH_NR			5
 # define C_EARTH_BACK		C_BLACK
 # define C_EARTH_DEEP_SEA	0x202060FF
 # define C_EARTH_SEA		0x303090FF
@@ -138,8 +145,9 @@ typedef struct s_map
 	t_point			**project;
 	t_point			**polar;
 	t_palette		palette;
-	char			*name;
 	int				fd;
+	char			*name;
+	bool			isearth;
 	int				x_max;
 	int				y_max;
 	t_shape			shape;
@@ -162,6 +170,7 @@ typedef struct s_precalc
 	short			alpha;
 	short			beta;
 	short			gamma;
+	int				sign;
 	bool			reproject;
 }	t_precalc;
 
@@ -254,7 +263,6 @@ void		map_free(t_map *map);
 // map_read
 int			map_malloc_y(t_map *map);
 int			map_malloc_x(t_map *map, const int y);
-void		map_find_z_min_max(void *param, const int y, const int x);
 // fdf
 void		fdf_center_offset(t_fdf *fdf);
 // draw

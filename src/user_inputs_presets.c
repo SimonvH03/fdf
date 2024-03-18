@@ -6,12 +6,13 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:31:44 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/16 17:25:54 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/18 02:15:44 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
+// from user_inputs.c / user_inputs()
 // P for Parallel
 // I for Isometric
 void
@@ -33,8 +34,10 @@ void
 	fdf_center_offset(fdf);
 	fdf->scale.diff = fdf->scale.initial;
 	fdf->scale.total = 1;
+	fdf->spinlock = false;
 }
 
+// from user_inputs.c / user_inputs()
 // O for sphere
 // U for half sphere
 void

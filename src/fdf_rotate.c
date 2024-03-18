@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:44:02 by simon             #+#    #+#             */
-/*   Updated: 2024/03/16 00:25:42 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/18 01:57:39 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static void
 	point->z = prev_y * -sin(alpha) + point->z * cos(alpha);
 }
 
+// from project.c / project()
 void
 	fdf_rotate(
 		void	*param,

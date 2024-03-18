@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/16 18:09:20 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/18 01:57:00 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ static int
 	return (EXIT_SUCCESS);
 }
 
+// from draw_line.c / draw_line()
 // we use pythagoras' theorum to see if x,y falls within the horizon
 // Cases:
 // if both points are over the horizon: skip

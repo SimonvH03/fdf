@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:10:50 by simon             #+#    #+#             */
-/*   Updated: 2024/03/16 18:40:28 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/18 02:08:05 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ static void
 	menu_print_2(fdf, x, y);
 }
 
+// from main.c main()
 void
 	menu_draw(
 		t_fdf *fdf)

@@ -6,12 +6,13 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 10:59:22 by simon             #+#    #+#             */
-/*   Updated: 2024/03/16 17:44:00 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/18 02:08:29 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
+// from main.c / loop_hooks()
 // if the user inputs changed stuff, we recalculate the position of our points
 void
 	project(
@@ -29,7 +30,7 @@ void
 	{
 		map_iteration(fdf->map, &fdf_rotate_optimized, fdf);
 		if (fdf->spinlock == false)
-			fdf->precalc = (t_precalc){0, 0, 0, false};
+			fdf->precalc = (t_precalc){0, 0, 0, 1, false};
 	}
 	if (fdf->scale.diff != 1)
 	{

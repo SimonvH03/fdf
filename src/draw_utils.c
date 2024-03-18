@@ -6,13 +6,15 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/16 17:49:29 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/18 02:07:56 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-// from fdf_draw.c, menu_draw.c
+// used by menu_draw() and draw()
+// creates a background
+// creates a blank canvas over previous points
 void
 	draw_background(
 		const mlx_image_t *image,
@@ -34,7 +36,8 @@ void
 	}
 }
 
-// also used by map_colour.c
+// used by map_colour() and draw_line_pixel()
+// determines single point or pixel colour on a scale
 uint32_t
 	gradient(
 		double ratio,
@@ -60,6 +63,8 @@ uint32_t
 	return ((uint32_t)((res.r << 24) | (res.g << 16) | (res.b << 8) | res.a));
 }
 
+// used by draw_adjacent() and draw_line_pixel()
+// determines whether a point or pixel would be projected inside the image
 int
 	draw_check_point(
 		const t_fdf	*fdf,

@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:58:42 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/16 00:32:38 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/18 02:05:44 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,9 @@ static void
 	}
 }
 
+// from map_init.c / map_init()
 // size up the map, malloc 2D for t_points, fill rows with each get_next_line
-// make a copy at map->project
+// make a copy at map->project to initialize projection data
 int
 	map_read(
 		t_map *map)

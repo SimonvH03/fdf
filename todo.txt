@@ -19,5 +19,5 @@ Map problems
 	spaces at the end of a line
 	inconsistent line lengths
 
-Utils
-	give all utils a comment, where are they used?
+Maps
+	make 42 map cooler

@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/16 01:26:30 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/18 02:11:49 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,18 @@ static void
 	manual_rotation(
 		t_fdf	*fdf)
 {
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_W))
-		fdf->precalc.alpha = -1;
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_S))
-		fdf->precalc.alpha = +1;
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_D))
-		fdf->precalc.beta = +1;
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_A))
-		fdf->precalc.beta = -1;
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_E))
-		fdf->precalc.gamma = -1;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Q))
-		fdf->precalc.gamma = +1;
+		fdf->precalc.gamma = +fdf->precalc.sign;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_E))
+		fdf->precalc.gamma = -fdf->precalc.sign;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_A))
+		fdf->precalc.beta = -fdf->precalc.sign;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_D))
+		fdf->precalc.beta = +fdf->precalc.sign;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_W))
+		fdf->precalc.alpha = -fdf->precalc.sign;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_S))
+		fdf->precalc.alpha = +fdf->precalc.sign;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(fdf->mlx);
 	if (fdf->precalc.gamma
@@ -60,18 +60,18 @@ static void
 		t_fdf	*fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_UP))
-		fdf->offset.y += 10;
+		fdf->offset.y -= 10 * fdf->precalc.sign;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_DOWN))
-		fdf->offset.y -= 10;
+		fdf->offset.y += 10 * fdf->precalc.sign;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT))
-		fdf->offset.x += 10;
+		fdf->offset.x -= 10 * fdf->precalc.sign;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT))
-		fdf->offset.x -= 10;
+		fdf->offset.x += 10 * fdf->precalc.sign;
 }
 
 // because bigger maps are slow, press + to get somewhere quick
 static void
-	input_variable_speed(
+	inputs_variable_speed(
 		t_fdf	*fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_MINUS))
@@ -90,6 +90,7 @@ static void
 	}
 }
 
+// from main.c loop_hooks()
 // do 'em all at once, doesn't matter
 void
 	user_inputs(
@@ -104,15 +105,9 @@ void
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_O)
 		|| mlx_is_key_down(fdf->mlx, MLX_KEY_U))
 		input_presets_balls(fdf);
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_R))
-	{
-		fdf_center_offset(fdf);
-		fdf->scale.diff = 1 / fdf->scale.total;
-		fdf->scale.total = 1;
-	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_MINUS)
 		|| mlx_is_key_down(fdf->mlx, MLX_KEY_EQUAL))
-		input_variable_speed(fdf);
+		inputs_variable_speed(fdf);
 	manual_rotation(fdf);
 	manual_translation(fdf);
 	fdf_redraw(fdf);

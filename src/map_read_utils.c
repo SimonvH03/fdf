@@ -6,12 +6,13 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/16 00:32:47 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/18 02:05:33 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
+// used by map_read()
 int
 	map_malloc_y(
 		t_map *map)
@@ -28,6 +29,7 @@ int
 	return (EXIT_SUCCESS);
 }
 
+// used by map_read()
 int
 	map_malloc_x(
 		t_map *map,
@@ -43,21 +45,4 @@ int
 	if (map->polar[y] == NULL)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
-}
-
-void
-	map_find_z_min_max(
-		void *param,
-		const int y,
-		const int x)
-{			
-	t_map	*map;
-	int		z_val;
-
-	map = param;
-	z_val = map->original[y][x].z;
-	if (z_val < map->z_min)
-		map->z_min = z_val;
-	if (z_val > map->z_max)
-		map->z_max = z_val;
 }

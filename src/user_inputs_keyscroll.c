@@ -6,12 +6,13 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/16 17:50:32 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/18 02:08:42 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
+// from main.c / loop_hooks()
 void
 	keyhook(
 		mlx_key_data_t keydata,
@@ -28,12 +29,23 @@ void
 	if (keydata.key == MLX_KEY_C && keydata.action == MLX_PRESS)
 	{
 		fdf->map->palette = map_cycle_palettes(fdf->map);
-		if (fdf->ballin == false && fdf->map->palette.nr == P_EARTH_NR)
+		if (!fdf->map->isearth && fdf->map->palette.nr == P_EARTH_NR)
 			fdf->map->palette = map_cycle_palettes(fdf->map);
 		map_iteration(fdf->map, &map_colour, fdf->map);
 	}
+	if (keydata.key == MLX_KEY_R && keydata.action == MLX_PRESS)
+	{
+		fdf_center_offset(fdf);
+		fdf->scale.diff = 1 / fdf->scale.total;
+		fdf->scale.total = 1;
+	}
+	if (keydata.key == MLX_KEY_T && keydata.action == MLX_PRESS)
+	{
+		fdf->precalc.sign *= -1;
+	}
 }
 
+// from main.c / loop_hooks()
 void
 	scrollhook(
 		double xdelta,

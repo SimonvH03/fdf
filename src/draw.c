@@ -6,14 +6,14 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 01:05:50 by simon             #+#    #+#             */
-/*   Updated: 2024/03/16 01:22:29 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/18 01:55:20 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 static void
-	draw_down_and_to_the_right(
+	draw_orthogonally_adjacent(
 		void	*param,
 		const int y,
 		const int x)
@@ -43,6 +43,7 @@ static void
 	}
 }
 
+// from loop_hooks
 void
 	draw(
 		void *param)
@@ -53,6 +54,6 @@ void
 	if (fdf->redraw == false)
 		return ;
 	draw_background(fdf->image, fdf->map->palette.background);
-	map_iteration(fdf->map, &draw_down_and_to_the_right, fdf);
+	map_iteration(fdf->map, &draw_orthogonally_adjacent, fdf);
 	fdf->redraw = false;
 }

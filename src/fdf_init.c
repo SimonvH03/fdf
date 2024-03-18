@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/16 17:50:09 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/18 01:57:09 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int
 	return (EXIT_SUCCESS);
 }
 
-// from file main.c
+// from main.c / main()
 int
 	fdf_init(
 		t_fdf *fdf,
@@ -61,7 +61,7 @@ int
 		return (EXIT_FAILURE);
 	fdf->map = map;
 	fdf->perspective = (t_perspective){ISO_ALPHA, ISO_BETA, ISO_GAMMA, true};
-	fdf->precalc = (t_precalc){0, 0, 0, true};
+	fdf->precalc = (t_precalc){0, 0, 0, 1, true};
 	fdf->speed = ROTATION_SPEED;
 	fdf->cosin = (t_cosin){cos(fdf->speed), sin(fdf->speed)};
 	fdf_scale_init(fdf);

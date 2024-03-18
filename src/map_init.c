@@ -6,14 +6,15 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/16 01:24:11 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/18 02:14:50 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
+// inspects the argument given to determine whether map is likely earth
 static int
-	map_is_globe(
+	map_is_earth(
 		const char *map_name)
 {
 	int		name_length;
@@ -38,7 +39,25 @@ static int
 	return (EXIT_FAILURE);
 }
 
-// from file main.c
+// finds minimum and maximum z (height) value in the map
+static void
+	map_find_z_min_max(
+		void *param,
+		const int y,
+		const int x)
+{			
+	t_map	*map;
+	int		z_val;
+
+	map = param;
+	z_val = map->original[y][x].z;
+	if (z_val < map->z_min)
+		map->z_min = z_val;
+	if (z_val > map->z_max)
+		map->z_max = z_val;
+}
+
+// from main.c / main()
 int
 	map_init(
 		t_map *map,
@@ -50,8 +69,9 @@ int
 	map->palette = (t_palette)
 			{P_RGB_NR, C_RGB_BACK,
 			C_RGB_LOW, C_RGB_MID, C_RGB_HIGH};
-	if (map_is_globe(map_name) == EXIT_SUCCESS)
+	if (map_is_earth(map_name) == EXIT_SUCCESS)
 		map->palette = (t_palette){P_EARTH_NR, C_EARTH_BACK, 0, 0, 0};
+	map->isearth = (bool)(map->palette.nr == P_EARTH_NR);
 	map->name = map_name;
 	map->fd = 0;
 	if (map_read(map) == EXIT_FAILURE)
@@ -63,7 +83,7 @@ int
 	map->radius = (map->total_height) * 10;
 	map->shape = (t_shape)
 			{S_FULL_SPHERE, -2 * PI / (map->x_max), PI / (map->y_max - 1)};
-	map_iteration(map , &map_colour, map);
 	map_iteration(map, &map_fill_polar, map);
+	map_iteration(map , &map_colour, map);
 	return (EXIT_SUCCESS);
 }

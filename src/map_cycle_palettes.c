@@ -6,30 +6,26 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 19:05:29 by simon             #+#    #+#             */
-/*   Updated: 2024/03/16 00:30:51 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/18 02:00:45 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
+// from user_inputs_keyscroll.c / keyhook()
 t_palette	map_cycle_palettes(t_map *map)
 {
 	if (map->palette.nr == P_RGB_NR)
-		return ((t_palette)
-			{P_HACKERMAN_NR, C_HACKERMAN_BACK,
+		return ((t_palette){P_HACKERMAN_NR, C_HACKERMAN_BACK,
 			C_HACKERMAN_LOW, C_HACKERMAN_MID, C_HACKERMAN_HIGH});
 	else if (map->palette.nr == P_HACKERMAN_NR)
-		return ((t_palette)
-			{P_METAL_NR, C_METAL_BACK,
+		return ((t_palette){P_METAL_NR, C_METAL_BACK,
 			C_METAL_LOW, C_METAL_MID, C_METAL_HIGH});
 	else if (map->palette.nr == P_METAL_NR)
-		return ((t_palette)
-			{P_PASTEL_NR, C_PASTEL_BACK,
-			C_PASTEL_LOW, C_PASTEL_MID, C_PASTEL_HIGH});
-	else if (map->palette.nr == P_PASTEL_NR)
-		return ((t_palette)
-			{P_EARTH_NR, C_EARTH_BACK,
-			0, 0, 0});
+		return ((t_palette){P_RUST_NR, C_RUST_BACK,
+			C_RUST_LOW, C_RUST_MID, C_RUST_HIGH});
+	else if (map->palette.nr == P_RUST_NR)
+		return ((t_palette){P_EARTH_NR, C_EARTH_BACK, 0, 0, 0});
 	else
 		return ((t_palette)
 			{P_RGB_NR, C_RGB_BACK,

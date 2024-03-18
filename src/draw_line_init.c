@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/16 01:02:53 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/18 01:53:57 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static bool
 	return (true);
 }
 
-// from fdf_draw_line.c
+// from draw_line.c / draw_line()
 void
 	draw_line_init(
 		t_line			*line,

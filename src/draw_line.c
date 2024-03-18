@@ -78,6 +78,7 @@ static int
 	return (EXIT_FAILURE);
 }
 
+// from draw.c / draw_orthogonally_adjacent()
 void
 	draw_line(
 		const t_fdf		*fdf,
