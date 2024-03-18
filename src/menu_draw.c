@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu_draw.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:10:50 by simon             #+#    #+#             */
-/*   Updated: 2024/03/18 02:08:05 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/18 16:52:33 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static void
 	mlx_put_string(fdf->mlx, "Scroll UP - DOWN", x + tab, y);
 	mlx_put_string(fdf->mlx, "Spinlock:", x, y += line);
 	mlx_put_string(fdf->mlx, "SPACEBAR", x + tab, y);
+	mlx_put_string(fdf->mlx, "Horizon:", x, y += line);
+	mlx_put_string(fdf->mlx, "H", x + tab, y);
 	mlx_put_string(fdf->mlx, "Colour cycle:", x, y += line);
 	mlx_put_string(fdf->mlx, "C", x + tab, y);
 	mlx_put_string(fdf->mlx, "Reset:", x, y += line);

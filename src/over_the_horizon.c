@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   over_the_horizon.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/18 01:57:00 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/18 16:44:07 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int
 		const t_fdf *fdf,
 		t_line *line)
 {
-	if (fdf->ballin == false)
+	if (fdf->horizon == false || fdf->ballin == false)
 		return (EXIT_SUCCESS);
 	if ((line->p0->z < -0.00001 && line->p1->z < -0.00001))
 	{

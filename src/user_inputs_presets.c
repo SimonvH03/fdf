@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user_inputs_presets.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:31:44 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/18 02:15:44 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/18 16:53:28 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,14 @@ void
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_P))
 	{
 		map_iteration(fdf->map, &map_set_original, fdf->map);
-		fdf->ballin = false;
 	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_I))
 	{
 		map_iteration(fdf->map, &map_set_original, fdf->map);
 		fdf->perspective = (t_perspective)
 		{ISO_ALPHA, ISO_BETA, ISO_GAMMA, true};
-		fdf->ballin = false;
 	}
+	fdf->ballin = false;
 	fdf_center_offset(fdf);
 	fdf->scale.diff = fdf->scale.initial;
 	fdf->scale.total = 1;

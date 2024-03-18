@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/18 02:14:50 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/18 16:41:40 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ int
 	map_iteration(map, &map_find_z_min_max, map);
 	map->total_height = map->z_max - map->z_min;
 	map->radius = (map->total_height) * 10;
+	if (map->radius == 0)
+		map->radius = 1;
 	map->shape = (t_shape)
 			{S_FULL_SPHERE, -2 * PI / (map->x_max), PI / (map->y_max - 1)};
 	map_iteration(map, &map_fill_polar, map);

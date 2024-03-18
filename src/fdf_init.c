@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/18 01:57:09 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/18 16:54:50 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ int
 	fdf->spinlock = false;
 	fdf->redraw = true;
 	fdf->ballin = false;
+	fdf->horizon = true;
 	return (EXIT_SUCCESS);
 }

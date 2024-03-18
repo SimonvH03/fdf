@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/18 02:14:30 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/18 17:01:04 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@
 
 // palette HACKERMAN
 # define P_HACKERMAN_NR		1
-# define C_HACKERMAN_BACK	0x101020FF
-# define C_HACKERMAN_LOW	0x002200FF
+# define C_HACKERMAN_BACK	0x080810FF
+# define C_HACKERMAN_LOW	0x003300FF
 # define C_HACKERMAN_MID	0x006600FF
 # define C_HACKERMAN_HIGH	0x00FF00FF
 
@@ -74,10 +74,10 @@
 
 // palette Rust
 # define P_RUST_NR			4
-# define C_RUST_BACK		0x101020FF
-# define C_RUST_LOW			0x300000FF
-# define C_RUST_MID			0x903020FF
-# define C_RUST_HIGH		0x505050FF
+# define C_RUST_BACK		0x080810FF
+# define C_RUST_LOW			0x660000FF
+# define C_RUST_MID			0xFF6644FF
+# define C_RUST_HIGH		0xAAAAAAFF
 
 // palette Earth
 # define P_EARTH_NR			5
@@ -210,6 +210,7 @@ typedef struct s_fdf
 	bool			spinlock;
 	bool			redraw;
 	bool			ballin;
+	bool			horizon;
 	double			darksquare;
 	double			radius;
 }	t_fdf;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user_inputs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/18 02:11:49 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/18 16:50:16 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ static void
 		|| mlx_is_key_down(fdf->mlx, MLX_KEY_DOWN)
 		|| mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT)
 		|| mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT)
-		|| mlx_is_key_down(fdf->mlx, MLX_KEY_C))
+		|| mlx_is_key_down(fdf->mlx, MLX_KEY_C)
+		|| mlx_is_key_down(fdf->mlx, MLX_KEY_H)
+		|| mlx_is_key_down(fdf->mlx, MLX_KEY_T))
 		fdf->redraw = true;
 	if (fdf->perspective.reproject
 		|| fdf->precalc.reproject

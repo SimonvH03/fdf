@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user_inputs_keyscroll.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/18 02:08:42 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/18 16:49:10 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void
 		fdf->scale.total = 1;
 	}
 	if (keydata.key == MLX_KEY_T && keydata.action == MLX_PRESS)
-	{
 		fdf->precalc.sign *= -1;
-	}
+	if (keydata.key == MLX_KEY_H && keydata.action == MLX_PRESS)
+		fdf->horizon = !fdf->horizon;
 }
 
 // from main.c / loop_hooks()
