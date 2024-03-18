@@ -2,15 +2,11 @@ Make
 	(Makefile) write it myself
 
 Map Init
-	squish z values when total_height > x_max || y_max
+	squish z values when total_height > x_max || y_max (maybe add toggle)
 
 Presets
 	if total map height is 0, and a globe is desired, make easter egg
 
 Map problems
-	total height 0^
 	spaces at the end of a line
 	inconsistent line lengths
-
-Maps
-	make 42 map cooler
