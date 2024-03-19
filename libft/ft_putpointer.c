@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ft_putpointer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 17:21:57 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/19 17:30:06 by svan-hoo         ###   ########.fr       */
+/*   Created: 2023/11/23 23:15:27 by simon             #+#    #+#             */
+/*   Updated: 2023/12/20 18:26:57 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/libft.h"
+#include "printf_libft.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
+int	ft_putpointer(unsigned long p)
 {
-	if (f == NULL)
-		return ;
-	while (lst != NULL)
-	{
-		f(lst->content);
-		lst = lst->next;
-	}
+	int	len;
+
+	len = 0;
+	len += ft_putstr("0x");
+	len += ft_putnbr_base(p, "0123456789abcdef");
+	return (len);
 }

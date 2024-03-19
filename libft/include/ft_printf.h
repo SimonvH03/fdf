@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 17:21:57 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/19 17:30:06 by svan-hoo         ###   ########.fr       */
+/*   Created: 2024/03/19 17:36:11 by svan-hoo          #+#    #+#             */
+/*   Updated: 2024/03/19 17:40:06 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/libft.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+# include <stdarg.h>
+# include <unistd.h>
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
-{
-	if (f == NULL)
-		return ;
-	while (lst != NULL)
-	{
-		f(lst->content);
-		lst = lst->next;
-	}
-}
+int	ft_printf(const char *form, ...);
+int	ft_spellbook(va_list args, const char *form);
+
+int	ft_cprint(char c);
+int	ft_sprint(char *str);
+int	ft_idprint(int id);
+int	ft_uprint(unsigned int u);
+int	ft_xprint(int x);
+int	ft_bigxprint(int x);
+int	ft_pprint(void *p);
+
+#endif

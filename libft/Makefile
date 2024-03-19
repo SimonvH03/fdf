@@ -22,6 +22,7 @@ SRC		=	ft_atoi.c \
 			ft_putendl_fd.c \
 			ft_putnbr_fd.c \
 			ft_putnbr.c \
+			ft_putpointer.c \
 			ft_putstr_fd.c \
 			ft_putstr.c \
 			ft_split.c \
@@ -45,10 +46,7 @@ SRC		=	ft_atoi.c \
 			ft_toupper.c \
 			ft_writing.c \
 			ft_cpy.c \
-			get_next_line.c \
-			get_next_line_utils.c
-
-BSRC	=	ft_lstadd_back.c \
+			ft_lstadd_back.c \
 			ft_lstadd_front.c \
 			ft_lstclear.c \
 			ft_lstdelone.c \
@@ -56,31 +54,28 @@ BSRC	=	ft_lstadd_back.c \
 			ft_lstlast.c \
 			ft_lstmap.c \
 			ft_lstnew.c \
-			ft_lstsize.c
+			ft_lstsize.c \
+			get_next_line.c \
+			get_next_line_utils.c \
+			ft_printf.c \
+			ft_printf_spellbook_1.c \
+			ft_printf_spellbook_2.c \
 
 OBJ		=	$(SRC:.c=.o)
-
-BOBJ	=	$(BSRC:.c=.o)
-
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	ar rcs $(NAME) $(OBJ)
 
-bonus: $(NAME) $(BOBJ)
-	ar rcs $(NAME) $(BOBJ)
-
 %.o: %.c
 	cc $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)
-	rm -f $(BOBJ)
 
 fclean: clean
 	rm -f $(NAME)
-	rm -f $(BNAME)
 
 re: fclean all
 

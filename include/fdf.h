@@ -6,19 +6,19 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/18 17:01:04 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/19 17:53:56 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 # include "MLX42/MLX42.h"
-# include "libft.h"
+# include "../libft/libft.h"
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
 // for printf, exclude later
-# include <stdio.h>
+// # include <stdio.h>
 
 # define PI 3.14159265
 

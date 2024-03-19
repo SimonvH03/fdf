@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:11:09 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/07 18:31:38 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/19 17:34:08 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <fcntl.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 15000
+#  define BUFFER_SIZE 100
 # endif
 
 char	*get_next_line(int fd);

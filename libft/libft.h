@@ -6,17 +6,18 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:53:50 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/13 19:49:50 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/19 17:35:23 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# include "get_next_line.h"
-# include <stddef.h>
+# include "include/get_next_line.h"
+# include "include/ft_printf.h"
+# include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <unistd.h>
+# include <stddef.h>
 # include <limits.h>
 
 typedef struct s_list
@@ -88,7 +89,6 @@ t_list		*ft_lstnew(void *content);
 int			ft_lstsize(t_list *lst);
 
 int			ft_writing(const char *str, int n);
-// char		*ft_writingpoint(const char *str, int n);
 
 int			ft_cpy(char *dest, const char *src, int n);
 int			ft_str_toupper(char *src);

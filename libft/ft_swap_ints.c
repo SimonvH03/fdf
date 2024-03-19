@@ -6,11 +6,9 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 19:47:44 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/13 19:49:35 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/19 17:38:47 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "libft.h"
 
 void	ft_swap_ints(int *a, int *b)
 {

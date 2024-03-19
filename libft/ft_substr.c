@@ -6,11 +6,11 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 17:39:03 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/10/30 22:23:28 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/19 17:30:06 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "include/libft.h"
 
 char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
