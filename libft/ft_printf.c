@@ -6,12 +6,11 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:13:52 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/19 17:39:40 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:28:29 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-#include <limits.h>
+#include "libft.h"
 
 int	ft_spellbook(va_list args, const char *form)
 {

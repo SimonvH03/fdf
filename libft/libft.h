@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:53:50 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/19 18:24:42 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:30:06 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void		ft_putstr_fd(char *s, int fd);
 
 int			ft_putnbr(long n);
 int			ft_putchar(char c);
+int			ft_putpointer(unsigned long p);
 int			ft_putstr(char *str);
 
 int			ft_strcat(char *dest, const char *src);

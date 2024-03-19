@@ -6,11 +6,11 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:11:18 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/19 18:23:47 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:28:34 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 void	*ft_free_gnl(char **pp)
 {

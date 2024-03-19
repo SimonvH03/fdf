@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:36:11 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/19 17:40:06 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:27:15 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_PRINTF_H
 # include <stdarg.h>
 # include <unistd.h>
+# include <limits.h>
 
 int	ft_printf(const char *form, ...);
 int	ft_spellbook(va_list args, const char *form);
