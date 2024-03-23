@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strchr_null.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/19 17:36:11 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/19 18:27:15 by svan-hoo         ###   ########.fr       */
+/*   Created: 2024/03/23 20:27:28 by svan-hoo          #+#    #+#             */
+/*   Updated: 2024/03/23 20:27:40 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include <stdarg.h>
-# include <unistd.h>
-# include <limits.h>
+#include "libft.h"
 
-int	ft_printf(const char *form, ...);
-int	ft_spellbook(va_list args, const char *form);
+int	ft_strchr_null(const char *str, char c)
+{
+	int	i;
 
-int	ft_cprint(char c);
-int	ft_sprint(char *str);
-int	ft_idprint(int id);
-int	ft_uprint(unsigned int u);
-int	ft_xprint(int x);
-int	ft_bigxprint(int x);
-int	ft_pprint(void *p);
-
-#endif
+	i = 0;
+	if (str)
+		while (str[i] || str[i] == c)
+			if (str[i++] == c)
+				return (i);
+	return (0);
+}

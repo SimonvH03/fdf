@@ -1,38 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_spellbook_1.c                            :+:      :+:    :+:   */
+/*   ft_free_null.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 21:11:55 by simon             #+#    #+#             */
-/*   Updated: 2024/03/19 18:26:49 by svan-hoo         ###   ########.fr       */
+/*   Created: 2024/03/23 20:24:45 by svan-hoo          #+#    #+#             */
+/*   Updated: 2024/03/23 20:25:26 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_cprint(char c)
+void	*ft_free_null(char **pp)
 {
-	return (ft_putchar(c));
-}
-
-int	ft_idprint(int id)
-{
-	return (ft_putnbr(id));
-}
-
-int	ft_uprint(unsigned int u)
-{
-	return (ft_putnbr(u));
-}
-
-int	ft_xprint(int x)
-{
-	return (ft_putnbr_base(x, "0123456789abcdef"));
-}
-
-int	ft_bigxprint(int x)
-{
-	return (ft_putnbr_base(x, "0123456789ABCDEF"));
+	free(*pp);
+	*pp = NULL;
+	return (NULL);
 }

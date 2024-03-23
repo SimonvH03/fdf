@@ -6,32 +6,50 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:13:52 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/19 18:28:29 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/23 20:51:16 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_spellbook(va_list args, const char *form)
+static int	ft_sprint(char *str)
+{
+	if (str == NULL)
+		return (write(1, "(null)", 6));
+	else
+		return (ft_putstr(str));
+}
+
+static int	ft_pprint(void *p)
+{
+	if (p == NULL)
+		return (write(1, "(nil)", 5));
+	else
+		return (ft_putpointer((unsigned long)p));
+}
+
+static int	ft_spellbook(va_list args, const char *form)
 {
 	int	bytes_printed;
 
 	if (*form == '%')
-		return (ft_cprint('%'));
+		return (ft_putchar('%'));
 	if (*form == 'c')
-		return (ft_cprint(va_arg(args, int)));
-	if (*form == 's')
-		return (ft_sprint(va_arg(args, char *)));
+		return (ft_putchar(va_arg(args, int)));
 	if (*form == 'i' || *form == 'd')
-		return (ft_idprint(va_arg(args, int)));
+		return (ft_putnbr(va_arg(args, int)));
 	if (*form == 'u')
-		return (ft_uprint(va_arg(args, unsigned int)));
+		return (ft_putnbr(va_arg(args, unsigned int)));
 	if (*form == 'x')
-		return (ft_xprint(va_arg(args, int)));
+		return (ft_putnbr_base(va_arg(args, int),
+			"0123456789abcdef"));
 	if (*form == 'X')
-		return (ft_bigxprint(va_arg(args, unsigned int)));
+		return (ft_putnbr_base(va_arg(args, unsigned int),
+			"0123456789ABCDEF"));
 	if (*form == 'p')
 		return (ft_pprint(va_arg(args, void *)));
+	if (*form == 's')
+		return (ft_sprint(va_arg(args, char *)));
 	bytes_printed = write(1, "%%", 1);
 	bytes_printed += write(1, form, 1);
 	return (bytes_printed);
