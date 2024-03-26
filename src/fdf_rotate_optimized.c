@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:30:28 by simon             #+#    #+#             */
-/*   Updated: 2024/03/18 01:57:30 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/26 21:13:26 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void
 	point_rotate_precalculated(
-		const t_fdf	*fdf,
-		t_point		*point)
+		const t_fdf *fdf,
+		t_point *point)
 {
 	double			prev_x;
 	double			prev_y;
@@ -46,7 +46,7 @@ static void
 // from project.c / project()
 void
 	fdf_rotate_optimized(
-		void	*param,
+		void *param,
 		const int y,
 		const int x)
 {

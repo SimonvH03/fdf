@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/18 16:41:40 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/26 21:03:44 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void
 		void *param,
 		const int y,
 		const int x)
-{			
+{
 	t_map	*map;
 	int		z_val;
 
@@ -67,8 +67,7 @@ int
 	map->project = NULL;
 	map->polar = NULL;
 	map->palette = (t_palette)
-			{P_RGB_NR, C_RGB_BACK,
-			C_RGB_LOW, C_RGB_MID, C_RGB_HIGH};
+	{P_RGB_NR, C_RGB_BACK, C_RGB_LOW, C_RGB_MID, C_RGB_HIGH};
 	if (map_is_earth(map_name) == EXIT_SUCCESS)
 		map->palette = (t_palette){P_EARTH_NR, C_EARTH_BACK, 0, 0, 0};
 	map->isearth = (bool)(map->palette.nr == P_EARTH_NR);
@@ -84,8 +83,8 @@ int
 	if (map->radius == 0)
 		map->radius = 1;
 	map->shape = (t_shape)
-			{S_FULL_SPHERE, -2 * PI / (map->x_max), PI / (map->y_max - 1)};
+	{S_FULL_SPHERE, -2 * PI / (map->x_max), PI / (map->y_max - 1)};
 	map_iteration(map, &map_fill_polar, map);
-	map_iteration(map , &map_colour, map);
+	map_iteration(map, &map_colour, map);
 	return (EXIT_SUCCESS);
 }

@@ -2,7 +2,8 @@ NAME	=	libft.a
 
 CFLAGS	=	-Wall -Wextra -Werror
 
-SRC		=	ft_atoi.c \
+SRC		=	ft_abs.c \
+			ft_atoi.c \
 			ft_bzero.c \
 			ft_calloc.c \
 			ft_cpy.c \
@@ -40,6 +41,7 @@ SRC		=	ft_atoi.c \
 			ft_putpointer.c \
 			ft_putstr_fd.c \
 			ft_putstr.c \
+			ft_sign.c \
 			ft_split.c \
 			ft_str_toupper.c \
 			ft_strcat.c \

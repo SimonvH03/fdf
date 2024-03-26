@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 19:05:29 by simon             #+#    #+#             */
-/*   Updated: 2024/03/18 02:00:45 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/26 21:04:08 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ t_palette	map_cycle_palettes(t_map *map)
 	else if (map->palette.nr == P_RUST_NR)
 		return ((t_palette){P_EARTH_NR, C_EARTH_BACK, 0, 0, 0});
 	else
-		return ((t_palette)
-			{P_RGB_NR, C_RGB_BACK,
+		return ((t_palette){P_RGB_NR, C_RGB_BACK,
 			C_RGB_LOW, C_RGB_MID, C_RGB_HIGH});
 }

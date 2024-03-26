@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:47:59 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/18 02:05:00 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/26 21:01:35 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,8 @@
 void
 	map_iteration(
 		t_map *map,
-		void (*function)
-		(void *param,
-			const int y,
-			const int x),
-		void *parameter)
+		mapi_func *function,
+		void *param)
 {
 	int	y;
 	int	x;
@@ -32,7 +29,7 @@ void
 		x = 0;
 		while (x < map->x_max)
 		{
-			function(parameter, y, x);
+			function(param, y, x);
 			x++;
 		}
 		y++;

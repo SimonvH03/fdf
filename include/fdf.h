@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/19 17:53:56 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/26 21:47:33 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,20 +215,21 @@ typedef struct s_fdf
 	double			radius;
 }	t_fdf;
 
+// this is function type used to modify points on a (t_point **) type map
+typedef	void	(mapi_func)(void *param, const int y, const int x);
+typedef void	(mlx_hook)(void *param);
+
 /// PHASE 1: initialising windows, maps and settings based on map
 // map
 int			map_init(t_map *map, char *map_name);
 int			map_read(t_map *map);
-void		map_colour(void *param, const int y, const int x);
+mapi_func	map_colour;
 // fdf / mlx
 int			fdf_init(t_fdf *fdf, t_map *map);
 void		menu_draw(t_fdf *fdf);
 
-// starting from 2, every phase starts with a simple(void *param) function;
-//	because they are called by mlx_loop_hook
-
 /// PHASE 2: interpreting user input to set up point modification
-void		user_inputs(void *param);
+mlx_hook	user_inputs;
 void		keyhook(mlx_key_data_t keydata, void *param);
 void		scrollhook(double xdelta, double ydelta, void *param);
 
@@ -238,22 +239,19 @@ void		input_presets_balls(t_fdf *fdf);
 t_palette	map_cycle_palettes(t_map *map);
 
 /// PHASE 3: modifying the projection data based on interpreted user input
-void		project(void *param);
-// Mother of Death, responsible for 9 victims, along with her freak children
-void		map_iteration(t_map *map,
-				void (*function)(void *param, const int y, const int x),
-				void *parameter);
-// Map Iteration functions (applied to a point from any map on position [y][x])
-void		fdf_rotate(void *param, const int y, const int x);
-void		fdf_rotate_optimized(void *param, const int y, const int x);
-void		fdf_scale(void *param, const int y, const int x);
-
-void		map_fill_polar(void *param, const int y, const int x);
-void		map_set_polar(void *param, const int y, const int x);
-void		map_set_original(void *param, const int y, const int x);
+mlx_hook	project;
+// Mother of Death, responsible for 9 victims, with some of with her children
+void		map_iteration(t_map *map, mapi_func *function, void *param);
+// map_iteration functions (applied to a point from any map on position [y][x])
+mapi_func	fdf_rotate;
+mapi_func	fdf_rotate_optimized;
+mapi_func	fdf_scale;
+mapi_func	map_fill_polar;
+mapi_func	map_set_polar;
+mapi_func	map_set_original;
 
 /// PHASE 4: drawing the fdf based on the projection data
-void		draw(void *param);
+mlx_hook	draw;
 void		draw_line(const t_fdf *fdf, const t_point *p0, const t_point *p1);
 void		draw_line_init(t_line *line, const t_point *p0, const t_point *p1);
 int			over_the_horizon(const t_fdf *fdf, t_line *line);
@@ -272,7 +270,7 @@ int			draw_check_point(const t_fdf *fdf, int x_pixel, int y_pixel);
 uint32_t	gradient(double ratio, uint32_t end, uint32_t start);
 // calc
 double		deg_to_rad(double angle_deg);
-double		ft_abs(double val);
-short		ft_sign(double val);
+double		ft_abs_double(double val);
+short		ft_sign_double(double val);
 
 #endif

@@ -14,7 +14,7 @@
 
 static uint32_t
 	draw_line_colour(
-		const t_line	*line)
+		const t_line *line)
 {
 	double	relative_height;
 	double	total_height;
@@ -38,8 +38,8 @@ static uint32_t
 
 static void
 	draw_line_pixel(
-		const t_fdf	*fdf,
-		const t_line	*line)
+		const t_fdf *fdf,
+		const t_line *line)
 {
 	int	x_pixel;
 	int	y_pixel;
@@ -63,8 +63,8 @@ static void
 
 static int
 	draw_straight_line(
-		const t_fdf	*fdf,
-		t_line	*line)
+		const t_fdf *fdf,
+		t_line *line)
 {
 	if (line->d_pas == 0)
 	{
@@ -81,9 +81,9 @@ static int
 // from draw.c / draw_orthogonally_adjacent()
 void
 	draw_line(
-		const t_fdf		*fdf,
-		const t_point	*p0,
-		const t_point	*p1)
+		const t_fdf *fdf,
+		const t_point *p0,
+		const t_point *p1)
 {
 	t_line	line;
 

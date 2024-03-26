@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:44:02 by simon             #+#    #+#             */
-/*   Updated: 2024/03/18 01:57:39 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/26 21:13:47 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // angle gamma around z-axis (roll)
 static void
 	point_rotate_gamma(
-		t_point	*point,
+		t_point *point,
 		const double gamma)
 {
 	const double	prev_x = point->x;
@@ -27,7 +27,7 @@ static void
 // angle beta around y-axis (yaw)
 static void
 	point_rotate_beta(
-		t_point	*point,
+		t_point *point,
 		const double beta)
 {
 	const double	prev_x = point->x;
@@ -39,7 +39,7 @@ static void
 // angle alpha round x-axis (pitch)
 static void
 	point_rotate_alpha(
-		t_point	*point,
+		t_point *point,
 		const double alpha)
 {
 	const double	prev_y = point->y;
@@ -51,7 +51,7 @@ static void
 // from project.c / project()
 void
 	fdf_rotate(
-		void	*param,
+		void *param,
 		const int y,
 		const int x)
 {

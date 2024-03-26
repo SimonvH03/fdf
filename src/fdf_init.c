@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/18 16:54:50 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/26 21:07:29 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,16 @@ static void
 	scalefinder = (double)fdf->image->height / (double)fdf->map->y_max;
 	if (scalefinder < fdf->scale.initial)
 		fdf->scale.initial = scalefinder;
+	if (fdf->map->radius == 0)
+		fdf->scale.sphere = 1;
+	else
+		fdf->scale.sphere = fdf->image->width / (2.2 * fdf->map->radius)
+			* DEFAULT_SCALE;
 	fdf->scale.initial *= DEFAULT_SCALE;
 	if (fdf->scale.initial == 0)
 		fdf->scale.initial = 0.1;
 	fdf->scale.diff = fdf->scale.initial;
 	fdf->scale.total = 1;
-	if (fdf->map->radius == 0)
-		fdf->scale.sphere = 1;
-	else
-		fdf->scale.sphere = fdf->image->width / (2.2 * fdf->map->radius) * DEFAULT_SCALE;
 }
 
 static int

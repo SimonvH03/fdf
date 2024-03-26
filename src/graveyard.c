@@ -6,13 +6,13 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 02:00:58 by simon             #+#    #+#             */
-/*   Updated: 2024/03/18 02:00:59 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/26 21:04:53 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include "../include/fdf.h"
 
-// // victim #1: replaced by map_iteration version
+// victim #1: replaced by map_iteration version
 // void
 // 	fdf_draw(
 // 		void *param)
@@ -39,7 +39,7 @@
 // 	fdf->redraw = false;
 // }
 
-// // victim #2: replaced by map_iteration version
+// victim #2: replaced by map_iteration version
 // void
 // 	fdf_colour(
 // 		t_fdf	*fdf)
@@ -63,11 +63,11 @@
 // 	}
 // }
 
-// // victim #3: replaced by map_iteration version
+// victim #3: replaced by map_iteration version
 
-// // parse map and rotate point[x,y,z] values around [0,0,0] (same as fdf_project)
-// // this one is for optimization, given the angle of rotation is constant
-// // cosin holds the calculated values for cos(fdf.speed) and sin(fdf.speed)
+// parse map and rotate point[x,y,z] values around 0rigin (same as fdf_project)
+// this one is for optimization, given the angle of rotation is constant
+// cosin holds the calculated values for cos(fdf.speed) and sin(fdf.speed)
 // void
 // 	fdf_project_optimized(
 // 		t_fdf	*fdf)
@@ -93,10 +93,10 @@
 // 		fdf->precalc = (t_precalc){0, 0, 0};
 // }
 
-// // victim #4: replaced by map_iteration version
+// victim #4: replaced by map_iteration version
 
-// // parse map and rotate point[x,y,z] values around [0,0,0]
-// // this function is only for variable angles
+// parse map and rotate point[x,y,z] values around [0,0,0]
+// this function is only for variable angles
 // void
 // 	fdf_project(
 // 		t_fdf	*fdf)
@@ -125,7 +125,7 @@
 // 	fdf->perspective = (t_perspective){0, 0, 0};
 // }
 
-// // victim #5: replaced by map_iteration version
+// victim #5: replaced by map_iteration version
 // void
 // 	fdf_scale(
 // 		t_fdf	*fdf)
@@ -153,7 +153,7 @@
 // 	fdf->scale.diff = 1;
 // }
 
-// // victim #6: replaced by map_iteration version
+// victim #6: replaced by map_iteration version
 // void
 // 	map_set_original(
 // 		t_map	*map)
@@ -174,7 +174,7 @@
 // 	}
 // }
 
-// // victim #7: replaced by map_iteration version
+// victim #7: replaced by map_iteration version
 // void
 // 	map_fill_polar(
 // 		t_map	*map)
@@ -203,11 +203,11 @@
 // 	}
 // }
 
-// // victim #8: replaced by map_iteration version
+// victim #8: replaced by map_iteration version
 
-// // convert polar coordinates back to cartesian
-// // polar is t_point with {(x) beta angle, (y) gamma angle, (z) length}
-// // swap polar->y and polar->x for x= and y= for cool projection
+// convert polar coordinates back to cartesian
+// polar is t_point with {(x) beta angle, (y) gamma angle, (z) length}
+// swap polar->y and polar->x for x= and y= for cool projection
 // void
 // 	map_set_polar(
 // 		t_map	*map)
@@ -234,7 +234,7 @@
 // 	}
 // }
 
-// // victim #9: replaced by map_iteration version
+// victim #9: replaced by map_iteration version
 // void
 // 	map_find_z_min_max(
 // 		t_map	*map)

@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/18 02:15:29 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/26 21:07:57 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void
 {
 	t_map	*map;
 	t_point	*point;
-	t_point temp;
+	t_point	temp;
 
 	map = param;
 	point = &map->original[y][x];

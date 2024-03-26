@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_scale.c                                        :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/06 10:59:22 by simon             #+#    #+#             */
-/*   Updated: 2024/03/26 21:09:12 by simon            ###   ########.fr       */
+/*   Created: 2024/03/23 23:32:43 by simon             #+#    #+#             */
+/*   Updated: 2024/03/24 00:23:44 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "libft.h"
 
-// from project.c / project()
-void
-	fdf_scale(
-		void *param,
-		int y,
-		int x)
+int
+	ft_abs(
+		int value)
 {
-	const t_fdf	*fdf = param;
-	t_point		*point;
-
-	point = &fdf->map->project[y][x];
-	point->x *= fdf->scale.diff;
-	point->y *= fdf->scale.diff;
-	point->z *= fdf->scale.diff;
+	if (value < 0)
+		return (-value);
+	return (value);
 }

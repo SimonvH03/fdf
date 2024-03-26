@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_cal.c                                        :+:      :+:    :+:   */
+/*   utils_calc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:51:01 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/16 17:51:37 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/26 21:47:47 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ double
 
 // return absolute value
 double
-	ft_abs(
+	ft_abs_double(
 		double value)
 {
 	if (value < 0)
@@ -32,7 +32,7 @@ double
 
 // return polarity of value
 short
-	ft_sign(
+	ft_sign_double(
 		double value)
 {
 	if (value < 0)

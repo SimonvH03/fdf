@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/18 01:53:57 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/26 21:49:47 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ static bool
 // from draw_line.c / draw_line()
 void
 	draw_line_init(
-		t_line			*line,
-		const t_point	*p0,
-		const t_point	*p1)
+		t_line *line,
+		const t_point *p0,
+		const t_point *p1)
 {
-	line->d_ctl = ft_abs(p1->x - p0->x);
-	line->d_pas = ft_abs(p1->y - p0->y);
-	line->s_ctl = ft_sign(p1->x - p0->x);
-	line->s_pas = ft_sign(p1->y - p0->y);
+	line->d_ctl = ft_abs_double(p1->x - p0->x);
+	line->d_pas = ft_abs_double(p1->y - p0->y);
+	line->s_ctl = ft_sign_double(p1->x - p0->x);
+	line->s_pas = ft_sign_double(p1->y - p0->y);
 	line->swapped = line_swap_control_axis(line);
 	line->p0 = p0;
 	line->p1 = p1;

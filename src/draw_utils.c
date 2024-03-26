@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/18 02:07:56 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/26 21:14:06 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ uint32_t
 // determines whether a point or pixel would be projected inside the image
 int
 	draw_check_point(
-		const t_fdf	*fdf,
+		const t_fdf *fdf,
 		int x_pixel,
 		int y_pixel)
 {

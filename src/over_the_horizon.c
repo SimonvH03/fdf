@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   over_the_horizon.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/18 16:44:07 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/03/26 21:49:34 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static int
 	{
 		while (line->i != line->d_ctl
 			&& horizon_pythagoras(fdf, line, line->p0))
-				line->i++;
+			line->i++;
 		return (EXIT_SUCCESS);
 	}
 	return (EXIT_FAILURE);
@@ -119,10 +119,10 @@ int
 		return (EXIT_SUCCESS);
 	if ((line->p0->z < -0.00001 && line->p1->z < -0.00001))
 	{
-		if (ft_abs(line->p0->x) < fdf->darksquare
-			&& ft_abs(line->p0->y) < fdf->darksquare
-			&& ft_abs(line->p1->x) < fdf->darksquare
-			&& ft_abs(line->p1->y) < fdf->darksquare)
+		if (ft_abs_double(line->p0->x) < fdf->darksquare
+			&& ft_abs_double(line->p0->y) < fdf->darksquare
+			&& ft_abs_double(line->p1->x) < fdf->darksquare
+			&& ft_abs_double(line->p1->y) < fdf->darksquare)
 			return (EXIT_FAILURE);
 		if (accurate_horizon(fdf, line) == EXIT_SUCCESS)
 			return (EXIT_SUCCESS);

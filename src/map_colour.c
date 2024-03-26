@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/03/18 02:00:13 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/26 21:12:44 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static uint32_t
 	map_earth_colour(
-		const t_map  *map,
+		const t_map *map,
 		const t_point *point)
 {
 	const double	current_z = point->z;
@@ -34,7 +34,7 @@ static uint32_t
 
 static uint32_t
 	map_point_colour(
-		const t_map  *map,
+		const t_map *map,
 		const t_point *point)
 {
 	const double	relative_height = point->z - map->z_min;
@@ -44,9 +44,11 @@ static uint32_t
 		return (map->palette.low);
 	ratio = relative_height / map->total_height;
 	if (ratio <= 0.5)
-		return (gradient(ratio * 2, map->palette.low, map->palette.mid));
+		return (gradient(ratio * 2,
+				map->palette.low, map->palette.mid));
 	else
-		return (gradient((ratio - 0.5) * 2, map->palette.mid, map->palette.high));
+		return (gradient((ratio - 0.5) * 2,
+				map->palette.mid, map->palette.high));
 }
 
 // from map_init.c / map_init()
