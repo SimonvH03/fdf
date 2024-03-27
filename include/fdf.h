@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/26 21:47:33 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/27 18:45:14 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,6 +218,8 @@ typedef struct s_fdf
 // this is function type used to modify points on a (t_point **) type map
 typedef	void	(mapi_func)(void *param, const int y, const int x);
 typedef void	(mlx_hook)(void *param);
+typedef void	(mlx_key)(mlx_key_data_t keydata, void *param);
+typedef void	(mlx_scroll)(double xdelta, double ydelta, void *param);
 
 /// PHASE 1: initialising windows, maps and settings based on map
 // map
@@ -230,8 +232,8 @@ void		menu_draw(t_fdf *fdf);
 
 /// PHASE 2: interpreting user input to set up point modification
 mlx_hook	user_inputs;
-void		keyhook(mlx_key_data_t keydata, void *param);
-void		scrollhook(double xdelta, double ydelta, void *param);
+mlx_key		keyhook;
+mlx_scroll	scrollhook;
 
 void		input_presets_flat(t_fdf *fdf);
 void		input_presets_balls(t_fdf *fdf);
