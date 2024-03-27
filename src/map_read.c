@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_read.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:58:42 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/18 02:05:44 by simon            ###   ########.fr       */
+/*   Updated: 2024/03/27 19:01:54 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void
 		k = 0;
 		while (buffer[i] == ' ')
 			i++;
-		while (buffer[i] && buffer[i] != ' ')
+		while (buffer[i] && buffer[i] != ' ' && k < 11)
 		{
 			str_z[k] = buffer[i];
 			k++;
