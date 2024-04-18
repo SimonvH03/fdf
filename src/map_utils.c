@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/26 21:07:57 by simon            ###   ########.fr       */
+/*   Updated: 2024/04/18 18:30:30 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void
 }
 
 // from main.c / main()
-void
+int
 	map_free(
 		t_map *map)
 {
@@ -83,4 +83,5 @@ void
 	while (i < map->y_max && map->original[i])
 		free(map->original[i++]);
 	free(map->original);
+	return (EXIT_FAILURE);
 }

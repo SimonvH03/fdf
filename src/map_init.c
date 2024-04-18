@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/26 21:03:44 by simon            ###   ########.fr       */
+/*   Updated: 2024/04/18 19:37:59 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ static int
 	char	*search_name;
 
 	if (map_name == NULL)
-		return (EXIT_FAILURE);
+		return (false);
 	name_length = ft_strlen(map_name);
 	search_name = ft_strdup(map_name);
 	if (search_name == NULL)
-		return (EXIT_FAILURE);
+		return (false);
 	name_length = ft_str_toupper(search_name);
 	if (ft_strnstr(search_name, "WORLD", name_length)
 		|| ft_strnstr(search_name, "GLOBE", name_length)
@@ -33,10 +33,10 @@ static int
 		|| ft_strnstr(search_name, "WERELD", name_length))
 	{
 		free(search_name);
-		return (EXIT_SUCCESS);
+		return (true);
 	}
 	free(search_name);
-	return (EXIT_FAILURE);
+	return (false);
 }
 
 // finds minimum and maximum z (height) value in the map
@@ -68,13 +68,13 @@ int
 	map->polar = NULL;
 	map->palette = (t_palette)
 	{P_RGB_NR, C_RGB_BACK, C_RGB_LOW, C_RGB_MID, C_RGB_HIGH};
-	if (map_is_earth(map_name) == EXIT_SUCCESS)
+	if (map_is_earth(map_name) == true)
 		map->palette = (t_palette){P_EARTH_NR, C_EARTH_BACK, 0, 0, 0};
 	map->isearth = (bool)(map->palette.nr == P_EARTH_NR);
 	map->name = map_name;
 	map->fd = 0;
 	if (map_read(map) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
+		return (map_free_err(map));
 	map->z_min = 0;
 	map->z_max = 0;
 	map_iteration(map, &map_find_z_min_max, map);
