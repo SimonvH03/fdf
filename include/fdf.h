@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/04/18 19:44:28 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/04/18 20:27:06 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -263,8 +263,8 @@ int			over_the_horizon(const t_fdf *fdf, t_line *line);
 int			map_free(t_map *map);
 int			map_free_err(t_map *map);
 // map_read
-int			map_malloc_y(t_map *map);
-int			map_malloc_x(t_map *map, const int y);
+int			map_ft_calloc_fdf_y(t_map *map);
+int			map_ft_calloc_fdf_x(t_map *map, const int y);
 // fdf
 void		fdf_center_offset(t_fdf *fdf);
 // draw

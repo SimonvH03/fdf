@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:58:42 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/04/18 18:23:01 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/04/18 20:27:06 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static void
 }
 
 // from map_init.c / map_init()
-// size up the map, malloc 2D for t_points, fill rows with each get_next_line
+// size up the map, ft_calloc_fdf 2D for t_points, fill rows with each get_next_line
 // make a copy at map->project to initialize projection data
 int
 	map_read(
@@ -99,7 +99,7 @@ int
 
 	map_size(map);
 	map->fd = open(map->name, O_RDONLY);
-	if (map->fd == -1 || map_malloc_y(map) == EXIT_FAILURE)
+	if (map->fd == -1 || map_ft_calloc_fdf_y(map) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	buffer = get_next_line(map->fd);
 	if (buffer == NULL)
@@ -107,7 +107,7 @@ int
 	y = 0;
 	while (buffer && y < map->y_max)
 	{
-		if (map_malloc_x(map, y) == EXIT_FAILURE)
+		if (map_ft_calloc_fdf_x(map, y) == EXIT_FAILURE)
 			return (EXIT_FAILURE);
 		map_fill_row(map, y, buffer);
 		free(buffer);
