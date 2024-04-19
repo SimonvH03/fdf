@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   project.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 10:59:22 by simon             #+#    #+#             */
-/*   Updated: 2024/03/18 02:08:29 by simon            ###   ########.fr       */
+/*   Updated: 2024/04/19 17:39:34 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../fdf.h"
 
 // from main.c / loop_hooks()
 // if the user inputs changed stuff, we recalculate the position of our points

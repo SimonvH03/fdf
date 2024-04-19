@@ -6,11 +6,11 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:58:42 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/04/19 16:31:44 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/04/19 17:39:34 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../fdf.h"
 
 // count elements with subject given map constraints
 static int

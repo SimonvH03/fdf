@@ -6,11 +6,11 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:31:44 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/18 16:53:28 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/04/19 17:39:34 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../fdf.h"
 
 // from user_inputs.c / user_inputs()
 // P for Parallel

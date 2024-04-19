@@ -6,11 +6,11 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/04/18 18:30:30 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/04/19 17:39:34 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../fdf.h"
 
 // used by map_init() and user_inputs_balls()
 // calculates the cartesian coordinates for the points mapped onto a sphere

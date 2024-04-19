@@ -6,11 +6,11 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:30:28 by simon             #+#    #+#             */
-/*   Updated: 2024/03/27 18:46:04 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/04/19 17:39:34 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../fdf.h"
 
 static void
 	point_rotate_precalculated(

@@ -2,7 +2,7 @@ NAME	= fdf
 # CFLAGS	= -Wall -Werror -Wextra -O3
 CFLAGS	= -g
 
-FDF_H	= ./include/fdf.h
+FDF_H	= ./fdf.h
 
 LMLXDIR	= ./MLX42
 LIBMLX	= $(LMLXDIR)/build/libmlx42.a -ldl -lglfw -pthread -lm

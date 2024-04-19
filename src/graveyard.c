@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   graveyard.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 02:00:58 by simon             #+#    #+#             */
-/*   Updated: 2024/03/26 21:04:53 by simon            ###   ########.fr       */
+/*   Updated: 2024/04/19 17:39:34 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../include/fdf.h"
+// #include "../fdf.h"
 
 // victim #1: replaced by map_iteration version
 // void

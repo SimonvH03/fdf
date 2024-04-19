@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_iteration.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:47:59 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/26 21:01:35 by simon            ###   ########.fr       */
+/*   Updated: 2024/04/19 17:39:34 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../fdf.h"
 
 // used by map_init(), project(), keyhook(), draw() and user_inputs_presets.c
 // applies the function *f(whatever) to the whole map(s)
