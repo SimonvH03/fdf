@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/04/18 20:30:06 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:27:55 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void
 		t_point **point_map
 	)
 {
-	int	i;
+	int	y;
 
-	i = 0;
-	while (point_map[i] != NULL)
+	y = 0;
+	while (point_map[y] != NULL)
 	{
-		free(point_map[i]);
-		i++;
+		free(point_map[y]);
+		y++;
 	}
 	free(point_map);
 }
@@ -39,37 +39,55 @@ int
 		map_free_err_sub(map->project);
 	if (map->polar != NULL)
 		map_free_err_sub(map->polar);
-	ft_printf("ft_calloc_fdf failed\n");
+	ft_printf("calloc failed\n");
 	return (EXIT_FAILURE);
+}
+
+t_point	**
+	map_calloc(
+		t_map *map,
+		size_t size
+	)
+{
+	void	*ptr;
+
+	ptr = (void *)malloc(size);
+	if (ptr == NULL)
+		map_free_err(map);
+	ft_bzero(ptr, size);
+	return (ptr);
 }
 
 // used by map_read()
 int
-	map_ft_calloc_fdf_y(
+	map_calloc_y(
 		t_map *map
 	)
 {
-	map->original = (t_point **)ft_calloc_fdf(map,
-				(map->y_max) * sizeof(t_point *));
-	map->project = (t_point **)ft_calloc_fdf(map, (map->y_max) * sizeof(t_point *));
-	map->polar = (t_point **)ft_calloc_fdf(map, (map->y_max) * sizeof(t_point *));
+	map->original = (t_point **)map_calloc(map,
+		(map->y_max + 1) * sizeof(t_point *));
+	map->project = (t_point **)map_calloc(map,
+		(map->y_max + 1) * sizeof(t_point *));
+	map->polar = (t_point **)map_calloc(map,
+		(map->y_max + 1) * sizeof(t_point *));
 	return (EXIT_SUCCESS);
 }
 
 // used by map_read()
 int
-	map_ft_calloc_fdf_x(
+	map_calloc_x(
 		t_map *map,
 		const int y
 	)
 {
-	map->original[y] = (t_point *)ft_calloc_fdf(map, (map->x_max) * sizeof(t_point));
-	map->project[y] = (t_point *)ft_calloc_fdf(map, (map->x_max) * sizeof(t_point));
-	map->polar[y] = (t_point *)ft_calloc_fdf(map, (map->x_max) * sizeof(t_point));
+	map->original[y] = (t_point *)map_calloc(map,
+		(map->x_max) * sizeof(t_point));
+	map->original[y + 1] = NULL;
+	map->project[y] = (t_point *)map_calloc(map,
+		(map->x_max) * sizeof(t_point));
+	map->project[y + 1] = NULL;
+	map->polar[y] = (t_point *)map_calloc(map,
+		(map->x_max) * sizeof(t_point));
+	map->polar[y + 1] = NULL;
 	return (EXIT_SUCCESS);
 }
-// conditional jump relies on uninitialised values:
-// the t_point pointers allocated in map_ft_calloc_fdf_x are not terminated
-// previously this was resolved by freeing everything at first error
-// this is complicated with multiple maps, though
-// so is terminating the 'strings' of points...

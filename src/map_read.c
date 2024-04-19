@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:58:42 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/04/18 20:27:06 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:31:44 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int
 
 	map_size(map);
 	map->fd = open(map->name, O_RDONLY);
-	if (map->fd == -1 || map_ft_calloc_fdf_y(map) == EXIT_FAILURE)
+	if (map->fd == -1 || map_calloc_y(map) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	buffer = get_next_line(map->fd);
 	if (buffer == NULL)
@@ -107,7 +107,7 @@ int
 	y = 0;
 	while (buffer && y < map->y_max)
 	{
-		if (map_ft_calloc_fdf_x(map, y) == EXIT_FAILURE)
+		if (map_calloc_x(map, y) == EXIT_FAILURE)
 			return (EXIT_FAILURE);
 		map_fill_row(map, y, buffer);
 		free(buffer);
