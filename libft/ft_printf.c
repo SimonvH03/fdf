@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:13:52 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/23 20:51:16 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/05/08 18:30:08 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ static int	ft_spellbook(va_list args, const char *form)
 		return (ft_putnbr(va_arg(args, unsigned int)));
 	if (*form == 'x')
 		return (ft_putnbr_base(va_arg(args, int),
-			"0123456789abcdef"));
+				"0123456789abcdef"));
 	if (*form == 'X')
 		return (ft_putnbr_base(va_arg(args, unsigned int),
-			"0123456789ABCDEF"));
+				"0123456789ABCDEF"));
 	if (*form == 'p')
 		return (ft_pprint(va_arg(args, void *)));
 	if (*form == 's')

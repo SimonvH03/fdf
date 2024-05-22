@@ -8,6 +8,7 @@ SRC		=	ft_abs.c \
 			ft_calloc.c \
 			ft_cpy.c \
 			ft_free_null.c \
+			ft_free_ptr_array.c \
 			ft_intlen_base.c \
 			ft_intlen.c \
 			ft_isalnum.c \
@@ -49,6 +50,7 @@ SRC		=	ft_abs.c \
 			ft_strchr_null.c \
 			ft_strdup.c \
 			ft_striteri.c \
+			ft_strjoin_d.c \
 			ft_strjoin.c \
 			ft_strlcat.c \
 			ft_strlcpy.c \
