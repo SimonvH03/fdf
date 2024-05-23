@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/04/19 17:39:34 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/05/23 22:14:40 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int
 	map->name = map_name;
 	map->fd = 0;
 	if (map_read(map) == EXIT_FAILURE)
-		return (map_free_err(map));
+		return (EXIT_FAILURE);
 	map->z_min = 0;
 	map->z_max = 0;
 	map_iteration(map, &map_find_z_min_max, map);

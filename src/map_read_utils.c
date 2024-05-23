@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/05/23 18:30:17 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/05/23 22:13:30 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int
 		map_free_err_sub(map->project);
 	if (map->polar != NULL)
 		map_free_err_sub(map->polar);
-	ft_printf("calloc failed\n");
+	ft_printf("Error: Malloc failed\n");
 	exit(EXIT_FAILURE);
 }
 

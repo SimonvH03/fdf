@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:58:42 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/05/23 18:28:46 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/05/23 22:14:07 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,34 @@ static int
 }
 
 // count rows with get_next_line
-static void
+static int
 	map_size(
 		t_map *map)
 {
 	char	*buffer;
+	int		temp_x;
 
 	map->fd = open(map->name, O_RDONLY);
 	map->y_max = 0;
+	temp_x = -1;
 	buffer = get_next_line(map->fd);
 	while (buffer)
 	{
 		map->x_max = map_row_size(buffer);
+		if (temp_x != -1 && temp_x != map->x_max)
+		{
+			ft_printf("Error: map is wonky\n");
+			free(buffer);
+			close(map->fd);
+			return (EXIT_FAILURE);
+		}
+		temp_x = map->x_max;
 		free(buffer);
 		map->y_max++;
 		buffer = get_next_line(map->fd);
 	}
 	close(map->fd);
+	return (EXIT_SUCCESS);
 }
 
 // parse buffer, extract values with atoi, place [x,y,z] values in t_points
@@ -98,21 +109,19 @@ int
 	char	*buffer;
 	int		y;
 
-	map_size(map);
-	map->fd = open(map->name, O_RDONLY);
-	if (map->fd == -1 || map_calloc_y(map) == EXIT_FAILURE)
+	if (map_size(map) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
+	map->fd = open(map->name, O_RDONLY);
+	if (map->fd == -1)
+		return (EXIT_FAILURE);
+	map_calloc_y(map);
 	buffer = get_next_line(map->fd);
 	if (buffer == NULL)
 		return (EXIT_FAILURE);
 	y = 0;
 	while (buffer && y < map->y_max)
 	{
-		if (map_calloc_x(map, y) == EXIT_FAILURE)
-		{
-			printf("errno\n");
-			return (EXIT_FAILURE);
-		}
+		map_calloc_x(map, y);
 		map_fill_row(map, y, buffer);
 		free(buffer);
 		y++;

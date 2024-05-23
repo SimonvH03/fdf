@@ -6,7 +6,4 @@ Presets:
 
 Map read problems:
 	- spaces at the end of a line
-	- inconsistent line lengths
 
-General safety:
-	- Malloc fails: clear previous mallocs
