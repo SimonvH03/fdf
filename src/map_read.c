@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:58:42 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/04/19 17:39:34 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/05/23 18:28:46 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ static void
 }
 
 // from map_init.c / map_init()
-// size up the map, ft_calloc_fdf 2D for t_points, fill rows with each get_next_line
+// size up the map, ft_calloc_fdf 2D for t_points
+// fill rows with each get_next_line
 // make a copy at map->project to initialize projection data
 int
 	map_read(
@@ -108,7 +109,10 @@ int
 	while (buffer && y < map->y_max)
 	{
 		if (map_calloc_x(map, y) == EXIT_FAILURE)
+		{
+			printf("errno\n");
 			return (EXIT_FAILURE);
+		}
 		map_fill_row(map, y, buffer);
 		free(buffer);
 		y++;

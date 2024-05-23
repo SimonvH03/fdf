@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/04/19 17:39:34 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/05/23 18:30:17 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int
 	if (map->polar != NULL)
 		map_free_err_sub(map->polar);
 	ft_printf("calloc failed\n");
-	return (EXIT_FAILURE);
+	exit(EXIT_FAILURE);
 }
 
 t_point	**
@@ -49,8 +49,10 @@ t_point	**
 		size_t size
 	)
 {
-	void	*ptr;
+	void		*ptr;
+	static int	count = 0;
 
+	count++;
 	ptr = (void *)malloc(size);
 	if (ptr == NULL)
 		map_free_err(map);
@@ -65,11 +67,11 @@ int
 	)
 {
 	map->original = (t_point **)map_calloc(map,
-		(map->y_max + 1) * sizeof(t_point *));
+			(map->y_max + 1) * sizeof(t_point *));
 	map->project = (t_point **)map_calloc(map,
-		(map->y_max + 1) * sizeof(t_point *));
+			(map->y_max + 1) * sizeof(t_point *));
 	map->polar = (t_point **)map_calloc(map,
-		(map->y_max + 1) * sizeof(t_point *));
+			(map->y_max + 1) * sizeof(t_point *));
 	return (EXIT_SUCCESS);
 }
 
@@ -81,13 +83,13 @@ int
 	)
 {
 	map->original[y] = (t_point *)map_calloc(map,
-		(map->x_max) * sizeof(t_point));
+			(map->x_max) * sizeof(t_point));
 	map->original[y + 1] = NULL;
 	map->project[y] = (t_point *)map_calloc(map,
-		(map->x_max) * sizeof(t_point));
+			(map->x_max) * sizeof(t_point));
 	map->project[y + 1] = NULL;
 	map->polar[y] = (t_point *)map_calloc(map,
-		(map->x_max) * sizeof(t_point));
+			(map->x_max) * sizeof(t_point));
 	map->polar[y + 1] = NULL;
 	return (EXIT_SUCCESS);
 }

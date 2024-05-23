@@ -45,7 +45,7 @@ $(LIBFT):
 	make -C $(LFTDIR) all
 
 $(LIBMLX):
-	cmake $(LMLXDIR) -B $(LMLXDIR)/build && make -C $(LMLXDIR)/build -j4
+	cmake $(LMLXDIR) -B $(LMLXDIR)/build && make -C $(LMLXDIR)/build -j4 -s
 
 %.o: %.c
 	$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
