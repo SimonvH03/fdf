@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/05/27 18:14:38 by simon            ###   ########.fr       */
+/*   Updated: 2024/05/27 18:55:15 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
-// for printf, exclude later
-// # include <stdio.h>
 
-# define PI 3.14159265
+# define PI 3.14159265358979
 
 // mlx window
 # define WINDOW_TITLE "fdf"
@@ -33,9 +31,9 @@
 # define ROTATION_SPEED 0.01
 
 // perspective defaults
-# define ISO_GAMMA deg_to_rad(-45)
+# define ISO_GAMMA -0.7853981633974483
 # define ISO_BETA 0
-# define ISO_ALPHA deg_to_rad(-35.264)
+# define ISO_ALPHA -0.6154729074232804
 
 // colours
 # define C_WHITE			0xFFFFFFFF
@@ -215,36 +213,43 @@ typedef struct s_fdf
 	double			radius;
 }	t_fdf;
 
-// this is function type used to modify points on a (t_point **) type map
+//// PHASE 0: function types
+// function type used to modify points on a (t_point **) type map
 typedef	void	(mapi_func)(void *param, const int y, const int x);
+// function type undefined by MLX42
 typedef void	(mlx_hook)(void *param);
-typedef void	(mlx_key)(mlx_key_data_t keydata, void *param);
-typedef void	(mlx_scroll)(double xdelta, double ydelta, void *param);
+// because 'mlx_scrollfunc' would force all declarations 4 to the right, L norm
+typedef void	(mlx_key)(mlx_keyfunc);
+typedef void	(mlx_scroll)(mlx_scrollfunc);
 
-/// PHASE 1: initialising windows, maps and settings based on map
+//// PHASE 1: initialising windows, maps and settings based on map
 // map
 int			map_init(t_map *map, char *map_name);
 int			map_read(t_map *map);
 mapi_func	map_colour;
-// fdf / mlx
+// fdf (mlx window)
 int			fdf_init(t_fdf *fdf, t_map *map);
+// draw the menu because it's static anyway
 void		menu_draw(t_fdf *fdf);
 
-/// PHASE 2: interpreting user input to set up point modification
+//// PHASE 2: interpreting user input to set up point modification
 mlx_hook	user_inputs;
 mlx_key		keyhook;
 mlx_scroll	scrollhook;
 
+// presets for spherical or flat projection
 void		input_presets_flat(t_fdf *fdf);
 void		input_presets_balls(t_fdf *fdf);
 
+// change the projection's colour palette
 t_palette	map_cycle_palettes(t_map *map);
 
-/// PHASE 3: modifying the projection data based on interpreted user input
+//// PHASE 3: modifying the projection data based on interpreted user input
 mlx_hook	project;
 // Mother of Death, responsible for 9 victims, with some of with her children
+// loops over map and applies function with each point's [y][x] coordinates
 void		map_iteration(t_map *map, mapi_func *function, void *param);
-// map_iteration functions (applied to a point from any map on position [y][x])
+// MoD's children, the map iteration functions
 mapi_func	fdf_rotate;
 mapi_func	fdf_rotate_optimized;
 mapi_func	fdf_scale;
@@ -252,13 +257,13 @@ mapi_func	map_fill_polar;
 mapi_func	map_set_polar;
 mapi_func	map_set_original;
 
-/// PHASE 4: drawing the fdf based on the projection data
+//// PHASE 4: drawing the fdf based on the projection data
 mlx_hook	draw;
 void		draw_line(const t_fdf *fdf, const t_point *p0, const t_point *p1);
 void		draw_line_init(t_line *line, const t_point *p0, const t_point *p1);
 int			over_the_horizon(const t_fdf *fdf, t_line *line);
 
-/// UTILS
+//// UTILS
 // map
 int			map_free(t_map *map);
 int			map_free_err(t_map *map);

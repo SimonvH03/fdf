@@ -1,6 +1,6 @@
 NAME	= fdf
-# CFLAGS	= -Wall -Werror -Wextra -O3
-CFLAGS	= -g
+CFLAGS	= -Wall -Werror -Wextra -O3
+# CFLAGS	= -g
 
 FDF_H	= ./fdf.h
 
@@ -9,8 +9,8 @@ LIBMLX	= $(LMLXDIR)/build/libmlx42.a -ldl -lglfw -pthread -lm
 LFTDIR	= ./libft
 LIBFT	= $(LFTDIR)/libft.a
 
-HEADERS	= -I ./include -I $(LMLXDIR)/include
 LIBS	= $(LIBMLX) $(LIBFT)
+HEADERS	= -I $(LMLXDIR)/include
 SRCDIR	= ./src
 SRC		=	$(SRCDIR)/draw_line_init.c \
 			$(SRCDIR)/draw_line.c \
