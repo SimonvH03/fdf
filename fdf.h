@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/05/27 18:55:15 by simon            ###   ########.fr       */
+/*   Updated: 2024/05/27 19:14:20 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,8 +219,8 @@ typedef	void	(mapi_func)(void *param, const int y, const int x);
 // function type undefined by MLX42
 typedef void	(mlx_hook)(void *param);
 // because 'mlx_scrollfunc' would force all declarations 4 to the right, L norm
-typedef void	(mlx_key)(mlx_keyfunc);
-typedef void	(mlx_scroll)(mlx_scrollfunc);
+typedef void	(mlx_key)(struct mlx_key_data, void *);
+typedef void	(mlx_scroll)(double, double, void *);
 
 //// PHASE 1: initialising windows, maps and settings based on map
 // map
