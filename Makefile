@@ -1,6 +1,6 @@
 NAME	= fdf
 CFLAGS	= -Wall -Werror -Wextra -O3
-# CFLAGS	= -g
+CFLAGS	= -g
 
 FDF_H	= ./fdf.h
 
@@ -27,6 +27,7 @@ SRC		=	$(SRCDIR)/draw_line_init.c \
 			$(SRCDIR)/map_init.c \
 			$(SRCDIR)/map_iteration.c \
 			$(SRCDIR)/map_read.c \
+			$(SRCDIR)/map_toggle_squish.c \
 			$(SRCDIR)/map_read_utils.c \
 			$(SRCDIR)/map_utils.c \
 			$(SRCDIR)/menu_draw.c \

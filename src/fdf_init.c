@@ -32,6 +32,9 @@ static void
 		fdf->scale.initial = 0.1;
 	fdf->scale.diff = fdf->scale.initial;
 	fdf->scale.total = 1;
+	fdf->squishfactor = ((fdf->map->x_max < fdf->map->y_max) * fdf->map->x_max
+		+ (fdf->map->x_max >= fdf->map->y_max) * fdf->map->y_max)
+		/ (double)fdf->map->total_height / 10;
 }
 
 static int
@@ -69,9 +72,10 @@ int
 	fdf->radius = fdf->map->radius;
 	fdf->darksquare = fdf->radius / sqrt(2);
 	fdf_center_offset(fdf);
-	fdf->spinlock = false;
-	fdf->redraw = true;
 	fdf->ballin = false;
 	fdf->horizon = true;
+	fdf->redraw = true;
+	fdf->spinlock = false;
+	fdf->squished = false;
 	return (EXIT_SUCCESS);
 }

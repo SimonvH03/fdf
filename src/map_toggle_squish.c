@@ -12,29 +12,31 @@
 
 #include "../fdf.h"
 
-static t_palette	map_next_palette(t_map *map)
+void	map_squish(void *param, const int y, const int x)
 {
-	if (map->palette.nr == P_RGB_NR)
-		return ((t_palette){P_HACKERMAN_NR, C_HACKERMAN_BACK,
-			C_HACKERMAN_LOW, C_HACKERMAN_MID, C_HACKERMAN_HIGH});
-	else if (map->palette.nr == P_HACKERMAN_NR)
-		return ((t_palette){P_METAL_NR, C_METAL_BACK,
-			C_METAL_LOW, C_METAL_MID, C_METAL_HIGH});
-	else if (map->palette.nr == P_METAL_NR)
-		return ((t_palette){P_RUST_NR, C_RUST_BACK,
-			C_RUST_LOW, C_RUST_MID, C_RUST_HIGH});
-	else if (map->palette.nr == P_RUST_NR)
-		return ((t_palette){P_EARTH_NR, C_EARTH_BACK, 0, 0, 0});
+	t_fdf	*fdf;
+	t_point	*point;
+
+	fdf = param;
+	point = &fdf->map->original[y][x];
+	if (fdf->squished)
+		point->z *= fdf->squishfactor;
 	else
-		return ((t_palette){P_RGB_NR, C_RGB_BACK,
-			C_RGB_LOW, C_RGB_MID, C_RGB_HIGH});
+		point->z /= fdf->squishfactor;
 }
 
 // from user_inputs_keyscroll.c / keyhook()
-void	map_cycle_palettes(t_map *map)
+void	map_toggle_squish(t_fdf *fdf)
 {
-	map->palette = map_next_palette(map);
-	if (!map->isearth && map->palette.nr == P_EARTH_NR)
-		map->palette = map_next_palette(map);
-	map_iteration(map, &map_colour, map);
+	fdf->squished = !fdf->squished;
+	map_iteration(fdf->map, &map_squish, fdf);
+	fdf->redraw = true;
+	map_iteration(fdf->map, &map_set_original, fdf->map);
+	fdf->perspective = (t_perspective)
+	{ISO_ALPHA, ISO_BETA, ISO_GAMMA, true};
+	fdf->ballin = false;
+	fdf_center_offset(fdf);
+	fdf->scale.diff = fdf->scale.initial * fdf->scale.total;
+	fdf->spinlock = false;
+	// instead of this bs, enter current preset
 }

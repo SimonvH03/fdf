@@ -31,8 +31,7 @@ void
 	}
 	fdf->ballin = false;
 	fdf_center_offset(fdf);
-	fdf->scale.diff = fdf->scale.initial;
-	fdf->scale.total = 1;
+	fdf->scale.diff = fdf->scale.initial * fdf->scale.total;
 	fdf->spinlock = false;
 }
 
@@ -62,8 +61,7 @@ void
 	map_iteration(fdf->map, &map_fill_polar, fdf->map);
 	map_iteration(fdf->map, &map_set_polar, fdf->map);
 	fdf_center_offset(fdf);
-	fdf->scale.diff = fdf->scale.sphere;
-	fdf->scale.total = 1;
+	fdf->scale.diff = fdf->scale.sphere * fdf->scale.total;
 	fdf->ballin = true;
 	fdf->radius = fdf->map->radius;
 	fdf->darksquare = fdf->radius / sqrt(2);

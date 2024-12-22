@@ -26,23 +26,21 @@ void
 		fdf->spinlock = (!fdf->spinlock);
 		fdf->cosin = (t_cosin){cos(fdf->speed), sin(fdf->speed)};
 	}
-	if (keydata.key == MLX_KEY_C && keydata.action == MLX_PRESS)
-	{
-		fdf->map->palette = map_cycle_palettes(fdf->map);
-		if (!fdf->map->isearth && fdf->map->palette.nr == P_EARTH_NR)
-			fdf->map->palette = map_cycle_palettes(fdf->map);
-		map_iteration(fdf->map, &map_colour, fdf->map);
-	}
 	if (keydata.key == MLX_KEY_R && keydata.action == MLX_PRESS)
 	{
 		fdf_center_offset(fdf);
 		fdf->scale.diff = 1 / fdf->scale.total;
 		fdf->scale.total = 1;
 	}
+	if (keydata.key == MLX_KEY_C && keydata.action == MLX_PRESS)
+		map_cycle_palettes(fdf->map);
 	if (keydata.key == MLX_KEY_T && keydata.action == MLX_PRESS)
 		fdf->precalc.sign *= -1;
 	if (keydata.key == MLX_KEY_H && keydata.action == MLX_PRESS)
 		fdf->horizon = !fdf->horizon;
+	if (keydata.key == MLX_KEY_Z && keydata.action == MLX_PRESS)
+		map_toggle_squish(fdf);
+	// CTRL Down = scrolling controls squish, CTRL Up = scrolling controls scale
 }
 
 // from main.c / loop_hooks()
