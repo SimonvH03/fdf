@@ -22,7 +22,7 @@
 # define MENU_WIDTH 400
 
 // fdf defaults
-# define DEFAULT_SCALE 0.7
+# define DEFAULT_SCALE 0.55
 # define ROTATION_SPEED 0.01
 
 // perspective defaults

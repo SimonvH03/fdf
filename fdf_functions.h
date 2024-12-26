@@ -74,6 +74,7 @@ int			over_the_horizon(const t_fdf *fdf, t_line *line);
 // map
 int			map_free(t_map *map);
 int			map_free_err(t_map *map);
+void		map_set_z_boundaries(t_map *map);
 // map_read
 int			map_calloc_y(t_map *map);
 int			map_calloc_x(t_map *map, const int y);

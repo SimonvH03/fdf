@@ -57,6 +57,17 @@ static void
 		map->z_max = z_val;
 }
 
+// find z_min, z_max and total_height of the map
+void
+	map_set_z_boundaries(
+		t_map *map)
+{
+	map->z_min = 0;
+	map->z_max = 0;
+	map_iteration(map, &map_find_z_min_max, map);
+	map->total_height = map->z_max - map->z_min;
+}
+
 // from main.c / main()
 int
 	map_init(
@@ -75,10 +86,7 @@ int
 	map->fd = 0;
 	if (map_read(map) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	map->z_min = 0;
-	map->z_max = 0;
-	map_iteration(map, &map_find_z_min_max, map);
-	map->total_height = map->z_max - map->z_min;
+	map_set_z_boundaries(map);
 	map->radius = (map->total_height) * 10;
 	if (map->radius == 0)
 		map->radius = 1;

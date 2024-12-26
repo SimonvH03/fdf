@@ -32,6 +32,10 @@ void	map_toggle_squish(t_fdf *fdf)
 	map_iteration(fdf->map, &map_squish, fdf);
 	fdf->redraw = true;
 	map_iteration(fdf->map, &map_set_original, fdf->map);
+
+	map_set_z_boundaries(fdf->map);
+
+	// reset to ISO perspective
 	fdf->perspective = (t_perspective)
 	{ISO_ALPHA, ISO_BETA, ISO_GAMMA, true};
 	fdf->ballin = false;
