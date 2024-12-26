@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "fdf.h"
 
 // not using square roots because expensive
 static int
@@ -117,16 +117,13 @@ int
 {
 	if (fdf->horizon == false || fdf->ballin == false)
 		return (EXIT_SUCCESS);
-	if ((line->p0->z < -0.00001 && line->p1->z < -0.00001))
-	{
-		if (ft_abs_double(line->p0->x) < fdf->darksquare
-			&& ft_abs_double(line->p0->y) < fdf->darksquare
-			&& ft_abs_double(line->p1->x) < fdf->darksquare
-			&& ft_abs_double(line->p1->y) < fdf->darksquare)
+	if (line->p0->z >= -0.00001 && line->p1->z >= -0.00001)
+		return (EXIT_SUCCESS);
+	if (ft_abs_double(line->p0->x) < fdf->darksquare
+		&& ft_abs_double(line->p0->y) < fdf->darksquare
+		&& ft_abs_double(line->p1->x) < fdf->darksquare
+		&& ft_abs_double(line->p1->y) < fdf->darksquare
+		&& (line->p0->z < -0.00001 && line->p1->z < -0.00001))
 			return (EXIT_FAILURE);
-		if (accurate_horizon(fdf, line) == EXIT_SUCCESS)
-			return (EXIT_SUCCESS);
-		return (EXIT_FAILURE);
-	}
-	return (EXIT_SUCCESS);
+	return (accurate_horizon(fdf, line));
 }

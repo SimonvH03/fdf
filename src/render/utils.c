@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "fdf.h"
 
 // used by menu_draw() and draw()
 // creates a background
-// creates a blank canvas over previous points
+// creates a 'blank' canvas over previously rendered images
 void
 	draw_background(
 		const mlx_image_t *image,

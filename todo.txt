@@ -1,8 +1,9 @@
 Map Init:
-	- squish z values when total_height > x_max || y_max (maybe add toggle)
+	- pre-squish z values when total_height > x_max || y_max
 
-Presets:
-	- if total map height is 0, and a globe is desired, make easter egg
+USer Inputs
+	- let user modify amplitude with scrolling
+	- keep whatever preset was used during squish modification
 
 Map read problems:
 	- spaces at the end of a line

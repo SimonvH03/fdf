@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_utils.c                                        :+:      :+:    :+:   */
+/*   fdf_scale.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,16 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "fdf.h"
 
-// used by fdf_init(), keyhook() and user_input_presets.c
-// puts the 'origin' back into the middle of the window
+// from project.c / project()
 void
-	fdf_center_offset(
-		t_fdf *fdf)
+	fdf_scale(
+		void *param,
+		int y,
+		int x)
 {
-	fdf->center.x = fdf->image->width / 2;
-	fdf->center.y = fdf->image->height / 2;
-	fdf->offset.x = 0;
-	fdf->offset.y = 0;
+	const t_fdf	*fdf = param;
+	t_point		*point;
+
+	point = &fdf->map->project[y][x];
+	point->x *= fdf->scale.diff;
+	point->y *= fdf->scale.diff;
+	point->z *= fdf->scale.diff;
 }

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "fdf.h"
 
 // used by map_init() and user_inputs_balls()
 // calculates the cartesian coordinates for the points mapped onto a sphere

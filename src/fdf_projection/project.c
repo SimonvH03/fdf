@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "fdf.h"
 
 // from main.c / loop_hooks()
 // if the user inputs changed stuff, we recalculate the position of our points

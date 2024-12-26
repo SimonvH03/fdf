@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "fdf.h"
 
 // used by map_init(), project(), keyhook(), draw() and user_inputs_presets.c
 // applies the function *f(whatever) to the whole map(s)
