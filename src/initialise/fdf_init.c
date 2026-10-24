@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   fdf_init.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/04/19 17:39:34 by svan-hoo         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   fdf_init.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-hoo <svan-hoo@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/02/23 18:49:26 by svan-hoo      #+#    #+#                 */
+/*   Updated: 2026/10/24 15:50:25 by svan-hoo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ static void
 		fdf->scale.initial = 0.1;
 	fdf->scale.diff = fdf->scale.initial;
 	fdf->scale.total = 1;
-	fdf->squishfactor = ((fdf->map->x_max < fdf->map->y_max) * fdf->map->x_max
-		+ (fdf->map->x_max >= fdf->map->y_max) * fdf->map->y_max)
+	fdf->squish_factor = ((fdf->map->x_max < fdf->map->y_max) * fdf->map->x_max
+			+ (fdf->map->x_max >= fdf->map->y_max) * fdf->map->y_max)
 		/ (double)fdf->map->total_height / 10;
 }
 
@@ -43,16 +43,16 @@ static int
 {
 	fdf->mlx = mlx_init(WIDTH, HEIGHT, WINDOW_TITLE, false);
 	if (fdf->mlx == NULL)
-		return (EXIT_FAILURE);
+		return (RETURN_FAILURE);
 	fdf->image = mlx_new_image(fdf->mlx, WIDTH - MENU_WIDTH, HEIGHT);
 	if (fdf->image == NULL)
-		return (EXIT_FAILURE);
+		return (RETURN_FAILURE);
 	if (mlx_image_to_window(fdf->mlx, fdf->image, MENU_WIDTH, 0) < 0)
-		return (EXIT_FAILURE);
+		return (RETURN_FAILURE);
 	fdf->menu_image = mlx_new_image(fdf->mlx, MENU_WIDTH, HEIGHT);
 	if (fdf->menu_image == NULL)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+		return (RETURN_FAILURE);
+	return (RETURN_SUCCESS);
 }
 
 // from main.c / main()
@@ -61,13 +61,15 @@ int
 		t_fdf *fdf,
 		t_map *map)
 {
-	if (fdf_mlx_init(fdf) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
+	if (fdf_mlx_init(fdf) == RETURN_FAILURE)
+		return (RETURN_FAILURE);
 	fdf->map = map;
 	fdf->perspective = (t_perspective){ISO_ALPHA, ISO_BETA, ISO_GAMMA, true};
 	fdf->precalc = (t_precalc){0, 0, 0, 1, true};
-	fdf->speed = ROTATION_SPEED;
-	fdf->cosin = (t_cosin){cos(fdf->speed), sin(fdf->speed)};
+	fdf->speed = SPEED_SCALAR;
+	fdf->cosin = (t_cosin){
+		cos(fdf->speed * ROTATION_SPEED),
+		sin(fdf->speed * ROTATION_SPEED)};
 	fdf_scale_init(fdf);
 	fdf->radius = fdf->map->radius;
 	fdf->darksquare = fdf->radius / sqrt(2);
@@ -75,7 +77,7 @@ int
 	fdf->ballin = false;
 	fdf->horizon = true;
 	fdf->redraw = true;
-	fdf->spinlock = false;
+	fdf->spin_lock = false;
 	fdf->squished = false;
-	return (EXIT_SUCCESS);
+	return (RETURN_SUCCESS);
 }

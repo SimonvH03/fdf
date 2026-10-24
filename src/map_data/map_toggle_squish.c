@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   map_cycle_palettes.c                               :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/10 19:05:29 by simon             #+#    #+#             */
-/*   Updated: 2024/04/19 17:39:34 by svan-hoo         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   map_toggle_squish.c                                :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-hoo <svan-hoo@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/03/10 19:05:29 by simon         #+#    #+#                 */
+/*   Updated: 2026/10/24 15:21:19 by svan-hoo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	map_squish(void *param, const int y, const int x)
 	fdf = param;
 	point = &fdf->map->original[y][x];
 	if (fdf->squished)
-		point->z *= fdf->squishfactor;
+		point->z *= fdf->squish_factor;
 	else
-		point->z /= fdf->squishfactor;
+		point->z /= fdf->squish_factor;
 }
 
 // from user_inputs_keyscroll.c / keyhook()
@@ -41,6 +41,6 @@ void	map_toggle_squish(t_fdf *fdf)
 	fdf->ballin = false;
 	fdf_center_offset(fdf);
 	fdf->scale.diff = fdf->scale.initial * fdf->scale.total;
-	fdf->spinlock = false;
+	fdf->spin_lock = false;
 	// instead of this bs, enter current preset
 }

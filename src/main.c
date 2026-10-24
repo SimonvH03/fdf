@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 18:33:20 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/04/19 17:39:34 by svan-hoo         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   main.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-hoo <svan-hoo@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/01/31 18:33:20 by svan-hoo      #+#    #+#                 */
+/*   Updated: 2026/10/24 14:43:34 by svan-hoo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,14 @@ static void
 	mlx_loop_hook(fdf->mlx, &draw, fdf);
 }
 
+int
+	usage(
+		char *program)
+{
+	ft_printf("usage: %s <map>\n", program);
+	return (RETURN_FAILURE);
+}
+
 // Phase 1: map_init
 // 			fdf_init
 // 			menu_draw
@@ -40,15 +48,15 @@ int
 	t_fdf			fdf;
 
 	if (argc != 2)
-		return (EXIT_FAILURE);
-	if (map_init(&map, argv[1]) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
-	if (fdf_init(&fdf, &map) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
+		return (usage(argv[0]));
+	if (map_init(&map, argv[1]) == RETURN_FAILURE)
+		return (RETURN_FAILURE);
+	if (fdf_init(&fdf, &map) == RETURN_FAILURE)
+		return (RETURN_FAILURE);
 	menu_draw(&fdf);
 	loop_hooks(&fdf);
 	mlx_loop(fdf.mlx);
 	mlx_terminate(fdf.mlx);
 	map_free(&map);
-	return (EXIT_SUCCESS);
+	return (RETURN_SUCCESS);
 }

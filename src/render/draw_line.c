@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   draw_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 21:55:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/03/16 00:20:34 by simon            ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   draw_line.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: simon <simon@student.42.fr>                  +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/02/07 21:55:02 by svan-hoo      #+#    #+#                 */
+/*   Updated: 2026/10/24 14:59:48 by svan-hoo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void
 		x_pixel = line->p0->x + (line->j * line->s_pas);
 		y_pixel = line->p0->y + (line->i * line->s_ctl);
 	}
-	if (!draw_check_point(fdf, x_pixel, y_pixel))
+	if (draw_point_is_in_view(fdf, x_pixel, y_pixel))
 		mlx_put_pixel(fdf->image,
 			x_pixel + fdf->center.x + fdf->offset.x,
 			y_pixel + fdf->center.y + fdf->offset.y,
@@ -73,9 +73,9 @@ static int
 			draw_line_pixel(fdf, line);
 			line->i++;
 		}
-		return (EXIT_SUCCESS);
+		return (RETURN_SUCCESS);
 	}
-	return (EXIT_FAILURE);
+	return (RETURN_FAILURE);
 }
 
 // from draw.c / draw_orthogonally_adjacent()
@@ -88,9 +88,9 @@ void
 	t_line	line;
 
 	draw_line_init(&line, p0, p1);
-	if (over_the_horizon(fdf, &line) == EXIT_FAILURE)
+	if (over_the_horizon(fdf, &line) == RETURN_FAILURE)
 		return ;
-	if (draw_straight_line(fdf, &line) == EXIT_SUCCESS)
+	if (draw_straight_line(fdf, &line) == RETURN_SUCCESS)
 		return ;
 	while (line.i != line.d_ctl)
 	{

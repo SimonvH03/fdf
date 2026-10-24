@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   map_read.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/02 16:58:42 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/05/23 22:14:07 by svan-hoo         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   map_read.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-hoo <svan-hoo@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/02/02 16:58:42 by svan-hoo      #+#    #+#                 */
+/*   Updated: 2026/10/24 14:43:35 by svan-hoo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int
 	return (count);
 }
 
-// count rows with get_next_line
+// count rows with ft_get_next_line
 static int
 	map_size(
 		t_map *map)
@@ -44,7 +44,7 @@ static int
 	map->fd = open(map->name, O_RDONLY);
 	map->y_max = 0;
 	temp_x = -1;
-	buffer = get_next_line(map->fd);
+	buffer = ft_get_next_line(map->fd);
 	while (buffer)
 	{
 		map->x_max = map_row_size(buffer);
@@ -53,15 +53,15 @@ static int
 			ft_printf("Error: map is wonky\n");
 			free(buffer);
 			close(map->fd);
-			return (EXIT_FAILURE);
+			return (RETURN_FAILURE);
 		}
 		temp_x = map->x_max;
 		free(buffer);
 		map->y_max++;
-		buffer = get_next_line(map->fd);
+		buffer = ft_get_next_line(map->fd);
 	}
 	close(map->fd);
-	return (EXIT_SUCCESS);
+	return (RETURN_SUCCESS);
 }
 
 // parse buffer, extract values with atoi, place [x,y,z] values in t_points
@@ -92,7 +92,7 @@ static void
 		}
 		str_z[k] = '\0';
 		map->original[y][x] = (t_point)
-		{x - (map->x_max / 2), y - (map->y_max / 2), ft_atoi(str_z), 0};
+		{0, x - (map->x_max / 2), y - (map->y_max / 2), ft_atoi(str_z)};
 		map->project[y][x] = map->original[y][x];
 		x++;
 	}
@@ -100,7 +100,7 @@ static void
 
 // from map_init.c / map_init()
 // size up the map, ft_calloc_fdf 2D for t_points
-// fill rows with each get_next_line
+// fill rows with each ft_get_next_line
 // make a copy at map->project to initialize projection data
 int
 	map_read(
@@ -109,15 +109,15 @@ int
 	char	*buffer;
 	int		y;
 
-	if (map_size(map) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
+	if (map_size(map) == RETURN_FAILURE)
+		return (RETURN_FAILURE);
 	map->fd = open(map->name, O_RDONLY);
 	if (map->fd == -1)
-		return (EXIT_FAILURE);
+		return (RETURN_FAILURE);
 	map_calloc_y(map);
-	buffer = get_next_line(map->fd);
+	buffer = ft_get_next_line(map->fd);
 	if (buffer == NULL)
-		return (EXIT_FAILURE);
+		return (RETURN_FAILURE);
 	y = 0;
 	while (buffer && y < map->y_max)
 	{
@@ -125,8 +125,8 @@ int
 		map_fill_row(map, y, buffer);
 		free(buffer);
 		y++;
-		buffer = get_next_line(map->fd);
+		buffer = ft_get_next_line(map->fd);
 	}
 	close(map->fd);
-	return (EXIT_SUCCESS);
+	return (RETURN_SUCCESS);
 }

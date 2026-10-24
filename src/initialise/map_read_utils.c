@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   map_read_utils.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/05/23 22:13:30 by svan-hoo         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   map_read_utils.c                                   :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-hoo <svan-hoo@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/02/04 22:26:03 by simon         #+#    #+#                 */
+/*   Updated: 2026/10/24 14:43:35 by svan-hoo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int
 	if (map->polar != NULL)
 		map_free_err_sub(map->polar);
 	ft_printf("Error: Malloc failed\n");
-	exit(EXIT_FAILURE);
+	exit(RETURN_FAILURE);
 }
 
 t_point	**
@@ -72,7 +72,7 @@ int
 			(map->y_max + 1) * sizeof(t_point *));
 	map->polar = (t_point **)map_calloc(map,
 			(map->y_max + 1) * sizeof(t_point *));
-	return (EXIT_SUCCESS);
+	return (RETURN_SUCCESS);
 }
 
 // used by map_read()
@@ -91,5 +91,5 @@ int
 	map->polar[y] = (t_point *)map_calloc(map,
 			(map->x_max) * sizeof(t_point));
 	map->polar[y + 1] = NULL;
-	return (EXIT_SUCCESS);
+	return (RETURN_SUCCESS);
 }

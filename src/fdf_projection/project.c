@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   project.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/06 10:59:22 by simon             #+#    #+#             */
-/*   Updated: 2024/04/19 17:39:34 by svan-hoo         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   project.c                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-hoo <svan-hoo@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/02/06 10:59:22 by simon         #+#    #+#                 */
+/*   Updated: 2026/10/24 15:21:12 by svan-hoo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void
 	if (fdf->precalc.reproject == true)
 	{
 		map_iteration(fdf->map, &fdf_rotate_optimized, fdf);
-		if (fdf->spinlock == false)
+		if (fdf->spin_lock == false)
 			fdf->precalc = (t_precalc){0, 0, 0, 1, false};
 	}
 	if (fdf->scale.diff != 1)

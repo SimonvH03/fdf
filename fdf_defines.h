@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/05/28 15:26:42 by svan-hoo         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   fdf_defines.h                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-hoo <svan-hoo@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/02/02 16:59:02 by svan-hoo      #+#    #+#                 */
+/*   Updated: 2026/10/24 15:48:48 by svan-hoo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_DEFINES_H
 # define FDF_DEFINES_H
 
-# define PI 3.14159265358979
+// yaboie
+# define PI					3.14159265358979
 
 // mlx window
-# define WINDOW_TITLE "fdf"
-# define WIDTH 1920
-# define HEIGHT 1080
-# define MENU_WIDTH 400
+# define WINDOW_TITLE		"fdf"
+# define WIDTH				1920
+# define HEIGHT				1080
+# define MENU_WIDTH			400
 
 // fdf defaults
-# define DEFAULT_SCALE 0.55
-# define ROTATION_SPEED 0.01
+# define DEFAULT_SCALE		0.55
+# define ROTATION_SPEED		0.01
+# define MOVEMENT_SPEED		10
+# define SPEED_SCALAR		1
 
 // perspective defaults
-# define ISO_GAMMA -0.7853981633974483
-# define ISO_BETA 0
-# define ISO_ALPHA -0.6154729074232804
+# define ISO_GAMMA			-0.7853981633974483
+# define ISO_BETA			0
+# define ISO_ALPHA			-0.6154729074232804
 
 // general colours
 # define C_WHITE			0xFFFFFFFF

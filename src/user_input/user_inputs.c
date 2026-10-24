@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   user_inputs.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/09 19:05:56 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/04/19 17:39:34 by svan-hoo         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   user_inputs.c                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-hoo <svan-hoo@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/02/09 19:05:56 by svan-hoo      #+#    #+#                 */
+/*   Updated: 2026/10/24 16:00:18 by svan-hoo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ static void
 		t_fdf	*fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_UP))
-		fdf->offset.y -= 10 * fdf->precalc.sign;
+		fdf->offset.y -= fdf->precalc.sign * fdf->speed * MOVEMENT_SPEED;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_DOWN))
-		fdf->offset.y += 10 * fdf->precalc.sign;
+		fdf->offset.y += fdf->precalc.sign * fdf->speed * MOVEMENT_SPEED;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT))
-		fdf->offset.x -= 10 * fdf->precalc.sign;
+		fdf->offset.x -= fdf->precalc.sign * fdf->speed * MOVEMENT_SPEED;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT))
-		fdf->offset.x += 10 * fdf->precalc.sign;
+		fdf->offset.x += fdf->precalc.sign * fdf->speed * MOVEMENT_SPEED;
 }
 
 // because bigger maps are slow, press + to get somewhere quick
@@ -80,15 +80,17 @@ static void
 	{
 		if (fdf->speed > 0.00001)
 			fdf->speed *= 0.95;
-		fdf->cosin = (t_cosin){cos(fdf->speed), sin(fdf->speed)};
+		fdf->cosin = (t_cosin){
+			cos(fdf->speed * ROTATION_SPEED),
+			sin(fdf->speed * ROTATION_SPEED)};
 	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_EQUAL))
 	{
-		if (fdf->speed < PI)
+		if (fdf->speed * ROTATION_SPEED < PI / 10)
 			fdf->speed *= 1.05;
-		else
-			fdf->speed = ROTATION_SPEED;
-		fdf->cosin = (t_cosin){cos(fdf->speed), sin(fdf->speed)};
+		fdf->cosin = (t_cosin){
+			cos(fdf->speed * ROTATION_SPEED),
+			sin(fdf->speed * ROTATION_SPEED)};
 	}
 }
 

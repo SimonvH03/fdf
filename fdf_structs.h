@@ -1,40 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/05/28 15:26:42 by svan-hoo         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   fdf_structs.h                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-hoo <svan-hoo@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/02/02 16:59:02 by svan-hoo      #+#    #+#                 */
+/*   Updated: 2026/10/24 15:30:41 by svan-hoo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_structs_H
-# define FDF_structs_H
+#ifndef FDF_STRUCTS_H
+# define FDF_STRUCTS_H
 
 # include "fdf_defines.h"
 
 typedef struct s_point
 {
+	uint32_t		colour;
 	double			x;
 	double			y;
 	double			z;
-	uint32_t		colour;
 }	t_point;
 
 typedef struct s_line
 {
+	const t_point	*p0;
+	const t_point	*p1;
 	int				d_ctl;
 	int				d_pas;
 	int				s_ctl;
 	int				s_pas;
-	bool			swapped;
 	int				err;
 	int				i;
 	int				j;
-	const t_point	*p0;
-	const t_point	*p1;
+	bool			swapped;
 }	t_line;
 
 typedef struct s_colour_construct
@@ -117,6 +117,14 @@ typedef struct s_offset
 	int				y;
 }	t_offset;
 
+typedef enum e_scroll_behaviour
+{
+	move = 0,
+	squish,
+	zoom,
+	max
+}	t_scroll;
+
 typedef struct s_fdf
 {
 	mlx_t			*mlx;
@@ -129,15 +137,16 @@ typedef struct s_fdf
 	t_scale			scale;
 	t_offset		center;
 	t_offset		offset;
+	t_scroll		scroll_behaviour;
 	double			speed;
+	double			squish_factor;
+	double			darksquare;
+	double			radius;
 	bool			ballin;
 	bool			horizon;
 	bool			redraw;
-	bool			spinlock;
+	bool			spin_lock;
 	bool			squished;
-	double			squishfactor;
-	double			darksquare;
-	double			radius;
 }	t_fdf;
 
 #endif

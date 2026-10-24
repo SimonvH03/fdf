@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   map_init.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/05/23 22:14:40 by svan-hoo         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   map_init.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-hoo <svan-hoo@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/02/23 18:49:26 by svan-hoo      #+#    #+#                 */
+/*   Updated: 2026/10/24 14:43:34 by svan-hoo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ int
 	map->isearth = (bool)(map->palette.nr == P_EARTH_NR);
 	map->name = map_name;
 	map->fd = 0;
-	if (map_read(map) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
+	if (map_read(map) == RETURN_FAILURE)
+		return (RETURN_FAILURE);
 	map_set_z_boundaries(map);
 	map->radius = (map->total_height) * 10;
 	if (map->radius == 0)
@@ -94,5 +94,5 @@ int
 	{S_FULL_SPHERE, -2 * PI / (map->x_max), PI / (map->y_max - 1)};
 	map_iteration(map, &map_fill_polar, map);
 	map_iteration(map, &map_colour, map);
-	return (EXIT_SUCCESS);
+	return (RETURN_SUCCESS);
 }

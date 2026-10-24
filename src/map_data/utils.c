@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   map_utils.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/23 18:49:26 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/04/19 17:39:34 by svan-hoo         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   utils.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-hoo <svan-hoo@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/02/23 18:49:26 by svan-hoo      #+#    #+#                 */
+/*   Updated: 2026/10/24 15:51:13 by svan-hoo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,16 @@ void
 
 	map = param;
 	point = &map->original[y][x];
-	temp = (t_point)
-	{(map->shape.longitude * x),
+	temp = (t_point){
+		point->colour,
+		(map->shape.longitude * x),
 		(map->shape.latitude * y),
-		(map->radius + point->z),
-		point->colour};
-	map->polar[y][x] = (t_point)
-	{((temp.z) * cos(temp.x) * sin(temp.y)),
+		(map->radius + point->z)};
+	map->polar[y][x] = (t_point){
+		temp.colour,
+		((temp.z) * cos(temp.x) * sin(temp.y)),
 		((temp.z) * sin(temp.x) * sin(temp.y)),
-		((temp.z) * cos(temp.y)),
-		temp.colour};
+		((temp.z) * cos(temp.y))};
 }
 
 // from user_inputs_presets.c / inputs_presets_balls()
@@ -83,5 +83,5 @@ int
 	while (i < map->y_max && map->original[i])
 		free(map->original[i++]);
 	free(map->original);
-	return (EXIT_FAILURE);
+	return (RETURN_FAILURE);
 }

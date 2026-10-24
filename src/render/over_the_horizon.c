@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   over_the_horizon.c                                 :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/04/19 17:39:34 by svan-hoo         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   over_the_horizon.c                                 :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-hoo <svan-hoo@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/02/04 22:26:03 by simon         #+#    #+#                 */
+/*   Updated: 2026/10/24 15:12:53 by svan-hoo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int
 	if (line->i == 0 && line->j == 0
 		&& (point->x * point->x) + (point->y * point->y)
 		< (fdf->radius * fdf->radius))
-		return (EXIT_FAILURE);
+		return (RETURN_FAILURE);
 	if (line->swapped == false)
 	{
 		a = point->x + (line->i * line->s_ctl);
@@ -37,8 +37,8 @@ static int
 		b = point->x + (line->j * line->s_pas);
 	}
 	if ((a * a) + (b * b) < (fdf->radius * fdf->radius))
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+		return (RETURN_FAILURE);
+	return (RETURN_SUCCESS);
 }
 
 // swap points because I already implemented line drawing in any direction...
@@ -66,9 +66,9 @@ static int
 		while (line->i != line->d_ctl
 			&& horizon_pythagoras(fdf, line, line->p0))
 			line->i++;
-		return (EXIT_SUCCESS);
+		return (RETURN_SUCCESS);
 	}
-	return (EXIT_FAILURE);
+	return (RETURN_FAILURE);
 }
 
 static int
@@ -97,7 +97,7 @@ static int
 		line->i += 1;
 		line->err += line->d_pas;
 	}
-	return (EXIT_SUCCESS);
+	return (RETURN_SUCCESS);
 }
 
 // from draw_line.c / draw_line()
@@ -116,14 +116,14 @@ int
 		t_line *line)
 {
 	if (fdf->horizon == false || fdf->ballin == false)
-		return (EXIT_SUCCESS);
+		return (RETURN_SUCCESS);
 	if (line->p0->z >= -0.00001 && line->p1->z >= -0.00001)
-		return (EXIT_SUCCESS);
+		return (RETURN_SUCCESS);
 	if (ft_abs_double(line->p0->x) < fdf->darksquare
 		&& ft_abs_double(line->p0->y) < fdf->darksquare
 		&& ft_abs_double(line->p1->x) < fdf->darksquare
 		&& ft_abs_double(line->p1->y) < fdf->darksquare
 		&& (line->p0->z < -0.00001 && line->p1->z < -0.00001))
-			return (EXIT_FAILURE);
+		return (RETURN_FAILURE);
 	return (accurate_horizon(fdf, line));
 }

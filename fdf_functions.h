@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/02 16:59:02 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/05/28 15:26:42 by svan-hoo         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   fdf_functions.h                                    :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-hoo <svan-hoo@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/02/02 16:59:02 by svan-hoo      #+#    #+#                 */
+/*   Updated: 2026/10/24 15:26:10 by svan-hoo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int			map_calloc_x(t_map *map, const int y);
 void		fdf_center_offset(t_fdf *fdf);
 // draw
 void		draw_background(const mlx_image_t *image, const uint32_t colour);
-int			draw_check_point(const t_fdf *fdf, int x_pixel, int y_pixel);
+bool		draw_point_is_in_view(const t_fdf *fdf, int x_pixel, int y_pixel);
 uint32_t	gradient(double ratio, uint32_t end, uint32_t start);
 // calc
 double		deg_to_rad(double angle_deg);

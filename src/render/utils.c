@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   draw_utils.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/04 22:26:03 by simon             #+#    #+#             */
-/*   Updated: 2024/04/19 17:39:34 by svan-hoo         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   utils.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-hoo <svan-hoo@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/02/04 22:26:03 by simon         #+#    #+#                 */
+/*   Updated: 2026/10/24 14:42:24 by svan-hoo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ uint32_t
 
 // used by draw_adjacent() and draw_line_pixel()
 // determines whether a point or pixel would be projected inside the image
-int
-	draw_check_point(
+bool
+	draw_point_is_in_view(
 		const t_fdf *fdf,
 		int x_pixel,
 		int y_pixel)
@@ -76,7 +76,7 @@ int
 	if (x_pixel < 0 || y_pixel < 0
 		|| x_pixel >= (int)fdf->image->width
 		|| y_pixel >= (int)fdf->image->height)
-		return (EXIT_FAILURE);
+		return (false);
 	else
-		return (EXIT_SUCCESS);
+		return (true);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   user_inputs_presets.c                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/05 19:31:44 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/04/19 17:39:34 by svan-hoo         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   projection_presets.c                               :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-hoo <svan-hoo@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/03/05 19:31:44 by svan-hoo      #+#    #+#                 */
+/*   Updated: 2026/10/24 15:21:12 by svan-hoo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void
 	fdf->ballin = false;
 	fdf_center_offset(fdf);
 	fdf->scale.diff = fdf->scale.initial * fdf->scale.total;
-	fdf->spinlock = false;
+	fdf->spin_lock = false;
 }
 
 // from user_inputs.c / user_inputs()
