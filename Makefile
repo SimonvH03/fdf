@@ -24,7 +24,8 @@ INIT_SRC		=	fdf_init.c \
 INPUT_DIR		=	user_input
 INPUT_SRC		=	keypress_scroll.c \
 					projection_presets.c \
-					user_inputs.c
+					user_inputs.c \
+					utils.c
 
 MAP_DIR			=	map_data
 MAP_SRC			=	map_colour.c \

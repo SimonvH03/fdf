@@ -26,35 +26,35 @@ static void
 		|| mlx_is_key_down(fdf->mlx, MLX_KEY_T))
 		fdf->redraw = true;
 	if (fdf->perspective.reproject
-		|| fdf->precalc.reproject
+		|| fdf->step.reproject
 		|| fdf->scale.diff != 1)
 		fdf->redraw = true;
 }
 
 // using only negative and positive because manual
-//;rotations are done with precalculated values
+//;rotations are done with stepulated values
 static void
 	manual_rotation(
 		t_fdf	*fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Q))
-		fdf->precalc.gamma = +fdf->precalc.sign;
+		fdf->step.gamma = +fdf->step.sign;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_E))
-		fdf->precalc.gamma = -fdf->precalc.sign;
+		fdf->step.gamma = -fdf->step.sign;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_A))
-		fdf->precalc.beta = -fdf->precalc.sign;
+		fdf->step.beta = -fdf->step.sign;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_D))
-		fdf->precalc.beta = +fdf->precalc.sign;
+		fdf->step.beta = +fdf->step.sign;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_W))
-		fdf->precalc.alpha = -fdf->precalc.sign;
+		fdf->step.alpha = -fdf->step.sign;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_S))
-		fdf->precalc.alpha = +fdf->precalc.sign;
+		fdf->step.alpha = +fdf->step.sign;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(fdf->mlx);
-	if (fdf->precalc.gamma
-		|| fdf->precalc.beta
-		|| fdf->precalc.alpha)
-		fdf->precalc.reproject = true;
+	if (fdf->step.gamma
+		|| fdf->step.beta
+		|| fdf->step.alpha)
+		fdf->step.reproject = true;
 }
 
 static void
@@ -62,13 +62,13 @@ static void
 		t_fdf	*fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_UP))
-		fdf->offset.y -= fdf->precalc.sign * fdf->speed * MOVEMENT_SPEED;
+		fdf->offset.y -= fdf->step.sign * fdf->speed;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_DOWN))
-		fdf->offset.y += fdf->precalc.sign * fdf->speed * MOVEMENT_SPEED;
+		fdf->offset.y += fdf->step.sign * fdf->speed;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT))
-		fdf->offset.x -= fdf->precalc.sign * fdf->speed * MOVEMENT_SPEED;
+		fdf->offset.x -= fdf->step.sign * fdf->speed;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT))
-		fdf->offset.x += fdf->precalc.sign * fdf->speed * MOVEMENT_SPEED;
+		fdf->offset.x += fdf->step.sign * fdf->speed;
 }
 
 // because bigger maps are slow, press + to get somewhere quick
@@ -77,21 +77,12 @@ static void
 		t_fdf	*fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_MINUS))
-	{
 		if (fdf->speed > 0.00001)
 			fdf->speed *= 0.95;
-		fdf->cosin = (t_cosin){
-			cos(fdf->speed * ROTATION_SPEED),
-			sin(fdf->speed * ROTATION_SPEED)};
-	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_EQUAL))
-	{
 		if (fdf->speed * ROTATION_SPEED < PI / 10)
 			fdf->speed *= 1.05;
-		fdf->cosin = (t_cosin){
-			cos(fdf->speed * ROTATION_SPEED),
-			sin(fdf->speed * ROTATION_SPEED)};
-	}
+	precalc(fdf);
 }
 
 // from main.c loop_hooks()

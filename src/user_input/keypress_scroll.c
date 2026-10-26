@@ -24,9 +24,7 @@ void
 	if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_PRESS)
 	{
 		fdf->spin_lock = (!fdf->spin_lock);
-		fdf->cosin = (t_cosin){
-			cos(fdf->speed * ROTATION_SPEED),
-			sin(fdf->speed * ROTATION_SPEED)};
+		precalc(fdf);
 	}
 	if (keydata.key == MLX_KEY_R && keydata.action == MLX_PRESS)
 	{
@@ -37,13 +35,18 @@ void
 	if (keydata.key == MLX_KEY_C && keydata.action == MLX_PRESS)
 		map_cycle_palettes(fdf->map);
 	if (keydata.key == MLX_KEY_T && keydata.action == MLX_PRESS)
-		fdf->precalc.sign *= -1;
+		fdf->step.sign *= -1;
 	if (keydata.key == MLX_KEY_H && keydata.action == MLX_PRESS)
 		fdf->horizon = !fdf->horizon;
 	if (keydata.key == MLX_KEY_Z && keydata.action == MLX_PRESS)
 		map_toggle_squish(fdf);
 	if (keydata.key == MLX_KEY_LEFT_CONTROL && keydata.action == MLX_PRESS)
+	{
 		fdf->scroll_behaviour = (fdf->scroll_behaviour + 1) % (t_scroll)max;
+		if (fdf->scroll_behaviour == (t_scroll)move
+			|| fdf->scroll_behaviour == (t_scroll)rotate)
+			ft_swap(&fdf->speed, &fdf->alt_speed, sizeof(fdf->speed));
+	}
 }
 
 void
@@ -53,12 +56,9 @@ void
 		double ydelta)
 {
 	if (xdelta)
-	{
-		// move like in user_inputs > manual_translation
-	}
+		fdf->offset.x += fdf->step.sign * (xdelta * fdf->speed);
 	if (ydelta)
-	{
-	}
+		fdf->offset.y += fdf->step.sign * (ydelta * fdf->speed);
 }
 
 void
@@ -79,9 +79,7 @@ void
 		double ydelta)
 {
 	if (ydelta)
-	{
-		// change squish factor
-	}
+		fdf->squish_factor *= pow(1.1, 1 + ydelta);
 }
 
 // from main.c / loop_hooks()
@@ -94,10 +92,8 @@ void
 	t_fdf	*fdf;
 
 	fdf = param;
-	if (fdf->scroll_behaviour == (t_scroll)zoom)
-	{
+	if (fdf->scroll_behaviour != (t_scroll)move)
 		(void)xdelta;
-	}
 	switch (fdf->scroll_behaviour)
 	{
 		case (t_scroll)move:

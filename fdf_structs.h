@@ -88,14 +88,14 @@ typedef struct s_perspective
 	bool			reproject;
 }	t_perspective;
 
-typedef struct s_precalc
+typedef struct s_step
 {
 	short			alpha;
 	short			beta;
 	short			gamma;
 	int				sign;
 	bool			reproject;
-}	t_precalc;
+}	t_step;
 
 typedef struct s_cosin
 {
@@ -120,6 +120,7 @@ typedef struct s_offset
 typedef enum e_scroll_behaviour
 {
 	move = 0,
+	rotate,
 	squish,
 	zoom,
 	max
@@ -132,13 +133,14 @@ typedef struct s_fdf
 	mlx_image_t		*menu_image;
 	t_map			*map;
 	t_perspective	perspective;
-	t_precalc		precalc;
+	t_step			step;
 	t_cosin			cosin;
 	t_scale			scale;
 	t_offset		center;
 	t_offset		offset;
 	t_scroll		scroll_behaviour;
 	double			speed;
+	double			alt_speed;
 	double			squish_factor;
 	double			darksquare;
 	double			radius;

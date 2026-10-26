@@ -26,7 +26,8 @@
 # define DEFAULT_SCALE		0.55
 # define ROTATION_SPEED		0.01
 # define MOVEMENT_SPEED		10
-# define SPEED_SCALAR		1
+# define SCROLL_SPEED		1
+# define KEY_SPEED			1
 
 // perspective defaults
 # define ISO_GAMMA			-0.7853981633974483

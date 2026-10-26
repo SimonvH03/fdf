@@ -81,14 +81,14 @@
 // 		while (x < fdf->map->x_max)
 // 		{
 // 			point = &fdf->map->project[y][x];
-// 			if (fdf->precalc.gamma || fdf->precalc.beta || fdf->precalc.alpha)
+// 			if (fdf->step.gamma || fdf->step.beta || fdf->step.alpha)
 // 				point_rotate_precalculated(fdf, point);
 // 			x++;
 // 		}
 // 		y++;
 // 	}
 // 	if (fdf->spin_lock == false)
-// 		fdf->precalc = (t_precalc){0, 0, 0};
+// 		fdf->step = (t_step){0, 0, 0};
 // }
 
 // victim #4: replaced by map_iteration version

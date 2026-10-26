@@ -45,10 +45,12 @@ mlx_scroll	scrollhook;
 void		input_presets_flat(t_fdf *fdf);
 void		input_presets_balls(t_fdf *fdf);
 
-// change the projection's colour palette
+// other input effects
 void		map_cycle_palettes(t_map *map);
-
 void		map_toggle_squish(t_fdf *fdf);
+
+// math pass
+void		precalc(t_fdf *fdf);
 
 //// PHASE 3: modifying the projection data based on interpreted user input
 mlx_hook	project;

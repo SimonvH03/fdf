@@ -26,11 +26,11 @@ void
 		map_iteration(fdf->map, &fdf_rotate, fdf);
 		fdf->perspective = (t_perspective){0, 0, 0, false};
 	}
-	if (fdf->precalc.reproject == true)
+	if (fdf->step.reproject == true)
 	{
 		map_iteration(fdf->map, &fdf_rotate_optimized, fdf);
 		if (fdf->spin_lock == false)
-			fdf->precalc = (t_precalc){0, 0, 0, 1, false};
+			fdf->step = (t_step){0, 0, 0, 1, false};
 	}
 	if (fdf->scale.diff != 1)
 	{

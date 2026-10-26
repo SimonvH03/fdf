@@ -65,8 +65,9 @@ int
 		return (RETURN_FAILURE);
 	fdf->map = map;
 	fdf->perspective = (t_perspective){ISO_ALPHA, ISO_BETA, ISO_GAMMA, true};
-	fdf->precalc = (t_precalc){0, 0, 0, 1, true};
-	fdf->speed = SPEED_SCALAR;
+	fdf->step = (t_step){0, 0, 0, 1, true};
+	fdf->speed = KEY_SPEED;
+	fdf->alt_speed = SCROLL_SPEED;
 	fdf->cosin = (t_cosin){
 		cos(fdf->speed * ROTATION_SPEED),
 		sin(fdf->speed * ROTATION_SPEED)};
