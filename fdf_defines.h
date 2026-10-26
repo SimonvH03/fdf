@@ -18,8 +18,8 @@
 
 // mlx window
 # define WINDOW_TITLE		"fdf"
-# define WIDTH				1920
-# define HEIGHT				1080
+# define WIDTH				1280
+# define HEIGHT				720
 # define MENU_WIDTH			400
 
 // fdf defaults

@@ -94,6 +94,7 @@ void
 	fdf = param;
 	if (fdf->scroll_behaviour != (t_scroll)move)
 		(void)xdelta;
+	printf("pass\n");
 	switch (fdf->scroll_behaviour)
 	{
 		case (t_scroll)move:

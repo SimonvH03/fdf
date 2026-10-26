@@ -71,6 +71,7 @@ int
 	fdf->cosin = (t_cosin){
 		cos(fdf->speed * ROTATION_SPEED),
 		sin(fdf->speed * ROTATION_SPEED)};
+	fdf->scroll_behaviour = (t_scroll)zoom;
 	fdf_scale_init(fdf);
 	fdf->radius = fdf->map->radius;
 	fdf->darksquare = fdf->radius / sqrt(2);
